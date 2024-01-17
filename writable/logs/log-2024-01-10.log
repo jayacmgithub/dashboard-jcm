@@ -1,0 +1,874 @@
+INFO - 2024-01-10 01:48:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:48:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:48:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:48:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:49:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:51:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:52:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:52:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:52:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:52:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:52:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:52:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:53:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:53:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:57:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:58:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:58:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 01:58:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 02:02:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 02:03:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 02:04:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 02:04:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 02:12:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 02:27:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 02:29:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 02:30:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 02:30:15 --> CodeIgniter\Database\BaseBuilder::get(): Argument #1 ($limit) must be of type ?int, string given, called in C:\laragon\www\dashboard\app\Controllers\Data.php on line 623
+in SYSTEMPATH\Database\BaseBuilder.php on line 1608.
+ 1 APPPATH\Controllers\Data.php(623): CodeIgniter\Database\BaseBuilder->get('kategori_user')
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->edituser('USR8c4566d1e447f347130e64211452d1c345f4c898QNS')
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 02:30:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-01-10 02:30:38 --> mysqli_sql_exception: Table 'qns_dashv7.master_pkpp' doesn't exist in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\dashboard\app\Controllers\Data.php(624): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Data->edituser('USR8c4566d1e447...')
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#10 {main}
+CRITICAL - 2024-01-10 02:30:38 --> Table 'qns_dashv7.master_pkpp' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `master_pkpp`
+ORDER BY `no_pkp`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `master_pkpp`
+ORDER BY `no_pkp`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `master_pkpp`
+ORDER BY `no_pkp`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `master_pkpp`
+ORDER BY `no_pkp`', [], false)
+ 5 APPPATH\Controllers\Data.php(624): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->edituser('USR8c4566d1e447f347130e64211452d1c345f4c898QNS')
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 02:30:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 02:30:46 --> Call to undefined method CodeIgniter\Database\MySQLi\Connection::getWhere()
+in APPPATH\Controllers\Data.php on line 627.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->edituser('USR8c4566d1e447f347130e64211452d1c345f4c898QNS')
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 02:31:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 02:31:23 --> CodeIgniter\Database\BaseBuilder::getWhere(): Argument #2 ($limit) must be of type ?int, array given, called in C:\laragon\www\dashboard\app\Controllers\Data.php on line 635
+in SYSTEMPATH\Database\BaseBuilder.php on line 1737.
+ 1 APPPATH\Controllers\Data.php(635): CodeIgniter\Database\BaseBuilder->getWhere('master_golongan', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->edituser('USR8c4566d1e447f347130e64211452d1c345f4c898QNS')
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 02:31:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 02:31:52 --> Invalid file: "data/edit-user.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('data/edit-user.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/edit-user', [], true)
+ 3 APPPATH\Controllers\Data.php(649): view('data/edit-user', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->edituser('USR8c4566d1e447f347130e64211452d1c345f4c898QNS')
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 02:32:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 02:32:06 --> Undefined variable $nrp
+in APPPATH\Views\data\hcm\edit-user.php on line 16.
+ 1 APPPATH\Views\data\hcm\edit-user.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $nrp', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\hcm\\edit-user.php', 16)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\hcm\\edit-user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/hcm/edit-user', [], true)
+ 5 APPPATH\Controllers\Data.php(649): view('data/hcm/edit-user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->edituser('USR8c4566d1e447f347130e64211452d1c345f4c898QNS')
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 02:35:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 02:35:23 --> Attempt to read property "kode" on string
+in APPPATH\Controllers\Data.php on line 612.
+ 1 APPPATH\Controllers\Data.php(612): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kode" on string', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Data.php', 612)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->edituser('USR8c4566d1e447f347130e64211452d1c345f4c898QNS')
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 02:35:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 02:35:39 --> Undefined property: CodeIgniter\View\View::$security
+in APPPATH\Views\data\hcm\edit-user.php on line 445.
+ 1 APPPATH\Views\data\hcm\edit-user.php(445): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$security', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\hcm\\edit-user.php', 445)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\hcm\\edit-user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/hcm/edit-user', [], true)
+ 5 APPPATH\Controllers\Data.php(649): view('data/hcm/edit-user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->edituser('USR8c4566d1e447f347130e64211452d1c345f4c898QNS')
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 02:36:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 02:36:04 --> level_user(): Argument #3 ($kategori) must be of type string, array given, called in C:\laragon\www\dashboard\app\Views\layout\page_layout.php on line 109
+in APPPATH\Helpers\level_helper.php on line 4.
+ 1 APPPATH\Views\layout\page_layout.php(109): level_user('proyek', 'data', [...], 'read')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('layout/page_layout', [], true)
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/hcm/edit-user', [], true)
+ 6 APPPATH\Controllers\Data.php(649): view('data/hcm/edit-user', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->edituser('USR8c4566d1e447f347130e64211452d1c345f4c898QNS')
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 02:36:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 02:36:38 --> level_user(): Argument #3 ($kategori) must be of type string, array given, called in C:\laragon\www\dashboard\app\Views\layout\page_layout.php on line 109
+in APPPATH\Helpers\level_helper.php on line 4.
+ 1 APPPATH\Views\layout\page_layout.php(109): level_user('proyek', 'data', [...], 'read')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('layout/page_layout', [], true)
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/hcm/edit-user', [], true)
+ 6 APPPATH\Controllers\Data.php(649): view('data/hcm/edit-user', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->edituser('USR8c4566d1e447f347130e64211452d1c345f4c898QNS')
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 02:38:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 02:38:01 --> level_user(): Argument #3 ($kategori) must be of type string, array given, called in C:\laragon\www\dashboard\app\Views\layout\page_layout.php on line 109
+in APPPATH\Helpers\level_helper.php on line 4.
+ 1 APPPATH\Views\layout\page_layout.php(109): level_user('proyek', 'data', [...], 'read')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('layout/page_layout', [], true)
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/hcm/edit-user', [], true)
+ 6 APPPATH\Controllers\Data.php(649): view('data/hcm/edit-user', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->edituser('USR8c4566d1e447f347130e64211452d1c345f4c898QNS')
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 02:38:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 03:15:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 03:15:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 03:18:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 03:18:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 03:19:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 03:19:05 --> Undefined array key "pkp_sebelumnya"
+in APPPATH\Models\LaporanModel.php on line 40.
+ 1 APPPATH\Models\LaporanModel.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "pkp_sebelumnya"', 'C:\\laragon\\www\\dashboard\\app\\Models\\LaporanModel.php', 40)
+ 2 APPPATH\Controllers\Data.php(673): App\Models\LaporanModel->updatedatauser_1([...])
+ 3 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->useredit_1()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 5 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 03:20:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 03:20:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 03:20:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 03:20:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 03:20:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 03:21:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 03:21:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 03:27:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 03:27:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 03:27:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 03:46:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 03:49:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:03:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:09:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:09:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:09:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:09:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:09:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:11:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 04:11:19 --> Undefined variable $users
+in APPPATH\Views\setting\user.php on line 29.
+ 1 APPPATH\Views\setting\user.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $users', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php', 29)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/user', [], true)
+ 5 APPPATH\Controllers\Setting.php(101): view('setting/user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 04:11:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:12:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:14:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 04:14:22 --> Undefined property: stdClass::$nomor
+in APPPATH\Views\setting\user.php on line 46.
+ 1 APPPATH\Views\setting\user.php(46): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php', 46)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/user', [], true)
+ 5 APPPATH\Controllers\Setting.php(101): view('setting/user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 04:15:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 04:15:15 --> Undefined property: stdClass::$nomor
+in APPPATH\Views\setting\user.php on line 46.
+ 1 APPPATH\Views\setting\user.php(46): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php', 46)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/user', [], true)
+ 5 APPPATH\Controllers\Setting.php(101): view('setting/user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 04:15:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 04:15:59 --> Undefined property: stdClass::$nomor
+in APPPATH\Views\setting\user.php on line 46.
+ 1 APPPATH\Views\setting\user.php(46): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php', 46)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/user', [], true)
+ 5 APPPATH\Controllers\Setting.php(101): view('setting/user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 04:18:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-01-10 04:18:59 --> mysqli_sql_exception: Unknown column 'c.no_pkp' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id`...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id`...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id`...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id`...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\UserModel.php(11): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Setting.php(98): App\Models\UserModel->getUser()
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Setting->user()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2024-01-10 04:19:00 --> Unknown column 'c.no_pkp' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id`, `a`.`username`, `a`.`nama_admin`, `a`.`email`, `a`.`jenis_kelamin`, `a`.`aktif`, `b`.`kategori_user`, `c`.`no_pkp`, `d`.`nomor`
+FROM `master_admin` `a`
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id`, `a`.`username`, `a`.`nama_admin`, `a`.`email`, `a`.`jenis_kelamin`, `a`.`aktif`, `b`.`kategori_user`, `c`.`no_pkp`, `d`.`nomor`
+FROM `master_admin` `a`
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id`, `a`.`username`, `a`.`nama_admin`, `a`.`email`, `a`.`jenis_kelamin`, `a`.`aktif`, `b`.`kategori_user`, `c`.`no_pkp`, `d`.`nomor`
+FROM `master_admin` `a`
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id`, `a`.`username`, `a`.`nama_admin`, `a`.`email`, `a`.`jenis_kelamin`, `a`.`aktif`, `b`.`kategori_user`, `c`.`no_pkp`, `d`.`nomor`
+FROM `master_admin` `a`
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`', [], false)
+ 5 APPPATH\Models\UserModel.php(11): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Setting.php(98): App\Models\UserModel->getUser()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 04:32:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-01-10 04:32:34 --> mysqli_sql_exception: Unknown column 'c.no_pkp' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id`...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id`...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id`...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id`...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\UserModel.php(11): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Setting.php(98): App\Models\UserModel->getUser()
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Setting->user()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2024-01-10 04:32:34 --> Unknown column 'c.no_pkp' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id`, `a`.`username`, `a`.`nama_admin`, `a`.`email`, `a`.`jenis_kelamin`, `a`.`aktif`, `b`.`kategori_user`, `c`.`no_pkp`, `d`.`nomor`
+FROM `master_admin` `a`
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id`, `a`.`username`, `a`.`nama_admin`, `a`.`email`, `a`.`jenis_kelamin`, `a`.`aktif`, `b`.`kategori_user`, `c`.`no_pkp`, `d`.`nomor`
+FROM `master_admin` `a`
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id`, `a`.`username`, `a`.`nama_admin`, `a`.`email`, `a`.`jenis_kelamin`, `a`.`aktif`, `b`.`kategori_user`, `c`.`no_pkp`, `d`.`nomor`
+FROM `master_admin` `a`
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id`, `a`.`username`, `a`.`nama_admin`, `a`.`email`, `a`.`jenis_kelamin`, `a`.`aktif`, `b`.`kategori_user`, `c`.`no_pkp`, `d`.`nomor`
+FROM `master_admin` `a`
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`', [], false)
+ 5 APPPATH\Models\UserModel.php(11): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Setting.php(98): App\Models\UserModel->getUser()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 04:36:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-01-10 04:36:22 --> mysqli_sql_exception: Not unique table/alias: 'a' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id`...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id`...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id`...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id`...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\UserModel.php(16): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Setting.php(100): App\Models\UserModel->allUser()
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Setting->user()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2024-01-10 04:36:22 --> Not unique table/alias: 'a'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id`, `a`.`username`, `a`.`nama_admin`, `a`.`email`, `a`.`jenis_kelamin`, `a`.`aktif`, `a`.`jml_pkp`, `b`.`kategori_user`, `c`.`no_pkp`, `d`.`nomor`
+FROM (`master_admin` `a`, `master_admin` `a`)
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`
+JOIN `master_pkp` `c` ON `a`.`pkp_akhir` = `c`.`id_pkp`
+JOIN `master_instansi` `d` ON `c`.`id_instansi` = `d`.`id`
+WHERE `b`.`kategori_user` != \'IT\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id`, `a`.`username`, `a`.`nama_admin`, `a`.`email`, `a`.`jenis_kelamin`, `a`.`aktif`, `a`.`jml_pkp`, `b`.`kategori_user`, `c`.`no_pkp`, `d`.`nomor`
+FROM (`master_admin` `a`, `master_admin` `a`)
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`
+JOIN `master_pkp` `c` ON `a`.`pkp_akhir` = `c`.`id_pkp`
+JOIN `master_instansi` `d` ON `c`.`id_instansi` = `d`.`id`
+WHERE `b`.`kategori_user` != \'IT\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id`, `a`.`username`, `a`.`nama_admin`, `a`.`email`, `a`.`jenis_kelamin`, `a`.`aktif`, `a`.`jml_pkp`, `b`.`kategori_user`, `c`.`no_pkp`, `d`.`nomor`
+FROM (`master_admin` `a`, `master_admin` `a`)
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`
+JOIN `master_pkp` `c` ON `a`.`pkp_akhir` = `c`.`id_pkp`
+JOIN `master_instansi` `d` ON `c`.`id_instansi` = `d`.`id`
+WHERE `b`.`kategori_user` != \'IT\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id`, `a`.`username`, `a`.`nama_admin`, `a`.`email`, `a`.`jenis_kelamin`, `a`.`aktif`, `a`.`jml_pkp`, `b`.`kategori_user`, `c`.`no_pkp`, `d`.`nomor`
+FROM (`master_admin` `a`, `master_admin` `a`)
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`
+JOIN `master_pkp` `c` ON `a`.`pkp_akhir` = `c`.`id_pkp`
+JOIN `master_instansi` `d` ON `c`.`id_instansi` = `d`.`id`
+WHERE `b`.`kategori_user` != :b.kategori_user:', [...], false)
+ 5 APPPATH\Models\UserModel.php(16): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Setting.php(100): App\Models\UserModel->allUser()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 04:39:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-01-10 04:39:59 --> mysqli_sql_exception: Not unique table/alias: 'a' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id`...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id`...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id`...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id`...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\UserModel.php(16): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Setting.php(117): App\Models\UserModel->allUser()
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Setting->user()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2024-01-10 04:39:59 --> Not unique table/alias: 'a'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id`, `a`.`username`, `a`.`nama_admin`, `a`.`email`, `a`.`jenis_kelamin`, `a`.`aktif`, `a`.`jml_pkp`, `b`.`kategori_user`, `c`.`no_pkp`, `d`.`nomor`
+FROM (`master_admin` `a`, `master_admin` `a`)
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`
+JOIN `master_pkp` `c` ON `a`.`pkp_akhir` = `c`.`id_pkp`
+JOIN `master_instansi` `d` ON `c`.`id_instansi` = `d`.`id`
+WHERE `b`.`kategori_user` != \'IT\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id`, `a`.`username`, `a`.`nama_admin`, `a`.`email`, `a`.`jenis_kelamin`, `a`.`aktif`, `a`.`jml_pkp`, `b`.`kategori_user`, `c`.`no_pkp`, `d`.`nomor`
+FROM (`master_admin` `a`, `master_admin` `a`)
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`
+JOIN `master_pkp` `c` ON `a`.`pkp_akhir` = `c`.`id_pkp`
+JOIN `master_instansi` `d` ON `c`.`id_instansi` = `d`.`id`
+WHERE `b`.`kategori_user` != \'IT\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id`, `a`.`username`, `a`.`nama_admin`, `a`.`email`, `a`.`jenis_kelamin`, `a`.`aktif`, `a`.`jml_pkp`, `b`.`kategori_user`, `c`.`no_pkp`, `d`.`nomor`
+FROM (`master_admin` `a`, `master_admin` `a`)
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`
+JOIN `master_pkp` `c` ON `a`.`pkp_akhir` = `c`.`id_pkp`
+JOIN `master_instansi` `d` ON `c`.`id_instansi` = `d`.`id`
+WHERE `b`.`kategori_user` != \'IT\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id`, `a`.`username`, `a`.`nama_admin`, `a`.`email`, `a`.`jenis_kelamin`, `a`.`aktif`, `a`.`jml_pkp`, `b`.`kategori_user`, `c`.`no_pkp`, `d`.`nomor`
+FROM (`master_admin` `a`, `master_admin` `a`)
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`
+JOIN `master_pkp` `c` ON `a`.`pkp_akhir` = `c`.`id_pkp`
+JOIN `master_instansi` `d` ON `c`.`id_instansi` = `d`.`id`
+WHERE `b`.`kategori_user` != :b.kategori_user:', [...], false)
+ 5 APPPATH\Models\UserModel.php(16): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Setting.php(117): App\Models\UserModel->allUser()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 04:41:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 04:41:49 --> Undefined property: mysqli::$aktif
+in APPPATH\Views\setting\user.php on line 31.
+ 1 APPPATH\Views\setting\user.php(31): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: mysqli::$aktif', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php', 31)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/user', [], true)
+ 5 APPPATH\Controllers\Setting.php(130): view('setting/user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 04:42:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 04:42:55 --> Undefined property: mysqli::$aktif
+in APPPATH\Views\setting\user.php on line 31.
+ 1 APPPATH\Views\setting\user.php(31): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: mysqli::$aktif', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php', 31)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/user', [], true)
+ 5 APPPATH\Controllers\Setting.php(130): view('setting/user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 04:44:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 04:44:22 --> You must set the database table to be used with your query.
+in SYSTEMPATH\Database\BaseConnection.php on line 883.
+ 1 APPPATH\Models\UserModel.php(16): CodeIgniter\Database\BaseConnection->table(null)
+ 2 APPPATH\Controllers\Setting.php(117): App\Models\UserModel->allUser()
+ 3 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 5 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 04:44:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-01-10 04:44:37 --> mysqli_sql_exception: Unknown column 'a.nomor' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id`...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id`...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id`...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id`...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\UserModel.php(23): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Setting.php(117): App\Models\UserModel->allUser()
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Setting->user()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2024-01-10 04:44:37 --> Unknown column 'a.nomor' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id`, `a`.`nomor`, `a`.`no_pkp`, `a`.`nama_admin`, `a`.`username`, `a`.`email`, `a`.`kategori_user`, `a`.`jenis_kelamin`, `a`.`aktif`, `b`.`no_pkp`, `c`.`nomor`
+FROM `master_admin` `a`
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`
+JOIN `master_pkp` `c` ON `a`.`pkp_akhir` = `c`.`id_pkp`
+JOIN `master_instansi` `d` ON `c`.`id_instansi` = `d`.`id`
+WHERE `b`.`kategori_user` != \'IT\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id`, `a`.`nomor`, `a`.`no_pkp`, `a`.`nama_admin`, `a`.`username`, `a`.`email`, `a`.`kategori_user`, `a`.`jenis_kelamin`, `a`.`aktif`, `b`.`no_pkp`, `c`.`nomor`
+FROM `master_admin` `a`
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`
+JOIN `master_pkp` `c` ON `a`.`pkp_akhir` = `c`.`id_pkp`
+JOIN `master_instansi` `d` ON `c`.`id_instansi` = `d`.`id`
+WHERE `b`.`kategori_user` != \'IT\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id`, `a`.`nomor`, `a`.`no_pkp`, `a`.`nama_admin`, `a`.`username`, `a`.`email`, `a`.`kategori_user`, `a`.`jenis_kelamin`, `a`.`aktif`, `b`.`no_pkp`, `c`.`nomor`
+FROM `master_admin` `a`
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`
+JOIN `master_pkp` `c` ON `a`.`pkp_akhir` = `c`.`id_pkp`
+JOIN `master_instansi` `d` ON `c`.`id_instansi` = `d`.`id`
+WHERE `b`.`kategori_user` != \'IT\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id`, `a`.`nomor`, `a`.`no_pkp`, `a`.`nama_admin`, `a`.`username`, `a`.`email`, `a`.`kategori_user`, `a`.`jenis_kelamin`, `a`.`aktif`, `b`.`no_pkp`, `c`.`nomor`
+FROM `master_admin` `a`
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`
+JOIN `master_pkp` `c` ON `a`.`pkp_akhir` = `c`.`id_pkp`
+JOIN `master_instansi` `d` ON `c`.`id_instansi` = `d`.`id`
+WHERE `b`.`kategori_user` != :b.kategori_user:', [...], false)
+ 5 APPPATH\Models\UserModel.php(23): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Setting.php(117): App\Models\UserModel->allUser()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 04:44:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-01-10 04:44:52 --> mysqli_sql_exception: Unknown column 'a.no_pkp' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id`...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id`...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id`...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id`...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\UserModel.php(23): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Setting.php(117): App\Models\UserModel->allUser()
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Setting->user()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2024-01-10 04:44:52 --> Unknown column 'a.no_pkp' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id`, `a`.`no_pkp`, `a`.`nama_admin`, `a`.`username`, `a`.`email`, `a`.`kategori_user`, `a`.`jenis_kelamin`, `a`.`aktif`, `b`.`no_pkp`, `c`.`nomor`
+FROM `master_admin` `a`
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`
+JOIN `master_pkp` `c` ON `a`.`pkp_akhir` = `c`.`id_pkp`
+JOIN `master_instansi` `d` ON `c`.`id_instansi` = `d`.`id`
+WHERE `b`.`kategori_user` != \'IT\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id`, `a`.`no_pkp`, `a`.`nama_admin`, `a`.`username`, `a`.`email`, `a`.`kategori_user`, `a`.`jenis_kelamin`, `a`.`aktif`, `b`.`no_pkp`, `c`.`nomor`
+FROM `master_admin` `a`
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`
+JOIN `master_pkp` `c` ON `a`.`pkp_akhir` = `c`.`id_pkp`
+JOIN `master_instansi` `d` ON `c`.`id_instansi` = `d`.`id`
+WHERE `b`.`kategori_user` != \'IT\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id`, `a`.`no_pkp`, `a`.`nama_admin`, `a`.`username`, `a`.`email`, `a`.`kategori_user`, `a`.`jenis_kelamin`, `a`.`aktif`, `b`.`no_pkp`, `c`.`nomor`
+FROM `master_admin` `a`
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`
+JOIN `master_pkp` `c` ON `a`.`pkp_akhir` = `c`.`id_pkp`
+JOIN `master_instansi` `d` ON `c`.`id_instansi` = `d`.`id`
+WHERE `b`.`kategori_user` != \'IT\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id`, `a`.`no_pkp`, `a`.`nama_admin`, `a`.`username`, `a`.`email`, `a`.`kategori_user`, `a`.`jenis_kelamin`, `a`.`aktif`, `b`.`no_pkp`, `c`.`nomor`
+FROM `master_admin` `a`
+JOIN `kategori_user` `b` ON `a`.`kategori` = `b`.`id`
+JOIN `master_pkp` `c` ON `a`.`pkp_akhir` = `c`.`id_pkp`
+JOIN `master_instansi` `d` ON `c`.`id_instansi` = `d`.`id`
+WHERE `b`.`kategori_user` != :b.kategori_user:', [...], false)
+ 5 APPPATH\Models\UserModel.php(23): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Setting.php(117): App\Models\UserModel->allUser()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 04:45:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:46:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 04:46:11 --> Undefined variable $tomboledit
+in APPPATH\Views\setting\user.php on line 46.
+ 1 APPPATH\Views\setting\user.php(46): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $tomboledit', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php', 46)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/user', [], true)
+ 5 APPPATH\Controllers\Setting.php(130): view('setting/user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 04:46:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:53:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:53:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:53:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:53:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:53:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:53:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:53:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:55:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:55:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:55:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 04:59:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 05:02:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 05:02:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 05:02:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 05:02:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 05:02:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:13:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:15:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:16:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:16:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:18:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:18:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:18:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:20:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:21:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:21:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:21:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 06:21:24 --> Undefined variable $status
+in APPPATH\Views\setting\user.php on line 66.
+ 1 APPPATH\Views\setting\user.php(66): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $status', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php', 66)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/user', [], true)
+ 5 APPPATH\Controllers\Setting.php(130): view('setting/user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 06:21:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:23:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 06:23:45 --> Undefined variable $tomboledit
+in APPPATH\Views\setting\user.php on line 53.
+ 1 APPPATH\Views\setting\user.php(53): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $tomboledit', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php', 53)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/user', [], true)
+ 5 APPPATH\Controllers\Setting.php(130): view('setting/user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 06:24:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:25:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:25:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:25:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:26:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:26:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:28:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:28:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:29:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:29:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:29:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:29:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:29:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:30:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:31:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:31:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:32:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:34:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:34:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:34:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:35:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:35:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:41:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:41:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:41:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:42:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:43:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:44:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:44:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:45:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:45:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:45:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:45:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:45:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:46:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:46:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:52:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:53:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:53:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:53:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:54:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:54:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:54:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:54:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:54:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:54:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:54:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:55:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:55:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:55:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:57:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:57:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:57:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:57:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:57:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:58:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 06:58:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 07:00:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 07:01:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 07:01:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 07:03:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 07:03:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 08:57:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 08:57:57 --> Undefined variable $kategoriQNS
+in APPPATH\Views\setting\edit-user.php on line 12.
+ 1 APPPATH\Views\setting\edit-user.php(12): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $kategoriQNS', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php', 12)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/edit-user', [], true)
+ 5 APPPATH\Controllers\Setting.php(178): view('setting/edit-user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->edituser('USR00318967774744d80bb4c040f606dde5f4a7b1e6QNS')
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 08:58:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 08:58:06 --> Call to undefined method CodeIgniter\Database\MySQLi\Result::row()
+in APPPATH\Views\setting\edit-user.php on line 29.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/edit-user', [], true)
+ 4 APPPATH\Controllers\Setting.php(179): view('setting/edit-user', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->edituser('USR00318967774744d80bb4c040f606dde5f4a7b1e6QNS')
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 08:59:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 08:59:00 --> Call to undefined method CodeIgniter\Database\MySQLi\Result::row()
+in APPPATH\Views\setting\edit-user.php on line 29.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/edit-user', [], true)
+ 4 APPPATH\Controllers\Setting.php(179): view('setting/edit-user', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->edituser('USR00318967774744d80bb4c040f606dde5f4a7b1e6QNS')
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 08:59:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 08:59:24 --> Undefined variable $jabatanuser
+in APPPATH\Views\setting\edit-user.php on line 265.
+ 1 APPPATH\Views\setting\edit-user.php(265): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $jabatanuser', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php', 265)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/edit-user', [], true)
+ 5 APPPATH\Controllers\Setting.php(179): view('setting/edit-user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->edituser('USR00318967774744d80bb4c040f606dde5f4a7b1e6QNS')
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 09:03:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 09:03:17 --> Undefined property: stdClass::$kategori_user
+in APPPATH\Views\setting\edit-user.php on line 271.
+ 1 APPPATH\Views\setting\edit-user.php(271): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$kategori_user', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php', 271)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/edit-user', [], true)
+ 5 APPPATH\Controllers\Setting.php(179): view('setting/edit-user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->edituser('USR00318967774744d80bb4c040f606dde5f4a7b1e6QNS')
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 09:07:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 09:07:28 --> Undefined property: stdClass::$kategori_user
+in APPPATH\Views\setting\edit-user.php on line 271.
+ 1 APPPATH\Views\setting\edit-user.php(271): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$kategori_user', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php', 271)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/edit-user', [], true)
+ 5 APPPATH\Controllers\Setting.php(179): view('setting/edit-user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->edituser('USR00318967774744d80bb4c040f606dde5f4a7b1e6QNS')
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 09:09:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 09:09:18 --> Undefined property: stdClass::$kategori_user
+in APPPATH\Views\setting\edit-user.php on line 271.
+ 1 APPPATH\Views\setting\edit-user.php(271): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$kategori_user', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php', 271)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/edit-user', [], true)
+ 5 APPPATH\Controllers\Setting.php(179): view('setting/edit-user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->edituser('USR00318967774744d80bb4c040f606dde5f4a7b1e6QNS')
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 09:09:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 09:09:44 --> Undefined variable $jabatanuser
+in APPPATH\Views\setting\edit-user.php on line 265.
+ 1 APPPATH\Views\setting\edit-user.php(265): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $jabatanuser', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php', 265)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/edit-user', [], true)
+ 5 APPPATH\Controllers\Setting.php(179): view('setting/edit-user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->edituser('USR00318967774744d80bb4c040f606dde5f4a7b1e6QNS')
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 09:11:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 09:11:24 --> Undefined property: CodeIgniter\View\View::$load
+in APPPATH\Views\setting\edit-user.php on line 257.
+ 1 APPPATH\Views\setting\edit-user.php(257): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$load', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php', 257)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/edit-user', [], true)
+ 5 APPPATH\Controllers\Setting.php(179): view('setting/edit-user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->edituser('USR00318967774744d80bb4c040f606dde5f4a7b1e6QNS')
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 09:12:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 09:12:26 --> foreach() argument must be of type array|object, string given
+in APPPATH\Views\setting\edit-user.php on line 276.
+ 1 APPPATH\Views\setting\edit-user.php(276): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, string given', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php', 276)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/edit-user', [], true)
+ 5 APPPATH\Controllers\Setting.php(179): view('setting/edit-user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->edituser('USR00318967774744d80bb4c040f606dde5f4a7b1e6QNS')
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 09:12:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 09:12:54 --> level_user(): Argument #3 ($kategori) must be of type string, array given, called in C:\laragon\www\dashboard\app\Views\layout\page_layout.php on line 109
+in APPPATH\Helpers\level_helper.php on line 4.
+ 1 APPPATH\Views\layout\page_layout.php(109): level_user('proyek', 'data', [...], 'read')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('layout/page_layout', [], true)
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/edit-user', [], true)
+ 6 APPPATH\Controllers\Setting.php(178): view('setting/edit-user', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->edituser('USR00318967774744d80bb4c040f606dde5f4a7b1e6QNS')
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 09:13:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 09:13:33 --> foreach() argument must be of type array|object, string given
+in APPPATH\Views\setting\edit-user.php on line 276.
+ 1 APPPATH\Views\setting\edit-user.php(276): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, string given', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php', 276)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\edit-user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/edit-user', [], true)
+ 5 APPPATH\Controllers\Setting.php(179): view('setting/edit-user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->edituser('USR00318967774744d80bb4c040f606dde5f4a7b1e6QNS')
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2024-01-10 09:13:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:22:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:26:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:31:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:31:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:33:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:33:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:33:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:34:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:35:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:35:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:35:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:35:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:38:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:38:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-01-10 09:55:26 --> Cannot redeclare App\Controllers\Data::edituser()
+in APPPATH\Controllers\Data.php on line 713.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+INFO - 2024-01-10 09:55:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:55:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:55:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:55:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:56:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 09:56:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 10:00:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 10:00:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 10:00:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-01-10 10:13:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

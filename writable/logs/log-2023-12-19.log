@@ -1,0 +1,1610 @@
+INFO - 2023-12-19 01:56:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 01:56:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 01:56:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 01:56:45 --> Too few arguments to function App\Models\ProyekModel::__construct(), 0 passed in C:\laragon\www\dashboard\app\Controllers\Proyek.php on line 19 and exactly 1 expected
+in APPPATH\Models\ProyekModel.php on line 44.
+ 1 APPPATH\Controllers\Proyek.php(19): App\Models\ProyekModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\Proyek->__construct()
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 01:57:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 01:57:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 02:00:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 02:00:05 --> Call to a member function getGet() on null
+in APPPATH\Models\ProyekModel.php on line 104.
+ 1 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->get_pkp_datatable()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 03:42:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 03:42:58 --> Call to a member function getGet() on null
+in APPPATH\Models\ProyekModel.php on line 104.
+ 1 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->get_pkp_datatable()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 04:03:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 04:03:33 --> Call to a member function getGet() on null
+in APPPATH\Models\ProyekModel.php on line 104.
+ 1 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->get_pkp_datatable()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 04:07:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 04:07:15 --> Call to a member function getGet() on null
+in APPPATH\Models\ProyekModel.php on line 58.
+ 1 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->get_pkp_datatable()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+CRITICAL - 2023-12-19 04:36:30 --> Unclosed '{' on line 11
+in APPPATH\Controllers\Proyek.php on line 109.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Proyek')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Proyek')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Proyek', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 04:38:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 04:38:52 --> Attempt to read property "kategori_user" on null
+in APPPATH\Controllers\Proyek.php on line 43.
+ 1 APPPATH\Controllers\Proyek.php(43): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on null', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 43)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->gedung1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 04:39:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 04:39:09 --> Attempt to read property "kategori_user" on null
+in APPPATH\Controllers\Proyek.php on line 43.
+ 1 APPPATH\Controllers\Proyek.php(43): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on null', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 43)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->gedung1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 04:39:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 04:39:11 --> Attempt to read property "kategori_user" on null
+in APPPATH\Controllers\Proyek.php on line 43.
+ 1 APPPATH\Controllers\Proyek.php(43): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on null', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 43)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->gedung1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 04:39:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 04:39:27 --> Attempt to read property "kategori_user" on null
+in APPPATH\Controllers\Proyek.php on line 29.
+ 1 APPPATH\Controllers\Proyek.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on null', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 29)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->index()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 04:39:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 04:39:29 --> Attempt to read property "kategori_user" on null
+in APPPATH\Controllers\Proyek.php on line 29.
+ 1 APPPATH\Controllers\Proyek.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on null', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 29)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->index()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 04:40:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 04:40:22 --> Attempt to read property "kategori_user" on null
+in APPPATH\Controllers\Proyek.php on line 29.
+ 1 APPPATH\Controllers\Proyek.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on null', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 29)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->index()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 04:40:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 04:40:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 04:40:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 04:40:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:31:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:31:31 --> Call to undefined method App\Models\ProyekModel::get_PKPDatatable
+in SYSTEMPATH\Model.php on line 838.
+ 1 APPPATH\Controllers\Proyek.php(60): CodeIgniter\Model->__call('get_PKPDatatable', [])
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:31:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:31:50 --> Call to undefined method App\Models\ProyekModel::getMigrasi
+in SYSTEMPATH\Model.php on line 838.
+ 1 APPPATH\Models\ProyekModel.php(106): CodeIgniter\Model->__call('getMigrasi', [...])
+ 2 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+ 3 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 5 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:32:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:32:16 --> Attempt to read property "kategori_user" on null
+in APPPATH\Models\ProyekModel.php on line 48.
+ 1 APPPATH\Models\ProyekModel.php(48): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on null', 'C:\\laragon\\www\\dashboard\\app\\Models\\ProyekModel.php', 48)
+ 2 APPPATH\Models\ProyekModel.php(106): App\Models\ProyekModel->getPKP(Object(CodeIgniter\Database\MySQLi\Builder))
+ 3 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:33:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:33:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:33:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:33:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:34:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:34:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:34:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:34:57 --> Call to a member function getGet() on null
+in APPPATH\Models\ProyekModel.php on line 49.
+ 1 APPPATH\Models\ProyekModel.php(106): App\Models\ProyekModel->getPKP(Object(CodeIgniter\Database\MySQLi\Builder))
+ 2 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+ 3 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 5 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:35:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:35:26 --> Call to a member function getGet() on null
+in APPPATH\Models\ProyekModel.php on line 49.
+ 1 APPPATH\Models\ProyekModel.php(106): App\Models\ProyekModel->getPKP(Object(CodeIgniter\Database\MySQLi\Builder))
+ 2 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+ 3 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 5 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:36:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:36:29 --> CodeIgniter\Database\BaseBuilder::getWhere(): Argument #2 ($limit) must be of type ?int, string given, called in C:\laragon\www\dashboard\app\Models\ProyekModel.php on line 58
+in SYSTEMPATH\Database\BaseBuilder.php on line 1737.
+ 1 APPPATH\Models\ProyekModel.php(58): CodeIgniter\Database\BaseBuilder->getWhere('id_pkp', 'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS')
+ 2 APPPATH\Models\ProyekModel.php(105): App\Models\ProyekModel->getPKP(Object(CodeIgniter\Database\MySQLi\Builder))
+ 3 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:36:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:36:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:36:38 --> CodeIgniter\Database\BaseBuilder::getWhere(): Argument #2 ($limit) must be of type ?int, string given, called in C:\laragon\www\dashboard\app\Models\ProyekModel.php on line 58
+in SYSTEMPATH\Database\BaseBuilder.php on line 1737.
+ 1 APPPATH\Models\ProyekModel.php(58): CodeIgniter\Database\BaseBuilder->getWhere('id_pkp', 'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS')
+ 2 APPPATH\Models\ProyekModel.php(105): App\Models\ProyekModel->getPKP(Object(CodeIgniter\Database\MySQLi\Builder))
+ 3 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:37:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:37:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-19 06:37:31 --> mysqli_sql_exception: Unknown column 'id_pkp' in 'where clause' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1749): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\ProyekModel.php(58): CodeIgniter\Database\BaseBuilder->getWhere(Array)
+#5 C:\laragon\www\dashboard\app\Models\ProyekModel.php(105): App\Models\ProyekModel->getPKP(Object(CodeIgniter\Database\MySQLi\Builder))
+#6 C:\laragon\www\dashboard\app\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+#9 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#12 {main}
+CRITICAL - 2023-12-19 06:37:31 --> Unknown column 'id_pkp' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = \'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = \'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = \'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1749): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = :id_pkp:', [...], false)
+ 5 APPPATH\Models\ProyekModel.php(58): CodeIgniter\Database\BaseBuilder->getWhere([...])
+ 6 APPPATH\Models\ProyekModel.php(105): App\Models\ProyekModel->getPKP(Object(CodeIgniter\Database\MySQLi\Builder))
+ 7 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:37:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-19 06:37:36 --> mysqli_sql_exception: Unknown column 'id_pkp' in 'where clause' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1749): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\ProyekModel.php(58): CodeIgniter\Database\BaseBuilder->getWhere(Array)
+#5 C:\laragon\www\dashboard\app\Models\ProyekModel.php(105): App\Models\ProyekModel->getPKP(Object(CodeIgniter\Database\MySQLi\Builder))
+#6 C:\laragon\www\dashboard\app\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+#9 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#12 {main}
+CRITICAL - 2023-12-19 06:37:36 --> Unknown column 'id_pkp' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = \'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = \'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = \'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1749): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = :id_pkp:', [...], false)
+ 5 APPPATH\Models\ProyekModel.php(58): CodeIgniter\Database\BaseBuilder->getWhere([...])
+ 6 APPPATH\Models\ProyekModel.php(105): App\Models\ProyekModel->getPKP(Object(CodeIgniter\Database\MySQLi\Builder))
+ 7 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:38:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:38:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:38:18 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 64.
+ 1 APPPATH\Controllers\Proyek.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 64)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:38:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:38:20 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 64.
+ 1 APPPATH\Controllers\Proyek.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 64)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:48:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:48:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:48:53 --> Attempt to read property "kategori_user" on null
+in APPPATH\Models\ProyekModel.php on line 48.
+ 1 APPPATH\Models\ProyekModel.php(48): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on null', 'C:\\laragon\\www\\dashboard\\app\\Models\\ProyekModel.php', 48)
+ 2 APPPATH\Models\ProyekModel.php(105): App\Models\ProyekModel->getPKP(Object(CodeIgniter\Database\MySQLi\Builder))
+ 3 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:48:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:48:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:49:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:49:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:49:19 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:49:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:49:30 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:52:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:52:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:52:08 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:53:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:53:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:53:43 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:53:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:53:47 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:56:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:56:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:56:11 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:56:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:56:15 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:56:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:56:16 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:57:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:57:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:59:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 06:59:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:59:03 --> Undefined property: App\Controllers\Proyek::$security
+in APPPATH\Controllers\Proyek.php on line 62.
+ 1 APPPATH\Controllers\Proyek.php(62): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Proyek::$security', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 62)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 06:59:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 06:59:13 --> Undefined property: App\Controllers\Proyek::$security
+in APPPATH\Controllers\Proyek.php on line 62.
+ 1 APPPATH\Controllers\Proyek.php(62): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Proyek::$security', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 62)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:00:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:00:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:00:34 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:00:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:00:38 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:10:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:10:01 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:10:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:10:02 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:10:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:10:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:10:06 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:10:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:10:08 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:10:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:10:28 --> Undefined property: stdClass::$nama
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nama', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:10:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:10:35 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:10:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:10:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:10:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:15:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:15:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-19 07:15:07 --> mysqli_sql_exception: Unknown column 'a.id_pkp' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id_...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id_...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id_...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id_...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\ProyekModel.php(103): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2023-12-19 07:15:07 --> Unknown column 'a.id_pkp' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = :b.nomor:
+AND `a`.`no_pkp` != :a.no_pkp:
+ LIMIT 10', [...], false)
+ 5 APPPATH\Models\ProyekModel.php(103): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:15:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-19 07:15:09 --> mysqli_sql_exception: Unknown column 'a.id_pkp' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id_...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id_...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id_...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id_...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\ProyekModel.php(103): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2023-12-19 07:15:09 --> Unknown column 'a.id_pkp' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = :b.nomor:
+AND `a`.`no_pkp` != :a.no_pkp:
+ LIMIT 10', [...], false)
+ 5 APPPATH\Models\ProyekModel.php(103): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:16:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:16:00 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:19:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:19:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:19:54 --> Call to a member function limit() on null
+in APPPATH\Models\ProyekModel.php on line 104.
+ 1 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:19:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:19:56 --> Call to a member function limit() on null
+in APPPATH\Models\ProyekModel.php on line 104.
+ 1 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:22:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:22:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:22:23 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:22:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:22:24 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:22:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:22:55 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:22:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:22:56 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:23:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:23:17 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:23:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:23:28 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+CRITICAL - 2023-12-19 07:23:37 --> syntax error, unexpected token "public", expecting end of file
+in APPPATH\Models\ProyekModel.php on line 81.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\dashboard\\app\\Models\\ProyekModel.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\ProyekModel')
+ 3 APPPATH\Controllers\Proyek.php(19): CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\ProyekModel')
+ 4 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\Proyek->__construct()
+ 5 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:23:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:23:45 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:23:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:23:46 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:24:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:24:01 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:24:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:24:10 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:24:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:24:11 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:25:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:25:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:25:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:26:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:26:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:26:12 --> foreach() argument must be of type array|object, null given
+in APPPATH\Controllers\Proyek.php on line 61.
+ 1 APPPATH\Controllers\Proyek.php(61): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, null given', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 61)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:26:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:26:25 --> foreach() argument must be of type array|object, null given
+in APPPATH\Controllers\Proyek.php on line 61.
+ 1 APPPATH\Controllers\Proyek.php(61): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, null given', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 61)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:29:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:29:27 --> Call to a member function limit() on null
+in APPPATH\Models\ProyekModel.php on line 104.
+ 1 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:31:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:31:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-19 07:31:11 --> mysqli_sql_exception: Unknown column 'a.id_pkp' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id_...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id_...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id_...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id_...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\ProyekModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2023-12-19 07:31:11 --> Unknown column 'a.id_pkp' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = :b.nomor:
+AND `a`.`no_pkp` != :a.no_pkp:
+ LIMIT 10', [...], false)
+ 5 APPPATH\Models\ProyekModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:31:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-19 07:31:15 --> mysqli_sql_exception: Unknown column 'a.id_pkp' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id_...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id_...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id_...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id_...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\ProyekModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2023-12-19 07:31:15 --> Unknown column 'a.id_pkp' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = :b.nomor:
+AND `a`.`no_pkp` != :a.no_pkp:
+ LIMIT 10', [...], false)
+ 5 APPPATH\Models\ProyekModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:31:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:31:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-19 07:31:56 --> mysqli_sql_exception: Unknown column 'a.id_pkp' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id_...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id_...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id_...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id_...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\ProyekModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2023-12-19 07:31:56 --> Unknown column 'a.id_pkp' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = :b.nomor:
+AND `a`.`no_pkp` != :a.no_pkp:
+ LIMIT 10', [...], false)
+ 5 APPPATH\Models\ProyekModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:31:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-19 07:31:59 --> mysqli_sql_exception: Unknown column 'a.id_pkp' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id_...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id_...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id_...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id_...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\ProyekModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2023-12-19 07:31:59 --> Unknown column 'a.id_pkp' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = :b.nomor:
+AND `a`.`no_pkp` != :a.no_pkp:
+ LIMIT 10', [...], false)
+ 5 APPPATH\Models\ProyekModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:32:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-19 07:32:02 --> mysqli_sql_exception: Unknown column 'a.id_pkp' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id_...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id_...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id_...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id_...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\ProyekModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2023-12-19 07:32:02 --> Unknown column 'a.id_pkp' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = :b.nomor:
+AND `a`.`no_pkp` != :a.no_pkp:
+ LIMIT 10', [...], false)
+ 5 APPPATH\Models\ProyekModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:32:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:32:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-19 07:32:12 --> mysqli_sql_exception: Unknown column 'a.id_pkp' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id_...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id_...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id_...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id_...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\ProyekModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2023-12-19 07:32:12 --> Unknown column 'a.id_pkp' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = \'511\'
+AND `a`.`no_pkp` != \'000\'
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`id_pkp`, `a`.`tgl_ubah_progress`, `a`.`alias`, `a`.`no_pkp`, `a`.`proyek`, `a`.`status`, `a`.`id_instansi`, `a`.`tgl_ubah`, `a`.`kunci`, `b`.`id`, `b`.`nomor`, `b`.`nama`
+FROM `master_pkp`
+LEFT JOIN `master_instansi` `b` ON `a`.`id_instansi` = `b`.`id`
+WHERE `b`.`nomor` = :b.nomor:
+AND `a`.`no_pkp` != :a.no_pkp:
+ LIMIT 10', [...], false)
+ 5 APPPATH\Models\ProyekModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:32:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:32:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:34:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:34:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:34:03 --> Call to a member function limit() on null
+in APPPATH\Models\ProyekModel.php on line 94.
+ 1 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:34:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:34:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:34:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:34:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:34:37 --> Call to a member function limit() on null
+in APPPATH\Models\ProyekModel.php on line 94.
+ 1 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:34:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:34:40 --> Call to a member function limit() on null
+in APPPATH\Models\ProyekModel.php on line 94.
+ 1 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:36:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:36:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:36:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:42:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:42:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:42:15 --> Call to undefined method App\Models\ProyekModel::getPKPDatatable
+in SYSTEMPATH\Model.php on line 838.
+ 1 APPPATH\Controllers\Proyek.php(59): CodeIgniter\Model->__call('getPKPDatatable', [])
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:45:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:45:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:45:20 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:49:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:49:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-19 07:49:05 --> mysqli_sql_exception: Unknown column 'id_pkp' in 'where clause' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1749): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\ProyekModel.php(57): CodeIgniter\Database\BaseBuilder->getWhere(Array, 1)
+#5 C:\laragon\www\dashboard\app\Models\ProyekModel.php(84): App\Models\ProyekModel->getPKP(Object(CodeIgniter\Database\MySQLi\Builder))
+#6 C:\laragon\www\dashboard\app\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+#9 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#12 {main}
+CRITICAL - 2023-12-19 07:49:05 --> Unknown column 'id_pkp' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = \'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = \'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = \'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1749): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = :id_pkp:
+ LIMIT 1', [...], false)
+ 5 APPPATH\Models\ProyekModel.php(57): CodeIgniter\Database\BaseBuilder->getWhere([...], 1)
+ 6 APPPATH\Models\ProyekModel.php(84): App\Models\ProyekModel->getPKP(Object(CodeIgniter\Database\MySQLi\Builder))
+ 7 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:49:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-19 07:49:08 --> mysqli_sql_exception: Unknown column 'id_pkp' in 'where clause' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1749): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\ProyekModel.php(57): CodeIgniter\Database\BaseBuilder->getWhere(Array, 1)
+#5 C:\laragon\www\dashboard\app\Models\ProyekModel.php(84): App\Models\ProyekModel->getPKP(Object(CodeIgniter\Database\MySQLi\Builder))
+#6 C:\laragon\www\dashboard\app\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+#9 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#12 {main}
+CRITICAL - 2023-12-19 07:49:08 --> Unknown column 'id_pkp' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = \'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = \'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = \'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1749): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = :id_pkp:
+ LIMIT 1', [...], false)
+ 5 APPPATH\Models\ProyekModel.php(57): CodeIgniter\Database\BaseBuilder->getWhere([...], 1)
+ 6 APPPATH\Models\ProyekModel.php(84): App\Models\ProyekModel->getPKP(Object(CodeIgniter\Database\MySQLi\Builder))
+ 7 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:51:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-19 07:51:31 --> mysqli_sql_exception: Unknown column 'id_pkp' in 'where clause' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1749): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\ProyekModel.php(57): CodeIgniter\Database\BaseBuilder->getWhere(Array, 1)
+#5 C:\laragon\www\dashboard\app\Models\ProyekModel.php(84): App\Models\ProyekModel->getPKP(Object(CodeIgniter\Database\MySQLi\Builder))
+#6 C:\laragon\www\dashboard\app\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+#9 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#12 {main}
+CRITICAL - 2023-12-19 07:51:31 --> Unknown column 'id_pkp' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = \'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = \'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = \'PKP9d6e048e64d5d208a2f99c15ddfcb2a9d7035384QNS\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1749): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `master_admin`
+WHERE `id_pkp` = :id_pkp:
+ LIMIT 1', [...], false)
+ 5 APPPATH\Models\ProyekModel.php(57): CodeIgniter\Database\BaseBuilder->getWhere([...], 1)
+ 6 APPPATH\Models\ProyekModel.php(84): App\Models\ProyekModel->getPKP(Object(CodeIgniter\Database\MySQLi\Builder))
+ 7 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->getPKPDatatable()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:52:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 07:52:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:52:14 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 07:52:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 07:52:15 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:03:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 08:03:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:03:26 --> Undefined property: stdClass::$nomor
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$nomor', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:06:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 08:06:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:06:57 --> foreach() argument must be of type array|object, null given
+in APPPATH\Controllers\Proyek.php on line 62.
+ 1 APPPATH\Controllers\Proyek.php(62): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, null given', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 62)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:06:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:06:59 --> foreach() argument must be of type array|object, null given
+in APPPATH\Controllers\Proyek.php on line 62.
+ 1 APPPATH\Controllers\Proyek.php(62): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, null given', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 62)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:08:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:08:03 --> Call to a member function limit() on null
+in APPPATH\Models\ProyekModel.php on line 87.
+ 1 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+CRITICAL - 2023-12-19 08:09:04 --> Cannot redeclare App\Models\ProyekModel::getPKP()
+in APPPATH\Models\ProyekModel.php on line 79.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+INFO - 2023-12-19 08:09:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:09:47 --> Too few arguments to function App\Models\ProyekModel::getPKP(), 0 passed in C:\laragon\www\dashboard\app\Controllers\Proyek.php on line 60 and exactly 1 expected
+in APPPATH\Models\ProyekModel.php on line 44.
+ 1 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKP()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:10:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:10:01 --> Attempt to read property "tgl_ubah_progress" on array
+in APPPATH\Controllers\Proyek.php on line 63.
+ 1 APPPATH\Controllers\Proyek.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "tgl_ubah_progress" on array', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:11:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:11:11 --> Undefined array key "nomor"
+in APPPATH\Controllers\Proyek.php on line 67.
+ 1 APPPATH\Controllers\Proyek.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nomor"', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 67)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:12:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:12:23 --> Undefined array key "nomor"
+in APPPATH\Controllers\Proyek.php on line 68.
+ 1 APPPATH\Controllers\Proyek.php(68): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nomor"', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 68)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:12:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:12:25 --> Undefined array key "nomor"
+in APPPATH\Controllers\Proyek.php on line 68.
+ 1 APPPATH\Controllers\Proyek.php(68): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nomor"', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 68)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:14:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:14:22 --> Call to a member function getGet() on null
+in APPPATH\Models\ProyekModel.php on line 124.
+ 1 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:15:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:15:01 --> Call to a member function table() on null
+in APPPATH\Models\ProyekModel.php on line 53.
+ 1 APPPATH\Models\ProyekModel.php(131): App\Models\ProyekModel->_getQueryPKP()
+ 2 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+ 3 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 5 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:17:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:17:46 --> Call to a member function table() on null
+in APPPATH\Models\ProyekModel.php on line 53.
+ 1 APPPATH\Models\ProyekModel.php(127): App\Models\ProyekModel->_getQueryPKP()
+ 2 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+ 3 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 5 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:18:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:18:09 --> Call to a member function table() on null
+in APPPATH\Models\ProyekModel.php on line 53.
+ 1 APPPATH\Models\ProyekModel.php(127): App\Models\ProyekModel->_getQueryPKP()
+ 2 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+ 3 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 5 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:22:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:22:36 --> Call to a member function table() on null
+in APPPATH\Models\ProyekModel.php on line 53.
+ 1 APPPATH\Models\ProyekModel.php(127): App\Models\ProyekModel->_getQueryPKP()
+ 2 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+ 3 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 5 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:25:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:25:11 --> Call to a member function table() on null
+in APPPATH\Models\ProyekModel.php on line 53.
+ 1 APPPATH\Models\ProyekModel.php(127): App\Models\ProyekModel->_getQueryPKP()
+ 2 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+ 3 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 5 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:25:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:25:24 --> Undefined variable $isi
+in APPPATH\Models\ProyekModel.php on line 53.
+ 1 APPPATH\Models\ProyekModel.php(53): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $isi', 'C:\\laragon\\www\\dashboard\\app\\Models\\ProyekModel.php', 53)
+ 2 APPPATH\Models\ProyekModel.php(126): App\Models\ProyekModel->_getQueryPKP()
+ 3 APPPATH\Controllers\Proyek.php(60): App\Models\ProyekModel->getPKPDatatable()
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:27:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:27:37 --> Too few arguments to function App\Models\ProyekModel::_getQueryPKP(), 0 passed in C:\laragon\www\dashboard\app\Models\ProyekModel.php on line 125 and exactly 1 expected
+in APPPATH\Models\ProyekModel.php on line 50.
+ 1 APPPATH\Models\ProyekModel.php(125): App\Models\ProyekModel->_getQueryPKP()
+ 2 APPPATH\Controllers\Proyek.php(61): App\Models\ProyekModel->getPKPDatatable('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 3 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 5 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:28:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:28:10 --> Call to a member function table() on null
+in APPPATH\Models\ProyekModel.php on line 56.
+ 1 APPPATH\Models\ProyekModel.php(125): App\Models\ProyekModel->_getQueryPKP('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 2 APPPATH\Controllers\Proyek.php(61): App\Models\ProyekModel->getPKPDatatable('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 3 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 5 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:28:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:28:11 --> Call to a member function table() on null
+in APPPATH\Models\ProyekModel.php on line 56.
+ 1 APPPATH\Models\ProyekModel.php(125): App\Models\ProyekModel->_getQueryPKP('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 2 APPPATH\Controllers\Proyek.php(61): App\Models\ProyekModel->getPKPDatatable('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 3 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 5 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:52:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:52:46 --> Call to undefined method CodeIgniter\Database\MySQLi\Connection::get_where()
+in APPPATH\Controllers\Proyek.php on line 49.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->gedung1()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:53:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:53:56 --> Call to undefined method CodeIgniter\Database\MySQLi\Result::row()
+in APPPATH\Controllers\Proyek.php on line 50.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->gedung1()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:54:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:54:03 --> Undefined variable $gdg
+in APPPATH\Views\proyek\gedung\gedung1.php on line 29.
+ 1 APPPATH\Views\proyek\gedung\gedung1.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $gdg', 'C:\\laragon\\www\\dashboard\\app\\Views\\proyek\\gedung\\gedung1.php', 29)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\proyek\\gedung\\gedung1.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('proyek/gedung/gedung1', [], true)
+ 5 APPPATH\Controllers\Proyek.php(79): view('proyek/gedung/gedung1', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->gedung1()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:54:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 08:55:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 08:56:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 08:57:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 08:58:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 08:58:22 --> Call to undefined method App\Models\ProyekModel::getPKPDatatable
+in SYSTEMPATH\Model.php on line 838.
+ 1 APPPATH\Controllers\Proyek.php(87): CodeIgniter\Model->__call('getPKPDatatable', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 08:58:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:07:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:07:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:07:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:07:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:10:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:10:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:11:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:11:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:11:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:11:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:11:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:11:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:11:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:12:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:14:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:14:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:14:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:14:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:15:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:22:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:23:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:23:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 09:23:24 --> Undefined variable $gedung3
+in APPPATH\Views\proyek\gedung\gedung3.php on line 25.
+ 1 APPPATH\Views\proyek\gedung\gedung3.php(25): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $gedung3', 'C:\\laragon\\www\\dashboard\\app\\Views\\proyek\\gedung\\gedung3.php', 25)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\proyek\\gedung\\gedung3.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('proyek/gedung/gedung3', [], true)
+ 5 APPPATH\Controllers\Proyek.php(211): view('proyek/gedung/gedung3', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->ktl1()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 09:24:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:24:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:24:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:24:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:24:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:26:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:26:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 09:26:34 --> Undefined variable $ktl2
+in APPPATH\Views\proyek\ktl\ktl2.php on line 25.
+ 1 APPPATH\Views\proyek\ktl\ktl2.php(25): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $ktl2', 'C:\\laragon\\www\\dashboard\\app\\Views\\proyek\\ktl\\ktl2.php', 25)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\proyek\\ktl\\ktl2.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('proyek/ktl/ktl2', [], true)
+ 5 APPPATH\Controllers\Proyek.php(255): view('proyek/ktl/ktl2', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->ktl2()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 09:26:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:26:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:26:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:30:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:30:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:31:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:31:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:34:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:34:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:34:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 09:34:38 --> Undefined variable $trans1
+in APPPATH\Views\proyek\transportasi\transportasi.php on line 25.
+ 1 APPPATH\Views\proyek\transportasi\transportasi.php(25): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $trans1', 'C:\\laragon\\www\\dashboard\\app\\Views\\proyek\\transportasi\\transportasi.php', 25)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\proyek\\transportasi\\transportasi.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('proyek/transportasi/transportasi', [], true)
+ 5 APPPATH\Controllers\Proyek.php(344): view('proyek/transportasi/transportasi', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->trans2()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 09:35:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:35:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:41:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:41:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 09:41:34 --> Too few arguments to function App\Models\ProyekModel::getAllKantorPKP(), 0 passed in C:\laragon\www\dashboard\app\Controllers\Proyek.php on line 366 and exactly 1 expected
+in APPPATH\Models\ProyekModel.php on line 365.
+ 1 APPPATH\Controllers\Proyek.php(366): App\Models\ProyekModel->getAllKantorPKP()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->kantor()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 09:43:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 09:43:54 --> Too few arguments to function App\Models\ProyekModel::getAllKantorPKP(), 0 passed in C:\laragon\www\dashboard\app\Controllers\Proyek.php on line 366 and exactly 1 expected
+in APPPATH\Models\ProyekModel.php on line 355.
+ 1 APPPATH\Controllers\Proyek.php(366): App\Models\ProyekModel->getAllKantorPKP()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->kantor()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 09:44:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:45:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:45:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 09:51:12 --> Cannot redeclare App\Controllers\Proyek::kantor()
+in APPPATH\Controllers\Proyek.php on line 384.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+INFO - 2023-12-19 09:51:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:51:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:52:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:52:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:52:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:52:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:52:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:53:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:55:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:56:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:58:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:58:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:58:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:58:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:58:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 09:58:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 10:09:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 10:09:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 10:09:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 10:09:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 10:09:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 10:09:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 10:09:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 10:09:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 10:09:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 10:09:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 10:26:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 10:26:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 10:28:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 10:28:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-19 10:28:56 --> Call to undefined method App\Models\ProyekModel::getAllPKPKtl1
+in SYSTEMPATH\Model.php on line 838.
+ 1 APPPATH\Controllers\Proyek.php(101): CodeIgniter\Model->__call('getAllPKPKtl1', [])
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->gedung2()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-19 10:29:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-19 10:29:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

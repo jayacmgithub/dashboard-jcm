@@ -1,0 +1,1194 @@
+CRITICAL - 2023-12-18 03:12:42 --> Undefined property: CodeIgniter\View\View::$security
+in APPPATH\Views\login.php on line 212.
+ 1 APPPATH\Views\login.php(212): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$security', 'C:\\laragon\\www\\dashboard\\app\\Views\\login.php', 212)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\login.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('/login', [], true)
+ 5 APPPATH\Controllers\Login.php(23): view('/login')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:13:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:13:09 --> Undefined property: CodeIgniter\View\View::$security
+in APPPATH\Views\login.php on line 212.
+ 1 APPPATH\Views\login.php(212): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$security', 'C:\\laragon\\www\\dashboard\\app\\Views\\login.php', 212)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\login.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('/login', [], true)
+ 5 APPPATH\Controllers\Login.php(23): view('/login')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:13:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 03:20:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 03:20:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:20:20 --> Call to undefined method App\Models\LoginModel::rules
+in SYSTEMPATH\Model.php on line 838.
+ 1 APPPATH\Controllers\Login.php(36): CodeIgniter\Model->__call('rules', [])
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authlogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:20:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 03:20:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 03:20:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:20:45 --> Call to undefined method App\Models\LoginModel::rules
+in SYSTEMPATH\Model.php on line 838.
+ 1 APPPATH\Controllers\Login.php(36): CodeIgniter\Model->__call('rules', [])
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:20:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 03:25:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 03:26:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:26:04 --> Call to undefined method App\Models\LoginModel::rules
+in SYSTEMPATH\Model.php on line 838.
+ 1 APPPATH\Controllers\Login.php(33): CodeIgniter\Model->__call('rules', [])
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:26:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:26:42 --> Call to undefined method App\Models\LoginModel::rules
+in SYSTEMPATH\Model.php on line 838.
+ 1 APPPATH\Controllers\Login.php(33): CodeIgniter\Model->__call('rules', [])
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:29:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:29:36 --> Call to undefined method stdClass::getRowArray()
+in APPPATH\Controllers\Login.php on line 47.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:31:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:31:22 --> Call to undefined method stdClass::getRowArray()
+in APPPATH\Controllers\Login.php on line 47.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:33:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:33:30 --> Call to undefined method stdClass::getNumRows()
+in APPPATH\Controllers\Login.php on line 52.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:36:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:36:23 --> Undefined property: App\Controllers\Login::$db
+in APPPATH\Controllers\Login.php on line 58.
+ 1 APPPATH\Controllers\Login.php(58): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Login::$db', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Login.php', 58)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:39:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:39:27 --> Undefined property: App\Controllers\Login::$db
+in APPPATH\Controllers\Login.php on line 58.
+ 1 APPPATH\Controllers\Login.php(58): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Login::$db', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Login.php', 58)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:41:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:41:13 --> Undefined property: App\Controllers\Login::$login
+in APPPATH\Controllers\Login.php on line 58.
+ 1 APPPATH\Controllers\Login.php(58): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Login::$login', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Login.php', 58)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:42:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:42:38 --> Too few arguments to function App\Models\LoginModel::getKategoriUser(), 0 passed in C:\laragon\www\dashboard\app\Controllers\Login.php on line 57 and exactly 1 expected
+in APPPATH\Models\LoginModel.php on line 60.
+ 1 APPPATH\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:43:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 03:43:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-18 03:43:24 --> mysqli_sql_exception: Unknown column 'a.kategori_user' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kat...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kat...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kat...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kat...', Array, false)
+#4 C:\laragon\www\dashboard\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', Array)
+#6 C:\laragon\www\dashboard\app\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b8...')
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#9 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#12 {main}
+CRITICAL - 2023-12-18 03:43:24 --> Unknown column 'a.kategori_user' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `a`.`beranda`
+WHERE `a`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `a`.`beranda`
+WHERE `a`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `a`.`beranda`
+WHERE `a`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `a`.`beranda`
+WHERE `a`.`id` = :a.id:', [...], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:44:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-18 03:44:49 --> mysqli_sql_exception: Unknown column 'a.kategori_user' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kat...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kat...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kat...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kat...', Array, false)
+#4 C:\laragon\www\dashboard\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', Array)
+#6 C:\laragon\www\dashboard\app\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b8...')
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#9 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#12 {main}
+CRITICAL - 2023-12-18 03:44:49 --> Unknown column 'a.kategori_user' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `a`.`beranda`
+WHERE `a`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `a`.`beranda`
+WHERE `a`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `a`.`beranda`
+WHERE `a`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `a`.`beranda`
+WHERE `a`.`id` = :a.id:', [...], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:45:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-18 03:45:03 --> mysqli_sql_exception: Unknown column 'a.kategori_user' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kat...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kat...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kat...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kat...', Array, false)
+#4 C:\laragon\www\dashboard\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', Array)
+#6 C:\laragon\www\dashboard\app\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b8...')
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#9 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#12 {main}
+CRITICAL - 2023-12-18 03:45:03 --> Unknown column 'a.kategori_user' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `a`.`beranda`
+WHERE `a`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `a`.`beranda`
+WHERE `a`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `a`.`beranda`
+WHERE `a`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `a`.`beranda`
+WHERE `a`.`id` = :a.id:', [...], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:45:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-18 03:45:42 --> mysqli_sql_exception: Unknown column 'a.kategori_user' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kat...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kat...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kat...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kat...', Array, false)
+#4 C:\laragon\www\dashboard\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', Array)
+#6 C:\laragon\www\dashboard\app\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b8...')
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#9 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#12 {main}
+CRITICAL - 2023-12-18 03:45:42 --> Unknown column 'a.kategori_user' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = :kategori_user.id:', [...], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:45:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-18 03:45:45 --> mysqli_sql_exception: Unknown column 'a.kategori_user' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kat...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kat...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kat...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kat...', Array, false)
+#4 C:\laragon\www\dashboard\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', Array)
+#6 C:\laragon\www\dashboard\app\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b8...')
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#9 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#12 {main}
+CRITICAL - 2023-12-18 03:45:45 --> Unknown column 'a.kategori_user' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = :kategori_user.id:', [...], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:45:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-18 03:45:47 --> mysqli_sql_exception: Unknown column 'a.kategori_user' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kat...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kat...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kat...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kat...', Array, false)
+#4 C:\laragon\www\dashboard\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', Array)
+#6 C:\laragon\www\dashboard\app\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b8...')
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#9 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#12 {main}
+CRITICAL - 2023-12-18 03:45:47 --> Unknown column 'a.kategori_user' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = :kategori_user.id:', [...], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:45:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-18 03:45:48 --> mysqli_sql_exception: Unknown column 'a.kategori_user' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kat...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kat...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kat...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kat...', Array, false)
+#4 C:\laragon\www\dashboard\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', Array)
+#6 C:\laragon\www\dashboard\app\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b8...')
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#9 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#12 {main}
+CRITICAL - 2023-12-18 03:45:48 --> Unknown column 'a.kategori_user' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = :kategori_user.id:', [...], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:46:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-18 03:46:46 --> mysqli_sql_exception: Unknown column 'a.kategori_user' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kat...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kat...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kat...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kat...', Array, false)
+#4 C:\laragon\www\dashboard\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', Array)
+#6 C:\laragon\www\dashboard\app\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b8...')
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#9 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#12 {main}
+CRITICAL - 2023-12-18 03:46:46 --> Unknown column 'a.kategori_user' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = :kategori_user.id:', [...], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:49:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-18 03:49:17 --> mysqli_sql_exception: Unknown column 'a.kategori_user' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kat...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kat...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kat...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kat...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\LoginModel.php(66): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b8...')
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2023-12-18 03:49:17 --> Unknown column 'a.kategori_user' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `kategori_user`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `kategori_user`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `kategori_user`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `kategori_user`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = :kategori_user.id:', [...], false)
+ 5 APPPATH\Models\LoginModel.php(66): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:51:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-18 03:51:09 --> mysqli_sql_exception: Unknown column 'a.kategori_user' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kat...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kat...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kat...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kat...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\LoginModel.php(66): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b8...')
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2023-12-18 03:51:09 --> Unknown column 'a.kategori_user' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `kategori_user`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `kategori_user`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `kategori_user`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `kategori_user`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = :kategori_user.id:', [...], false)
+ 5 APPPATH\Models\LoginModel.php(66): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:51:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-18 03:51:43 --> mysqli_sql_exception: Unknown column 'kategori_user.id' in 'where clause' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kat...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kat...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kat...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kat...', Array, false)
+#4 C:\laragon\www\dashboard\app\Models\LoginModel.php(66): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b8...')
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+CRITICAL - 2023-12-18 03:51:43 --> Unknown column 'kategori_user.id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `kategori_user` `a`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `kategori_user` `a`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `kategori_user` `a`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `kategori_user` `a`
+JOIN `modul` `b` ON `b`.`id` = `kategori_user`.`beranda`
+WHERE `kategori_user`.`id` = :kategori_user.id:', [...], false)
+ 5 APPPATH\Models\LoginModel.php(66): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:51:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:51:56 --> Attempt to read property "controller" on array
+in APPPATH\Controllers\Login.php on line 58.
+ 1 APPPATH\Controllers\Login.php(58): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "controller" on array', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Login.php', 58)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:53:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:53:25 --> Attempt to read property "kategori_user" on array
+in APPPATH\Controllers\Login.php on line 59.
+ 1 APPPATH\Controllers\Login.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on array', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Login.php', 59)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:54:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:54:15 --> Attempt to read property "kategori_user" on array
+in APPPATH\Controllers\Login.php on line 59.
+ 1 APPPATH\Controllers\Login.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on array', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Login.php', 59)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:55:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-18 03:55:09 --> mysqli_sql_exception: Unknown column 'a.kategori_user' in 'field list' in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kat...', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kat...')
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kat...')
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kat...', Array, false)
+#4 C:\laragon\www\dashboard\system\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\dashboard\app\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', Array)
+#6 C:\laragon\www\dashboard\app\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b8...')
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#9 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#12 {main}
+CRITICAL - 2023-12-18 03:55:09 --> Unknown column 'a.kategori_user' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `a`.`beranda`
+WHERE `a`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `a`.`beranda`
+WHERE `a`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `a`.`beranda`
+WHERE `a`.`id` = \'JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`kategori_user`, `b`.`controller`, `b`.`nama_function`
+FROM `master_admin`
+JOIN `modul` `b` ON `b`.`id` = `a`.`beranda`
+WHERE `a`.`id` = :a.id:', [...], false)
+ 5 SYSTEMPATH\Model.php(836): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Models\LoginModel.php(66): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:55:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 03:55:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:55:25 --> Attempt to read property "kategori_user" on array
+in APPPATH\Controllers\Login.php on line 59.
+ 1 APPPATH\Controllers\Login.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on array', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Login.php', 59)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:55:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:55:56 --> Call to undefined method CodeIgniter\Database\MySQLi\Result::get()
+in APPPATH\Models\LoginModel.php on line 68.
+ 1 APPPATH\Controllers\Login.php(57): App\Models\LoginModel->getKategoriUser('JBT8b4e1656e7b810f70d908c97ae1e61e26d592b25QNS')
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:56:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:56:04 --> Undefined array key "controller"
+in APPPATH\Controllers\Login.php on line 58.
+ 1 APPPATH\Controllers\Login.php(58): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "controller"', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Login.php', 58)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:56:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:56:22 --> Attempt to read property "kategori_user" on array
+in APPPATH\Controllers\Login.php on line 59.
+ 1 APPPATH\Controllers\Login.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on array', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Login.php', 59)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:57:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 03:57:56 --> Attempt to read property "kategori_user" on array
+in APPPATH\Controllers\Login.php on line 61.
+ 1 APPPATH\Controllers\Login.php(61): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on array', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Login.php', 61)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:58:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 10:58:33 --> Undefined property: App\Controllers\Login::$dashboard
+in APPPATH\Controllers\Login.php on line 96.
+ 1 APPPATH\Controllers\Login.php(96): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Login::$dashboard', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Login.php', 96)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+CRITICAL - 2023-12-18 03:59:02 --> Class "App\Controllers\DashboardModel" not found
+in APPPATH\Controllers\Login.php on line 14.
+ 1 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\Login->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:59:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 10:59:15 --> Call to a member function getResult() on string
+in APPPATH\Controllers\Login.php on line 99.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 03:59:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 10:59:29 --> foreach() argument must be of type array|object, string given
+in APPPATH\Controllers\Login.php on line 99.
+ 1 APPPATH\Controllers\Login.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, string given', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Login.php', 99)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 04:02:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 11:02:05 --> Undefined property: App\Controllers\Login::$db
+in APPPATH\Controllers\Login.php on line 132.
+ 1 APPPATH\Controllers\Login.php(132): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Login::$db', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Login.php', 132)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 04:12:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 11:12:31 --> Undefined property: App\Controllers\Login::$log
+in APPPATH\Controllers\Login.php on line 132.
+ 1 APPPATH\Controllers\Login.php(132): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Login::$log', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Login.php', 132)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+CRITICAL - 2023-12-18 04:13:23 --> Class "App\Models\LogModel" not found
+in APPPATH\Controllers\Login.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\Login->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 04:14:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 04:14:17 --> Undefined property: App\Controllers\Login::$loginModel
+in APPPATH\Controllers\Login.php on line 38.
+ 1 APPPATH\Controllers\Login.php(38): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Login::$loginModel', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Login.php', 38)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 04:14:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:15:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:24:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:24:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:24:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:25:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:27:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:33:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:34:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:34:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 11:34:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 11:34:12 --> Undefined property: App\Controllers\Dashboard::$db
+in APPPATH\Controllers\Dashboard.php on line 32.
+ 1 APPPATH\Controllers\Dashboard.php(32): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Dashboard::$db', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Dashboard.php', 32)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 04:39:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:39:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 11:39:31 --> Call to undefined function App\Controllers\level_user()
+in APPPATH\Controllers\Dashboard.php on line 47.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 04:39:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:39:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 11:39:50 --> Undefined property: CodeIgniter\View\View::$load
+in APPPATH\Views\beranda\beranda-01.php on line 191.
+ 1 APPPATH\Views\beranda\beranda-01.php(191): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$load', 'C:\\laragon\\www\\dashboard\\app\\Views\\beranda\\beranda-01.php', 191)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\beranda\\beranda-01.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('beranda/beranda-01', [], true)
+ 5 APPPATH\Controllers\Dashboard.php(148): view('beranda/beranda-01', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 04:40:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:40:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:40:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:40:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:40:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:42:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:42:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:42:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 11:42:29 --> Undefined property: CodeIgniter\View\View::$load
+in APPPATH\Views\beranda\beranda-01.php on line 191.
+ 1 APPPATH\Views\beranda\beranda-01.php(191): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$load', 'C:\\laragon\\www\\dashboard\\app\\Views\\beranda\\beranda-01.php', 191)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\beranda\\beranda-01.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('beranda/beranda-01', [], true)
+ 5 APPPATH\Controllers\Dashboard.php(148): view('beranda/beranda-01', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 04:42:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:42:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:43:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:43:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:43:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:44:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:45:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 11:45:02 --> Undefined property: CodeIgniter\View\View::$load
+in APPPATH\Views\beranda\beranda-01.php on line 191.
+ 1 APPPATH\Views\beranda\beranda-01.php(191): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$load', 'C:\\laragon\\www\\dashboard\\app\\Views\\beranda\\beranda-01.php', 191)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\beranda\\beranda-01.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('beranda/beranda-01', [], true)
+ 5 APPPATH\Controllers\Dashboard.php(148): view('beranda/beranda-01', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 04:45:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 11:45:21 --> Undefined property: CodeIgniter\View\View::$session
+in APPPATH\Views\layout\page_layout.php on line 62.
+ 1 APPPATH\Views\layout\page_layout.php(62): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$session', 'C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php', 62)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('layout/page_layout', [], true)
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('beranda/beranda-01', [], true)
+ 6 APPPATH\Controllers\Dashboard.php(148): view('beranda/beranda-01', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 04:45:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 11:45:22 --> Undefined property: CodeIgniter\View\View::$session
+in APPPATH\Views\layout\page_layout.php on line 62.
+ 1 APPPATH\Views\layout\page_layout.php(62): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$session', 'C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php', 62)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('layout/page_layout', [], true)
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('beranda/beranda-01', [], true)
+ 6 APPPATH\Controllers\Dashboard.php(148): view('beranda/beranda-01', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 04:46:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:49:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 11:49:52 --> Undefined variable $tgl_terawang
+in APPPATH\Views\beranda\beranda-01.php on line 103.
+ 1 APPPATH\Views\beranda\beranda-01.php(103): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $tgl_terawang', 'C:\\laragon\\www\\dashboard\\app\\Views\\beranda\\beranda-01.php', 103)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\beranda\\beranda-01.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('beranda/beranda-01', [], true)
+ 5 APPPATH\Controllers\Dashboard.php(148): view('beranda/beranda-01', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 04:50:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:50:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:50:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 04:53:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 05:00:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 05:01:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:01:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:01:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:09:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:10:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:10:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:11:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:11:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:16:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:19:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:19:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:19:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:19:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:20:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:20:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:20:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:20:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:20:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:20:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:21:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:21:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:21:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:21:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:22:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:22:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:24:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:24:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:25:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:26:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:27:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:27:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:27:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:28:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:28:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:28:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:28:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:29:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 06:31:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 07:32:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 07:32:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 14:32:37 --> Call to undefined method CodeIgniter\Database\MySQLi\Connection::select()
+in APPPATH\Controllers\Dashboard.php on line 410.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->beranda_02()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 07:35:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 14:35:44 --> Undefined property: CodeIgniter\View\View::$load
+in APPPATH\Views\beranda\beranda-02.php on line 1.
+ 1 APPPATH\Views\beranda\beranda-02.php(1): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$load', 'C:\\laragon\\www\\dashboard\\app\\Views\\beranda\\beranda-02.php', 1)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\beranda\\beranda-02.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('beranda/beranda-02', [], true)
+ 5 APPPATH\Controllers\Dashboard.php(430): view('beranda/beranda-02', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->beranda_02()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 07:43:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 14:43:32 --> Undefined variable $kategori
+in APPPATH\Views\layout\page_layout.php on line 98.
+ 1 APPPATH\Views\layout\page_layout.php(98): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $kategori', 'C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php', 98)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('layout/page_layout', [], true)
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('beranda/beranda-02', [], true)
+ 6 APPPATH\Controllers\Dashboard.php(430): view('beranda/beranda-02', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->beranda_02()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+CRITICAL - 2023-12-18 07:44:10 --> syntax error, unexpected variable "$data"
+in APPPATH\Controllers\Dashboard.php on line 141.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\dashboard\\app\\Controllers\\Dashboard.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Dashboard')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Dashboard')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Dashboard', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+CRITICAL - 2023-12-18 07:44:54 --> syntax error, unexpected variable "$data"
+in APPPATH\Controllers\Dashboard.php on line 141.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\dashboard\\app\\Controllers\\Dashboard.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Dashboard')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Dashboard')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Dashboard', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+CRITICAL - 2023-12-18 07:44:56 --> syntax error, unexpected variable "$data"
+in APPPATH\Controllers\Dashboard.php on line 141.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\dashboard\\app\\Controllers\\Dashboard.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Dashboard')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Dashboard')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\Dashboard', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 07:45:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 07:45:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 14:45:41 --> Undefined property: CodeIgniter\View\View::$load
+in APPPATH\Views\beranda\beranda-03.php on line 1.
+ 1 APPPATH\Views\beranda\beranda-03.php(1): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$load', 'C:\\laragon\\www\\dashboard\\app\\Views\\beranda\\beranda-03.php', 1)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\beranda\\beranda-03.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('beranda/beranda-03', [], true)
+ 5 APPPATH\Controllers\Dashboard.php(574): view('beranda/beranda-03', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->beranda_03()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 07:50:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 07:50:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 07:50:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 14:50:25 --> Undefined property: CodeIgniter\View\View::$load
+in APPPATH\Views\beranda\beranda-05.php on line 190.
+ 1 APPPATH\Views\beranda\beranda-05.php(190): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$load', 'C:\\laragon\\www\\dashboard\\app\\Views\\beranda\\beranda-05.php', 190)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\beranda\\beranda-05.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('beranda/beranda-05', [], true)
+ 5 APPPATH\Controllers\Dashboard.php(850): view('beranda/beranda-05', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->beranda_05()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 07:50:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 07:50:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 14:50:37 --> Call to undefined method CodeIgniter\Database\MySQLi\Connection::select()
+in APPPATH\Controllers\Dashboard.php on line 977.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->beranda_06()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 07:51:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 07:51:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 07:58:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 07:58:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 07:58:48 --> Undefined variable $kategoriQNS
+in APPPATH\Views\proyek\index.php on line 34.
+ 1 APPPATH\Views\proyek\index.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $kategoriQNS', 'C:\\laragon\\www\\dashboard\\app\\Views\\proyek\\index.php', 34)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\proyek\\index.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('proyek/index', [], true)
+ 5 APPPATH\Controllers\Proyek.php(13): view('proyek/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 07:59:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 07:59:41 --> Undefined variable $kategori
+in APPPATH\Views\layout\page_layout.php on line 98.
+ 1 APPPATH\Views\layout\page_layout.php(98): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $kategori', 'C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php', 98)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('layout/page_layout', [], true)
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('proyek/index', [], true)
+ 6 APPPATH\Controllers\Proyek.php(17): view('proyek/index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 08:00:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 08:00:00 --> Undefined property: App\Controllers\Proyek::$dashboard
+in APPPATH\Controllers\Proyek.php on line 17.
+ 1 APPPATH\Controllers\Proyek.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Proyek::$dashboard', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 17)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->index()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+CRITICAL - 2023-12-18 08:00:27 --> Class "App\Controllers\LoginModel" not found
+in APPPATH\Controllers\Proyek.php on line 14.
+ 1 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\Proyek->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 08:00:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 08:53:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 09:13:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 09:13:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 09:14:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 09:16:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 09:16:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 09:16:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 09:24:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 09:24:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 09:24:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 09:24:39 --> Undefined variable $kategori
+in APPPATH\Views\layout\page_layout.php on line 98.
+ 1 APPPATH\Views\layout\page_layout.php(98): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $kategori', 'C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php', 98)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('layout/page_layout', [], true)
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('proyek/gedung/gedung1', [], true)
+ 6 APPPATH\Controllers\Proyek.php(49): view('proyek/gedung/gedung1', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->gedung1()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 09:24:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 09:26:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 09:27:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 09:27:04 --> Undefined array key "length"
+in APPPATH\Controllers\Proyek.php on line 60.
+ 1 APPPATH\Controllers\Proyek.php(60): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "length"', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Proyek.php', 60)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 09:29:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 09:31:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 09:31:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 09:31:30 --> Call to a member function getGet() on null
+in APPPATH\Models\ProyekModel.php on line 103.
+ 1 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->get_pkp_datatable()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 09:39:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 09:39:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 09:39:14 --> Call to a member function getGet() on null
+in APPPATH\Models\ProyekModel.php on line 103.
+ 1 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->get_pkp_datatable()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 09:39:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 09:39:27 --> Call to a member function getGet() on null
+in APPPATH\Models\ProyekModel.php on line 103.
+ 1 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->get_pkp_datatable()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 09:40:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 09:40:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 09:40:20 --> Call to a member function getGet() on null
+in APPPATH\Models\ProyekModel.php on line 103.
+ 1 APPPATH\Controllers\Proyek.php(59): App\Models\ProyekModel->get_pkp_datatable()
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Proyek->datagd1()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Proyek))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+CRITICAL - 2023-12-18 10:00:11 --> Too few arguments to function App\Models\ProyekModel::__construct(), 0 passed in C:\laragon\www\dashboard\app\Controllers\Proyek.php on line 19 and exactly 1 expected
+in APPPATH\Models\ProyekModel.php on line 44.
+ 1 APPPATH\Controllers\Proyek.php(19): App\Models\ProyekModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\Proyek->__construct()
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+CRITICAL - 2023-12-18 10:03:54 --> Too few arguments to function App\Models\ProyekModel::__construct(), 0 passed in C:\laragon\www\dashboard\app\Controllers\Proyek.php on line 19 and exactly 1 expected
+in APPPATH\Models\ProyekModel.php on line 44.
+ 1 APPPATH\Controllers\Proyek.php(19): App\Models\ProyekModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\Proyek->__construct()
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+CRITICAL - 2023-12-18 10:06:04 --> Too few arguments to function App\Models\ProyekModel::__construct(), 0 passed in C:\laragon\www\dashboard\app\Controllers\Proyek.php on line 19 and exactly 1 expected
+in APPPATH\Models\ProyekModel.php on line 44.
+ 1 APPPATH\Controllers\Proyek.php(19): App\Models\ProyekModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\Proyek->__construct()
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-18 10:18:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 10:18:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 10:18:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 10:19:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-18 10:19:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-18 10:19:08 --> Too few arguments to function App\Models\ProyekModel::__construct(), 0 passed in C:\laragon\www\dashboard\app\Controllers\Proyek.php on line 19 and exactly 1 expected
+in APPPATH\Models\ProyekModel.php on line 44.
+ 1 APPPATH\Controllers\Proyek.php(19): App\Models\ProyekModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\Proyek->__construct()
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')

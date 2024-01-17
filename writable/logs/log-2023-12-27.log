@@ -1,0 +1,908 @@
+INFO - 2023-12-27 02:20:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 02:20:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-27 02:20:49 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:174
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php(174): mysqli->real_connect('localhost', 'root', '', 'qns_dashv7', 3306, '', 0)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\dashboard\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#4 C:\laragon\www\dashboard\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#5 C:\laragon\www\dashboard\app\Controllers\Login.php(48): CodeIgniter\Model->countAllResults()
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#8 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\laragon\www\dashboard\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\laragon\www\dashboard\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\dashboard\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\dashboard\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#3 C:\laragon\www\dashboard\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#4 C:\laragon\www\dashboard\app\Controllers\Login.php(48): CodeIgniter\Model->countAllResults()
+#5 C:\laragon\www\dashboard\system\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+#6 C:\laragon\www\dashboard\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#7 C:\laragon\www\dashboard\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\dashboard\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 C:\laragon\www\dashboard\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#10 {main}
+CRITICAL - 2023-12-27 02:20:49 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `master_admin`
+WHERE `username` = :username:', [...], false)
+ 3 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 4 APPPATH\Controllers\Login.php(48): CodeIgniter\Model->countAllResults()
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Login->authLogin()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 02:20:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 02:21:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 02:21:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 02:21:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 02:21:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 02:21:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 02:21:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-12-27 09:21:11 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\data\marketing\list.php on line 290.
+ 1 APPPATH\Views\data\marketing\list.php(290): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\marketing\\list.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/marketing/list', [], true)
+ 5 APPPATH\Controllers\Data.php(191): view('data/marketing/list', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mkt()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+WARNING - 2023-12-27 09:21:11 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\data\marketing\list.php on line 291.
+ 1 APPPATH\Views\data\marketing\list.php(291): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\marketing\\list.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/marketing/list', [], true)
+ 5 APPPATH\Controllers\Data.php(191): view('data/marketing/list', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mkt()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+WARNING - 2023-12-27 09:21:11 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\data\marketing\list.php on line 290.
+ 1 APPPATH\Views\data\marketing\list.php(290): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\marketing\\list.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/marketing/list', [], true)
+ 5 APPPATH\Controllers\Data.php(191): view('data/marketing/list', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mkt()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+WARNING - 2023-12-27 09:21:11 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\data\marketing\list.php on line 291.
+ 1 APPPATH\Views\data\marketing\list.php(291): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\marketing\\list.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/marketing/list', [], true)
+ 5 APPPATH\Controllers\Data.php(191): view('data/marketing/list', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mkt()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 02:21:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 02:21:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 02:21:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 02:21:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 02:49:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 02:49:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 02:49:19 --> Call to undefined method CodeIgniter\Database\MySQLi\Connection::get()
+in APPPATH\Controllers\Data.php on line 328.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 02:51:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 02:51:02 --> Undefined variable $proyek
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 28.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $proyek', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 28)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(392): view('data/qs/monitoring-karyawan-qs')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 02:51:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 02:51:25 --> Undefined property: CodeIgniter\View\View::$security
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 29.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$security', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 29)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(392): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 02:51:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 02:51:40 --> Undefined variable $n_tgl_ini
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 33.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(33): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $n_tgl_ini', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 33)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(392): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 02:52:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 02:52:43 --> Undefined property: CodeIgniter\Database\MySQLi\Result::$n_tgl_ini
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 33.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(33): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\Database\\MySQLi\\Result::$n_tgl_ini', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 33)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(392): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 02:57:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 02:57:00 --> Undefined variable $akses
+in APPPATH\Controllers\Data.php on line 332.
+ 1 APPPATH\Controllers\Data.php(332): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $akses', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Data.php', 332)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 02:58:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 02:58:24 --> Undefined variable $n_tgl_ini
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 41.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(41): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $n_tgl_ini', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 41)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(392): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 02:59:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:59:05 --> Undefined variable $kategoriQNS
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 47.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(47): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $kategoriQNS', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 47)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(392): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 02:59:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:59:27 --> Undefined property: CodeIgniter\View\View::$session
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 416.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(416): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$session', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 416)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 02:59:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:59:53 --> Attempt to read property "keterangan" on null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 03:00:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 10:00:44 --> Undefined property: CodeIgniter\Database\MySQLi\Result::$keterangan
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\Database\\MySQLi\\Result::$keterangan', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 03:02:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 10:02:39 --> Attempt to read property "keterangan" on null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 03:03:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 03:03:57 --> Undefined property: CodeIgniter\Database\MySQLi\Builder::$get
+in APPPATH\Controllers\Data.php on line 345.
+ 1 APPPATH\Controllers\Data.php(345): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\Database\\MySQLi\\Builder::$get', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Data.php', 345)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 03:04:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 10:04:14 --> Attempt to read property "keterangan" on null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 03:06:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 10:06:17 --> Trying to access array offset on value of type null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 03:53:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 10:53:37 --> Attempt to read property "keterangan" on null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 03:54:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 10:54:43 --> Attempt to read property "keterangan" on array
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on array', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 03:59:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 10:59:26 --> Attempt to read property "keterangan" on array
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on array', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 03:59:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 10:59:36 --> Attempt to read property "keterangan" on null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 554.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(554): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 554)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 03:59:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 10:59:57 --> Attempt to read property "keterangan" on array
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on array', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:00:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 11:00:08 --> Attempt to read property "keterangan" on null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:00:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 11:00:59 --> Attempt to read property "keterangan" on null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:01:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 11:01:01 --> Attempt to read property "keterangan" on null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:01:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 11:01:10 --> Undefined property: CodeIgniter\Database\MySQLi\Result::$keterangan
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\Database\\MySQLi\\Result::$keterangan', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:01:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 11:01:22 --> Attempt to read property "keterangan" on null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 554.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(554): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 554)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:02:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 11:02:17 --> Attempt to read property "keterangan" on null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:07:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 11:07:14 --> Attempt to read property "keterangan" on null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:08:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 11:08:15 --> Attempt to read property "keterangan" on null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:13:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 11:13:10 --> Attempt to read property "keterangan" on null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:13:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 11:13:12 --> Attempt to read property "keterangan" on null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:13:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 11:13:15 --> Attempt to read property "keterangan" on null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:16:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 11:16:38 --> Undefined property: CodeIgniter\Database\MySQLi\Result::$keterangan
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\Database\\MySQLi\\Result::$keterangan', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:19:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 11:19:43 --> Undefined property: CodeIgniter\Database\MySQLi\Result::$keterangan
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\Database\\MySQLi\\Result::$keterangan', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:22:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 11:22:53 --> Undefined property: CodeIgniter\Database\MySQLi\Result::$keterangan
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\Database\\MySQLi\\Result::$keterangan', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:23:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 11:23:43 --> Attempt to read property "keterangan" on null
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 486.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(486): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "keterangan" on null', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 486)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:24:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 11:24:09 --> Undefined property: CodeIgniter\View\View::$security
+in APPPATH\Views\data\qs\monitoring-karyawan-qs.php on line 624.
+ 1 APPPATH\Views\data\qs\monitoring-karyawan-qs.php(624): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$security', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php', 624)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-karyawan-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-karyawan-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(397): view('data/qs/monitoring-karyawan-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_kar_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:24:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 04:26:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 04:26:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 04:34:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 04:34:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 04:34:34 --> Call to undefined method CodeIgniter\Database\MySQLi\Connection::get()
+in APPPATH\Controllers\Data.php on line 409.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_dcr_qs()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:34:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 04:34:58 --> Undefined variable $kategoriQNS
+in APPPATH\Views\data\qs\monitoring-dcr-qs.php on line 36.
+ 1 APPPATH\Views\data\qs\monitoring-dcr-qs.php(36): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $kategoriQNS', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-dcr-qs.php', 36)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-dcr-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-dcr-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(436): view('data/qs/monitoring-dcr-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_dcr_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:35:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 04:35:10 --> Undefined property: CodeIgniter\View\View::$security
+in APPPATH\Views\data\qs\monitoring-dcr-qs.php on line 414.
+ 1 APPPATH\Views\data\qs\monitoring-dcr-qs.php(414): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$security', 'C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-dcr-qs.php', 414)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\data\\qs\\monitoring-dcr-qs.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('data/qs/monitoring-dcr-qs', [], true)
+ 5 APPPATH\Controllers\Data.php(441): view('data/qs/monitoring-dcr-qs', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Data->mon_dcr_qs()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 04:35:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 04:38:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 04:38:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 08:50:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 08:50:51 --> Attempt to read property "kategori_user" on null
+in APPPATH\Controllers\Setting.php on line 15.
+ 1 APPPATH\Controllers\Setting.php(15): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on null', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Setting.php', 15)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->index()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 08:51:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 08:51:43 --> Attempt to read property "kategori_user" on null
+in APPPATH\Controllers\Setting.php on line 15.
+ 1 APPPATH\Controllers\Setting.php(15): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on null', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Setting.php', 15)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->index()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 08:53:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 08:53:38 --> Attempt to read property "kategori_user" on null
+in APPPATH\Controllers\Setting.php on line 15.
+ 1 APPPATH\Controllers\Setting.php(15): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on null', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Setting.php', 15)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->index()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 08:54:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 08:54:41 --> Attempt to read property "kategori_user" on null
+in APPPATH\Controllers\Setting.php on line 14.
+ 1 APPPATH\Controllers\Setting.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kategori_user" on null', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Setting.php', 14)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->index()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 08:54:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 08:54:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 08:54:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 08:54:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 08:54:52 --> Undefined variable $kategori
+in APPPATH\Views\setting\index.php on line 30.
+ 1 APPPATH\Views\setting\index.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $kategori', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\index.php', 30)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\index.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/index', [], true)
+ 5 APPPATH\Controllers\Setting.php(28): view('setting/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 08:55:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 08:55:05 --> Undefined property: CodeIgniter\View\View::$load
+in APPPATH\Views\setting\index.php on line 147.
+ 1 APPPATH\Views\setting\index.php(147): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$load', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\index.php', 147)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\index.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/index', [], true)
+ 5 APPPATH\Controllers\Setting.php(28): view('setting/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 08:55:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 08:55:32 --> Undefined variable $kode
+in APPPATH\Views\layout\page_layout.php on line 89.
+ 1 APPPATH\Views\layout\page_layout.php(89): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $kode', 'C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php', 89)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('layout/page_layout', [], true)
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/index', [], true)
+ 6 APPPATH\Controllers\Setting.php(28): view('setting/index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 08:56:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 09:16:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 09:16:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 09:16:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:34:45 --> Class "App\Models\SettingModel" not found
+in APPPATH\Controllers\Setting.php on line 13.
+ 1 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\Setting->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:35:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:35:12 --> Call to undefined method CodeIgniter\Database\MySQLi\Connection::get()
+in APPPATH\Controllers\Setting.php on line 52.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->pkp()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:35:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:35:45 --> Undefined variable $kategoriQNS
+in APPPATH\Views\setting\pkp.php on line 11.
+ 1 APPPATH\Views\setting\pkp.php(11): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $kategoriQNS', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\pkp.php', 11)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\pkp.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/pkp', [], true)
+ 5 APPPATH\Controllers\Setting.php(59): view('setting/pkp', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->pkp()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:36:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:36:09 --> Undefined variable $kategoriQNS
+in APPPATH\Views\setting\pkp.php on line 11.
+ 1 APPPATH\Views\setting\pkp.php(11): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $kategoriQNS', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\pkp.php', 11)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\pkp.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/pkp', [], true)
+ 5 APPPATH\Controllers\Setting.php(59): view('setting/pkp', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->pkp()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:36:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:36:10 --> Undefined variable $kategoriQNS
+in APPPATH\Views\setting\pkp.php on line 11.
+ 1 APPPATH\Views\setting\pkp.php(11): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $kategoriQNS', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\pkp.php', 11)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\pkp.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/pkp', [], true)
+ 5 APPPATH\Controllers\Setting.php(59): view('setting/pkp', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->pkp()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:36:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:36:16 --> Undefined property: App\Controllers\Setting::$dashboard
+in APPPATH\Controllers\Setting.php on line 60.
+ 1 APPPATH\Controllers\Setting.php(60): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Setting::$dashboard', 'C:\\laragon\\www\\dashboard\\app\\Controllers\\Setting.php', 60)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->pkp()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:36:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:36:23 --> foreach() argument must be of type array|object, null given
+in APPPATH\Views\setting\pkp.php on line 34.
+ 1 APPPATH\Views\setting\pkp.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, null given', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\pkp.php', 34)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\pkp.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/pkp', [], true)
+ 5 APPPATH\Controllers\Setting.php(62): view('setting/pkp', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->pkp()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:39:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:39:38 --> Attempt to read property "kunci" on array
+in APPPATH\Views\setting\pkp.php on line 35.
+ 1 APPPATH\Views\setting\pkp.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kunci" on array', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\pkp.php', 35)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\pkp.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/pkp', [], true)
+ 5 APPPATH\Controllers\Setting.php(62): view('setting/pkp', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->pkp()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:40:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:40:46 --> Attempt to read property "kunci" on array
+in APPPATH\Views\setting\pkp.php on line 35.
+ 1 APPPATH\Views\setting\pkp.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "kunci" on array', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\pkp.php', 35)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\pkp.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/pkp', [], true)
+ 5 APPPATH\Controllers\Setting.php(62): view('setting/pkp', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->pkp()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:41:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:41:23 --> Undefined variable $r
+in APPPATH\Views\setting\pkp.php on line 36.
+ 1 APPPATH\Views\setting\pkp.php(36): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $r', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\pkp.php', 36)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\pkp.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/pkp', [], true)
+ 5 APPPATH\Controllers\Setting.php(62): view('setting/pkp', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->pkp()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:41:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:41:33 --> Call to undefined function form_open()
+in APPPATH\Views\setting\pkp.php on line 76.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/pkp', [], true)
+ 4 APPPATH\Controllers\Setting.php(62): view('setting/pkp', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->pkp()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:41:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:41:47 --> Undefined property: CodeIgniter\View\View::$session
+in APPPATH\Views\setting\pkp.php on line 164.
+ 1 APPPATH\Views\setting\pkp.php(164): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$session', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\pkp.php', 164)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\pkp.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/pkp', [], true)
+ 5 APPPATH\Controllers\Setting.php(63): view('setting/pkp', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->pkp()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:42:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 09:42:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 09:44:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 09:44:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 09:56:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 09:56:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:56:30 --> Undefined variable $kategoriQNS
+in APPPATH\Views\setting\user.php on line 10.
+ 1 APPPATH\Views\setting\user.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $kategoriQNS', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php', 10)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/user', [], true)
+ 5 APPPATH\Controllers\Setting.php(102): view('setting/user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:56:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:56:53 --> Call to undefined function rupiah()
+in APPPATH\Views\setting\user.php on line 87.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/user', [], true)
+ 4 APPPATH\Controllers\Setting.php(100): view('setting/user', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:57:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:57:50 --> Undefined property: CodeIgniter\View\View::$security
+in APPPATH\Views\setting\user.php on line 307.
+ 1 APPPATH\Views\setting\user.php(307): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$security', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php', 307)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/user', [], true)
+ 5 APPPATH\Controllers\Setting.php(100): view('setting/user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:58:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:58:13 --> level_user(): Argument #3 ($kategori) must be of type string, array given, called in C:\laragon\www\dashboard\app\Views\layout\page_layout.php on line 105
+in APPPATH\Helpers\level_helper.php on line 4.
+ 1 APPPATH\Views\layout\page_layout.php(105): level_user('proyek', 'data', [...], 'read')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('layout/page_layout', [], true)
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/user', [], true)
+ 6 APPPATH\Controllers\Setting.php(100): view('setting/user', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:58:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:58:42 --> foreach() argument must be of type array|object, string given
+in APPPATH\Views\setting\user.php on line 75.
+ 1 APPPATH\Views\setting\user.php(75): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, string given', 'C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php', 75)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\setting\\user.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/user', [], true)
+ 5 APPPATH\Controllers\Setting.php(100): view('setting/user', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 09:59:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-27 09:59:53 --> level_user(): Argument #3 ($kategori) must be of type string, array given, called in C:\laragon\www\dashboard\app\Views\layout\page_layout.php on line 105
+in APPPATH\Helpers\level_helper.php on line 4.
+ 1 APPPATH\Views\layout\page_layout.php(105): level_user('proyek', 'data', [...], 'read')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\dashboard\\app\\Views\\layout\\page_layout.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('layout/page_layout', [], true)
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('setting/user', [], true)
+ 6 APPPATH\Controllers\Setting.php(100): view('setting/user', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Setting->user()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\dashboard\\public\\index.php')
+INFO - 2023-12-27 10:00:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 10:01:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 10:02:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 10:02:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-27 10:02:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
