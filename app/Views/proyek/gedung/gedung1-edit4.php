@@ -27,7 +27,11 @@
             <a class="nav-link" href="<?= base_url() ?>proyek/edit_6/<?= $proyek->getRow()->id_pkp ?>" role="tab"
                 aria-controls="info6" aria-selected="true" style="color:black"><strong>MONTORING KARYAWAN</strong></a>
         </li>
+ <?php
+    if ($nomorQN == '511') {
+        ?>
         <?php
+}
         if ($nomorQN != '412') {
             ?>
             <li class="nav-item">
@@ -149,7 +153,7 @@
     <div class="modal-dialog" style="width:90%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('proyek/teknistambah', ['id' => 'FormulirTambahTeknis', 'enctype' => 'multipart/form-data']); ?>
+                <?= form_open(base_url('proyek/teknistambah'), ['enctype' => 'multipart/form-data']); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Perbaharui File PDF Data Teknis</h2>
                 </header>
@@ -308,10 +312,12 @@
                         $('input[name="' + key + '"]').after(msg);
                     }
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
                             title: 'Notifikasi',
                             text: data.errors[key],
-                            type: 'danger'
+                            position: "top-end",
+                            showConfirmButton: false,
+                            icon: 'error'
                         });
                     }
                 }
@@ -322,10 +328,12 @@
                 $('#tambahDataTeknis').modal('hide');
                 document.getElementById("FormulirTambahTeknis").reset();
                 $('#submitformteknis').html('Submit');
-                new PNotify({
+                Swal.fire({
                     title: 'Notifikasi',
                     text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
                 });
                 window.setTimeout(function () {
                     //location.reload();
@@ -333,10 +341,13 @@
                 }, 2000);
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
                 text: "Request gagal, browser akan direload",
-                type: 'danger'
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
             });
             window.setTimeout(function () {
                 location.reload();

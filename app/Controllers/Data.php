@@ -136,13 +136,12 @@ class Data extends BaseController
         $url_export = '';
         $laporan = $this->laporan->view_laporan_absensi($filter1, $filter2, $tahun, $bulan);
         if ($filter1 = 1) {
-            $url_export = 'laporan/export?filter1=1&tahun=' . $tahun . '&filter2=' . $filter2 . '&bulan=' . $bulan;
-        }
+            $url_export = base_url('laporan/export?filter1=1&tahun=' . $tahun . '&filter2=' . $filter2 . '&bulan=' . $bulan);        }
 
         $data['option_bulan'] = $this->laporan->option_bulan($filter1);
         $data['option_tahun'] = $this->laporan->option_tahun($filter1);
         $data['laporan'] = $laporan;
-        $data['url_export'] = base_url('index.php/' . $url_export);
+        $data['url_export'] = $url_export;
         $data['kategoriQNS'] = $kategoriQNS;
         $data['tes0'] = $this->dashboard->getId();
         $data['tes1'] = $this->dashboard->getOne();
@@ -177,7 +176,7 @@ class Data extends BaseController
         $data['data_marketing1'] = $this->db->table('data_marketing')->select("*")->where('no_pkp', '')->where('menang !=', 'KALAH')->where('menang !=', 'MUNDUR')->where('menang !=', 'BATAL')->orderBy('tgl_undangan', 'DESC')->get()->getResult();
 
         // LIST DATA MASA KONTRUKSI //
-        $data['data_marketing2'] = $this->db->table('data_marketing')->select("*")->where('no_pkp !=', '')->where('addendum_ke', '')->where('tgl_selesai_kont', null)->orWhere('tgl_finish != tgl_finish_all')->where('proses_add', '')->where('tgl_selesai_kont', null)->orWhere('tgl_finish = tgl_finish_all')->where('proses_add', '')->where('tgl_selesai_kont', null)->orderBy('nama_proyek', 'DESC')->get()->getResult();
+        $data['data_marketing2'] = $this->db->table('data_marketing')->select("*")->where('no_pkp !=', '')->where('addendum_ke', '')->where('tgl_selesai_kont', null)->orWhere('tgl_finish != tgl_finish_all')->where('proses_add', '')->where('tgl_selesai_kont', null)->orWhere('tgl_finish = tgl_finish_all')->where('proses_add', '')->where('tgl_selesai_kont', null)->orderBy('no_pkp', 'DESC')->get()->getResult();
 
         $data['data_marketing3'] = $this->db->table('data_marketing')
             ->select("*")
@@ -190,13 +189,24 @@ class Data extends BaseController
         $data['data_marketing2a'] = $this->db->table('data_marketing')->select("*")->where('tgl_finish != tgl_finish_all')->orderBy('tgl_finish_all', 'ASCD')->get()->getResult();
 
         // LIST ADDENDUM //
-        $data['data_marketing4'] = $this->db->table("addendum a")->select("a.id_marketing,a.id_addendum,b.no_pkp,b.nama_proyek,a.addendum_ke,a.tgl_ba_surat,a.tgl_sph,a.tgl_nego,a.tgl_draft,a.tgl_sper,b.tgl_ubah")->join('data_marketing b', 'a.id_marketing = b.id_marketing')->where('b.tgl_finish_all >', 0)->where('a.tgl_selesai', null)->orderBy('b.tgl_finish_all')->get()->getResult();
+    $data['data_marketing4'] = $this->db->table("addendum a")->select("a.id_marketing,a.id_addendum,b.no_pkp,b.nama_proyek,a.addendum_ke,a.tgl_ba_surat,a.tgl_sph,a.tgl_nego,a.tgl_draft,a.tgl_sper,b.tgl_ubah")->join('data_marketing b', 'a.id_marketing = b.id_marketing')->where('b.tgl_finish_all >', 0)->where('a.tgl_selesai', null)->orderBy('b.no_pkp', 'DESC')->get()->getResult();
 
         // LIST SELESAI //
-        $data['data_marketing_s'] = $this->db->table('data_marketing')->select("*")->where('tgl_selesai_kont >', 0)->orderBy('tgl_finish_all', 'ASCD')->get()->getResult();
+        $data['data_marketing_s'] = $this->db->table('data_marketing')->select("*")->where('tgl_selesai_kont >', 0)->orderBy('no_pkp', 'DESC')->get()->getResult();
 
         // LIST KALAH/MUNDUR //
-        $data['data_marketing_km'] = $this->db->table('data_marketing')->select("*")->where('menang', 'KALAH')->orWhere('menang', 'MUNDUR')->where('menang', 'BATAL')->get()->getResult();
+               // LIST KALAH/MUNDUR //
+        $data['data_marketing_km'] = $this->db->table('data_marketing')
+            ->select("*")
+            ->groupStart()
+            ->where('menang', 'KALAH')
+            ->orWhere('menang', 'MUNDUR')
+            ->orWhere('menang', 'BATAL')
+            ->groupEnd()
+            ->orderBy('tgl_ubah', 'DESC')
+            ->get()
+            ->getResult();
+
 
         $data['kategoriQNS'] = $kategoriQNS;
         $data['tes0'] = $this->dashboard->getId();
@@ -206,7 +216,7 @@ class Data extends BaseController
         return view('data/marketing/list', $data);
     }
 
-    public function qs()
+ public function qs()
     {
         $data['kode'] = '03';
         $idQNS = session('idadmin');
@@ -220,20 +230,20 @@ class Data extends BaseController
         $data['tes1'] = $this->dashboard->getOne();
         $data['tes2'] = $this->dashboard->getTwo();
         $data['kategori'] = $kategoriQNS;
+        $pdfQsModel = new LaporanModel(); // Menginisialisasi model
 
+        $data['proyek_qs'] = $pdfQsModel->getProyekQs(); // Mengambil data proyek QS dari model
+        $data['pdfQsModel'] = $pdfQsModel;
         $data['proyek'] = $this->db->table('master_pkp')->select("*")->where('qs', '')->orderBy('no_pkp')->get()->getResult();
-        $data['proyek_qs'] = $this->db->table('master_pkp')->select("*")->where('qs', 'QS')->orderBy('update_qs')->get()->getResult();
-        $qs = $this->db->table('master_pkp')->select("*")->where('qs', 'QS')->orderBy('update_qs')->get()->getRow();
-        $id_pkp = $qs->id_pkp;
-        $builder = $this->db->table('pdf_qs');
-        $builder->where('id_pkp', $id_pkp);
-        $builder->orderBy('tgl_periode', 'DESC');
-        $data['QN'] = $builder->get()->getResult();
+        $proyek_qs = $this->db->table('master_pkp')->select("*")->where('qs', 'QS')->orderBy('update_qs')->get()->getRow();
+        $id_pkp = $proyek_qs->id_pkp;
+
+        $data['QN'] = $this->db->query("SELECT * FROM pdf_qs where id_pkp = '$id_pkp' order by tgl_periode DESC");
+
         $data['judul'] = '<a href="' . base_url() . 'dashboard/beranda_08" style="color:white">QS | </a> <a style="color:white">Laporan Bulanan</a>';
 
         return view('data/qs/index', $data);
     }
-
     public function masalah_qs()
     {
         $data['kode'] = '03';
@@ -458,6 +468,118 @@ class Data extends BaseController
         return view('data/qs/monitoring-dcr-qs', $data);
     }
 
+  public function import_mon_kry($id_pkp)
+    {
+        $data['kode'] = '03';
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        level_user('qs', 'index', $kategoriQNS, 'read') > 0 ? '' : show_404();
+        $data['kategori'] = $this->db->table('kategori_user')->get()->getResult();
+        $data['golongan'] = $this->db->table('master_golongan')->orderBy('kode2')->get()->getResult();
+        $data['proyek'] = $this->db->table('master_pkp a')->select("a.no_pkp, a.id_pkp, a.alias , b.nomor")->join('master_instansi b', 'a.id_instansi = b.id')->orderBy('no_pkp')->get()->getResult();
+
+        $data['judul'] = '<a href="' . base_url() . 'laporan/mon_kar_qs" style="color:white">QS | </a> <a style="color:white">Import Karyawan</a>';
+
+        $data['total_migrasi'] = $this->db->table("file_migrasi")->select("*")->where('tipe', 'DT_KR')->where('id_pkp', $id_pkp);
+        $data['total1'] = $data['total_migrasi']->countAllResults();
+
+        $errABS = 0;
+        $errKETabs = 0;
+        $errPOS = 0;
+        $errMOB1 = 0;
+        $errMOB2 = 0;
+        $errDEMOB1 = 0;
+        $errDEMOB2 = 0;
+        $errUJG = 0;
+        $QN = $this->db->query("SELECT * FROM file_migrasi where tipe='DT_KR' and id_pkp='$id_pkp' order by kode");
+        foreach ($QN->getResult() as $row) {
+            if ($row->ket_3 == '') {
+                $errABS++;
+            }
+            if ($row->ket_4 == '') {
+                $errABS++;
+            }
+            if ($row->ket_5 == '') {
+                $errABS++;
+            }
+            if ($row->ket_6 == '') {
+                $errABS++;
+            }
+            if ($row->ket_3 != '' and is_numeric($row->ket_3) != TRUE) {
+                $errABS++;
+            }
+            if ($row->ket_4 != '' and is_numeric($row->ket_4) != TRUE) {
+                $errABS++;
+            }
+            if ($row->ket_5 != '' and is_numeric($row->ket_5) != TRUE) {
+                $errABS++;
+            }
+            if ($row->ket_6 != '' and is_numeric($row->ket_6) != TRUE) {
+                $errABS++;
+            }
+
+            if (($row->ket_3 != '0' and is_numeric($row->ket_3) == TRUE) and $row->ket_7 == '') {
+                $errKETabs++;
+            }
+            if (($row->ket_4 != '0' and is_numeric($row->ket_4) == TRUE) and $row->ket_7 == '') {
+                $errKETabs++;
+            }
+            if (($row->ket_5 != '0' and is_numeric($row->ket_5) == TRUE) and $row->ket_7 == '') {
+                $errKETabs++;
+            }
+            if (($row->ket_6 != '0' and is_numeric($row->ket_6) == TRUE) and $row->ket_7 == '') {
+                $errKETabs++;
+            }
+            $n1_k7 = substr($row->ket_7, 0, 1);
+            if ($n1_k7 == ' ') {
+                $errKETabs++;
+            }
+            if ($row->ket_7 != '' and $n1_k7 != ' ' and $row->ket_3 == '0' and $row->ket_4 == '0' and $row->ket_5 == '0' and $row->ket_6 == '0') {
+                $errKETabs++;
+            }
+            $n1_k8 = substr($row->ket_8, 0, 1);
+            if ($n1_k8 == ' ') {
+                $errPOS++;
+            }
+            if ($row->ket_8 == '') {
+                $errPOS++;
+            }
+            if ($row->tgl_1 == 0) {
+                $errMOB1++;
+            }
+            if ($row->tgl_2 == 0) {
+                $errMOB2++;
+            }
+            if ($row->tgl_3 == 0) {
+                $errDEMOB1++;
+            }
+            if ($row->tgl_4 == 0 and ($row->ket_10 == 'MUTASI' or $row->ket_10 == 'RESIGN')) {
+                $errDEMOB2++;
+            }
+            if ($row->tgl_4 > 0 and ($row->ket_10 != 'MUTASI' and $row->ket_10 != 'RESIGN')) {
+                $errUJG++;
+            }
+            if ($row->tgl_4 > 0 and ($row->ket_10 == 'TASK FORCE')) {
+                $errUJG++;
+            }
+        }
+
+        $data['total2'] = $errABS + $errKETabs + $errPOS + $errMOB1 + $errMOB2 + $errDEMOB1 + $errDEMOB2 + $errUJG;
+        $data['total2a'] = $errABS;
+        $data['total2b'] = $errKETabs;
+        $data['total2c'] = $errPOS;
+        $data['total2d'] = $errMOB1;
+        $data['total2e'] = $errMOB2;
+        $data['total2f'] = $errDEMOB1;
+        $data['total2g'] = $errDEMOB2;
+        $data['total2h'] = $errUJG;
+        $data['id_pkp'] = $id_pkp;
+        $data['kategoriQNS'] = $kategoriQNS;
+        $data['kategori'] = $kategoriQNS;
+        return view('data/qs/imp_mon_kry', $data);
+    }
+
     public function import_pembaharuan()
     {
         $data['kode'] = '03';
@@ -513,7 +635,7 @@ class Data extends BaseController
             }
         }
 
-        $data['total2'] = $errNRP + $errNAMA /*+ $errLP + $errDomisili + $errKeluarga*/;
+        $data['total2'] = $errNRP + $errNAMA /*+ $errLP + $errDomisili + $errKeluarga*/ ;
         $data['kategoriQNS'] = $kategoriQNS;
         $data['tes0'] = $this->dashboard->getId();
         $data['tes1'] = $this->dashboard->getOne();
@@ -521,12 +643,58 @@ class Data extends BaseController
         $data['kategori'] = $kategoriQNS;
         return view('data/imp_pembaharuan', $data);
     }
-    public function dataimport2()
+   public function dataimport2()
     {
+        $requestData = $this->request->getPost();
         $idQNS = session('idadmin');
         $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
         $pkp_user = $isi->pkp_user;
-        $list = $this->laporan->getDataImport2();
+        $builder = $this->db->table('file_migrasi')->select("*")->where('tipe', 'DATA');
+        // Apply search filter if search value is provided
+        if (!empty($requestData['search']['value'])) {
+            $searchValue = $requestData['search']['value'];
+            $builder->groupStart()
+                ->like('ket_1', $searchValue)
+                ->orLike('ket_2', $searchValue)
+                ->orLike('ket_7', $searchValue)
+                ->orLike('ket_8', $searchValue)
+                ->groupEnd();
+        }
+
+        // Sorting
+        if (isset($requestData['order']) && is_array($requestData['order']) && count($requestData['order']) > 0) {
+            $columnIndex = $requestData['order'][0]['column'];
+            $columnName = $requestData['columns'][$columnIndex]['data'];
+            $columnSortOrder = $requestData['order'][0]['dir'];
+
+            // Mapping nama kolom dari DataTables ke nama kolom dalam tabel database jika diperlukan
+            $columnMap = [
+                0 => null, // Kolom pertama tidak diurutkan
+                1 => 'ket_1', // Kolom tanggal
+                2 => 'ket_2', // Kolom kode dokumen
+                3 => 'ket_7', // Kolom kode disiplin
+                4 => 'ket_8', // Kolom nomor DCR
+            ];
+
+            // Periksa apakah indeks kolom ditemukan dalam map
+            if (array_key_exists($columnIndex, $columnMap) && $columnMap[$columnIndex] !== null) {
+                // Jika ditemukan, gunakan nama kolom yang sesuai
+                $columnName = $columnMap[$columnIndex];
+            }
+
+            // Jika nama kolom ditemukan, lakukan pengurutan
+            if ($columnName !== null) {
+                $builder->orderBy($columnName, $columnSortOrder);
+            }
+        }
+
+        $builder->orderBy('ket_1', 'DESC');
+        $totalRecords = $builder->countAllResults(false); // Count all records without pagination
+
+        // Apply limit and offset for pagination
+        $builder->limit($requestData['length'], $requestData['start']);
+
+        $list = $builder->get()->getResult();
         $data = array();
 
         foreach ($list as $r) {
@@ -604,13 +772,28 @@ class Data extends BaseController
             $row[] = $keluarga;
             $data[] = $row;
         }
-        $result = [
-            "draw" => $this->request->getVar('draw'),
-            "recordsTotal" => $this->laporan->count_all_datatable_import2(),
-            "recordsFiltered" => $this->laporan->count_filtered_datatable_import2(),
-            "data" => $data,
-        ];
-        return $this->response->setJSON($result);
+        return $this->response->setJSON([
+            'draw' => intval($requestData['draw']),
+            'recordsTotal' => $totalRecords,
+            'recordsFiltered' => $totalRecords,
+            'data' => $data,
+        ]);
+    }
+
+    public function karyawandetail()
+    {
+        $idd = $this->request->getGet("id");
+        $query = $this->laporan->get_karyawan($idd);
+        foreach ($query as $karyawan_data) {
+            $instansi = $karyawan_data['no_pkp'];
+            $pkp = $karyawan_data['alias'];
+            $nomor_pkp = $instansi . ' / ' . $pkp;
+            $result = array(
+                "no_pkp" => $nomor_pkp
+            );
+        }
+        $array[] = $result;
+        echo '{"datarows":' . json_encode($array) . '}';
     }
 
 
@@ -659,67 +842,134 @@ class Data extends BaseController
         return view('data/hcm/edit-user', $data);
     }
 
-    public function useredit_1()
-    {
-        $simpan = $this->laporan;
-        $post = $this->request->getPost();
-        $postData = [
-            'idd' => $post['idd'],
-            'pkp_sebelumnya' => $post['pkp_sebelumnya'],
-            'tgl_lahir' => $post['tgl_lahir'],
-            'tgl_masuk' => $post['tgl_masuk'],
-            'tgl_kontrak' => $post['tgl_kontrak'],
-            'tgl_kontrak_1' => $post['tgl_kontrak_1'],
-            'pkp_akhir' => $post['pkp_akhir'],
-            'nama_admin' => $post['nama_admin'],
-            'jenis_kelamin' => $post['jenis_kelamin'],
-            'alamat' => $post['alamat'],
-            'handphone' => $post['handphone'],
-            'email' => $post['email'],
-            'jabatan' => $post['jabatan'],
-            'jurusan' => $post['jurusan'],
-            'status_karyawan' => $post['status_karyawan'],
-            'sisa_cuti' => $post['sisa_cuti'],
-            'agent' => $this->request->getUserAgent()
-        ];
-        if ($simpan->updatedatauser_1($postData)) {
-            $this->session->setFlashdata('success', 'berhasil menyimpan data');
-            $redirectUrl = previous_url() ?? base_url();
-        } else {
-            $this->session->setFlashdata('error', 'gagal update data');
-            $redirectUrl = previous_url() ?? base_url();
-        }
-        $data['token'] = csrf_hash();
-        return redirect()->to($redirectUrl);
-    }
-    public function useredit_2()
-    {
-        cekajax();
-        $simpan = $this->laporan_model;
-        if ($simpan->updatedatauser_2()) {
-            $data['success'] = true;
-            $data['message'] = "Berhasil menyimpan data";
-        } else {
-            $errors['fail'] = "gagal melakukan update data";
-            $data['errors'] = $errors;
-        }
-        $data['token'] = $this->security->get_csrf_hash();
-        echo json_encode($data);
-    }
-    public function useredit_3()
-    {
-        $simpan = $this->laporan;
-        if ($simpan->updatedatauser_3()) {
-            $data['success'] = true;
-            $data['message'] = "Berhasil menyimpan data";
-        } else {
-            $errors['fail'] = "gagal melakukan update data";
-            $data['errors'] = $errors;
-        }
-        $data['token'] = csrf_hash();
-        echo json_encode($data);
-    }
 
+    public function datausers()
+    {
+        $requestData = $this->request->getPost();
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        //ambil id_proyek admin proyek 
+        $proyek = $this->db->table('master_admin')->getWhere(array('id' => $idQNS), 1);
+        $pkp_user = $proyek->getRow()->pkp_user;
+        $pkp_akhir = $proyek->getRow()->pkp_akhir;
+        //end
+        //ambil divisi
+        if ($pkp_user != '') {
+            $divisi = $this->db->table('master_pkp')->getWhere(array('id_pkp' => $pkp_user), 1);
+            $id_divisi = $divisi->getRow()->id_instansi;
+        }
+
+        //ALL
+        if (level_user('setting', 'user', $kategoriQNS, 'all') > 0) {
+            $builder = $this->db->table("master_admin a")->select("a.id, a.username, a.nama_admin, a.email, a.jenis_kelamin, a.aktif, a.jml_pkp, b.kategori_user,c.no_pkp,d.nomor,c.alias")->join('kategori_user b', 'a.kategori = b.id')->join('master_pkp c', 'a.pkp_akhir = c.id_pkp', 'left')->join('master_instansi d', 'c.id_instansi = d.id', 'left')->where('b.kategori_user !=', 'IT')->orderBy('a.pkp_akhir')->get();
+        } else {
+            //divisi
+            if (level_user('setting', 'user', $kategoriQNS, 'divisi') > 0) {
+                $builder = $this->db->table("master_admin a")->select("a.id, a.username, a.nama_admin, a.email, a.jenis_kelamin, a.aktif, a.jml_pkp, b.kategori_user,c.no_pkp,d.nomor,c.alias")->join('kategori_user b', 'a.kategori = b.id')->join('master_pkp c', 'a.pkp_akhir = c.id_pkp')->join('master_instansi d', 'c.id_instansi = d.id')->where('d.id', $id_divisi)->orderBy('a.pkp_akhir')->get();
+            } else {
+                //proyek
+                $builder = $this->db->table("master_admin a")->select("a.id, a.username, a.nama_admin, a.email, a.jenis_kelamin, a.aktif, a.jml_pkp, b.kategori_user,c.no_pkp,d.nomor,c.alias")->join('kategori_user b', 'a.kategori = b.id')->join('master_pkp c', 'a.pkp_akhir = c.id_pkp')->join('master_instansi d', 'c.id_instansi = d.id')->where('c.id_pkp', $pkp_user)->orderBy('a.pkp_akhir')->get();
+            }
+        }
+
+        // Apply search filter if search value is provided
+        if (!empty($requestData['search']['value'])) {
+            $searchValue = $requestData['search']['value'];
+            $builder->groupStart()
+                ->like('a.username', $searchValue)
+                ->orLike('a.nama_admin', $searchValue)
+                ->orLike('a.jenis_kelamin', $searchValue)
+                ->orLike('b.kategori_user', $searchValue)
+                ->orLike('c.no_pkp', $searchValue)
+                ->orLike('c.alias', $searchValue)
+                ->orLike('d.nomor', $searchValue)
+                ->groupEnd();
+        }
+
+        // Sorting
+        if (isset($requestData['order']) && is_array($requestData['order']) && count($requestData['order']) > 0) {
+            $columnIndex = $requestData['order'][0]['column'];
+            $columnName = $requestData['columns'][$columnIndex]['data'];
+            $columnSortOrder = $requestData['order'][0]['dir'];
+
+            // Mapping nama kolom dari DataTables ke nama kolom dalam tabel database jika diperlukan
+            $columnMap = [
+                0 => null, // Kolom pertama tidak diurutkan
+                1 => 'a.username', // Kolom tanggal
+                2 => 'a.nama_admin', // Kolom kode dokumen
+                3 => 'a.jenis_kelamin', // Kolom kode disiplin
+                4 => 'b.kategori_user', // Kolom nomor DCR
+                5 => 'c.no_pkp', // Kolom nomor dokumen
+                6 => 'c.alias', // Kolom perihal
+                7 => 'd.nomor' // Kolom status dokumen
+            ];
+
+            // Periksa apakah indeks kolom ditemukan dalam map
+            if (array_key_exists($columnIndex, $columnMap) && $columnMap[$columnIndex] !== null) {
+                // Jika ditemukan, gunakan nama kolom yang sesuai
+                $columnName = $columnMap[$columnIndex];
+            }
+
+            // Jika nama kolom ditemukan, lakukan pengurutan
+            if ($columnName !== null) {
+                $builder->orderBy($columnName, $columnSortOrder);
+            }
+        }
+
+        $builder->orderBy('c.no_pkp', 'DESC');
+        $totalRecords = $builder->countAllResults(false); // Count all records without pagination
+
+        // Apply limit and offset for pagination
+        $builder->limit($requestData['length'], $requestData['start']);
+
+        $list = $builder->get()->getResult();
+
+        $no = 1;
+        $data = [];
+        foreach ($builder as $r) {
+            $status = $r->aktif == '1' ? "<span class='btn btn-xs btn-success'>Aktif</span>" : "<span class='btn  btn-xs btn-danger'>Blokir</span>";
+
+            //$kunci = esc($r->jml_pkp);
+            $aktif = esc($r->aktif);
+            if ($aktif > 0) {
+                $tombolhapus = '';
+            } else {
+                $tombolhapus = level_user('setting', 'user', $kategoriQNS, 'delete') > 0 ? '<li><a style="font-size:12px" href="#" onclick="hapus(this)" data-id="' . $r->id . '">Hapus</a></li>' : '';
+            }
+
+
+            $tomboledit = level_user('setting', 'user', $kategoriQNS, 'edit') > 0 ? '<li><a style="font-size:12px" href="edituser/' . $r->id . '" onclick="edit(this)" data-id="' . $r->id . '">Edit</a></li>' : '';
+            //$tomboledit = level_user('setting', 'user', $kategoriQNS, 'edit') > 0 ? '<li><a href="#" onclick="edit(this)" data-id="' . $r->id . '">Edit</a></li>' : '';
+
+            $data[] = array(
+                ' 
+                    <div class="btn-group">
+                        <button  style="font-size:12px" type="button" class="btn btn-primary" data-toggle="dropdown" aria-expanded="true">Action <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                             
+                            ' . $tomboledit . '
+                            ' . $tombolhapus . ' 
+                        </ul>
+                    </div>
+            ',
+                esc($r->nomor) . '/' . esc($r->no_pkp) . '<br>' . esc($r->alias),
+                esc($r->nama_admin),
+                esc($r->username),
+                esc($r->email),
+                esc($r->kategori_user),
+                esc($r->jenis_kelamin),
+                esc($status),
+            );
+            $no++;
+        }
+        return $this->response->setJSON([
+            'draw' => intval($requestData['draw']),
+            'recordsTotal' => $totalRecords,
+            'recordsFiltered' => $totalRecords,
+            'data' => $data,
+        ]);
+    }
 
     public function tambahproyekqs()
     {
@@ -740,21 +990,6 @@ class Data extends BaseController
         return redirect()->to($redirectUrl);
     }
 
-    public function tambah_lapbul()
-    {
-        $simpan = $this->laporan;
-
-        if ($simpan->simpandatalapbul()) {
-            $data['success'] = true;
-            $data['message'] = "Berhasil menambah data";
-        } else {
-            $errors['fail'] = "gagal melakukan tambah data";
-            $data['errors'] = $errors;
-        }
-        $data['token'] = csrf_hash();
-        echo json_encode($data);
-    }
-
 
     public function data_mkt($id_mkt)
     {
@@ -770,15 +1005,21 @@ class Data extends BaseController
         $data['golongan'] = $this->db->table('master_golongan')->orderBy('kode2')->get()->getResult();
         $data['proyek'] = $this->db->table('master_pkp a')->select("a.no_pkp, a.id_pkp, a.alias , b.nomor")->join('master_instansi b', 'a.id_instansi = b.id')->orderBy('no_pkp')->get()->getResult();
         $data['karyawan'] = $this->db->table('master_admin a')->select("*")->join('master_pkp b', 'a.pkp_akhir = b.id_pkp')->where('a.pkp_akhir !=', '')->where('aktif', '1')->orderBy('a.nama_admin')->get()->getResult();
+        
+        $data['marketing'] = $this->db->table('data_marketing a')
+    ->select('a.*, b.tgl_selesai')
+    ->join('addendum b', 'b.id_marketing = a.id_marketing', 'left')
+    ->where('a.id_marketing', $id_mkt)
+    ->get();
 
-        $data['marketing'] = $this->db->table("data_marketing")->select("*")->where('id_marketing', $id_mkt)->get();
+        //$data['marketing'] = $this->db->table("data_marketing")->select("*")->where('id_marketing', $id_mkt)->get();
         $data['marketing2'] = $this->db->table("data_marketing")->select("*")->where('id_marketing', $id_mkt)->where('menang', 'MENANG')->where('no_pkp !=', '')->get();
 
         $data['tombol_edit'] = level_user('data', 'marketing', $kategoriQNS, 'read') > 0 ? '<li><a style="font-size:12px" href="' . base_url() . 'laporan/editdata_mkt/' . $id_mkt . '" onclick="edit(this)" data-id="' . $id_mkt . '">Edit</a></li>' : '';
 
         $data['data_addendum'] = $this->db->table("addendum a")->select("a.id_marketing,a.id_addendum,b.no_pkp,b.nama_proyek,a.addendum_ke,a.tgl_ba_surat,a.tgl_sph,a.tgl_nego,a.tgl_draft,a.tgl_sper,b.tgl_ubah,a.tgl_mulai,a.tgl_selesai,a.tgl_jaminan,a.nilai_jaminan,a.bast_1,a.bast_2,a.referensi,a.harga")->join('data_marketing b', 'a.id_marketing = b.id_marketing')->where('a.id_marketing', $id_mkt)->where('a.tgl_sper >', 0)->get();
 
-        $data['dt_addendum'] = $this->db->table("addendum a")->select("a.id_marketing,a.id_addendum,b.no_pkp,b.nama_proyek,a.addendum_ke,a.tgl_ba_surat,a.tgl_sph,a.tgl_nego,a.tgl_draft,a.tgl_sper,b.tgl_ubah,a.tgl_mulai,a.tgl_selesai,a.tgl_jaminan,a.nilai_jaminan,a.bast_1,a.bast_2,a.referensi,a.harga")->join('data_marketing b', 'a.id_marketing = b.id_marketing')->where('a.id_marketing', $id_mkt)->where('a.tgl_sper >', 0)->orderBy('a.addendum_ke')->get()->getResult();
+        $data['dt_addendum'] = $this->db->table("addendum a")->select("a.id_marketing,a.id_addendum,a.nett_porsi,a.nett_porsi_kso,a.ppn,b.no_pkp,b.nama_proyek,a.addendum_ke,a.tgl_ba_surat,a.tgl_sph,a.tgl_nego,a.tgl_draft,a.tgl_sper,b.tgl_ubah,a.tgl_mulai,a.tgl_selesai,a.tgl_jaminan,a.nilai_jaminan,a.bast_1,a.bast_2,a.referensi,a.harga")->join('data_marketing b', 'a.id_marketing = b.id_marketing')->where('a.id_marketing', $id_mkt)->where('a.tgl_sper >', 0)->orderBy('a.addendum_ke')->get()->getResult();
 
         $data['judul'] = '<a href="' . base_url() . 'dashboard/beranda_07" style="color:white">MARKETING | </a> <a href="' . base_url() . 'laporan/mkt" style="color:white">Data Kontrak</a>';
 
@@ -812,6 +1053,26 @@ class Data extends BaseController
 
         return view('data/marketing/data-addendum', $data);
     }
+
+
+    public function marketing($id)
+    {
+ $data['kode'] = '03';
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        $data['pkp_user'] = $isi->pkp_user;
+        $data['pkp'] = $this->db->table('master_pkp')->getWhere(['id_pkp' => $id], 1);
+
+        $data['addendum'] = $this->db->table('addendum')->select('*')->where('id_marketing', $id)->get()->getResult();
+
+        $data['judul'] = '<a>SETTING | </a> <a href="' . base_url() . 'proyek/edit_1/' . $data['pkp_user'] . '" style="color:white">PKP | </a> <a style="color:white">EDIT</a>';
+$data['kategoriQNS'] = $kategoriQNS;
+        $data['kategori'] = $kategoriQNS;
+
+        return view('proyek/marketing/marketing', $data);
+    }
+
 
     public function data_marketing($id_mkt)
     {
@@ -859,8 +1120,54 @@ class Data extends BaseController
         return view('data/marketing/du-foto', $data);
     }
 
-
     public function tambahkaryawan()
+    {
+        $post = $this->request->getPost();
+        $simpan = new LaporanModel();
+        $postData = [
+            'no_nrp' => $post['no_nrp'],
+            'nama_admin' => $post['nama_admin'],
+            'tgl_masuk' => $post['tgl_masuk'],
+            'tgl_lahir' => $post['tgl_lahir'],
+            'tgl_kontrak' => $post['tgl_kontrak'],
+            'tgl_awal_kontrak' => $post['tgl_awal_kontrak'],
+            'jabatan' => $post['jabatan'],
+            'status_kontrak' => $post['status_kontrak'],
+            'jenis_kelamin' => $post['jenis_kelamin'],
+            'alamat' => $post['alamat'],
+            'handphone' => $post['handphone'],
+            'email' => $post['email'],
+            'jurusan' => $post['jurusan'],
+            'pkp' => $post['pkp'],
+            'agent' => $this->request->getUserAgent(),
+        ];
+        $validation = [
+            'no_nrp' => 'required',
+            'nama_admin' => 'required',
+            'tgl_masuk' => 'required',
+            'tgl_kontrak' => 'required',
+            'tgl_lahir' => 'required'
+ 
+        ];
+ 
+        if ($simpan->cekusernrp($postData) > 0) {
+            $errors['fail'] = "No NRP sudah ada";
+            $data['errors'] = $errors;
+        } else {
+ 
+            if ($simpan->simpandatakaryawan($postData)) {
+                $data['success'] = true;
+                $data['message'] = "Berhasil menambah data";
+            } else {
+                $errors['fail'] = "gagal melakukan tambah data";
+                $data['errors'] = $errors;
+            }
+        }
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+ 
+    public function tambahkaryawansss()
     {
         $post = $this->request->getPost();
         $simpan = $this->laporan;
@@ -913,7 +1220,12 @@ class Data extends BaseController
         $originalFileName = $this->request->getFile('excelfile')->getName();
         $extension = pathinfo($originalFileName, PATHINFO_EXTENSION);
 
-        $nama_file = csrf_hash() . '.' . $extension;
+        // Generate a unique file name for the uploaded Excel file
+        $randomBytes = random_bytes(16); // Adjust the length as needed
+        $randomString = bin2hex($randomBytes);
+
+        // Concatenate the random string with the file extension
+        $nama_file = $randomString . '.' . $extension;
 
         $config = [
             'upload_path' => './excel/',
@@ -1063,7 +1375,7 @@ class Data extends BaseController
         return redirect()->to($redirectUrl);
     }
 
-    public function mutasi_karyawan()
+     public function mutasi_karyawan()
     {
         $post = $this->request->getPost();
         $postData = [
@@ -1075,29 +1387,27 @@ class Data extends BaseController
             'respon' => $post['respon'],
             'agent' => $this->request->getUserAgent(),
         ];
-        $simpan = $this->laporan;
+        $simpan = new LaporanModel();
         if ($simpan->cekmemo($postData) > 0) {
-            $this->session->setFlashdata('error', 'No SK Mutasi, TGL MOB & PKP TUJUAN Harus diisi...');
-            $redirectUrl = previous_url() ?? base_url();
+            $errors['fail'] = "No SK Mutasi, TGL MOB & PKP TUJUAN Harus diisi...";
+            $data['errors'] = $errors;
         } else {
             if ($simpan->ceksudahrespon($postData) > 0) {
-                $this->session->setFlashdata('error', 'data ini sudah direspon');
-                $redirectUrl = previous_url() ?? base_url();
-
+                $errors['fail'] = "Data ini sudah di respon ente kadang kadang ente...";
+                $data['errors'] = $errors;
             } else {
                 if ($simpan->mutasi_karyawan($postData)) {
-                    $this->session->setFlashdata('success', 'berhasil menambah data');
-                    $redirectUrl = previous_url() ?? base_url();
+                    $data['success'] = true;
+                    $data['message'] = "Berhasil menyimpan data";
                 } else {
-                    $this->session->setFlashdata('error', 'gagal menyimpan data');
-                    $redirectUrl = previous_url() ?? base_url();
+                    $errors['fail'] = "gagal melakukan update data";
+                    $data['errors'] = $errors;
                 }
             }
         }
-        $data['token'] = csrf_token();
-        return redirect()->to($redirectUrl);
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
     }
-
 
 
     public function import_kry_baru()
@@ -1198,7 +1508,12 @@ class Data extends BaseController
         $originalFileName = $this->request->getFile('excelfile')->getName();
         $extension = pathinfo($originalFileName, PATHINFO_EXTENSION);
 
-        $nama_file = csrf_hash() . '.' . $extension;
+        // Generate a unique file name for the uploaded Excel file
+        $randomBytes = random_bytes(16); // Adjust the length as needed
+        $randomString = bin2hex($randomBytes);
+
+        // Concatenate the random string with the file extension
+        $nama_file = $randomString . '.' . $extension;
 
         $config = [
             'upload_path' => './excel/',
@@ -1307,4 +1622,1494 @@ class Data extends BaseController
         $data['token'] = csrf_hash();
         echo json_encode($data);
     }
+
+    public function export()
+    {
+        $filter1 = $_GET['filter1'];
+        $filter2 = $_GET['filter2'];
+        $bulan = $_GET['bulan'];
+        $tahun = $_GET['tahun'];
+
+        $excel = new Spreadsheet();
+        // Settingan awal fil excel
+        $excel->getProperties()->setCreator('My Notes Code')
+            ->setLastModifiedBy('My Notes Code')
+            ->setTitle("Data Karyawan")
+            ->setSubject("Karyawan")
+            ->setDescription("Laporan Semua Data Karyawan")
+            ->setKeywords("Data Karyawan");
+        // Buat sebuah variabel untuk menampung pengaturan style dari header tabel
+        $style_col = [
+            'font' => [
+                'bold' => true,
+                'color' => ['rgb' => 'FFFFFF'],
+            ], // Set font nya jadi bold
+            'alignment' => [
+                'horizontal' => Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+                'vertical' => Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+            ],
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    'color' => ['rgb' => 'FFFFFF'],
+                ]
+            ],
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['rgb' => '535454'],
+            ]
+        ];
+
+        $style_subjudul = [
+            // Set font nya jadi bold
+            'alignment' => [
+                'horizontal' => Alignment::HORIZONTAL_LEFT, // Set text jadi ditengah secara horizontal (center)
+                'vertical' => Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+            ],
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    // 'color' => ['rgb' => 'FFFFFF'],
+                ]
+            ],
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['rgb' => 'E8AC52'],
+            ]
+        ];
+
+        // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
+        $style_row = [
+            'alignment' => [
+                'vertical' => Alignment::VERTICAL_TOP // Set text jadi di tengah secara vertical (middle)
+            ],
+            'borders' => [
+                'allBorders' => ['borderStyle' => Border::BORDER_THIN], // Set border top dengan garis tipis
+            ]
+        ];
+
+        $style_alert = [
+            // Set font nya jadi bold
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['rgb' => 'FFFF00'],
+            ]
+        ];
+        if ($filter1 == '1' and $filter2 == '1') {
+            $nos = -1;
+
+
+            //REKAPAN TOTAL PROYEK
+            $nos++;
+            $objWorkSheet = $excel->createSheet($nos);
+            $excel->setActiveSheetIndex($nos);
+            $alias30 = substr('Rekapan ' . $bulan . '-' . $tahun, 0, 30);
+            $objWorkSheet->setTitle($alias30);
+            $excel->getActiveSheet();
+            $YS00 = $this->db->table("master_admin a")->select("b.alias,b.id_pkp")->join('master_pkp b', 'a.pkp_akhir = b.id_pkp')->where('a.pkp_akhir !=', '')->where('a.aktif', '1')->groupBy("b.id_pkp")->orderBy('b.no_pkp', 'ASCD')->get();
+            $numrow = 2;
+            //JUDUL
+            $excel->setActiveSheetIndex($nos)->setCellValue('B' . $numrow, "LAPORAN REKAP ABSENSI PT. JAYA CM");
+            $numrow++;
+            //JUDUL
+            $excel->setActiveSheetIndex($nos)->setCellValue('B' . $numrow, 'NO.');
+            $excel->setActiveSheetIndex($nos)->setCellValue('C' . $numrow, 'NAMA PROYEK');
+            $excel->setActiveSheetIndex($nos)->setCellValue('D' . $numrow, 'JML KARYAWAN');
+            $excel->setActiveSheetIndex($nos)->setCellValue('E' . $numrow, 'ABSENSI');
+            $excel->setActiveSheetIndex($nos)->setCellValue('G' . $numrow, 'PENEMPATAN PKP');
+            $numrow++;
+            $excel->setActiveSheetIndex($nos)->setCellValue('E' . $numrow, 'SUDAH KIRIM');
+            $excel->setActiveSheetIndex($nos)->setCellValue('F' . $numrow, 'BELUM KIRIM');
+            $excel->setActiveSheetIndex($nos)->setCellValue('G' . $numrow, 'SESUAI');
+            $excel->setActiveSheetIndex($nos)->setCellValue('H' . $numrow, 'TDK SESUAI');
+
+            $numrowmin1 = $numrow - 1;
+            //MERGE HEADER //numrow sudah di 6
+            $excel->getActiveSheet($nos)->mergeCells('B' . $numrowmin1 . ':B' . $numrow);
+            $excel->getActiveSheet($nos)->mergeCells('C' . $numrowmin1 . ':C' . $numrow);
+            $excel->getActiveSheet($nos)->mergeCells('D' . $numrowmin1 . ':D' . $numrow);
+            $excel->getActiveSheet($nos)->mergeCells('E' . $numrowmin1 . ':F' . $numrowmin1);
+            $excel->getActiveSheet($nos)->mergeCells('G' . $numrowmin1 . ':H' . $numrowmin1);
+            //STYLE HEADER
+            $excel->getActiveSheet($nos)->getStyle('B' . $numrowmin1 . ':H' . $numrow)->applyFromArray($style_col);
+            $excel->getActiveSheet($nos)->getStyle('B' . $numrowmin1 . ':H' . $numrow)->getAlignment()->setWrapText(true);
+            //LEBAR
+            $excel->getActiveSheet($nos)->getColumnDimension('A')->setWidth(1);
+            $excel->getActiveSheet($nos)->getColumnDimension('B')->setWidth(5);
+            $excel->getActiveSheet($nos)->getColumnDimension('C')->setWidth(40);
+            $excel->getActiveSheet($nos)->getColumnDimension('D')->setWidth(20);
+            $excel->getActiveSheet($nos)->getColumnDimension('E')->setWidth(10);
+            $excel->getActiveSheet($nos)->getColumnDimension('F')->setWidth(10);
+            $excel->getActiveSheet($nos)->getColumnDimension('G')->setWidth(10);
+            $excel->getActiveSheet($nos)->getColumnDimension('H')->setWidth(10);
+
+            $numrow++;
+            $no = 1;
+            foreach ($YS00->getResult() as $rys00) {
+                $excel->setActiveSheetIndex($nos)->setCellValue('B' . $numrow, $no);
+                $excel->setActiveSheetIndex($nos)->setCellValue('C' . $numrow, $rys00->alias);
+                //jumlah orang
+                $YS00A = $this->db->table("master_admin")->select("*")->where('pkp_akhir', $rys00->id_pkp)->where('aktif', '1')->get();
+                $excel->setActiveSheetIndex($nos)->setCellValue('D' . $numrow, $YS00A->getNumRows());
+                //jumlah sudah kirim data
+                $YS00B = $this->db->table("detil_karyawan")->select("*")->where('tahun', $tahun)->where('bulan', $bulan)->where('id_pkp', $rys00->id_pkp)->get();
+                if ($YS00B->getNumRows() > 0) {
+                    $sudah = $YS00B->getNumRows();
+                } else {
+                    $sudah = '';
+                }
+                $excel->setActiveSheetIndex($nos)->setCellValue('E' . $numrow, $sudah);
+                //jumlah belum kirim data
+                if ($YS00A->getNumRows() > 0) {
+                    $belum = $YS00A->getNumRows() - $YS00B->getNumRows();
+                } else {
+                    $belum = '';
+                }
+                $excel->setActiveSheetIndex($nos)->setCellValue('F' . $numrow, $belum);
+                //sesuai
+                $YS00C = $this->db->table("detil_karyawan")->select("*")->where('tahun', $tahun)->where('bulan', $bulan)->where('id_pkp', $rys00->id_pkp)->where('id_pkp = pkp_sebelumnya')->get();
+                if ($YS00C->getNumRows() > 0) {
+                    $sesuai = $YS00C->getNumRows();
+                } else {
+                    $sesuai = '';
+                }
+                $excel->setActiveSheetIndex($nos)->setCellValue('G' . $numrow, $sesuai);
+                $YS00D = $this->db->table("detil_karyawan")->select("*")->where('tahun', $tahun)->where('bulan', $bulan)->where('id_pkp', $rys00->id_pkp)->where('id_pkp != pkp_sebelumnya')->get();
+                if ($YS00D->getNumRows() > 0) {
+                    $tdk_sesuai = $YS00D->getNumRows();
+                } else {
+                    $tdk_sesuai = '';
+                }
+                $excel->setActiveSheetIndex($nos)->setCellValue('H' . $numrow, $tdk_sesuai);
+                //STYE ISIAN
+                $excel->getActiveSheet($nos)->getStyle('B' . $numrow . ':H' . $numrow)->applyFromArray($style_row);
+                $excel->getActiveSheet($nos)->getStyle('B' . $numrow . ':H' . $numrow)->getAlignment()->setWrapText(true);
+                if ($YS00B->getNumRows() < 1) {
+                    $excel->getActiveSheet($nos)->getStyle('B' . $numrow . ':H' . $numrow)->applyFromArray($style_alert);
+                }
+                $numrow++;
+                $no++;
+            }
+
+
+            //NAMA KARYAWAN YG SDH ABSENSI
+            $nos++;
+            $objWorkSheet = $excel->createSheet($nos);
+            $excel->setActiveSheetIndex($nos);
+            $alias30 = substr('Absensi ' . $bulan . '-' . $tahun, 0, 30);
+            $objWorkSheet->setTitle($alias30);
+            $excel->getActiveSheet();
+            $QN00 = $this->db->table("detil_karyawan a")->select("b.alias,b.id_pkp")->join('master_pkp b', 'a.id_pkp = b.id_pkp')->where('a.tahun', $tahun)->where('a.bulan', $bulan)->groupBy("b.id_pkp")->get();
+            $numrow = 2;
+            foreach ($QN00->getResult() as $data00) {
+                //JUDUL
+                $excel->setActiveSheetIndex($nos)->setCellValue('B' . $numrow, "LAPORAN MOBILISASI/ DEMOBILISASI, ABSENSI DAN AKHIR KONTRAK KARYAWAN");
+                $numrow++;
+                $excel->setActiveSheetIndex($nos)->setCellValue('B' . $numrow, "PROYEK : " . $data00->alias);
+                $numrow++;
+                $excel->setActiveSheetIndex($nos)->setCellValue('B' . $numrow, "PERIODE : " . $bulan . ' ' . $tahun);
+                $numrow++;
+                //HEADER
+                $excel->setActiveSheetIndex($nos)->setCellValue('B' . $numrow, "NO");
+                $excel->setActiveSheetIndex($nos)->setCellValue('C' . $numrow, "NRP");
+                $excel->setActiveSheetIndex($nos)->setCellValue('D' . $numrow, "NAMA KARYAWAN");
+                $excel->setActiveSheetIndex($nos)->setCellValue('E' . $numrow, "ABSENSI");
+
+                $excel->setActiveSheetIndex($nos)->setCellValue('I' . $numrow, "KET. ABSENSI");
+                $excel->setActiveSheetIndex($nos)->setCellValue('J' . $numrow, "JABATAN");
+                $excel->setActiveSheetIndex($nos)->setCellValue('K' . $numrow, "POSISI");
+                $excel->setActiveSheetIndex($nos)->setCellValue('L' . $numrow, "TGL AKHIR KONTRAK");
+                $excel->setActiveSheetIndex($nos)->setCellValue('M' . $numrow, "MOB");
+                $excel->setActiveSheetIndex($nos)->setCellValue('O' . $numrow, "DEMOB");
+                $excel->setActiveSheetIndex($nos)->setCellValue('Q' . $numrow, "STATUS");
+                $excel->setActiveSheetIndex($nos)->setCellValue('R' . $numrow, "Ket. MOB/DEMOB");
+                $excel->setActiveSheetIndex($nos)->setCellValue('S' . $numrow, "MUTASI/ RESIGN");
+                $numrow++;
+                $excel->setActiveSheetIndex($nos)->setCellValue('E' . $numrow, "Sakit");
+                $excel->setActiveSheetIndex($nos)->setCellValue('F' . $numrow, "Ijin");
+                $excel->setActiveSheetIndex($nos)->setCellValue('G' . $numrow, "Alpha");
+                $excel->setActiveSheetIndex($nos)->setCellValue('H' . $numrow, "Cuti");
+                $excel->setActiveSheetIndex($nos)->setCellValue('M' . $numrow, "Renc");
+                $excel->setActiveSheetIndex($nos)->setCellValue('N' . $numrow, "Real");
+                $excel->setActiveSheetIndex($nos)->setCellValue('O' . $numrow, "Renc");
+                $excel->setActiveSheetIndex($nos)->setCellValue('P' . $numrow, "Real");
+
+                $numrowmin1 = $numrow - 1;
+                //MERGE HEADER //numrow sudah di 6
+                $excel->getActiveSheet($nos)->mergeCells('B' . $numrowmin1 . ':B' . $numrow);
+                $excel->getActiveSheet($nos)->mergeCells('C' . $numrowmin1 . ':C' . $numrow);
+                $excel->getActiveSheet($nos)->mergeCells('D' . $numrowmin1 . ':D' . $numrow);
+                $excel->getActiveSheet($nos)->mergeCells('E' . $numrowmin1 . ':H' . $numrowmin1);
+                $excel->getActiveSheet($nos)->mergeCells('I' . $numrowmin1 . ':I' . $numrow);
+                $excel->getActiveSheet($nos)->mergeCells('J' . $numrowmin1 . ':J' . $numrow);
+                $excel->getActiveSheet($nos)->mergeCells('K' . $numrowmin1 . ':K' . $numrow);
+                $excel->getActiveSheet($nos)->mergeCells('L' . $numrowmin1 . ':L' . $numrow);
+                $excel->getActiveSheet($nos)->mergeCells('M' . $numrowmin1 . ':N' . $numrowmin1);
+                $excel->getActiveSheet($nos)->mergeCells('O' . $numrowmin1 . ':P' . $numrowmin1);
+                $excel->getActiveSheet($nos)->mergeCells('Q' . $numrowmin1 . ':Q' . $numrow);
+                $excel->getActiveSheet($nos)->mergeCells('R' . $numrowmin1 . ':R' . $numrow);
+                $excel->getActiveSheet($nos)->mergeCells('S' . $numrowmin1 . ':S' . $numrow);
+                //STYLE HEADER
+                $excel->getActiveSheet($nos)->getStyle('B' . $numrowmin1 . ':S' . $numrow)->applyFromArray($style_col);
+                $excel->getActiveSheet($nos)->getStyle('B' . $numrowmin1 . ':S' . $numrow)->getAlignment()->setWrapText(true);
+                //LEBAR
+                $excel->getActiveSheet($nos)->getColumnDimension('A')->setWidth(1);
+                $excel->getActiveSheet($nos)->getColumnDimension('B')->setWidth(5);
+                $excel->getActiveSheet($nos)->getColumnDimension('C')->setWidth(8);
+                $excel->getActiveSheet($nos)->getColumnDimension('D')->setWidth(35);
+                $excel->getActiveSheet($nos)->getColumnDimension('E')->setWidth(7);
+                $excel->getActiveSheet($nos)->getColumnDimension('F')->setWidth(7);
+                $excel->getActiveSheet($nos)->getColumnDimension('G')->setWidth(7);
+                $excel->getActiveSheet($nos)->getColumnDimension('H')->setWidth(7);
+                $excel->getActiveSheet($nos)->getColumnDimension('I')->setWidth(15);
+                $excel->getActiveSheet($nos)->getColumnDimension('J')->setWidth(25);
+                $excel->getActiveSheet($nos)->getColumnDimension('K')->setWidth(15);
+                $excel->getActiveSheet($nos)->getColumnDimension('L')->setWidth(15);
+                $excel->getActiveSheet($nos)->getColumnDimension('M')->setWidth(15);
+                $excel->getActiveSheet($nos)->getColumnDimension('N')->setWidth(15);
+                $excel->getActiveSheet($nos)->getColumnDimension('O')->setWidth(15);
+                $excel->getActiveSheet($nos)->getColumnDimension('P')->setWidth(20);
+                $excel->getActiveSheet($nos)->getColumnDimension('Q')->setWidth(20);
+                $excel->getActiveSheet($nos)->getColumnDimension('R')->setWidth(15);
+                $excel->getActiveSheet($nos)->getColumnDimension('S')->setWidth(15);
+
+                //ISI DATA
+                $QN01 = $this->db->table("detil_karyawan a")->select("a.sakit,a.ijin,a.alpha,a.cuti,a.ket_absensi,c.jabatan,a.ket_jabatan,a.tgl_akhir_kontrak,a.tgl_ren_mob,a.tgl_real_mob,a.tgl_ren_demob,a.tgl_real_demob,a.status,a.ket_mobdemob,a.ket_akhir,b.alias,c.username,c.nama_admin")->join('master_pkp b', 'a.id_pkp = b.id_pkp')->join('master_admin c', 'a.id_user=c.id')->where('a.tahun', $tahun)->where('a.bulan', $bulan)->where('a.id_pkp', $data00->id_pkp)->orderBy('c.kode', 'ASCD')->get();
+                $no = 1;
+                $numrow++;
+                foreach ($QN01->getResult() as $data01) {
+                    if ($data01->tgl_akhir_kontrak > 0) {
+                        $tgl_akhir_kontrak = (date('d-M-Y', strtotime(esc($data01->tgl_akhir_kontrak))));
+                    } else {
+                        $tgl_akhir_kontrak = '';
+                    }
+                    if ($data01->tgl_ren_mob > 0) {
+                        $tgl_ren_mob = (date('d-M-Y', strtotime(esc($data01->tgl_ren_mob))));
+                    } else {
+                        $tgl_ren_mob = '';
+                    }
+                    if ($data01->tgl_real_mob > 0) {
+                        $tgl_real_mob = (date('d-M-Y', strtotime(esc($data01->tgl_real_mob))));
+                    } else {
+                        $tgl_real_mob = '';
+                    }
+                    if ($data01->tgl_ren_demob > 0) {
+                        $tgl_ren_demob = (date('d-M-Y', strtotime(esc($data01->tgl_ren_demob))));
+                    } else {
+                        $tgl_ren_demob = '';
+                    }
+                    if ($data01->tgl_real_demob > 0) {
+                        $tgl_real_demob = (date('d-M-Y', strtotime(esc($data01->tgl_real_demob))));
+                    } else {
+                        $tgl_real_demob = '';
+                    }
+                    if ($data01->sakit > 0) {
+                        $sakit = $data01->sakit;
+                    } else {
+                        $sakit = '';
+                    }
+                    if ($data01->ijin > 0) {
+                        $ijin = $data01->ijin;
+                    } else {
+                        $ijin = '';
+                    }
+                    if ($data01->alpha > 0) {
+                        $alpha = $data01->alpha;
+                    } else {
+                        $alpha = '';
+                    }
+                    if ($data01->cuti > 0) {
+                        $cuti = $data01->cuti;
+                    } else {
+                        $cuti = '';
+                    }
+                    $excel->setActiveSheetIndex($nos)->setCellValue('B' . $numrow, $no);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('C' . $numrow, $data01->username);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('D' . $numrow, $data01->nama_admin);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('E' . $numrow, $sakit);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('F' . $numrow, $ijin);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('G' . $numrow, $alpha);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('H' . $numrow, $cuti);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('I' . $numrow, $data01->ket_absensi);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('J' . $numrow, $data01->jabatan);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('K' . $numrow, $data01->ket_jabatan);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('L' . $numrow, $tgl_akhir_kontrak);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('M' . $numrow, $tgl_ren_mob);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('N' . $numrow, $tgl_real_mob);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('O' . $numrow, $tgl_ren_demob);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('P' . $numrow, $tgl_real_demob);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('Q' . $numrow, $data01->status);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('R' . $numrow, $data01->ket_mobdemob);
+                    $excel->setActiveSheetIndex($nos)->setCellValue('S' . $numrow, $data01->ket_akhir);
+                    //STYE ISIAN
+                    $excel->getActiveSheet($nos)->getStyle('B' . $numrow . ':S' . $numrow)->applyFromArray($style_row);
+                    $excel->getActiveSheet($nos)->getStyle('B' . $numrow . ':S' . $numrow)->getAlignment()->setWrapText(true);
+                    $no++;
+                    $numrow++;
+                }
+                $numrow++;
+                $numrow++;
+            }
+            //TAMPILKAN DATA BERMASALAH PKP
+            $nos++;
+            $objWorkSheet = $excel->createSheet($nos);
+            $alias30 = substr('Data Tidak Sesuai ' . $bulan . '-' . $tahun, 0, 30);
+            $objWorkSheet->setTitle($alias30);
+
+            $numrow = 2;
+            $excel->setActiveSheetIndex($nos)->setCellValue('B' . $numrow, "LAPORAN KARYAWAN BELUM DIPINDAHKAN KE PROYEK BARU");
+            $numrow++;
+            $excel->setActiveSheetIndex($nos)->setCellValue('B' . $numrow, "PERIODE : " . $bulan . ' ' . $tahun);
+            $numrow++;
+            //HEADER
+            $excel->setActiveSheetIndex($nos)->setCellValue('B' . $numrow, "NO");
+            $excel->setActiveSheetIndex($nos)->setCellValue('C' . $numrow, "NRP");
+            $excel->setActiveSheetIndex($nos)->setCellValue('D' . $numrow, "NAMA KARYAWAN");
+            $excel->setActiveSheetIndex($nos)->setCellValue('E' . $numrow, "PKP ABSENSI");
+            $excel->setActiveSheetIndex($nos)->setCellValue('F' . $numrow, "PKP KARYAWAN");
+            $excel->setActiveSheetIndex($nos)->setCellValue('G' . $numrow, "JABATAN");
+            $excel->setActiveSheetIndex($nos)->setCellValue('H' . $numrow, "POSISI");
+            $excel->setActiveSheetIndex($nos)->setCellValue('I' . $numrow, "TGL AKHIR KONTRAK");
+            $excel->setActiveSheetIndex($nos)->setCellValue('J' . $numrow, "MOB");
+            $excel->setActiveSheetIndex($nos)->setCellValue('L' . $numrow, "DEMOB");
+            $excel->setActiveSheetIndex($nos)->setCellValue('N' . $numrow, "STATUS");
+            $excel->setActiveSheetIndex($nos)->setCellValue('O' . $numrow, "Ket. MOB/DEMOB");
+            $excel->setActiveSheetIndex($nos)->setCellValue('P' . $numrow, "MUTASI/ RESIGN");
+            $numrow++;
+            $excel->setActiveSheetIndex($nos)->setCellValue('J' . $numrow, "Renc");
+            $excel->setActiveSheetIndex($nos)->setCellValue('K' . $numrow, "Real");
+            $excel->setActiveSheetIndex($nos)->setCellValue('L' . $numrow, "Renc");
+            $excel->setActiveSheetIndex($nos)->setCellValue('M' . $numrow, "Real");
+            $numrowmin1 = $numrow - 1;
+            //MERGE HEADER //numrow sudah di 6
+            $excel->getActiveSheet($nos)->mergeCells('B' . $numrowmin1 . ':B' . $numrow);
+            $excel->getActiveSheet($nos)->mergeCells('C' . $numrowmin1 . ':C' . $numrow);
+            $excel->getActiveSheet($nos)->mergeCells('D' . $numrowmin1 . ':D' . $numrow);
+            $excel->getActiveSheet($nos)->mergeCells('E' . $numrowmin1 . ':E' . $numrow);
+            $excel->getActiveSheet($nos)->mergeCells('F' . $numrowmin1 . ':F' . $numrow);
+            $excel->getActiveSheet($nos)->mergeCells('G' . $numrowmin1 . ':G' . $numrow);
+            $excel->getActiveSheet($nos)->mergeCells('H' . $numrowmin1 . ':H' . $numrow);
+            $excel->getActiveSheet($nos)->mergeCells('I' . $numrowmin1 . ':I' . $numrow);
+            $excel->getActiveSheet($nos)->mergeCells('J' . $numrowmin1 . ':K' . $numrowmin1);
+            $excel->getActiveSheet($nos)->mergeCells('L' . $numrowmin1 . ':M' . $numrowmin1);
+            $excel->getActiveSheet($nos)->mergeCells('N' . $numrowmin1 . ':N' . $numrow);
+            $excel->getActiveSheet($nos)->mergeCells('O' . $numrowmin1 . ':O' . $numrow);
+            $excel->getActiveSheet($nos)->mergeCells('P' . $numrowmin1 . ':P' . $numrow);
+            //STYLE HEADER
+            $excel->getActiveSheet($nos)->getStyle('B' . $numrowmin1 . ':P' . $numrow)->applyFromArray($style_col);
+            $excel->getActiveSheet($nos)->getStyle('B' . $numrowmin1 . ':P' . $numrow)->getAlignment()->setWrapText(true);
+            //LEBAR
+            $excel->getActiveSheet($nos)->getColumnDimension('A')->setWidth(1);
+            $excel->getActiveSheet($nos)->getColumnDimension('B')->setWidth(5);
+            $excel->getActiveSheet($nos)->getColumnDimension('C')->setWidth(10);
+            $excel->getActiveSheet($nos)->getColumnDimension('D')->setWidth(35);
+            $excel->getActiveSheet($nos)->getColumnDimension('E')->setWidth(35);
+            $excel->getActiveSheet($nos)->getColumnDimension('F')->setWidth(35);
+            $excel->getActiveSheet($nos)->getColumnDimension('G')->setWidth(20);
+            $excel->getActiveSheet($nos)->getColumnDimension('H')->setWidth(20);
+            $excel->getActiveSheet($nos)->getColumnDimension('I')->setWidth(15);
+            $excel->getActiveSheet($nos)->getColumnDimension('J')->setWidth(15);
+            $excel->getActiveSheet($nos)->getColumnDimension('K')->setWidth(15);
+            $excel->getActiveSheet($nos)->getColumnDimension('L')->setWidth(15);
+            $excel->getActiveSheet($nos)->getColumnDimension('M')->setWidth(15);
+            $excel->getActiveSheet($nos)->getColumnDimension('N')->setWidth(15);
+            $excel->getActiveSheet($nos)->getColumnDimension('O')->setWidth(15);
+            $excel->getActiveSheet($nos)->getColumnDimension('P')->setWidth(15);
+            //ISI DATA YG SALAH
+            $QN02 = $this->db->table("detil_karyawan a")->select("a.sakit,a.ijin,a.alpha,a.cuti,a.ket_absensi,c.jabatan,a.ket_jabatan,a.tgl_akhir_kontrak,a.tgl_ren_mob,a.tgl_real_mob,a.tgl_ren_demob,a.tgl_real_demob,a.status,a.ket_mobdemob,a.ket_akhir,b.alias,c.username,c.nama_admin,d.alias as 'alias2'")->join('master_pkp b', 'a.id_pkp = b.id_pkp')->join('master_admin c', 'a.id_user=c.id')->join('master_pkp d', 'a.pkp_sebelumnya = d.id_pkp')->where('a.tahun', $tahun)->where('a.bulan', $bulan)->where('a.id_pkp != a.pkp_sebelumnya')->where('c.aktif', '1')->orderBy('a.id_pkp', 'ASCD')->get();
+            $no = 1;
+            $numrow++;
+            foreach ($QN02->getResult() as $data02) {
+                if ($data02->tgl_akhir_kontrak > 0) {
+                    $tgl_akhir_kontrak = (date('d-M-Y', strtotime(esc($data02->tgl_akhir_kontrak))));
+                } else {
+                    $tgl_akhir_kontrak = '';
+                }
+                if ($data02->tgl_ren_mob > 0) {
+                    $tgl_ren_mob = (date('d-M-Y', strtotime(esc($data02->tgl_ren_mob))));
+                } else {
+                    $tgl_ren_mob = '';
+                }
+                if ($data02->tgl_real_mob > 0) {
+                    $tgl_real_mob = (date('d-M-Y', strtotime(esc($data02->tgl_real_mob))));
+                } else {
+                    $tgl_real_mob = '';
+                }
+                if ($data02->tgl_ren_demob > 0) {
+                    $tgl_ren_demob = (date('d-M-Y', strtotime(esc($data02->tgl_ren_demob))));
+                } else {
+                    $tgl_ren_demob = '';
+                }
+                if ($data02->tgl_real_demob > 0) {
+                    $tgl_real_demob = (date('d-M-Y', strtotime(esc($data02->tgl_real_demob))));
+                } else {
+                    $tgl_real_demob = '';
+                }
+                $excel->setActiveSheetIndex($nos)->setCellValue('B' . $numrow, $no);
+                $excel->setActiveSheetIndex($nos)->setCellValue('C' . $numrow, $data02->username);
+                $excel->setActiveSheetIndex($nos)->setCellValue('D' . $numrow, $data02->nama_admin);
+                $excel->setActiveSheetIndex($nos)->setCellValue('E' . $numrow, $data02->alias);
+                $excel->setActiveSheetIndex($nos)->setCellValue('F' . $numrow, $data02->alias2);
+
+                $excel->setActiveSheetIndex($nos)->setCellValue('G' . $numrow, $data02->jabatan);
+                $excel->setActiveSheetIndex($nos)->setCellValue('H' . $numrow, $data02->ket_jabatan);
+                $excel->setActiveSheetIndex($nos)->setCellValue('I' . $numrow, $tgl_akhir_kontrak);
+                $excel->setActiveSheetIndex($nos)->setCellValue('J' . $numrow, $tgl_ren_mob);
+                $excel->setActiveSheetIndex($nos)->setCellValue('K' . $numrow, $tgl_real_mob);
+                $excel->setActiveSheetIndex($nos)->setCellValue('L' . $numrow, $tgl_ren_demob);
+                $excel->setActiveSheetIndex($nos)->setCellValue('M' . $numrow, $tgl_real_demob);
+                $excel->setActiveSheetIndex($nos)->setCellValue('N' . $numrow, $data02->status);
+                $excel->setActiveSheetIndex($nos)->setCellValue('O' . $numrow, $data02->ket_mobdemob);
+                $excel->setActiveSheetIndex($nos)->setCellValue('P' . $numrow, $data02->ket_akhir);
+
+                //STYE ISIAN
+                $excel->getActiveSheet()->getStyle('B' . $numrow . ':P' . $numrow)->applyFromArray($style_row);
+                $excel->getActiveSheet()->getStyle('B' . $numrow . ':P' . $numrow)->getAlignment()->setWrapText(true);
+                $no++;
+                $numrow++;
+            }
+        }
+        $nos++;
+        $excel->removeSheetByIndex($nos);
+        $excel->setActiveSheetIndex(0);
+        $excel->getActiveSheet()->getPageSetup()->setOrientation(PageSetup::ORIENTATION_LANDSCAPE);
+
+        // Set judul file excel nya
+
+
+        // Proses file excel
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="LapMobDemob.xlsx"'); // Set nama file excel nya
+        header('Cache-Control: max-age=0');
+
+        $writer = new Xlsx($excel);
+
+        // Save the spreadsheet to a file (or output it to the browser)
+        $writer->save('php://output');
+        exit();
+    }
+
+    public function cetak_mon()
+    {
+
+        // Panggil class PHPExcel nya
+        $excel = new Spreadsheet();
+
+        // Settingan awal fil excel
+        $excel->getProperties()->setCreator('My Notes Code')
+            ->setLastModifiedBy('My Notes Code')
+            ->setTitle("Data Transaksi")
+            ->setSubject("Transaksi")
+            ->setDescription("Laporan Semua Data Transaksi")
+            ->setKeywords("Data Transaksi");
+
+
+        $style_header = [
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['rgb' => 'E1E0F7'],
+            ],
+            'font' => [
+                'bold' => true,
+            ]
+        ];
+
+        $warna_hijau = [
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['rgb' => '00FF00'],
+            ]
+        ];
+
+        $gaya_tebal = [
+            'font' => ['bold' => true]
+        ];
+
+        $gaya_kanan = [
+            'alignment' => [
+                'horizontal' => Alignment::HORIZONTAL_RIGHT,
+                'vertical' => Alignment::VERTICAL_CENTER,
+            ]
+        ];
+
+        $gaya_tengah = [
+            'alignment' => [
+                'horizontal' => Alignment::HORIZONTAL_CENTER,
+                'vertical' => Alignment::VERTICAL_CENTER,
+            ]
+        ];
+
+        $gaya_kiri = [
+            'alignment' => [
+                'horizontal' => Alignment::HORIZONTAL_LEFT,
+                'vertical' => Alignment::VERTICAL_CENTER,
+            ]
+        ];
+
+        $gaya_all_border = [
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN
+                ]
+            ]
+        ];
+
+        $gaya_border = [
+            'borders' => [
+                'top' => ['borderStyle' => Border::BORDER_THIN], // Set border top dengan garis tipis
+                'right' => ['borderStyle' => Border::BORDER_THIN],  // Set border right dengan garis tipis
+                'bottom' => ['borderStyle' => Border::BORDER_THIN], // Set border bottom dengan garis tipis
+                'left' => ['borderStyle' => Border::BORDER_THIN] // Set border left dengan garis tipis
+            ]
+        ];
+
+        $gaya_samping_border = [
+            'borders' => [
+                'right' => ['borderStyle' => Border::BORDER_THIN],  // Set border right dengan garis tipis
+                'left' => ['borderStyle' => Border::BORDER_THIN] // Set border left dengan garis tipis
+            ]
+        ];
+
+        $gaya_bawah_border = [
+            'borders' => [
+                'top' => ['borderStyle' => Border::BORDER_THIN], // Set border top dengan garis tipis
+            ]
+        ];
+
+
+
+        date_default_timezone_set("Asia/Jakarta");
+        $now = date("Y-m-d");
+        $tgl_updt = date("dd-mm-yyyy");
+        $tgl_now = date('d-m-Y', strtotime($now));
+        $tgl_1a = strtotime($now) - (7 * 24 * 60 * 60);
+        $tgl_1 = date("d-m-Y", $tgl_1a);
+        $tgl_1b = date("Y-m-d", $tgl_1a);
+        $excel->setActiveSheetIndex(0);
+        $excel->getActiveSheet()->setCellValue('B2', "MONITORING");
+        $excel->getActiveSheet()->setCellValue('B3', 'DATA UPDATE DASHBOARD');
+        $excel->getActiveSheet()->setCellValue('L5', 'Update :');
+        $excel->getActiveSheet()->setCellValue('M5', $tgl_updt);
+        $excel->getActiveSheet()->getStyle('B2:M5')->getFont()->setBold(TRUE);
+
+        $excel->getActiveSheet()->setCellValue('B6', "No");
+        $excel->getActiveSheet()->setCellValue('C6', "INS");
+        $excel->getActiveSheet()->setCellValue('D6', "PKP");
+        $excel->getActiveSheet()->setCellValue('E6', "Nama Proyek");
+        $excel->getActiveSheet()->setCellValue('F6', "Start Proyek");
+        $excel->getActiveSheet()->setCellValue('G6', "Laporan");
+        $excel->getActiveSheet()->setCellValue('G7', "PROGRESS");
+        $excel->getActiveSheet()->setCellValue('H7', "PERMASALAHAN");
+        $excel->getActiveSheet()->setCellValue('I7', "MONITORING KARYAWAN");
+        $excel->getActiveSheet()->setCellValue('J7', "FOTO");
+        $excel->getActiveSheet()->setCellValue('K7', "DATA UMUM");
+        $excel->getActiveSheet()->setCellValue('L7', "DATA TEKNIS");
+        $excel->getActiveSheet()->setCellValue('M6', "KET");
+
+        $excel->getActiveSheet()->mergeCells('B6:B8');
+        $excel->getActiveSheet()->mergeCells('C6:C8');
+        $excel->getActiveSheet()->mergeCells('D6:D8');
+        $excel->getActiveSheet()->mergeCells('E6:E8');
+        $excel->getActiveSheet()->mergeCells('F6:F8');
+        $excel->getActiveSheet()->mergeCells('G6:L6');
+        $excel->getActiveSheet()->mergeCells('G7:G8');
+        $excel->getActiveSheet()->mergeCells('H7:H8');
+        $excel->getActiveSheet()->mergeCells('I7:I8');
+        $excel->getActiveSheet()->mergeCells('J7:J8');
+        $excel->getActiveSheet()->mergeCells('K7:K8');
+        $excel->getActiveSheet()->mergeCells('L7:L8');
+        $excel->getActiveSheet()->mergeCells('M6:M8');
+
+        //mainkan gaya header
+        $excel->getActiveSheet()->getColumnDimension('A')->setWidth(2);
+        $excel->getActiveSheet()->getColumnDimension('B')->setWidth(5);
+        $excel->getActiveSheet()->getColumnDimension('C')->setWidth(6);
+        $excel->getActiveSheet()->getColumnDimension('D')->setWidth(6);
+        $excel->getActiveSheet()->getColumnDimension('E')->setWidth(35);
+        $excel->getActiveSheet()->getColumnDimension('F')->setWidth(15);
+        $excel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
+        $excel->getActiveSheet()->getColumnDimension('H')->setWidth(20);
+        $excel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
+        $excel->getActiveSheet()->getColumnDimension('J')->setWidth(20);
+        $excel->getActiveSheet()->getColumnDimension('K')->setWidth(20);
+        $excel->getActiveSheet()->getColumnDimension('L')->setWidth(20);
+        $excel->getActiveSheet()->getColumnDimension('M')->setWidth(20);
+        $excel->getActiveSheet()->getStyle('B6:M8')->applyFromArray($style_header);
+        $excel->getActiveSheet()->getStyle('B6:M8')->applyFromArray($gaya_tengah);
+        $excel->getActiveSheet()->getStyle('B6:M9')->applyFromArray($gaya_all_border);
+        $excel->getActiveSheet()->getStyle('L5')->applyFromArray($gaya_kanan);
+
+
+
+        // looping instansi
+        $qns01 = $this->db->table("master_instansi")->select("*")->where('ling !=', '')->orderBy('ling', 'ASCD')->get();
+        $numrow = 10;
+        if ($qns01->getNumRows() > 0) {
+            foreach ($qns01->getResult() as $rqns01) {
+                $excel->getActiveSheet()->setCellValue('B' . $numrow, $rqns01->nama);
+                $numrow++;
+                //looping proyek
+                $qns02 = $this->db->table("master_pkp")->select("*")->where('id_instansi', $rqns01->id)->where('tgl_ubah_progress >', 0)->where('no_pkp !=', 000)->orderBy('no_pkp', 'ASCD')->get();
+                $urut = 1;
+                if ($qns02->getNumRows() > 0) {
+                    foreach ($qns02->getResult() as $rqns02) {
+                        if ($rqns02->tgl_ubah_progress == '0001-11-30') {
+                            $tgl_progress = 'SUDAH INPUT ?';
+                        } else if ($rqns02->tgl_ubah_progress > 0) {
+                            $tgl_progress = date('d-m-Y', strtotime($rqns02->tgl_ubah_progress));
+                        } else {
+                            $tgl_progress = ' ';
+                        }
+                        // =================================================================================================           
+                        if ($rqns02->tgl_ubah_masalah == '0001-11-30') {
+                            $tgl_masalah = 'SUDAH INPUT ?';
+                        } else if ($rqns02->tgl_ubah_masalah > 0) {
+                            $tgl_masalah = date('d-m-Y', strtotime($rqns02->tgl_ubah_masalah));
+                        } else {
+                            $tgl_masalah = ' ';
+                        }
+                        // =================================================================================================
+                        if ($rqns02->tgl_ubah_absensi == '0001-11-30') {
+                            $tgl_absensi = 'SUDAH INPUT ?';
+                        } else if ($rqns02->tgl_ubah_absensi > 0) {
+                            $tgl_absensi = date('d-m-Y', strtotime($rqns02->tgl_ubah_absensi));
+                        } else {
+                            $tgl_absensi = ' ';
+                        }
+                        // =================================================================================================
+                        if ($rqns02->tgl_ubah_dtu == '0001-11-30') {
+                            $tgl_dtu = 'SUDAH INPUT ?';
+                        } else if ($rqns02->tgl_ubah_dtu > 0) {
+                            $tgl_dtu = date('d-m-Y', strtotime($rqns02->tgl_ubah_dtu));
+                        } else {
+                            $tgl_dtu = ' ';
+                        }
+                        // =================================================================================================
+                        if ($rqns02->tgl_ubah_gbr == '0001-11-30') {
+                            $tgl_gbr = 'SUDAH INPUT ?';
+                        } else if ($rqns02->tgl_ubah_gbr > 0) {
+                            $tgl_gbr = date('d-m-Y', strtotime($rqns02->tgl_ubah_gbr));
+                        } else {
+                            $tgl_gbr = ' ';
+                        }
+                        // =================================================================================================
+                        if ($rqns02->tgl_ubah_dtt == '0001-11-30') {
+                            $tgl_dtt = 'SUDAH INPUT ?';
+                        } else if ($rqns02->tgl_ubah_dtt > 0) {
+                            $tgl_dtt = date('d-m-Y', strtotime($rqns02->tgl_ubah_dtt));
+                        } else {
+                            $tgl_dtt = ' ';
+                        }
+                        //masukkan data kedalam cell
+                        $excel->getActiveSheet()->setCellValue('B' . $numrow, $urut);
+                        $excel->getActiveSheet()->setCellValue('C' . $numrow, $rqns01->nomor);
+                        $excel->getActiveSheet()->setCellValue('D' . $numrow, $rqns02->no_pkp);
+                        $excel->getActiveSheet()->setCellValue('E' . $numrow, $rqns02->alias);
+                        $excel->getActiveSheet()->setCellValue('F' . $numrow, "TGL MULAI");
+                        $excel->getActiveSheet()->setCellValue('G' . $numrow, $tgl_progress);
+                        $excel->getActiveSheet()->setCellValue('H' . $numrow, $tgl_masalah);
+                        $excel->getActiveSheet()->setCellValue('I' . $numrow, $tgl_absensi);
+                        $excel->getActiveSheet()->setCellValue('J' . $numrow, $tgl_gbr);
+                        $excel->getActiveSheet()->setCellValue('K' . $numrow, $tgl_dtu);
+                        $excel->getActiveSheet()->setCellValue('L' . $numrow, $tgl_dtt);
+                        $excel->getActiveSheet()->setCellValue('M' . $numrow, "");
+
+                        //add style
+                        $rnumrow = $numrow - 1;
+                        $excel->getActiveSheet()->getStyle('B' . $numrow . ':D' . $numrow)->applyFromArray($gaya_tengah);
+                        $excel->getActiveSheet()->getStyle('G' . $numrow . ':L' . $numrow)->applyFromArray($gaya_tengah);
+                        $excel->getActiveSheet()->getStyle('B' . $rnumrow . ':M' . $numrow)->applyFromArray($gaya_all_border);
+
+                        $numrow++;
+                        $urut++;
+                    }
+                }
+            }
+        }
+        $numrow++;
+        $excel->getActiveSheet()->setCellValue('B' . $numrow, 'DIVISI/Biro :');
+        $numrow++;
+        $urut = 1;
+        $qns01 = $this->db->table("master_instansi")->select("*")->orderBy('ling', 'ASCD')->get();
+        if ($qns01->getNumRows() > 0) {
+            foreach ($qns01->getResult() as $rqns01) {
+                //looping proyek
+                $qns02 = $this->db->table("master_pkp")->select("*")->where('id_instansi', $rqns01->id)->where('no_pkp', '000')->orderBy('no_pkp', 'ASCD')->get();
+                if ($qns02->getNumRows() > 0) {
+                    foreach ($qns02->getResult() as $rqns02) {
+                        //hitung total
+                        if ($rqns02->tgl_ubah_progress == '0001-11-30') {
+                            $tgl_progress = 'SUDAH INPUT ?';
+                        } else if ($rqns02->tgl_ubah_progress > 0) {
+                            $tgl_progress = date('d-m-Y', strtotime($rqns02->tgl_ubah_progress));
+                        } else {
+                            $tgl_progress = ' ';
+                        }
+                        // =================================================================================================
+                        if ($rqns02->tgl_ubah_masalah == '0001-11-30') {
+                            $tgl_masalah = 'SUDAH INPUT ?';
+                        } else if ($rqns02->tgl_ubah_masalah > 0) {
+                            $tgl_masalah = date('d-m-Y', strtotime($rqns02->tgl_ubah_masalah));
+                        } else {
+                            $tgl_masalah = ' ';
+                        }
+                        // =================================================================================================
+                        if ($rqns02->tgl_ubah_absensi == '0001-11-30') {
+                            $tgl_absensi = 'SUDAH INPUT ?';
+                        } else if ($rqns02->tgl_ubah_absensi > 0) {
+                            $tgl_absensi = date('d-m-Y', strtotime($rqns02->tgl_ubah_absensi));
+                        } else {
+                            $tgl_absensi = ' ';
+                        }
+                        // =================================================================================================
+                        if ($rqns02->tgl_ubah_dtu == '0001-11-30') {
+                            $tgl_dtu = 'SUDAH INPUT ?';
+                        } else if ($rqns02->tgl_ubah_dtu > 0) {
+                            $tgl_dtu = date('d-m-Y', strtotime($rqns02->tgl_ubah_dtu));
+                        } else {
+                            $tgl_dtu = ' ';
+                        }
+                        // =================================================================================================
+                        if ($rqns02->tgl_ubah_gbr == '0001-11-30') {
+                            $tgl_gbr = 'SUDAH INPUT ?';
+                        } else if ($rqns02->tgl_ubah_gbr > 0) {
+                            $tgl_gbr = date('d-m-Y', strtotime($rqns02->tgl_ubah_gbr));
+                        } else {
+                            $tgl_gbr = ' ';
+                        }
+                        // =================================================================================================
+                        if ($rqns02->tgl_ubah_dtt == '0001-11-30') {
+                            $tgl_dtt = 'SUDAH INPUT ?';
+                        } else if ($rqns02->tgl_ubah_dtt > 0) {
+                            $tgl_dtt = date('d-m-Y', strtotime($rqns02->tgl_ubah_dtt));
+                        } else {
+                            $tgl_dtt = ' ';
+                        }
+                        //hitung total
+                        //masukkan data kedalam cell
+                        $excel->getActiveSheet()->setCellValue('B' . $numrow, $urut);
+                        $excel->getActiveSheet()->setCellValue('C' . $numrow, $rqns01->nomor);
+                        $excel->getActiveSheet()->setCellValue('D' . $numrow, $rqns02->no_pkp);
+                        $excel->getActiveSheet()->setCellValue('E' . $numrow, $rqns02->alias);
+                        $excel->getActiveSheet()->setCellValue('F' . $numrow, "TGL MULAI");
+                        $excel->getActiveSheet()->setCellValue('G' . $numrow, $tgl_progress);
+                        $excel->getActiveSheet()->setCellValue('H' . $numrow, $tgl_masalah);
+                        $excel->getActiveSheet()->setCellValue('I' . $numrow, $tgl_absensi);
+                        $excel->getActiveSheet()->setCellValue('J' . $numrow, $tgl_gbr);
+                        $excel->getActiveSheet()->setCellValue('K' . $numrow, $tgl_dtu);
+                        $excel->getActiveSheet()->setCellValue('L' . $numrow, $tgl_dtt);
+                        $excel->getActiveSheet()->setCellValue('M' . $numrow, "");
+
+                        //add style
+                        $rnumrow = $numrow - 1;
+                        $excel->getActiveSheet()->getStyle('B' . $numrow . ':D' . $numrow)->applyFromArray($gaya_tengah);
+                        $excel->getActiveSheet()->getStyle('G' . $numrow . ':L' . $numrow)->applyFromArray($gaya_tengah);
+                        $excel->getActiveSheet()->getStyle('B' . $rnumrow . ':M' . $numrow)->applyFromArray($gaya_all_border);
+
+                        $numrow++;
+                        $urut++;
+                    }
+                }
+            }
+        }
+        $excel->getActiveSheet()->getPageSetup()->setOrientation(PageSetup::ORIENTATION_LANDSCAPE);
+
+        // Set judul file excel nya
+        $excel->getActiveSheet()->setTitle("Monitoring-Updt-Dashboard");
+        $excel->getActiveSheet();
+
+        // Proses file excel
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="Mon-Dashboard.xlsx"'); // Set nama file excel nya
+        header('Cache-Control: max-age=0');
+
+        $writer = new Xlsx($excel);
+
+        // Save the spreadsheet to a file (or output it to the browser)
+        $writer->save('php://output');
+        exit();
+    }
+
+    public function useredit_1()
+    {
+        $post = $this->request->getPost();
+        $postData = [
+            'idd' => $post['idd'],
+            'tgl_lahir' => $post['tgl_lahir'],
+            'tgl_masuk' => $post['tgl_masuk'],
+            'tgl_kontrak' => $post['tgl_kontrak'],
+            'tgl_kontrak_1' => $post['tgl_kontrak_1'],
+            'pkp_sebelumnya' => $post['pkp_sebelumnya'],
+            'pkp_akhir' => $post['pkp_akhir'],
+            'nama_admin' => $post['nama_admin'],
+            'jenis_kelamin' => $post['jenis_kelamin'],
+            'alamat' => $post['alamat'],
+            "handphone" => $post["handphone"],
+            "email" => $post["email"],
+            "jabatan" => $post["jabatan"],
+            "jurusan" => $post["jurusan"],
+            "status_karyawan" => $post["status_karyawan"],
+            "sisa_cuti" => $post["sisa_cuti"],
+            'agent' => $this->request->getUserAgent()
+        ];
+        $simpan = new LaporanModel();
+        if ($simpan->updatedatauser_1($postData)) {
+            $data['success'] = true;
+            $data['message'] = "Berhasil menyimpan data";
+        } else {
+            $errors['fail'] = "gagal melakukan update data";
+            $data['errors'] = $errors;
+        }
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function useredit_2()
+    {
+
+        $post = $this->request->getPost();
+        $postData = [
+            'idd' => $post['idd'],
+            'tgl_lahir' => $post['tgl_lahir'],
+            'tgl_masuk' => $post['tgl_masuk'],
+            'nama_admin' => $post['nama_admin'],
+            'jenis_kelamin' => $post['jenis_kelamin'],
+            'alamat' => $post['alamat'],
+            "handphone" => $post["handphone"],
+            "email" => $post["email"],
+            "jabatan" => $post["jabatan"],
+            "jurusan" => $post["jurusan"],
+            "status_karyawan" => $post["status_karyawan"],
+            "sisa_cuti" => $post["sisa_cuti"],
+            'agent' => $this->request->getUserAgent()
+        ];
+
+
+        $simpan = new LaporanModel();
+        if ($simpan->updatedatauser_2($postData)) {
+            $data['success'] = true;
+            $data['message'] = "Berhasil menyimpan data";
+        } else {
+            $errors['fail'] = "gagal melakukan update data";
+            $data['errors'] = $errors;
+        }
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+    public function useredit_3()
+    {
+        $post = $this->request->getPost();
+        $postData = [
+            'idd' => $post['idd'],
+            'tgl_lahir' => $post['tgl_lahir'],
+            'tgl_masuk' => $post['tgl_masuk'],
+            'nama_admin' => $post['nama_admin'],
+            'jenis_kelamin' => $post['jenis_kelamin'],
+            'alamat' => $post['alamat'],
+            "handphone" => $post["handphone"],
+            "email" => $post["email"],
+            "jabatan" => $post["jabatan"],
+            "jurusan" => $post["jurusan"],
+            "status_karyawan" => $post["status_karyawan"],
+            "sisa_cuti" => $post["sisa_cuti"],
+            "aktif" => $post["aktif"],
+            'agent' => $this->request->getUserAgent()
+        ];
+
+        $simpan = new LaporanModel();
+        if ($simpan->updatedatauser_3($postData)) {
+            $data['success'] = true;
+            $data['message'] = "Berhasil menyimpan data";
+        } else {
+            $errors['fail'] = "gagal melakukan update data";
+            $data['errors'] = $errors;
+        }
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+ public function tambahtender()
+    {
+        $simpan = new LaporanModel();
+        $post = $this->request->getPost();
+        $postData = [
+            'tgl_undangan' => $post['tgl_undangan'],
+            'no_list' => $post['no_list'],
+            'divisi' => $post['divisi'],
+            'lingkup' => $post['lingkup'],
+            'nama_proyek' => $post['nama_proyek'],
+            'agent' => $this->request->getUserAgent()
+        ];
+
+        if ($simpan->simpandatatender($postData)) {
+            $data['success'] = true;
+            $data['message'] = "Berhasil menambah data";
+        } else {
+            $errors['fail'] = "gagal melakukan tambah data";
+            $data['errors'] = $errors;
+        }
+
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+
+    public function edit_tender($id)
+    {
+        $data['kode'] = '03';
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        level_user('data', 'marketing', $kategoriQNS, 'read') > 0 ? '' : show_404();
+
+        $data['data_mkt'] = $this->db->table('data_marketing')->getWhere(['id_marketing' => $id], 1);
+
+        $data['judul'] = '<a href="' . base_url() . 'dashboard/beranda_07" style="color:white">DATA | </a> <a href="' . base_url() . 'laporan/mkt" style="color:white">Marketing |</a> <a style="color:white">Edit Tender';
+        $data['kategoriQNS'] = $kategoriQNS;
+        $data['tes0'] = $this->dashboard->getId();
+        $data['tes1'] = $this->dashboard->getOne();
+        $data['tes2'] = $this->dashboard->getTwo();
+        $data['kategori'] = $kategoriQNS;
+        return view('data/marketing/edit-tender', $data);
+    }
+
+    public function update_mkt()
+    {
+        $post = $this->request->getPost();
+        $postData = [
+            'idd' => $post['idd'],
+            'tgl_undangan' => $post['tgl_undangan'],
+            'tgl_pq' => $post['tgl_pq'],
+            'tgl_pq_r' => $post['tgl_pq_r'],
+            'tgl_awz' => $post['tgl_awz'],
+            'tgl_awz_r' => $post['tgl_awz_r'],
+            'tgl_admin' => $post['tgl_admin'],
+            'tgl_admin_r' => $post['tgl_admin_r'],
+            'tgl_per_mkt' => $post['tgl_per_mkt'],
+            'tgl_per_mkt_r' => $post['tgl_per_mkt_r'],
+            'tgl_per_ops' => $post['tgl_per_ops'],
+            'tgl_per_ops_r' => $post['tgl_per_ops_r'],
+            'tgl_per_sdm' => $post['tgl_per_sdm'],
+            'tgl_per_sdm_r' => $post['tgl_per_sdm_r'],
+            'tgl_per_form' => $post['tgl_per_form'],
+            'tgl_per_form_r' => $post['tgl_per_form_r'],
+            'tgl_harga' => $post['tgl_harga'],
+            'tgl_harga_r' => $post['tgl_harga_r'],
+            'tgl_teknis' => $post['tgl_teknis'],
+            'tgl_teknis_r' => $post['tgl_teknis_r'],
+            'tgl_pemasukan' => $post['tgl_pemasukan'],
+            'tgl_pemasukan_r' => $post['tgl_pemasukan_r'],
+            'tgl_presentasi' => $post['tgl_presentasi'],
+            'tgl_presentasi_r' => $post['tgl_presentasi_r'],
+            'tgl_draft' => $post['tgl_draft'],
+            'tgl_ttd' => $post['tgl_ttd'],
+            'tgl_memo' => $post['tgl_memo'],
+            'no_list' => $post['no_list'],
+            'divisi' => $post['divisi'],
+            'lingkup' => $post['lingkup'],
+            'nama_proyek' => $post['nama_proyek'],
+            'pagu' => $post['pagu'],
+            'nilai_admin' => $post['nilai_admin'],
+            'evaluasi_harga' => $post['evaluasi_harga'],
+            'menang' => $post['menang'],
+            'peringkat' => $post['peringkat'],
+            'keterangan' => $post['keterangan'],
+            'nama_kontrak' => $post['nama_kontrak'],
+            'no_spk' => $post['no_spk'],
+            'no_pkp' => $post['no_pkp'],
+            'clear' => $post['clear'],
+            'agent' => $this->request->getUserAgent()
+
+        ];
+        $simpan = new LaporanModel();
+        if ($simpan->updatedatamkt_1($postData)) {
+            $data['success'] = true;
+            $data['message'] = "Berhasil menyimpan data";
+        } else {
+            $errors['fail'] = "gagal melakukan update data";
+            $data['errors'] = $errors;
+        }
+        $data['hapus'] = $post['clear'];
+
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function tambah_dtu_mkt()
+    {
+        $now = date("Y-m-d");
+        $id_pkp = $this->request->getPost('id'); // Assuming you get this from POST or GET request
+
+
+        // Define the location for storing the uploaded PDF
+        $lokasi = './assets/marketing/dtu';
+
+        // Check if directory exists, if not create it
+        if (!file_exists($lokasi)) {
+            mkdir($lokasi, 0777, true);
+        }
+
+        $teknis = $id_pkp;
+        $fileName = $teknis . $now . '.pdf'; // Define the file name
+
+        // Delete the old PDF file
+        $oldFilePath = $lokasi . '/' . $teknis . $now . '.pdf';
+        if (file_exists($oldFilePath)) {
+            unlink($oldFilePath);
+        }
+
+        $file = $this->request->getFile('berkas'); // Get the uploaded file
+
+        // Check file size and type
+        if ($file->getExtension() != 'pdf') {
+            $this->session->setFlashdata('error', 'Dokumen harus menggunakan format PDF');
+        }
+        // Move the file to the defined location with the defined file name
+        if ($file->isValid() && !$file->hasMoved()) {
+            $file->move($lokasi, $fileName);
+            $datagbr1 = [
+                "file" => $lokasi . '/' . $fileName,
+            ];
+            $this->db->table('data_marketing')->where('id_marketing', $id_pkp)->update($datagbr1);
+        }
+
+        $dataend = array(
+            "tgl_update_dtu" => $now,
+        );
+        $this->db->table('data_marketing')->where('id_marketing', $id_pkp)->update($dataend);
+        $this->session->setFlashdata('success', 'upload pdf');
+        $redirectUrl = previous_url() ?? base_url();
+        return redirect()->to($redirectUrl);
+    }
+
+
+    public function tambahaddendum()
+    {
+        $simpan = new LaporanModel();
+        $post = $this->request->getPost();
+        $postData = [
+            'tgl_ba_surat' => $post['tgl_ba_surat'],
+            'id_marketing' => $post['id_marketing'],
+            'addendum_ke' => $post['addendum_ke'],
+            'agent' => $this->request->getUserAgent()
+        ];
+
+        if ($simpan->simpandataaddendum($postData)) {
+            $data['success'] = true;
+            $data['message'] = "Berhasil menambah data";
+        } else {
+            $errors['fail'] = "gagal melakukan tambah data";
+            $data['errors'] = $errors;
+        }
+
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function editaddendum($id)
+    {
+        $data['kode'] = '03';
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        level_user('data', 'marketing', $kategoriQNS, 'read') > 0 ? '' : show_404();
+        $data['id_addendum2'] = $id;
+        //$data['data_mkt'] = $this->db->get_where('addendum', array('id_addendum' => $id), 1);
+        $data['data_mkt'] = $this->db->table("addendum a")->select("a.id_marketing,a.id_addendum,b.no_pkp,b.nama_proyek,a.addendum_ke,a.tgl_ba_surat,a.tgl_sph,a.tgl_nego,a.tgl_draft,a.tgl_sper,b.tgl_ubah")->join('data_marketing b', 'a.id_marketing = b.id_marketing')->where('a.id_addendum', $id)->get();
+
+        $data['judul'] = '<a href="' . base_url() . 'dashboard/beranda_07" style="color:white">DATA | </a> <a href="' . base_url() . 'laporan/addendum/' . $data['data_mkt']->getRow()->id_marketing . '" style="color:white">Marketing |</a> <a style="color:white">Edit Addendum';
+        $data['kategoriQNS'] = $kategoriQNS;
+        $data['tes0'] = $this->dashboard->getId();
+        $data['tes1'] = $this->dashboard->getOne();
+        $data['tes2'] = $this->dashboard->getTwo();
+        $data['kategori'] = $kategoriQNS;
+        return view('data/marketing/edit-addendum', $data);
+    }
+
+    public function editaddendum2($id)
+    {
+        $data['kode'] = '03';
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        level_user('data', 'marketing', $kategoriQNS, 'read') > 0 ? '' : show_404();
+        $data['id_addendum2'] = $id;
+        //$data['data_mkt'] = $this->db->get_where('addendum', array('id_addendum' => $id), 1);
+        $data['data_mkt'] = $this->db->table("addendum a")->select("a.id_marketing,a.id_addendum,b.no_pkp,b.nama_proyek,a.addendum_ke,a.tgl_ba_surat,a.tgl_sph,a.tgl_nego,a.tgl_draft,a.ppn,a.nett_porsi,a.nett_porsi_kso,a.tgl_sper,b.tgl_ubah,a.tgl_mulai,a.tgl_selesai,a.tgl_jaminan,a.harga,a.nilai_jaminan,a.bast_1,a.bast_2,a.referensi")->join('data_marketing b', 'a.id_marketing = b.id_marketing')->where('a.id_addendum', $id)->get();
+
+        $data['judul'] = '<a href="' . base_url() . 'dashboard/beranda_07" style="color:white">DATA | </a> <a href="' . base_url() . 'laporan/addendum/' . $data['data_mkt']->getRow()->id_marketing . '" style="color:white">Marketing |</a> <a style="color:white">Edit Data Kontrak';
+        $data['kategoriQNS'] = $kategoriQNS;
+        $data['tes0'] = $this->dashboard->getId();
+        $data['tes1'] = $this->dashboard->getOne();
+        $data['tes2'] = $this->dashboard->getTwo();
+        $data['kategori'] = $kategoriQNS;
+        return view('data/marketing/edit-addendum2', $data);
+    }
+
+    public function update_addendum()
+    {
+        $post = $this->request->getPost();
+        $postData = [
+            'idd' => $post['idd'],
+            'id_marketing' => $post['id_marketing'],
+            'tgl_ba_surat' => $post['tgl_ba_surat'],
+            'tgl_sph' => $post['tgl_sph'],
+            'tgl_nego' => $post['tgl_nego'],
+            'tgl_draft' => $post['tgl_draft'],
+            'tgl_sper' => $post['tgl_sper'],
+            'agent' => $this->request->getUserAgent()
+        ];
+        $simpan = new LaporanModel();
+        if ($simpan->updatedataaddendum_1($postData)) {
+            $data['success'] = true;
+            $data['message'] = "Berhasil menyimpan data";
+        } else {
+            $errors['fail'] = "gagal melakukan update data";
+            $data['errors'] = $errors;
+        }
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+
+    public function update_addendum2()
+    {
+        $post = $this->request->getPost();
+        $postData = [
+            'idd' => $post['idd'],
+            'tgl_mulai' => $post['tgl_mulai'],
+            'tgl_selesai' => $post['tgl_selesai'],
+            'tgl_jaminan' => $post['tgl_jaminan'],
+            'ppn' => $post['ppn'],
+            'nett_porsi' => $post['nett_porsi'],
+            'nett_porsi_kso' => $post['nett_porsi_kso'],
+            'harga' => $post['harga'],
+            'nilai_jaminan' => $post['nilai_jaminan'],
+            'id_marketing' => $post['id_marketing'],
+            'agent' => $this->request->getUserAgent()
+        ];
+        $simpan = new LaporanModel();
+        if ($simpan->updatedataaddendum_2($postData)) {
+            $data['success'] = true;
+            $data['message'] = "Berhasil menyimpan data";
+        } else {
+            $errors['fail'] = "gagal melakukan update data";
+            $data['errors'] = $errors;
+        }
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+
+    public function hapusaddendum()
+    {
+        $simpan = new LaporanModel;
+        $postData = [
+            'idd' => $this->request->getPost('idd'),
+            'agent' => $this->request->getUserAgent(),
+        ];
+        if ($simpan->hapusdataaddendum($postData)) {
+            $data['success'] = true;
+            $data['message'] = "Berhasil menghapus data";
+        } else {
+            $errors['fail'] = "gagal melakukan tambah data";
+            $data['errors'] = $errors;
+        }
+
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+
+    public function editdata_mkt($id)
+    {
+        $data['kode'] = '03';
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        level_user('data', 'marketing', $kategoriQNS, 'read') > 0 ? '' : show_404();
+
+        $data['data_mkt'] = $this->db->table('data_marketing')->getWhere(['id_marketing' => $id], 1);
+
+        $data['judul'] = '<a href="' . base_url() . 'dashboard/beranda_07" style="color:white">DATA | </a> <a href="' . base_url() . 'laporan/data_mkt" style="color:white">Marketing |</a> <a style="color:white">Edit Data MKT';
+        $data['kategoriQNS'] = $kategoriQNS;
+        $data['tes0'] = $this->dashboard->getId();
+        $data['tes1'] = $this->dashboard->getOne();
+        $data['tes2'] = $this->dashboard->getTwo();
+        $data['kategori'] = $kategoriQNS;
+        return view('data/marketing/edit-data-mkt', $data);
+    }
+    public function update_data_mkt()
+    {
+        $post = $this->request->getPost();
+        $postData = [
+            'tgl_start' => $post['tgl_start'],
+            'tgl_finish' => $post['tgl_finish'],
+            'jaminan_tgl' => $post['jaminan_tgl'],
+            'tgl_selesai_kont' => $post['tgl_selesai_kont'],
+            'jaminan_nilai' => $post['jaminan_nilai'],
+            'harga_penawaran' => $post['harga_penawaran'],
+            'ppn' => $post['ppn'],
+            'nett_porsi' => $post['nett_porsi'],
+	    'nett_porsi_kso' => $post['nett_porsi_kso'],
+            'bast_1' => $post['bast_1'],
+            'bast_2' => $post['bast_2'],
+            'surat_ref' => $post['surat_ref'],
+            'no_list' => $post['no_list'],
+            'idd' => $post['idd'],
+            'agent' => $this->request->getUserAgent()
+        ];
+        $simpan = new laporanModel();
+        if ($simpan->updatedatamkt_3($postData)) {
+            $data['success'] = true;
+            $data['message'] = "Berhasil menyimpan data";
+        } else {
+            $errors['fail'] = "gagal melakukan update data";
+            $data['errors'] = $errors;
+        }
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+
+   public function fototambah()
+{
+    // THBL TGL BERJALAN
+    date_default_timezone_set("Asia/Jakarta");
+    $now = date("Y-m-d");
+    $now2 = date("Ymd");
+    $id_marketing = $this->request->getPost('id');
+
+    // Ambil no urut terakhir
+    $QN = $this->db->query("SELECT max(kode) as masKode FROM gambar_mkt order by kode");
+    $order = $QN->getRow()->masKode;
+    $noUrut = (int) substr($order, 8, 5);
+    $noUrut++;
+    $bulanL = substr($order, 5, 2);
+    $bln = substr($now, 5, 2);
+    $tahun = substr($now, 2, 2);
+
+    if ($bln == $bulanL) {
+        $kode = 'FTM' . $tahun . $bln . '-' . sprintf("%05s", $noUrut);
+    } else {
+        $kode = 'FTM' . $tahun . $bln . '-' . '00001';
+    }
+
+    $post = $this->request->getPost();
+    $id1 = 'FTM' . md5($kode);
+    $id2 = 'FTM' . hash("sha1", $id1) . 'QNS';
+
+    $array = [
+        'id' => $id2,
+        'id_pkp' => $post["id"],
+        'kode' => $kode,
+        'tgl_ubah' => $now,
+        'id_ubah' => $post["id_ubah"],
+    ];
+    $this->db->table('gambar_mkt')->insert($array);
+
+    $lokasi = './assets/marketing/foto/';
+    $filePaths = [];
+
+    if ($this->request->getFileMultiple('berkas')) {
+        $files = $this->request->getFileMultiple('berkas');
+
+        foreach ($files as $index => $file) {
+            if ($file->isValid() && !$file->hasMoved()) {
+                $extension = $file->getExtension();
+                $name = $now2 . '-' . $kode . ($index + 1) . '.' . $extension;
+                $file->move($lokasi, $name);
+                $filePaths[] = $lokasi . '/' . $name;
+            }
+        }
+    }
+
+    // Ensure that we only have between 3 and 5 images
+    $imageCount = count($filePaths);
+    if ($imageCount < 3 || $imageCount > 5) {
+        return redirect()->back()->with('error', 'Choose between 3 and 5 images.');
+    }
+
+    // Prepare data to update in database
+    $updateData = [];
+    for ($i = 0; $i < $imageCount; $i++) {
+        $updateData['gambar' . ($i + 1)] = $filePaths[$i];
+    }
+
+    // Update database with image paths
+    $this->db->table('gambar_mkt')->where('id', $id2)->update($updateData);
+
+    // Update marketing data
+    $dataend = [
+        "tgl_update_foto" => $now,
+    ];
+
+    $this->db->table('data_marketing')->where('id_marketing', $id_marketing)->update($dataend);
+
+    return redirect()->back()->with('success', $imageCount . ' File/s uploaded successfully.');
+}
+
+
+ public function tambah_lapbul()
+    {
+        $post = $this->request->getPost();
+        $idQNS = session('idadmin');
+        date_default_timezone_set("Asia/Jakarta");
+        $now = date("Y-m-d");
+        $jam = date("H:i:s");
+        $pkp = $this->db->table('master_pkp')->getWhere(array('id_pkp' => $post['id_pkp']), 1);
+        $tgl_periode = date('Y-m-01', strtotime($post['tgl_periode']));
+        $lokasi = '/qs/pdf/' . $pkp->getRow()->no_pkp . '/' . $tgl_periode . '.pdf';
+        //CEK FILE PDF QS ADA
+
+        $isi = $this->db->table("pdf_qs")->select("*")->where('id_pkp', $post['id_pkp'])->where('tgl_periode', $tgl_periode)->get();
+        if ($isi->getNumRows() > 0) {
+            $sudah = $isi->getNumRows();
+        } else {
+            $sudah = '';
+        }
+
+        if ($sudah != '') {
+            $this->db->table('pdf_qs')->where('id_pdf_qs', $isi->getRow()->id_pdf_qs)->delete();
+        }
+        //INSERT pdf qs
+        $QN2 = $this->db->query("SELECT max(kode) as masKode2 FROM pdf_qs order by kode");
+        foreach ($QN2->getResult() as $row2) {
+            $order2 = $row2->masKode2;
+        }
+        $noUrut2 = (int) substr($order2, 8, 5);
+        $noUrut2++;
+        //BL masKode//
+        $bulanL2 = substr($order2, 5, 2);
+        $bln2 = substr($now, 5, 2);
+        $tahun2 = substr($now, 2, 2);
+        if ($bln2 == $bulanL2) {
+            $kode2 = 'QSP' . $tahun2 . $bln2 . '-' . sprintf("%05s", $noUrut2);
+        } else {
+            $kode2 = 'QSP' . $tahun2 . $bln2 . '-' . '00001';
+        }
+        $id12 = 'QSP' . md5($kode2);
+        $id22 = 'QSP' . hash("sha1", $id12) . 'QNS';
+
+        $listMKT = array(
+            'id_pdf_qs' => $id22,
+            'kode' => $kode2,
+            'id_pkp' => $post['id_pkp'],
+            'tgl_upload' => $now,
+            'id_ubah' => $idQNS,
+            'tgl_periode' => $tgl_periode,
+            'file' => $lokasi,
+        );
+        $this->db->table("pdf_qs")->insert($listMKT);
+
+        //update pkp
+        if ($pkp->getRow()->periode_akhir > 0) {
+            if (strtotime($pkp->getRow()->periode_akhir) < strtotime($tgl_periode)) {
+                $tgl_periode2 = $tgl_periode;
+            } else {
+                $tgl_periode2 = $pkp->getRow()->periode_akhir;
+            }
+        } else {
+            $tgl_periode2 = $tgl_periode;
+        }
+
+        $data3 = array(
+            "periode_akhir" => $tgl_periode2,
+            "update_qs" => $now,
+        );
+
+        $this->db->table('master_pkp')->where('id_pkp', $pkp->getRow()->id_pkp)->update($data3);
+
+
+        //PDF FILE
+        //CEK & BUAT FOLDER
+        if (!is_dir('./assets/qs/pdf/' . $pkp->getRow()->no_pkp)) {
+            mkdir('./assets/qs/pdf/' . $pkp->getRow()->no_pkp, 0777, TRUE);
+        }
+        $lokasi = './assets/qs/pdf/' . $pkp->getRow()->no_pkp;
+        $oldFilePath = $lokasi . '.pdf';
+        if (file_exists($oldFilePath)) {
+            unlink($oldFilePath);
+        }
+        $file = $this->request->getFile('berkas');
+        $fileName = $tgl_periode . '.pdf';
+        // Check file size and type
+        if ($file->getExtension() != 'pdf') {
+            $this->session->setFlashdata('error', 'Dokumen harus menggunakan format PDF');
+        }
+        if ($file->isValid() && !$file->hasMoved()) {
+            $file->move($lokasi, $fileName);
+        }
+
+        //ADD LOG BP//
+        //THBL TGL BERJALAN DAN JAM BERJALAN//
+        $agent = $this->request->getUserAgent();
+
+
+        if ($agent->isBrowser()) {
+            $currentAgent = $agent->getBrowser() . ' ' . $agent->getVersion();
+        } elseif ($agent->isRobot()) {
+            $currentAgent = $agent->getRobot();
+        } elseif ($agent->isMobile()) {
+            $currentAgent = $agent->getMobile();
+        } else {
+            $currentAgent = 'Unidentified User Agent';
+        }
+
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {   //check ip from share internet
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {   //to check ip is pass from proxy
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        //$ipnya = $this->agent->ip_address();
+        //THBL TGL BERJALAN//
+        //$time = date("h:i:sa");
+        $layar = 'TAMBAH,PDF:QS';
+        $aksi = ' (Proyek:' . $pkp->getRow()->no_pkp . ':' . $pkp->getRow()->alias . ') Periode :' . $tgl_periode;
+        //ambil no urut terakhir//
+        //LOGTHBL-12345//
+        //THBLTG1234567//
+        $QN = $this->db->query("SELECT max(kode) as masKode FROM log order by kode");
+        foreach ($QN->getResult() as $row) {
+            $order = $row->masKode;
+        }
+        $noUrut = (int) substr($order, 6, 7);
+        $noUrut++;
+        //BL masKode//
+        $bulanL = substr($order, 0, 6);
+        //2020-10-30
+        $bln = substr($now, 5, 2);
+        $tahun = substr($now, 2, 2);
+        $tgln = substr($now, 8, 2);
+        $thbltg = $tahun . $bln . $tgln;
+        if ($thbltg == $bulanL) {
+            $kode = $thbltg . sprintf("%07s", $noUrut);
+        } else {
+            $kode = $thbltg . '0000001';
+        }
+
+        $id1 = 'LOG' . md5($kode);
+        $id2 = 'LOG' . hash("sha1", $id1) . 'QNS';
+        $array22 = array(
+            'id_log' => $id2,
+            'kode' => $kode,
+            'id_user' => $idQNS,
+            'ip' => $ip,
+            //mac' => $mac,
+            'host' => $currentAgent,
+            'tgl_log' => $now,
+            'jam_log' => $jam,
+            'layar' => $layar,
+            'aksi' => $aksi,
+
+        );
+        $this->db->table("log")->insert($array22);
+        $this->session->setFlashdata('success', 'upload pdf');
+        $redirectUrl = previous_url() ?? base_url();
+        return redirect()->to($redirectUrl);
+    }
+
+
 }

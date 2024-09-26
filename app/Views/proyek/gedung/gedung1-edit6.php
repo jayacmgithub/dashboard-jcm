@@ -28,7 +28,11 @@ $tgl_kadirat = $akses->getRow()->tgl_range_kadirat;
             <a class="nav-link active" id="info6-tab" data-toggle="tab" href="#info6" role="tab" aria-controls="info6"
                 aria-selected="true" style="color:black"><strong>MONITORING KARYAWAN</strong></a>
         </li>
+ <?php
+    if ($nomorQN == '511') {
+        ?>
         <?php
+}
         if ($nomorQN != '412') {
             ?>
             <li class="nav-item">
@@ -42,9 +46,8 @@ $tgl_kadirat = $akses->getRow()->tgl_range_kadirat;
         <?php } ?>
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url() ?>proyek/edit_5/<?= $proyek->getRow()->id_pkp ?>" role="tab"
-                aria-controls="info5" aria-selected="true" style="color:black"><strong>MONTORING DCR</strong></a>
+                aria-controls="info5" aria-selected="true" style="color:black"><strong>MONITORING DCR</strong></a>
         </li>
-
     </ul>
 
     <div class="tab-content" id="myTabContent">
@@ -60,6 +63,30 @@ $tgl_kadirat = $akses->getRow()->tgl_range_kadirat;
                                 <?php } ?>
                             </b>
                         </h6>
+                        <form action="" method="GET" class="ml-auto">
+                            <div class="row align-items-center">
+                                <div class="col-md-4">
+                                    <select name="tahun" id="tahun" class="form-control">
+                                        <option value="00">Tahun</option>
+                                        <?php foreach ($option_tahun as $data): ?>
+                                            <option value="<?php echo $data->tahun; ?>"><?php echo $data->tahun; ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+
+                                </div>
+                                <div class="col-md-4">
+                                    <select name="bulan" id="bulan" class="form-control">
+                                        <option value="00">Bulan</option>
+                                        <!-- Opsi Bulan akan diisi setelah pengguna memilih Tahun -->
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-lg btn-success" style="font-size:12px;"
+                                        type="submit">Filter</button>
+                                </div>
+                            </div>
+                        </form>
                         <?php
                         if ($n_tgl_ini > 0) {
                             ?>
@@ -92,7 +119,6 @@ $tgl_kadirat = $akses->getRow()->tgl_range_kadirat;
                                     }
                                 } ?>
 
-
                                 <a class="btn btn-info" data-toggle="dropdown" style="font-size: 12px;color:black">EXPORT
 
                                 </a>
@@ -114,7 +140,6 @@ $tgl_kadirat = $akses->getRow()->tgl_range_kadirat;
                             </div>
                         <?php } ?>
                     </div>
-
                 </div>
                 <?php
                 $bulan22 = '';
@@ -263,34 +288,27 @@ $tgl_kadirat = $akses->getRow()->tgl_range_kadirat;
 
                                 <?php
 
-
-
-                                if ($tgl_akhir_kontrak > 0) {
-                                    if (strtotime($tgl_akhir_kontrak2) >= strtotime($now)) {
+                                if (isset($tgl_akhir_kontrak) && $tgl_akhir_kontrak !== null && $tgl_akhir_kontrak > 0) {
+                                    if ($tgl_akhir_kontrak2 >= $now) {
                                         $selisih = ((abs(strtotime($tgl_akhir_kontrak2) - (strtotime($now)))) / 86400);
                                     } else {
                                         $selisih = (((abs(strtotime($tgl_akhir_kontrak2) - (strtotime($now)))) / 86400)) * -1;
                                     }
-                                } else {
-                                    $selisih = 0;
-                                }
-                                if ($tgl_akhir_kontrak > 0) {
+
                                     if ($selisih < 1) {
                                         $gaya = $hitam;
+                                    } elseif ($selisih > 90) {
+                                        $gaya = $biasa;
+                                    } elseif ($selisih > 30) {
+                                        $gaya = $kuning;
                                     } else {
-                                        if ($selisih > 90) {
-                                            $gaya = $biasa;
-                                        } else {
-                                            if ($selisih > 30) {
-                                                $gaya = $kuning;
-                                            } else {
-                                                $gaya = $merah;
-                                            }
-                                        }
+                                        $gaya = $merah;
                                     }
                                 } else {
                                     $gaya = $biasa;
                                 }
+
+
                                 if ($tgl_ren_demob > 0 and $tgl_real_demob < 1) {
                                     if (strtotime($tgl_ren_demob2) >= strtotime($now)) {
                                         $selisih2 = ((abs(strtotime($tgl_ren_demob2) - (strtotime($now)))) / 86400);
@@ -380,9 +398,16 @@ $tgl_kadirat = $akses->getRow()->tgl_range_kadirat;
                                     <td>
                                         <?= $tgl_kontrak; ?>
                                     </td>
-                                    <td <?= $gaya ?>>
-                                        <?= $tgl_akhir_kontrak; ?>
+                                    <td <?= ($tgl_akhir_kontrak == '30/11/-0001' || is_null($tgl_akhir_kontrak)) ? '' : $gaya ?>>
+                                        <?php
+                                        if ($tgl_akhir_kontrak == '30/11/-0001' || is_null($tgl_akhir_kontrak)) {
+                                            echo ''; // Display nothing if the value is '30/11/-0001' or NULL
+                                        } else {
+                                            echo $tgl_akhir_kontrak;
+                                        }
+                                        ?>
                                     </td>
+
                                     <td <?= $gaya3 ?>>
                                         <?= $tgl_ren_mob; ?>
                                     </td>
@@ -490,7 +515,6 @@ $tgl_kadirat = $akses->getRow()->tgl_range_kadirat;
                                     <span class="label3 label-info m-r-5 text-success"
                                         style="background-color:darkgoldenrod;margin-top: 2px"></span> <a
                                         style="font-size: 12px;">Data MOB/DEMOB Tidak sama</a>
-
                 </div>
             </div>
         </div>
@@ -502,7 +526,7 @@ $tgl_kadirat = $akses->getRow()->tgl_range_kadirat;
     <div class="modal-dialog" style="width:90%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('proyek/proses_upload_karyawan', ' id="FormulirTambah2"'); ?>
+                <?= form_open(base_url('proyek/proses_upload_karyawan'), ' id="FormulirTambah2"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">IMPORT DATA KARYAWAN</h2>
                 </header>
@@ -547,7 +571,7 @@ $tgl_kadirat = $akses->getRow()->tgl_range_kadirat;
     <div class="modal-dialog">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('proyek/akseskadiv', ' id="FormulirTambah3"'); ?>
+                <?= form_open(base_url('proyek/akseskadiv'), ' id="FormulirTambah3"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">MINTA BUKA AKSES KE KADIV</h2>
                 </header>
@@ -586,7 +610,7 @@ $tgl_kadirat = $akses->getRow()->tgl_range_kadirat;
     <div class="modal-dialog">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('proyek/openkadiv', ' id="FormulirTambah4"'); ?>
+                <?= form_open(base_url('proyek/openkadiv'), ' id="FormulirTambah4"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">ACC KADIV</h2>
                 </header>
@@ -597,9 +621,10 @@ $tgl_kadirat = $akses->getRow()->tgl_range_kadirat;
                         <div class="col-sm-9">
                             <?php foreach ($buka_akses2 as $buka_akses): ?>
                                 <textarea type="text" name="sebab" class="form-control"
-                                    placeholder="Isi Sebab Keterlambatan" disabled><?= $buka_akses->keterangan ?></textarea>
-                            <?php endforeach; ?>
-                            <input type="hidden" name="id_pkp58" value="<?= esc($proyek->getRow()->id_pkp) ?>"
+                                    placeholder="Isi Sebab Keterlambatan" disabled>
+            <?= isset($buka_akses->keterangan) ? htmlspecialchars($buka_akses->keterangan, ENT_QUOTES, 'UTF-8') : 'Keterangan tidak tersedia' ?>
+        </textarea>
+                            <?php endforeach; ?>                            <input type="hidden" name="id_pkp58" value="<?= esc($proyek->getRow()->id_pkp) ?>"
                                 class="form-control" required />
                             <input type="hidden" name="id_ubah" value="<?= session('idadmin'); ?>" class="form-control"
                                 required />
@@ -627,7 +652,7 @@ $tgl_kadirat = $akses->getRow()->tgl_range_kadirat;
     <div class="modal-dialog">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('proyek/akseskadirat', ' id="FormulirTambah5"'); ?>
+                <?= form_open(base_url('proyek/akseskadirat'), ' id="FormulirTambah5"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">MINTA BUKA AKSES KE KADIRAT</h2>
                 </header>
@@ -644,7 +669,6 @@ $tgl_kadirat = $akses->getRow()->tgl_range_kadirat;
                                 required />
                         </div>
                     </div>
-
                 </div>
 
                 <footer class="panel-footer">
@@ -666,7 +690,7 @@ $tgl_kadirat = $akses->getRow()->tgl_range_kadirat;
     <div class="modal-dialog">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('proyek/openkadirat', ' id="FormulirTambah6"'); ?>
+                <?= form_open(base_url('proyek/openkadirat'), ' id="FormulirTambah6"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">ACC KADIRAT</h2>
                 </header>
@@ -705,6 +729,30 @@ $tgl_kadirat = $akses->getRow()->tgl_range_kadirat;
 </div>
 
 <?= $this->include('layout/js') ?>
+<script>
+    // Tambahkan event listener untuk perubahan tahun
+    document.getElementById('tahun').addEventListener('change', function () {
+        const tahun = this.value;
+        const bulanSelect = document.getElementById('bulan');
+        bulanSelect.innerHTML = ''; // Mengosongkan opsi bulan
+
+        // Kirim permintaan AJAX untuk mengambil data bulan berdasarkan tahun yang dipilih
+        fetch(`<?= base_url('proyek/get_bulan_absensi'); ?>?id_pkp=<?= $id_pkp; ?>&tahun=${tahun}`)
+            .then(response => response.json())
+            .then(data => {
+                // Tambahkan opsi bulan ke dalam elemen select
+                data.forEach(bulan => {
+                    const option = document.createElement('option');
+                    option.value = bulan.bulan;
+                    option.textContent = bulan.nama_bulan;
+                    bulanSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+</script>
 <script type="text/javascript">
     $(".table-scrollable").freezeTable({
         'scrollable': true,

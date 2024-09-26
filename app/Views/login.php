@@ -11,8 +11,6 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.css">
-    <link href="<?= base_url() ?>/assets/vendor/dist/css/style.min2.css" rel="stylesheet">
-
     <style type="text/css">
         @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 
@@ -131,7 +129,7 @@
         <div class="row">
             <div class="col-md-4 login-sec">
                 <h2 class="text-center"><img src="<?= base_url() ?>assets/component-images/logo.png" height="54"></h2>
-                <h6 class="text-center" style="color: olive;">Project Summary Dashboard</h6>
+                <h6 class="text-center" style="color: black;">Project Summary Dashboard</h6>
                 <br>
 
                 <?= form_open('login/auth', ' id="Formulir" '); ?>
@@ -161,7 +159,7 @@
 
                 </form>
 
-                <div class="copy-text" style="font-size: 11px;"><b>A-System|Dash 01.2023 <i>02-02-2023</i> </b></div>
+                <div class="copy-text" style="font-size: 11px;"><b>Jaya CM | Dashboard 2024</i> </b></div>
             </div>
             <div class="col-md-8 banner-sec">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -252,7 +250,9 @@
                     icon: 'success',
                     title: 'Notifikasi',
                     text: "Berhasil login",
-                    width: '50%',  // Sesuaikan dengan lebar yang diinginkan
+   		    position: "top-end",
+                    width: '50%',
+		    showConfirmButton : false,  // Sesuaikan dengan lebar yang diinginkan
                     customClass: {
                         content: 'custom-swal-content-class',  // Tambahkan kelas khusus untuk kontennya
                     },
@@ -265,6 +265,7 @@
             Swal.fire({
                 icon: 'error',
                 title: 'Notifikasi',
+                position: "top-end",
                 text: "Request gagal, browser akan direload",
                 width: '50%',  // Sesuaikan dengan lebar yang diinginkan
                 customClass: {

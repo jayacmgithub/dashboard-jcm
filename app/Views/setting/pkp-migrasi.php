@@ -8,15 +8,15 @@
     <?php
     if (level_user('setting', 'pkp', $kategoriQNS, 'add') > 0 and $total_migrasi < 1) {
         //echo form_open('setting/view_upload3', ' id="FormulirUpload" enctype="multipart/form-data"');
-        echo form_open('setting/view_user3', 'enctype="multipart/form-data"');
+        echo form_open(base_url('setting/view_user3'), 'enctype="multipart/form-data"');
     } else {
 
         if (level_user('setting', 'pkp', $kategoriQNS, 'add') > 0 and $total_migrasi > 0 and $total2 == 0 /*and $total3 == 0*/) {
             //echo form_open('setting/proses_upload', ' id="FormulirUpload"');
-            echo form_open('setting/proses_upload_user', ' id="FormulirUpload"');
+            echo form_open(base_url('setting/proses_upload_user'), ' id="FormulirUpload"');
         } else {
             if (level_user('setting', 'pkp', $kategoriQNS, 'add') > 0 and $total3 < 0) {
-                echo form_open('setting/proses_hapus', ' id="FormulirUpload"');
+                echo form_open(base_url('setting/proses_hapus'), ' id="FormulirUpload"');
             }
         }
     } ?>

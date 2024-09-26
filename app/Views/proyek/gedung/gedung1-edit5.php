@@ -20,6 +20,7 @@
             <a class="nav-link" href="<?= base_url() ?>proyek/edit_6/<?= $proyek->getRow()->id_pkp ?>" role="tab"
                 aria-controls="info6" aria-selected="true" style="color:black"><strong>MONTORING KARYAWAN</strong></a>
         </li>
+
         <?php
         if ($nomorQN != '412') {
             ?>
@@ -334,7 +335,7 @@
     <div class="modal-dialog" style="width:90%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('proyek/proses_upload_mon_dcr', ' id="FormulirTambah2"'); ?>
+                <?= form_open(base_url('proyek/proses_upload_mon_dcr'), ' id="FormulirTambah2"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Import Data DCR</h2>
                 </header>
@@ -373,7 +374,7 @@
     <div class="modal-dialog" style="width:60%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('proyek/upd_data_spk', ' id="FormulirTambah3"'); ?>
+                <?= form_open(base_url('proyek/upd_data_spk'), ' id="FormulirTambah3"'); ?>
 
                 <div class="panel-body">
                     <div class="row">
@@ -508,10 +509,12 @@
                         $('input[name="' + key + '"]').after(msg);
                     }
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
                             title: 'Notifikasi',
                             text: data.errors[key],
-                            type: 'danger'
+                            position: "top-end",
+                            showConfirmButton: false,
+                            icon: 'error'
                         });
                     }
                 }
@@ -522,20 +525,25 @@
                 $('#tambahData2').modal('hide');
                 document.getElementById("FormulirTambah2").reset();
                 $('#submitform2').html('Submit');
-                new PNotify({
+                Swal.fire({
                     title: 'Notifikasi',
                     text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
                 });
                 window.setTimeout(function () {
                     location.reload();
                 }, 2000);
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
-                text: "Request gagal, browser akan direload 22",
-                type: 'danger'
+                text: "Request gagal, browser akan direload",
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
             });
             window.setTimeout(function () {
                 location.reload();
@@ -572,10 +580,12 @@
                         $('input[name="' + key + '"]').after(msg);
                     }
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
                             title: 'Notifikasi',
                             text: data.errors[key],
-                            type: 'danger'
+                            position: "top-end",
+                            showConfirmButton: false,
+                            icon: 'error'
                         });
                     }
                 }
@@ -586,20 +596,25 @@
                 $('#tambahData3').modal('hide');
                 document.getElementById("FormulirTambah3").reset();
                 $('#submitform3').html('Submit');
-                new PNotify({
+                Swal.fire({
                     title: 'Notifikasi',
                     text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
                 });
                 window.setTimeout(function () {
                     location.reload();
                 }, 2000);
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
-                text: "Request gagal, browser akan direload KACAU",
-                type: 'danger'
+                text: "Request gagal, browser akan direload",
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
             });
             window.setTimeout(function () {
                 location.reload();

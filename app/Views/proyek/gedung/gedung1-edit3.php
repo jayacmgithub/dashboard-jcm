@@ -17,9 +17,13 @@
         <?php } ?>
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url() ?>proyek/edit_6/<?= $proyek->getRow()->id_pkp ?>" role="tab"
-                aria-controls="info6" aria-selected="true" style="color:black"><strong>MONTORING KARYAWAN</strong></a>
+                aria-controls="info6" aria-selected="true" style="color:black"><strong>MONITORING KARYAWAN</strong></a>
         </li>
+ <?php
+    if ($nomorQN == '511') {
+        ?>
         <?php
+}
         if ($nomorQN != '412') {
             ?>
             <li class="nav-item">
@@ -101,12 +105,33 @@
                     <!--FOTO-->
                     <div class="col-md-6">
                         <div class="col-sm-12">
-                            <div class="d-flex flex-row pull-right">
 
-                                <?= level_user('proyek', 'data', $kategoriQNS, 'add') > 0 ? '<h6 class="btn btn-success" style="font-size: 12px;"><a data-toggle="modal" data-target="#tambahDataFoto"> UPDATE FOTO</a></h6>' : '';
-                                ?>
+                            <?= level_user('proyek', 'data', $kategoriQNS, 'add') > 0 ? '<h6 class="btn btn-success float-right" style="font-size: 12px;"><a data-toggle="modal" data-target="#tambahDataFoto"> UPDATE FOTO</a></h6>' : '';
+                            ?>
+                            <form action="" method="GET" class="ml-auto">
+                                <div class="row align-items-center">
+                                    <div class="col-md-4">
+                                        <select name="tahun" id="tahun" class="form-control">
+                                            <option value="00">Tahun</option>
+                                            <?php foreach ($option_tahun as $data): ?>
+                                                <option value="<?php echo $data->tahun; ?>"><?php echo $data->tahun; ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
 
-                            </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select name="bulan" id="bulan" class="form-control">
+                                            <option value="00">Bulan</option>
+                                            <!-- Opsi Bulan akan diisi setelah pengguna memilih Tahun -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-lg btn-success" style="font-size:12px;"
+                                            type="submit">Filter</button>
+                                    </div>
+                                </div>
+                            </form>
 
                             <div class="table-responsive">
                                 <table class="table table-bordered dataTable">
@@ -120,63 +145,46 @@
                                                 $tgl_gbr = '';
                                             }
                                             ?>
-                                            <th style="text-align:center;width: 60%;font-size: 18px">FOTO Upd:
-                                                <?= $tgl_gbr ?>
-                                            </th>
-                                        </tr>
+    <th style="text-align:center;width: 60%;font-size: 18px">FOTO Upd: <?php echo $tgl_gbr ?></th>                                        </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>
                                                 <?php
                                                 if ($gambar->getNumRows() > 0) {
-                                                    if (esc($gambar->getRow()->gambar1) != '') {
-                                                        ?>
-                                                        <a target='_blank'
-                                                            href="<?= base_url() . esc($gambar->getRow()->gambar1) ?>"><img
-                                                                src="<?= base_url() . esc($gambar->getRow()->gambar1) ?>"
-                                                                class="rounded img-responsive" alt="foto proyek"> </a>
-                                                        <h5 style="text-align: center;">Gambar 1</h5>
-                                                        <?php
-                                                    }
-                                                    if (esc($gambar->getRow()->gambar2) != '') {
-                                                        ?>
-                                                        <a target='_blank'
-                                                            href="<?= base_url() . esc($gambar->getRow()->gambar2) ?>"><img
-                                                                src="<?= base_url() . esc($gambar->getRow()->gambar2) ?>"
-                                                                class="rounded img-responsive" alt="foto proyek"> </a>
-                                                        <h5 style="text-align: center;">Gambar 2</h5>
-                                                        <?php
-                                                    }
-                                                    if (esc($gambar->getRow()->gambar3) != '') {
-                                                        ?>
-                                                        <a target='_blank'
-                                                            href="<?= base_url() . esc($gambar->getRow()->gambar3) ?>"><img
-                                                                src="<?= base_url() . esc($gambar->getRow()->gambar3) ?>"
-                                                                class="rounded img-responsive" alt="foto proyek"> </a>
-                                                        <h5 style="text-align: center;">Gambar 3</h5>
-                                                        <?php
-                                                    }
-                                                    if (esc($gambar->getRow()->gambar4) != '') {
-                                                        ?>
-                                                        <a target='_blank'
-                                                            href="<?= base_url() . esc($gambar->getRow()->gambar4) ?>"><img
-                                                                src="<?= base_url() . esc($gambar->getRow()->gambar4) ?>"
-                                                                class="rounded img-responsive" alt="foto proyek"> </a>
+                                                    for ($i = 1; $i <= 5; $i++) {
+                                                        $gambarField = "gambar" . $i;
+                                                        $gambarUrl = esc($gambar->getRow()->$gambarField);
+                                                        if ($gambarUrl != '') {
+                                                            ?>
+                                                            <a href="#" data-toggle="modal" data-target="#gambarModal<?= $i ?>">
+                                                                <img src="<?= base_url() . $gambarUrl ?>"
+                                                                    class="rounded img-responsive" alt="foto proyek">
+                                                            </a>
+                                                            <h5 style="text-align: center;">Gambar
+                                                                <?= $i ?>
+                                                            </h5>
 
-                                                        <h5 style="text-align: center;">Gambar 4</h5>
-                                                        <?php
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="gambarModal<?= $i ?>" tabindex="-1"
+                                                                role="dialog" aria-labelledby="exampleModalLabel"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog modal-lg" role="document">
+                                                                    <!-- Adjust the modal-lg class for the desired size (e.g., modal-sm for small, modal-lg for large) -->
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body">
+                                                                            <img src="<?= base_url() . $gambarUrl ?>"
+                                                                                class="rounded img-responsive" alt="foto proyek">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <?php
+                                                        }
                                                     }
-                                                    if (esc($gambar->getRow()->gambar5) != '') {
-                                                        ?>
-                                                        <a target='_blank'
-                                                            href="<?= base_url() . esc($gambar->getRow()->gambar5) ?>"><img
-                                                                src="<?= base_url() . esc($gambar->getRow()->gambar5) ?>"
-                                                                class="rounded img-responsive" alt="foto proyek"> </a>
-                                                        <h5 style="text-align: center;">Gambar 5</h5>
-                                                        <?php
-                                                    }
-                                                } ?>
+                                                }
+                                                ?>
+
                                             </td>
                                     </tbody>
                                 </table>
@@ -195,7 +203,7 @@
     <div class="modal-dialog" style="width:90%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('proyek/dtutambah', ['id' => 'FormulirTambahDTU', 'enctype' => 'multipart/form-data']); ?>
+                <?= form_open(base_url('proyek/dtutambah'), ['enctype' => 'multipart/form-data']); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Perbaharui Data UMUM</h2>
                 </header>
@@ -237,7 +245,7 @@
     <div class="modal-dialog" style="width:90%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('proyek/fototambah', ['id' => 'FormulirTambahFoto', 'enctype' => 'multipart/form-data']); ?>
+                <?= form_open(base_url('proyek/fototambah'), ['id' => 'FormulirTambahFoto', 'enctype' => 'multipart/form-data']); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Perbaharui Data Foto</h2>
                 </header>
@@ -315,6 +323,30 @@
     </div>
 </div>
 <?= $this->include('layout/js') ?>
+<script>
+    // Tambahkan event listener untuk perubahan tahun
+    document.getElementById('tahun').addEventListener('change', function () {
+        const tahun = this.value;
+        const bulanSelect = document.getElementById('bulan');
+        bulanSelect.innerHTML = ''; // Mengosongkan opsi bulan
+
+        // Kirim permintaan AJAX untuk mengambil data bulan berdasarkan tahun yang dipilih
+        fetch(`<?= base_url('proyek/get_bulan_gbr'); ?>?id_pkp=<?= $id_pkp; ?>&tahun=${tahun}`)
+            .then(response => response.json())
+            .then(data => {
+                // Tambahkan opsi bulan ke dalam elemen select
+                data.forEach(bulan => {
+                    const option = document.createElement('option');
+                    option.value = bulan.bulan;
+                    option.textContent = bulan.nama_bulan;
+                    bulanSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+</script>
 <script type="text/javascript">
     $(".table-scrollable").freezeTable({
         'scrollable': true,
@@ -376,10 +408,12 @@
                         $('input[name="' + key + '"]').after(msg);
                     }
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
                             title: 'Notifikasi',
                             text: data.errors[key],
-                            type: 'danger'
+                            position: "top-end",
+                            showConfirmButton: false,
+                            icon: 'error'
                         });
                     }
                 }
@@ -390,10 +424,12 @@
                 $('#tambahDataDTU').modal('hide');
                 document.getElementById("FormulirTambahDTU").reset();
                 $('#submitformdtu').html('Submit');
-                new PNotify({
+                Swal.fire({
                     title: 'Notifikasi',
                     text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
                 });
                 window.setTimeout(function () {
                     //location.reload();
@@ -401,10 +437,13 @@
                 }, 2000);
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
                 text: "Request gagal, browser akan direload",
-                type: 'danger'
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
             });
             window.setTimeout(function () {
                 location.reload();
@@ -442,10 +481,12 @@
                         $('input[name="' + key + '"]').after(msg);
                     }
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
                             title: 'Notifikasi',
                             text: data.errors[key],
-                            type: 'danger'
+                            position: "top-end",
+                            showConfirmButton: false,
+                            icon: 'error'
                         });
                     }
                 }
@@ -456,10 +497,12 @@
                 $('#tambahDataFoto').modal('hide');
                 document.getElementById("FormulirTambahFoto").reset();
                 $('#submitformfoto').html('Submit');
-                new PNotify({
+                Swal.fire({
                     title: 'Notifikasi',
                     text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
                 });
                 window.setTimeout(function () {
                     //location.reload();
@@ -467,10 +510,13 @@
                 }, 2000);
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
                 text: "Request gagal, browser akan direload",
-                type: 'danger'
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
             });
             window.setTimeout(function () {
                 location.reload();

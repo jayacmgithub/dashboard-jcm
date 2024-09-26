@@ -142,7 +142,7 @@
     <div class="modal-dialog modal-lg" style="width:60%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('laporan/tambahaddendum', ' id="FormulirTambah" enctype="multipart/form-data"'); ?>
+                <?= form_open(base_url('laporan/tambahaddendum'), ' id="FormulirTambah" enctype="multipart/form-data"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Tambah Data Addendum</h2>
                 </header>
@@ -402,10 +402,12 @@
                         $('input[name="' + key + '"]').after(msg);
                     }
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
                             title: 'Notifikasi',
                             text: data.errors[key],
-                            type: 'danger'
+                            position: "top-end",
+                            showConfirmButton: false,
+                            icon: 'error'
                         });
                     }
                 }
@@ -417,20 +419,25 @@
                 $('#tambahData').modal('hide');
                 document.getElementById("FormulirTambah").reset();
                 $('#submitform').html('Submit');
-                new PNotify({
+                Swal.fire({
                     title: 'Notifikasi',
                     text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
                 });
                 window.setTimeout(function () {
                     location.reload();
                 }, 2000);
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
                 text: "Request gagal, browser akan direload",
-                type: 'danger'
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
             });
             window.setTimeout(function () {
                 location.reload();
@@ -469,10 +476,12 @@
                 var objek = Object.keys(data.errors);
                 for (var key in data.errors) {
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
                             title: 'Notifikasi',
                             text: data.errors[key],
-                            type: 'danger'
+                            position: "top-end",
+                            showConfirmButton: false,
+                            icon: 'error'
                         });
                     }
                 }
@@ -484,20 +493,25 @@
                 $('#modalHapus').modal('hide');
                 document.getElementById("FormulirHapus").reset();
                 $('#submitformHapus').html('Delete');
-                new PNotify({
+                Swal.fire({
                     title: 'Notifikasi',
                     text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
                 });
                 window.setTimeout(function () {
                     location.reload();
                 }, 2000);
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
                 text: "Request gagal, browser akan direload",
-                type: 'danger'
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
             });
             window.setTimeout(function () {
                 location.reload();
@@ -535,10 +549,12 @@
                         $('input[name="' + key + '"]').after(msg);
                     }
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
                             title: 'Notifikasi',
                             text: data.errors[key],
-                            type: 'danger'
+                            position: "top-end",
+                            showConfirmButton: false,
+                            icon: 'error'
                         });
                     }
                 }
@@ -550,20 +566,25 @@
                 $('#tambahData2').modal('hide');
                 document.getElementById("FormulirTambah2").reset();
                 $('#submitform2').html('Submit');
-                new PNotify({
+                Swal.fire({
                     title: 'Notifikasi',
                     text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
                 });
                 window.setTimeout(function () {
                     location.reload();
                 }, 2000);
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
-                text: "Request gagal, browser akan direload 22",
-                type: 'danger'
+                text: "Request gagal, browser akan direload",
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
             });
             window.setTimeout(function () {
                 location.reload();

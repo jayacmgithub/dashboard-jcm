@@ -43,7 +43,7 @@
                             <th style="vertical-align:middle;text-align:center;" rowspan="2">NAMA SESUAI KONTRAK</th>
                             <th style="vertical-align:middle;text-align:center;" colspan="2">JANGKA WAKTU PELAKSANAAN
                             </th>
-                            <th style="vertical-align:middle;text-align:center;" rowspan="2">HRG.PENAWARAN/ KONTRAK</th>
+                            <th style="vertical-align:middle;text-align:center;" colspan="1">HRG.PENAWARAN/ KONTRAK</th>
                             <th style="vertical-align:middle;text-align:center;" colspan="2">JAMINAN PELAKSANAAN</th>
                             <th style="vertical-align:middle;text-align:center;" colspan="2">FILE BAST</th>
                             <th style="vertical-align:middle;text-align:center;" rowspan="2">FILE SRT REF</th>
@@ -51,6 +51,7 @@
                         <tr style="background-color:#1b3a59;color:white;">
                             <th style="vertical-align:middle;text-align:center;">START</th>
                             <th style="vertical-align:middle;text-align:center;">FINISH</th>
+                            <th style="vertical-align:middle;text-align:center;">NETT PORSI</th>
                             <th style="vertical-align:middle;text-align:center;">NILAI</th>
                             <th style="vertical-align:middle;text-align:center;">TGL</th>
                             <th style="vertical-align:middle;text-align:center;">I</th>
@@ -119,7 +120,10 @@
                                     <?= $tgl_finish ?>
                                 </td>
                                 <td style="text-align:right">
-                                    <?= number_format($marketing->getRow()->harga_penawaran, 2, ',', '.') ?>
+                                    <?= number_format($marketing->getRow()->harga_penawaran, 2, ',', '.') ?><br>
+                                    <?= $marketing->getRow()->ppn ?>
+                                    <p class="font-weight-bold">NETT <?= number_format($marketing->getRow()->nett_porsi, 2, ',', '.') ?> </p>
+                                    <?= $marketing->getRow()->nett_porsi_kso ?>
                                 </td>
                                 <td style="text-align:right">
                                     <?= number_format($marketing->getRow()->jaminan_nilai, 2, ',', '.') ?>
@@ -185,7 +189,9 @@
                                         <?= $tgl_selesai ?>
                                     </td>
                                     <td style="text-align:right">
-                                        <?= number_format($dt_add->harga, 2, ',', '.') ?>
+                                        <?= number_format($dt_add->harga, 2, ',', '.') ?> <br>
+ 					<?= $dt_add->ppn ?>
+					<p class="font-weight-bold">NETT <?= number_format($dt_add->nett_porsi, 2, ',', '.') ?></p>
                                     </td>
                                     <td style="text-align:right">
                                         <?= number_format($dt_add->nilai_jaminan, 2, ',', '.') ?>
@@ -495,10 +501,12 @@
                         $('input[name="' + key + '"]').after(msg);
                     }
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
                             title: 'Notifikasi',
-                            text: data.errors[key],
-                            type: 'danger'
+                            text: data.message,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            icon: 'success'
                         });
                     }
                 }
@@ -517,10 +525,12 @@
                 });
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
-                text: "Request gagal, browser akan direload",
-                type: 'danger'
+                text: data.errors[key],
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
             });
             window.setTimeout(function () {
                 location.reload();
@@ -559,10 +569,12 @@
                 var objek = Object.keys(data.errors);
                 for (var key in data.errors) {
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
                             title: 'Notifikasi',
-                            text: data.errors[key],
-                            type: 'danger'
+                            text: data.message,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            icon: 'success'
                         });
                     }
                 }
@@ -574,17 +586,21 @@
                 $('#modalHapus').modal('hide');
                 document.getElementById("FormulirHapus").reset();
                 $('#submitformHapus').html('Delete');
-                new PNotify({
+                Swal.fire({
                     title: 'Notifikasi',
                     text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
                 });
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
-                text: "Request gagal, browser akan direload",
-                type: 'danger'
+                text: data.errors[key],
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
             });
             window.setTimeout(function () {
                 location.reload();
@@ -622,10 +638,12 @@
                         $('input[name="' + key + '"]').after(msg);
                     }
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
                             title: 'Notifikasi',
-                            text: data.errors[key],
-                            type: 'danger'
+                            text: data.message,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            icon: 'success'
                         });
                     }
                 }
@@ -644,10 +662,13 @@
                 });
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
-                text: "Request gagal, browser akan direload 22",
-                type: 'danger'
+                text: "Request gagal, browser akan direload",
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
             });
             window.setTimeout(function () {
                 location.reload();
@@ -658,3 +679,5 @@
 </script>
 
 <?= $this->endSection() ?>
+
+

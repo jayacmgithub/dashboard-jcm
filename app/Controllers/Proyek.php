@@ -7,6 +7,7 @@ use App\Models\DashboardModel;
 use App\Models\LoginModel;
 use App\Models\ProyekModel;
 use App\Models\AksesModel;
+use App\Models\InvoiceModel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -16,9 +17,10 @@ use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Worksheet\PageSetup;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 use CodeIgniter\HTTP\IncomingRequest;
+use CodeIgniter\HTTP\Files\UploadedFile;
 use App\Libraries\FPDF;
 use Config\Services;
-
+use Config\Database;
 
 class Proyek extends BaseController
 {
@@ -32,6 +34,8 @@ class Proyek extends BaseController
         $this->dashboard = new DashboardModel();
         $this->proyek = new ProyekModel();
         $this->session = Services::session();
+        $this->invoice = new InvoiceModel();
+
         helper(['string', 'security', 'form', 'esc']);
     }
 
@@ -41,12 +45,26 @@ class Proyek extends BaseController
         $data['judul'] = 'PROYEK';
         $idQNS = session('idadmin');
         $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $pkp_user = $isi->pkp_user;
         $kategoriQNS = $isi->kategori_user;
         $data['kategoriQNS'] = $kategoriQNS;
         $data['tes0'] = $this->dashboard->getId();
         $data['tes1'] = $this->dashboard->getOne();
         $data['tes2'] = $this->dashboard->getTwo();
         $data['kategori'] = $kategoriQNS;
+        $dennis = $isi->username;
+        if ($pkp_user != '') {
+            $pkp_user = $isi->pkp_user;
+            if ($pkp_user != '') {
+                $proyek = $this->db->table('master_pkp')->getWhere(['id_pkp' => $pkp_user], 1);
+                $id_divisi = $proyek->getRow()->id_instansi;
+                $no_pkp = $proyek->getRow()->no_pkp;
+            }
+            $divisi = $this->db->table('master_instansi')->getWhere(['id' => $id_divisi], 1);
+            $no_divisi = $divisi->getRow()->nomor;
+            $data['no_divisi'] = $no_divisi;
+            $data['no_pkp'] = $no_pkp;
+        }
         return view('proyek/index', $data);
     }
 
@@ -66,20 +84,6 @@ class Proyek extends BaseController
         }
         if (!level_user('proyek', 'data', $kategoriQNS, 'read') > 0) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-        }
-
-        if (level_user('proyek', 'data', $kategoriQNS, 'all') > 0) {
-            $data['gedung1'] = $this->proyek->getAllPKP();
-        } else {
-            if ($isi->username == '10288') {
-                $data['gedung1'] = $this->proyek->getWakadiratPKP();
-            } else {
-                if (level_user('proyek', 'data', $kategoriQNS, 'divisi') > 0) {
-                    $data['gedung1'] = $this->proyek->getDivisiPKP($id_divisi);
-                } else {
-                    $data['gedung1'] = $this->proyek->getProyekPKP($pkp_user);
-                }
-            }
         }
 
         $data['instansi'] = $this->db->table('master_instansi')->get()->getResult();
@@ -113,19 +117,6 @@ class Proyek extends BaseController
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
-        if (level_user('proyek', 'data', $kategoriQNS, 'all') > 0) {
-            $data['gedung2'] = $this->proyek->getAllPKP2();
-        } else {
-            if ($isi->username == '10288') {
-                $data['gedung2'] = $this->proyek->getWakadiratPKP2();
-            } else {
-                if (level_user('proyek', 'data', $kategoriQNS, 'divisi') > 0) {
-                    $data['gedung2'] = $this->proyek->getDivisiPKP2($id_divisi);
-                } else {
-                    $data['gedung2'] = $this->proyek->getProyekPKP2($pkp_user);
-                }
-            }
-        }
 
         $data['instansi'] = $this->db->table('master_instansi')->get()->getResult();
 
@@ -156,20 +147,6 @@ class Proyek extends BaseController
         }
         if (!level_user('proyek', 'data', $kategoriQNS, 'read') > 0) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-        }
-
-        if (level_user('proyek', 'data', $kategoriQNS, 'all') > 0) {
-            $data['gedung3'] = $this->proyek->getAllPKP2();
-        } else {
-            if ($isi->username == '10288') {
-                $data['gedung3'] = $this->proyek->getWakadiratPKP2();
-            } else {
-                if (level_user('proyek', 'data', $kategoriQNS, 'divisi') > 0) {
-                    $data['gedung3'] = $this->proyek->getDivisiPKP2($id_divisi);
-                } else {
-                    $data['gedung3'] = $this->proyek->getProyekPKP2($pkp_user);
-                }
-            }
         }
 
         $data['instansi'] = $this->db->table('master_instansi')->get()->getResult();
@@ -437,6 +414,8 @@ class Proyek extends BaseController
 
     public function edit_1($kode)
     {
+        $data['id_pkp'] = $this->request->uri->getSegment(4);
+        $id_pkp = $this->request->uri->getSegment(4);
         $data['kode'] = '02';
 
         $idQNS = session('idadmin');
@@ -467,9 +446,6 @@ class Proyek extends BaseController
         } else {
             $id_progress_proyek = '';
         }
-        $data['paket'] = $this->db->table("progress_paket a")->select("a.tgl_sadd,a.tgl_fadd,a.bulan,a.kode_pt,b.proyek,a.paket,a.id_pkp,a.bobot_pg,a.rensd_mgll,a.rilsd_mgll,a.devsd_mgll,a.ren_mgini,a.ril_mgini,a.dev_mgini,a.rensd_mgini,a.rilsd_mgini,a.devsd_mgini,a.sisa_bobotpg,a.tgl_mulai,a.tgl_selesai,a.sisa_waktu,a.target_minggu,d.alias,a.keterangan")->join('master_pkp b', 'a.id_pkp = b.id_pkp')->join('pt_detil c', 'a.id_pt = c.id', 'left')->join('pt_master d', 'c.id_pt = d.id', 'left')->where('a.progress_proyek', $id_progress_proyek)->orderBy("a.nomor", "ascd")->get()->getResult();
-
-        $data['proyek2'] = $this->db->table("progress_proyek a")->select("a.bulan,a.tahun,b.proyek,a.id_pkp,a.bobot_pg,a.rensd_mgll,a.rilsd_mgll,a.devsd_mgll,a.ren_mgini,a.ril_mgini,a.dev_mgini,a.rensd_mgini,a.rilsd_mgini,a.devsd_mgini,a.sisa_bobotpg,a.tgl_mulai,a.tgl_selesai,a.sisa_waktu,a.target_minggu,a.tgl_ubah_progress")->join('master_pkp b', 'a.id_pkp = b.id_pkp')->where('a.id', $id_progress_proyek)->get()->getResult();
 
         $data['cek_pro'] = $this->db->table("progress_proyek")->where('id_pkp', $kode, 1)->get();
 
@@ -489,16 +465,189 @@ class Proyek extends BaseController
 
         $data['judul'] = '<a href="' . base_url() . 'proyek" style="color:white">PROYEK | </a><a style="color:white">' . $data['proyek']->getRow()->alias . ' | </a> <a href="' . base_url() . $data['instansi3']->getRow()->ling . '" style="color:white">' . $data['instansi3']->getRow()->alias . '</a>';
 
+        $bulan = $this->request->getGet('bulan') ?? '00';
+        $tahun = $this->request->getGet('tahun') ?? '00';
+
+        if ($bulan === '00' && $tahun === '00') {
+            $data['paket'] = $this->db->table("progress_paket a")
+                ->select("a.tahun,a.tgl_sadd,a.tgl_fadd,a.bulan,a.kode_pt,b.proyek,a.paket,a.id_pkp,a.bobot_pg,a.rensd_mgll,a.rilsd_mgll,a.devsd_mgll,a.ren_mgini,a.ril_mgini,a.dev_mgini,a.rensd_mgini,a.rilsd_mgini,a.devsd_mgini,a.sisa_bobotpg,a.tgl_mulai,a.tgl_selesai,a.sisa_waktu,a.target_minggu,d.alias,a.keterangan")
+                ->join('master_pkp b', 'a.id_pkp = b.id_pkp')
+                ->join('pt_detil c', 'a.id_pt = c.id', 'left')
+                ->join('pt_master d', 'c.id_pt = d.id', 'left')
+                ->where('a.progress_proyek', $id_progress_proyek)
+                ->orderBy("a.nomor", "ascd")
+                ->get()->getResult();
+
+            $data['proyek2'] = $this->db->table("progress_proyek a")
+                ->select("a.bulan,a.tahun,b.proyek,a.id_pkp,a.bobot_pg,a.rensd_mgll,a.rilsd_mgll,a.devsd_mgll,a.ren_mgini,a.ril_mgini,a.dev_mgini,a.rensd_mgini,a.rilsd_mgini,a.devsd_mgini,a.sisa_bobotpg,a.tgl_mulai,a.tgl_selesai,a.sisa_waktu,a.target_minggu,a.tgl_ubah_progress")
+                ->join('master_pkp b', 'a.id_pkp = b.id_pkp')
+                ->where('a.id_pkp', $id_pkp)
+                ->where('a.id', $id_progress_proyek)
+                ->get()->getResult();
+
+        } else {
+            // Subquery to get the max kode for each nomor, tahun, bulan
+            $subquery = $this->db->table('progress_paket')
+                ->select('MAX(kode) AS max_kode, nomor, tahun, bulan')
+                ->where('id_pkp', $id_pkp)
+                ->where('tahun', $tahun)
+                ->where('bulan', $bulan)
+                ->groupBy('nomor, tahun, bulan')
+                ->getCompiledSelect();
+
+            // Main query
+            $query = $this->db->table('progress_paket a')
+                ->select('a.tahun, a.tgl_sadd, a.tgl_fadd, a.bulan, a.kode_pt, b.proyek, a.paket, a.id_pkp, a.bobot_pg, a.rensd_mgll, a.rilsd_mgll, a.devsd_mgll, a.ren_mgini, a.ril_mgini, a.dev_mgini, a.rensd_mgini, a.rilsd_mgini, a.devsd_mgini, a.sisa_bobotpg, a.tgl_mulai, a.tgl_selesai, a.sisa_waktu, a.target_minggu, d.alias, a.keterangan')
+                ->join('master_pkp b', 'a.id_pkp = b.id_pkp')
+                ->join('pt_detil c', 'a.id_pt = c.id', 'left')
+                ->join('pt_master d', 'c.id_pt = d.id', 'left')
+                ->join("($subquery) max_pp", 'a.kode = max_pp.max_kode AND a.nomor = max_pp.nomor AND a.tahun = max_pp.tahun AND a.bulan = max_pp.bulan')
+                ->where('a.id_pkp', $id_pkp);
+
+            if (!empty($tahun) && !empty($bulan)) {
+                $query->where('a.bulan', $bulan)
+                    ->where('a.tahun', $tahun);
+            }
+
+            $result = $query->get()->getResult();
+            $data['paket'] = $result;
+
+            $query = $this->db->table("progress_proyek a")
+                ->select("a.bulan,a.tahun,b.proyek,a.id_pkp,a.bobot_pg,a.rensd_mgll,a.rilsd_mgll,a.devsd_mgll,a.ren_mgini,a.ril_mgini,a.dev_mgini,a.rensd_mgini,a.rilsd_mgini,a.devsd_mgini,a.sisa_bobotpg,a.tgl_mulai,a.tgl_selesai,a.sisa_waktu,a.target_minggu,a.tgl_ubah_progress")
+                ->join('master_pkp b', 'a.id_pkp = b.id_pkp')
+                ->where('a.id_pkp', $id_pkp)
+                ->where('a.id', $id_progress_proyek);
+
+            if (!empty($tahun) && !empty($bulan)) {
+                $query->where("a.bulan", $bulan)
+                    ->where("a.tahun", $tahun);
+            }
+
+            $result2 = $query->get()->getResult();
+            $data['proyek2'] = $result2;
+        }
+
+        // $data['paket'] = $this->db->table("progress_paket a")
+        //     ->select("a.tgl_sadd,a.tgl_fadd,a.bulan,a.kode_pt,b.proyek,a.paket,a.id_pkp,a.bobot_pg,a.rensd_mgll,a.rilsd_mgll,a.devsd_mgll,a.ren_mgini,a.ril_mgini,a.dev_mgini,a.rensd_mgini,a.rilsd_mgini,a.devsd_mgini,a.sisa_bobotpg,a.tgl_mulai,a.tgl_selesai,a.sisa_waktu,a.target_minggu,d.alias,a.keterangan")
+        //     ->join('master_pkp b', 'a.id_pkp = b.id_pkp')
+        //     ->join('pt_detil c', 'a.id_pt = c.id', 'left')
+        //     ->join('pt_master d', 'c.id_pt = d.id', 'left')
+        //     ->where('a.progress_proyek', $id_progress_proyek)
+        //     ->orderBy("a.nomor", "ascd")->get()->getResult();
+        $data['option_tahun'] = $this->proyek->option_tahun($id_pkp);
+        $data['$id_progress_proyek'] = $id_progress_proyek;
+        // $data['proyek2'] = $this->db->table("progress_proyek a")->select("a.bulan,a.tahun,b.proyek,a.id_pkp,a.bobot_pg,a.rensd_mgll,a.rilsd_mgll,a.devsd_mgll,a.ren_mgini,a.ril_mgini,a.dev_mgini,a.rensd_mgini,a.rilsd_mgini,a.devsd_mgini,a.sisa_bobotpg,a.tgl_mulai,a.tgl_selesai,a.sisa_waktu,a.target_minggu,a.tgl_ubah_progress")->join('master_pkp b', 'a.id_pkp = b.id_pkp')->where('a.id', $id_progress_proyek)->get()->getResult();
+        // ;
         $data['marketing'] = $this->db->table('master_pkp a')->select("b.nomor,a.no_pkp,a.alias,a.proyek,a.tgl_mulai,a.tgl_selesai,a.nilai_jaminan,a.tgl_jaminan,a.bast_1,a.bast_2,a.referensi,a.id_pkp")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.tgl_ubah_progress >', '2010-01-01')->orderBy('b.nomor')->orderBy('a.no_pkp', 'DESC')->get()->getResult();
+        $marketing = $this->db->table('master_pkp a')
+            ->select("b.nomor,a.no_pkp,a.alias,a.proyek,a.tgl_mulai,a.tgl_selesai,a.nilai_jaminan,a.tgl_jaminan,a.bast_1,a.bast_2,a.referensi,a.id_pkp")
+            ->join('master_instansi b', 'a.id_instansi = b.id')
+            ->where('a.tgl_ubah_progress >', '2010-01-01')
+            ->orderBy('b.nomor')
+            ->orderBy('a.no_pkp', 'DESC')
+            ->get()
+            ->getRow();
+
+        if ($marketing) {
+            $id_pkp = $marketing->id_pkp;
+            $QNS0 = $this->db->table('addendum')->select('*')->where('id_marketing', $id_pkp)->get();
+            if ($QNS0->getNumRows() > 0) {
+                $data['QNS0'] = $QNS0->getResult();
+            }
+        }
+
+        $data['QNS0'] = $QNS0->getResult();
         $data['kategoriQNS'] = $kategoriQNS;
         $data['kategori'] = $kategoriQNS;
-
         return view('proyek/gedung/gedung1-edit', $data);
+    }
+
+
+    public function get_bulan()
+    {
+        $request = \Config\Services::request();
+        $id_pkp = $request->getGet('id_pkp');
+        $tahun = $request->getGet('tahun');
+
+        // Mengambil daftar bulan berdasarkan id_pkp dan tahun yang dipilih
+        $bulan_list = $this->proyek->option_bulan($id_pkp, $tahun);
+
+        // Format nama bulan
+        $nama_bulan = [
+            '01' => 'Januari',
+            '02' => 'Februari',
+            '03' => 'Maret',
+            '04' => 'April',
+            '05' => 'Mei',
+            '06' => 'Juni',
+            '07' => 'Juli',
+            '08' => 'Agustus',
+            '09' => 'September',
+            '10' => 'Oktober',
+            '11' => 'November',
+            '12' => 'Desember'
+        ];
+
+        $data = [];
+        foreach ($bulan_list as $bulan) {
+            $data[] = [
+                'bulan' => $bulan->bulan,
+                'nama_bulan' => $nama_bulan[$bulan->bulan]
+            ];
+        }
+
+        // Mengembalikan data dalam format JSON
+        header('Content-Type: application/json'); // Atur header untuk menjamin respons JSON
+        echo json_encode($data);
+        exit; // Hentikan eksekusi kode setelah ini
+    }
+
+
+
+    public function get_bulan_msl()
+    {
+        $request = \Config\Services::request();
+        $id_pkp = $request->getGet('id_pkp');
+        $tahun = $request->getGet('tahun');
+        $data['id_pkp'] = $this->request->uri->getSegment(4);
+        // Mengambil daftar bulan berdasarkan id_pkp dan tahun yang dipilih
+        $bulan_list = $this->proyek->option_bulan_msl($id_pkp, $tahun);
+
+        // Format nama bulan
+        $nama_bulan = [
+            '1' => 'Januari',
+            '2' => 'Februari',
+            '3' => 'Maret',
+            '4' => 'April',
+            '5' => 'Mei',
+            '6' => 'Juni',
+            '7' => 'Juli',
+            '8' => 'Agustus',
+            '9' => 'September',
+            '10' => 'Oktober',
+            '11' => 'November',
+            '12' => 'Desember'
+        ];
+
+        $data = [];
+        foreach ($bulan_list as $bulan) {
+            $data[] = [
+                'bulan' => $bulan->bulan,
+                'nama_bulan' => $nama_bulan[$bulan->bulan]
+            ];
+        }
+
+        // Mengembalikan data dalam format JSON
+        header('Content-Type: application/json'); // Atur header untuk menjamin respons JSON
+        echo json_encode($data);
+        exit; // Hentikan eksekusi kode setelah ini
     }
 
     public function edit_2($kode)
     {
+        $id_pkp = $this->request->uri->getSegment(4);
         $data['kode'] = '02';
+        $data['id_pkp'] = $this->request->uri->getSegment(4);
         $data['breadcumb'] = $this->db->table('master_pkp')->getWhere(['id_pkp' => $kode], 1);
         $data['divisi'] = $this->db->table("master_pkp a")->select("b.alias")->join('master_instansi b', 'a.id_instansi = b.id')->getWhere(['id_pkp' => $kode], 1);
         $idQNS = session('idadmin');
@@ -510,13 +659,13 @@ class Proyek extends BaseController
         $data['instansi'] = $this->db->table('master_instansi')->get()->getResult();
 
         $data['proyek'] = $this->db->table('master_pkp')->getWhere(['id_pkp' => $kode], 1);
-        $tgl = $data['proyek']->getRow()->tgl_ubah_progress;
+        $tgl = $data['proyek']->getRow()->tgl_ubah;
         $data['tahun'] = substr($tgl, 2, 2);
         $data['bulan'] = substr($tgl, 5, 2);
 
         $data['instansiQN'] = $this->db->table("master_pkp a")->select("b.nomor")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $kode)->get();
         $data['nomorQN'] = $data['instansiQN']->getRow()->nomor;
-
+        $data['option_tahun'] = $this->proyek->option_tahun_msl($id_pkp);
         $data['instansi2'] = $this->db->table("master_pkp a")->select("b.nomor")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $kode)->get();
         $data['instansi3'] = $this->db->table("master_pkp a")->select("b.nomor,b.alias,b.ling")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $kode)->get();
 
@@ -530,10 +679,36 @@ class Proyek extends BaseController
 
         $data['dt_umum'] = $this->db->table("dt_umum")->select("*")->where('pkp', $kode)->orderBy('no_urut1', 'ascd')->get()->getResult();
 
-        $data['solusi'] = $this->db->table("solusi a")->select("a.nomor,a.type,a.masalah,a.penyebab,a.dampak,a.solusi,a.pic,a.target")->join('master_pkp b', 'a.id_pkp = b.id_pkp')->where('a.id_pkp', $kode)->where('a.type', 'EKS')->where('a.id_solusi = b.id_solusi')->orderBy('a.nomor', 'ascd')->get()->getResult();
+        $bulan = $this->request->getGet('bulan') ?? '00';
+        $tahun = $this->request->getGet('tahun') ?? '00';
 
-        $data['solusi2'] = $this->db->table("solusi a")->select("a.nomor,a.type,a.masalah,a.penyebab,a.dampak,a.solusi,a.pic,a.target")->join('master_pkp b', 'a.id_pkp = b.id_pkp')->where('a.id_pkp', $kode)->where('a.type', 'INT')->where('a.id_solusi = b.id_solusi')->orderBy('a.nomor', 'ascd')->get()->getResult();
+        if ($bulan === '00' && $tahun === '00') {
+            $data['solusi'] = $this->db->table("solusi a")
+                ->select("a.nomor,a.type,a.masalah,a.penyebab,a.dampak,a.solusi,a.pic,a.target")
+                ->join('master_pkp b', 'a.id_pkp = b.id_pkp')
+                ->where('a.id_pkp', $kode)
+                ->where('a.type', 'EKS')
+                ->where('a.id_solusi = b.id_solusi')
+                ->orderBy('a.nomor', 'ascd')
+                ->get()
+                ->getResult();
 
+            $data['solusi2'] = $this->db->table("solusi a")
+                ->select("a.nomor,a.type,a.masalah,a.penyebab,a.dampak,a.solusi,a.pic,a.target")
+                ->join('master_pkp b', 'a.id_pkp = b.id_pkp')
+                ->where('a.id_pkp', $kode)
+                ->where('a.type', 'INT')
+                ->where('a.id_solusi = b.id_solusi')
+                ->orderBy('a.nomor', 'ascd')
+                ->get()
+                ->getResult();
+        } else {
+            $solusi = $this->proyek->view_progress_solusi($tahun, $bulan, $id_pkp);
+            $solusi2 = $this->proyek->view_progress_solusi2($tahun, $bulan, $id_pkp);
+
+            $data['solusi'] = $solusi;
+            $data['solusi2'] = $solusi2;
+        }
         $data['gambar'] = $this->db->table("gambar a")->select("a.gambar1,a.gambar2,a.gambar3,a.gambar4,a.gambar5")->join('master_pkp b', 'a.id_pkp = b.id_pkp')->where('a.id_pkp', $kode)->where('a.tgl_ubah = b.tgl_ubah_gbr')->orderBy("a.kode", "desc")->get();
 
         $data['dcr'] = $this->db->table("dcr a")->select("a.ket1,a.ket2,a.ket3,a.ket4,a.ket5,a.ket6,a.ket7,a.ket8,a.ket9,a.ket10,a.ket11,a.ket12,a.ket13,a.ket14,a.ket15,a.ket16,a.ket17,a.ket18,a.ket19,a.ket20,a.ket21")->join('master_pkp b', 'a.id_pkp = b.id_pkp')->where('a.id_pkp', $kode)->where('a.id_dcr = b.id_dcr')->get()->getResult();
@@ -547,11 +722,52 @@ class Proyek extends BaseController
         return view('proyek/gedung/gedung1-edit2', $data);
     }
 
+    public function get_bulan_gbr()
+    {
+        $request = \Config\Services::request();
+        $id_pkp = $request->getGet('id_pkp');
+        $tahun = $request->getGet('tahun');
+        $data['id_pkp'] = $this->request->uri->getSegment(4);
+        // Mengambil daftar bulan berdasarkan id_pkp dan tahun yang dipilih
+        $bulan_list = $this->proyek->option_bulan_gbr($id_pkp, $tahun);
+
+        // Format nama bulan
+        $nama_bulan = [
+            '1' => 'Januari',
+            '2' => 'Februari',
+            '3' => 'Maret',
+            '4' => 'April',
+            '5' => 'Mei',
+            '6' => 'Juni',
+            '7' => 'Juli',
+            '8' => 'Agustus',
+            '9' => 'September',
+            '10' => 'Oktober',
+            '11' => 'November',
+            '12' => 'Desember'
+        ];
+
+        $data = [];
+        foreach ($bulan_list as $bulan) {
+            $data[] = [
+                'bulan' => $bulan->bulan,
+                'nama_bulan' => $nama_bulan[$bulan->bulan]
+            ];
+        }
+
+        // Mengembalikan data dalam format JSON
+        header('Content-Type: application/json'); // Atur header untuk menjamin respons JSON
+        echo json_encode($data);
+        exit; // Hentikan eksekusi kode setelah ini
+    }
+
     public function edit_3($kode)
     {
         $data['kode'] = '02';
         $idQNS = session('idadmin');
         $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $id_pkp = $this->request->uri->getSegment(4);
+        $data['id_pkp'] = $this->request->uri->getSegment(4);
         $kategoriQNS = $isi->kategori_user;
         if (!level_user('proyek', 'data', $kategoriQNS, 'read') > 0) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
@@ -584,7 +800,26 @@ class Proyek extends BaseController
 
         $data['solusi2'] = $this->db->table("solusi a")->select("a.nomor,a.type,a.masalah,a.penyebab,a.dampak,a.solusi,a.pic,a.target")->join('master_pkp b', 'a.id_pkp = b.id_pkp')->where('a.id_pkp', $kode)->where('a.type', 'INT')->where('a.id_solusi = b.id_solusi')->orderBy('a.nomor', 'ascd')->get()->getResult();
 
-        $data['gambar'] = $this->db->table("gambar a")->select("a.gambar1,a.gambar2,a.gambar3,a.gambar4,a.gambar5")->join('master_pkp b', 'a.id_pkp = b.id_pkp')->where('a.id_pkp', $kode)->where('a.tgl_ubah = b.tgl_ubah_gbr')->orderBy("a.kode", "desc")->get();
+        $data['option_tahun'] = $this->proyek->option_tahun_gbr($id_pkp);
+
+        $bulan = $this->request->getGet('bulan') ?? '00';
+        $tahun = $this->request->getGet('tahun') ?? '00';
+
+        if ($bulan === '00' && $tahun === '00') {
+            $data['gambar'] = $this->db->table("gambar a")
+                ->select("a.tgl_ubah,a.gambar1,a.gambar2,a.gambar3,a.gambar4,a.gambar5")
+                ->join('master_pkp b', 'a.id_pkp = b.id_pkp')
+                ->where('a.id_pkp', $kode)
+                ->where('a.tgl_ubah = b.tgl_ubah_gbr')
+                ->orderBy("a.kode", "desc")
+                ->get();
+
+        } else {
+            $gambar = $this->proyek->view_progress_gambar($tahun, $bulan, $id_pkp);
+
+            $data['gambar'] = $gambar;
+        }
+
 
         $data['dcr'] = $this->db->table("dcr a")->select("a.ket1,a.ket2,a.ket3,a.ket4,a.ket5,a.ket6,a.ket7,a.ket8,a.ket9,a.ket10,a.ket11,a.ket12,a.ket13,a.ket14,a.ket15,a.ket16,a.ket17,a.ket18,a.ket19,a.ket20,a.ket21")->join('master_pkp b', 'a.id_pkp = b.id_pkp')->where('a.id_pkp', $kode)->where('a.id_dcr = b.id_dcr')->get()->getResult();
 
@@ -680,34 +915,54 @@ class Proyek extends BaseController
         $data['mon_dcr1a'] = $this->db->table("mon_dcr")->select("*")->where('type', 'TOTAL')->where('id_pkp', $kode)->get();
         $data['no_pkp'] = $data['proyek']->getRow()->no_pkp;
 
-        // For $db2
         $queryBuilder2 = \Config\Database::connect('qns_dcrv7')->table('dokumen a')
-            ->select("d.nama_admin,b.keterangan,b.id_pkp,b.no_pkp,b.alias, MIN(a.tgl_system) as tgl_min, MAX(a.tgl_system) as tgl_max, COUNT(a.id) as total1, sum(if(a.file!='',1,0)) as upload, sum(if((a.tgl_keluar > 0 and a.tgl_keluar > a.tgl_target) or (a.tgl_keluar < 1 and $now > a.tgl_target),1,0)) as telat, sum(if(a.status_dokumen = 'OUT-K' or a.status_dokumen = 'OUT-O' or a.status_dokumen = 'OUT-L',1,0)) as blm_kembali")
+            ->select("MAX(d.nama_admin) AS nama_admin, b.keterangan, b.id_pkp, b.no_pkp, b.alias, MIN(a.tgl_system) as tgl_min, MAX(a.tgl_system) as tgl_max, COUNT(a.id) as total1, sum(if(a.file!='',1,0)) as upload, sum(if((a.tgl_keluar > 0 and a.tgl_keluar > a.tgl_target) or (a.tgl_keluar < 1 and $now > a.tgl_target),1,0)) as telat, sum(if(a.status_dokumen = 'OUT-K' or a.status_dokumen = 'OUT-O' or a.status_dokumen = 'OUT-L',1,0)) as blm_kembali")
             ->join('master_pkp b', 'a.id_pkp = b.id_pkp')
             ->join('master_instansi c', 'b.id_instansi = c.id')
             ->join('master_admin d', 'b.id_admin = d.username', 'left')
             ->where('b.no_pkp', $data['no_pkp']);
 
         $data['datadcr'] = $queryBuilder2->get()->getResult();
+	
+	$qns_dcr_ikn = Database::connect('qns_dcr_ikn');
 
-        // For $db3
-        $queryBuilder3 = \Config\Database::connect('qns_dcr_ikn')->table('dokumen a')
-            ->select("d.nama_admin,b.keterangan,b.id_pkp,b.no_pkp,b.alias, MIN(a.tgl_system) as tgl_min, MAX(a.tgl_system) as tgl_max, COUNT(a.id) as total1, sum(if(a.file!='',1,0)) as upload, sum(if((a.tgl_keluar > 0 and a.tgl_keluar > a.tgl_target) or (a.tgl_keluar < 1 and $now > a.tgl_target),1,0)) as telat, sum(if(a.status_dokumen = 'OUT-K' or a.status_dokumen = 'OUT-O' or a.status_dokumen = 'OUT-L',1,0)) as blm_kembali")
+        $data['datadcrikn'] = $qns_dcr_ikn->table('dokumen a')
+            ->select("MAX(d.nama_admin) AS nama_admin, b.keterangan, b.id_pkp, b.no_pkp, b.alias, MIN(a.tgl_system) as tgl_min, MAX(a.tgl_system) as tgl_max, COUNT(a.id) as total1, sum(if(a.file!='',1,0)) as upload, sum(if((a.tgl_keluar > 0 and a.tgl_keluar > a.tgl_target) or (a.tgl_keluar < 1 and $now > a.tgl_target),1,0)) as telat, sum(if(a.status_dokumen = 'OUT-K' or a.status_dokumen = 'OUT-O' or a.status_dokumen = 'OUT-L',1,0)) as blm_kembali")
             ->join('master_pkp b', 'a.id_pkp = b.id_pkp')
             ->join('master_instansi c', 'b.id_instansi = c.id')
             ->join('master_admin d', 'b.id_admin = d.username', 'left')
-            ->where('b.no_pkp', $data['no_pkp']);
+            ->where('b.no_pkp', $data['no_pkp'])
+	    ->get()
+	    ->getResult();
 
-        $data['datadcrikn'] = $queryBuilder3->get()->getResult();
+// Sambungkan ke database qns_dcrv7
+$db_dcr = \Config\Database::connect('qns_dcrv7');
 
+// Langkah 1: Cek $kode di tabel master_pkp di database qns_dashv7
+$no_pkp = $this->db->table('master_pkp')
+    ->select('no_pkp')
+    ->where('id_pkp', $kode)
+    ->get()
+    ->getRow();
 
+// Langkah 2: Jika no_pkp ditemukan, ambil id_pkp dari database qns_dcrv7
+if ($no_pkp) {
+    $id_pkp_dcr = $db_dcr->table('master_pkp')
+        ->select('id_pkp')
+        ->where('no_pkp', $no_pkp->no_pkp)
+        ->get()
+        ->getRow();
 
-        $data['dcr_ok'] = \Config\Database::connect('qns_dcrv7')->table('dokumen')
-            ->select('id_pkp')
-            ->where('id_pkp', $kode)
-            ->get()
-            ->getNumRows();
-        // end dzaki - load database 2
+    // Simpan hasil ke $data['dcr_ok'] jika ditemukan
+    if ($id_pkp_dcr) {
+        $data['dcr_ok'] = $id_pkp_dcr->id_pkp;
+    } else {
+        $data['dcr_ok'] = 'Data id_pkp tidak ditemukan di qns_dcrv7';
+    }
+} else {
+    $data['dcr_ok'] = 'Data no_pkp tidak ditemukan di qns_dashv7';
+}
+      // end dzaki - load database 2
 
         $data['judul'] = '<a href="' . base_url() . 'proyek" style="color:white">PROYEK | </a><a style="color:white">' . $data['proyek']->getRow()->alias . ' | </a> <a href="' . base_url() . $data['instansi3']->getRow()->ling . '" style="color:white">' . $data['instansi3']->getRow()->alias . '</a>';
         $data['kategoriQNS'] = $kategoriQNS;
@@ -715,9 +970,52 @@ class Proyek extends BaseController
 
         return view('proyek/gedung/gedung1-edit5', $data);
     }
+
+
+    public function get_bulan_absensi()
+    {
+        $request = \Config\Services::request();
+        $id_pkp = $request->getGet('id_pkp');
+        $tahun = $request->getGet('tahun');
+        $data['id_pkp'] = $this->request->uri->getSegment(4);
+        // Mengambil daftar bulan berdasarkan id_pkp dan tahun yang dipilih
+        $bulan_list = $this->proyek->option_bulan_absensi($id_pkp, $tahun);
+
+        // Format nama bulan
+        $nama_bulan = [
+            '01' => 'Januari',
+            '02' => 'Februari',
+            '03' => 'Maret',
+            '04' => 'April',
+            '05' => 'Mei',
+            '06' => 'Juni',
+            '07' => 'Juli',
+            '08' => 'Agustus',
+            '09' => 'September',
+            '10' => 'Oktober',
+            '11' => 'November',
+            '12' => 'Desember'
+        ];
+
+        $data = [];
+        foreach ($bulan_list as $bulan) {
+            $data[] = [
+                'bulan' => $bulan->bulan,
+                'nama_bulan' => $nama_bulan[$bulan->bulan]
+            ];
+        }
+
+        // Mengembalikan data dalam format JSON
+        header('Content-Type: application/json'); // Atur header untuk menjamin respons JSON
+        echo json_encode($data);
+        exit; // Hentikan eksekusi kode setelah ini
+    }
+
     public function edit_6($kode)
     {
         $data['kode'] = '02';
+        $data['id_pkp'] = $this->request->uri->getSegment(4);
+        $id_pkp = $this->request->uri->getSegment(4);
         $idQNS = session('idadmin');
         $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
         $kategoriQNS = $isi->kategori_user;
@@ -731,39 +1029,29 @@ class Proyek extends BaseController
         $data['tgl'] = $data['proyek']->getRow()->tgl_ubah_dcr;
         $data['tahun'] = substr($data['tgl'], 2, 2);
         $data['bulan'] = substr($data['tgl'], 5, 2);
-
+        $data['option_tahun'] = $this->proyek->option_tahun_absensi($id_pkp);
         $data['instansiQN'] = $this->db->table("master_pkp a")->select("b.nomor")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $kode)->get();
         $data['nomorQN'] = $data['instansiQN']->getRow()->nomor;
 
-        $satu = 1;
+       $satu = 1;
         $data['akses'] = $this->db->table('rule_akses')->getWhere(['id' => 'RULE1'], 1);
+
+        // First query
         $QN = $this->db->query("SELECT max(kode) as masKode FROM buka_akses WHERE id_pkp='$kode' and akses='KADIV' and urut='$satu' order by kode");
         $kode_akses = '';
         foreach ($QN->getResult() as $row) {
             $kode_akses = $row->masKode;
         }
+        $data['buka_akses2'] = $this->db->table("buka_akses")->select("*")->where('kode', $kode_akses)->get()->getResult();
 
-        $data['buka_akses2'] = $this->akses->where('kode', $kode_akses)->findAll();
-
+        // Second query
         $QN2 = $this->db->query("SELECT max(kode) as masKode FROM buka_akses WHERE id_pkp='$kode' and akses='KADIRAT' and urut='$satu' order by kode");
-
         $kode_akses2 = '';
         foreach ($QN2->getResult() as $row2) {
             $kode_akses2 = $row2->masKode;
         }
 
-        $data['buka_akses22'] = $this->akses->where('kode', $kode_akses2)->findAll();
-
-        // Check if $data['buka_akses2'] is not empty before using it
-        if (!empty($data['buka_akses2'])) {
-            // Access the keterangan property of the first element
-            $data['keterangan'] = $data['buka_akses2'][0]->keterangan;
-        } else {
-            // Handle the case when $data['buka_akses2'] is empty
-            $data['keterangan'] = ''; // or any default value
-        }
-
-
+        $data['buka_akses22'] = $this->db->table("buka_akses")->select("*")->where('kode', $kode_akses2)->get()->getResult();
         $data['instansi2'] = $this->db->table("master_pkp a")->select("b.nomor")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $kode)->get()->getResult();
         $data['instansi3'] = $this->db->table("master_pkp a")->select("b.nomor,b.alias,b.ling")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $kode)->get();
         $data['breadcumb'] = $this->db->table('master_pkp')->getWhere(['id_pkp' => $kode], 1);
@@ -788,7 +1076,6 @@ class Proyek extends BaseController
 
         $data['pdf'] = $this->db->table("pdf a")->select("a.pdf1,a.pdf2,a.pdf3,a.pdf4,a.pdf5,a.pdf6,a.pdf7,a.pdf8,a.pdf9,a.pdf10")->join('master_pkp b', 'a.id_pkp = b.id_pkp')->where('a.id_pkp', $kode)->where('a.tgl_ubah = b.tgl_ubah_dtt')->orderBy("a.kode", "desc")->get();
 
-        $data['detil_karyawan'] = $this->db->table("detil_karyawan a")->select("b.sisa_cuti,b.tgl_kontrak,a.kode,a.bulan,a.id_pkp,a.pkp_sebelumnya,a.tahun,b.nama_admin,a.id_user,a.sakit,a.ijin,a.alpha,a.cuti,a.ket_absensi,b.jabatan,a.ket_jabatan,a.tgl_ren_mob,a.tgl_ren_demob,a.tgl_real_mob,a.tgl_real_demob,b.habis_kontrak as 'tgl_akhir_kontrak',a.status,a.ket_mobdemob,a.ket_akhir,b.username,d.alias,b.pkp_akhir,b.tgl_respon,a.nama,a.nrp")->join('master_admin b', 'a.nrp = b.username', 'left')->join('master_pkp c', 'a.id_pkp = c.id_pkp')->join('master_pkp d', 'a.pkp_sebelumnya = d.id_pkp', 'left')->where('a.id_pkp', $kode)->where('a.tgl_update = c.tgl_ubah_absensi')->orderBy('a.kode', 'ASCD')->get()->getResult();
 
         $data['detil_karyawan3'] = $this->db->table("detil_karyawan a")->select("a.kode,a.bulan,a.id_pkp,a.pkp_sebelumnya,a.tahun,b.nama_admin,a.id_user,a.sakit,a.ijin,a.alpha,a.cuti,a.ket_absensi,b.jabatan,a.ket_jabatan,a.tgl_ren_mob,a.tgl_ren_demob,a.tgl_real_mob,a.tgl_real_demob,b.habis_kontrak as 'tgl_akhir_kontrak',a.status,a.ket_mobdemob,a.ket_akhir,b.username,d.alias,b.pkp_akhir")->join('master_admin b', 'a.nrp = b.username', 'left')->join('master_pkp c', 'a.id_pkp = c.id_pkp')->join('master_pkp d', 'a.pkp_sebelumnya = d.id_pkp')->where('a.id_pkp', $kode)->where('a.tgl_update = c.tgl_ubah_absensi')->orderBy('a.kode', 'ASCD')->get();
 
@@ -800,6 +1087,20 @@ class Proyek extends BaseController
         } else {
             $data['detil_no_list'] = $this->db->table('master_admin')->select("*")->where('pkp_akhir', $kode)->where('aktif', '1')->get()->getResult();
         }
+
+
+        $bulan = $this->request->getGet('bulan') ?? '00';
+        $tahun = $this->request->getGet('tahun') ?? '00';
+
+        if ($bulan === '00' && $tahun === '00') {
+            $data['detil_karyawan'] = $this->db->table("detil_karyawan a")->select("b.sisa_cuti,b.tgl_kontrak,a.kode,a.bulan,a.id_pkp,a.pkp_sebelumnya,a.tahun,b.nama_admin,a.id_user,a.sakit,a.ijin,a.alpha,a.cuti,a.ket_absensi,b.jabatan,a.ket_jabatan,a.tgl_ren_mob,a.tgl_ren_demob,a.tgl_real_mob,a.tgl_real_demob,b.habis_kontrak as 'tgl_akhir_kontrak',a.status,a.ket_mobdemob,a.ket_akhir,b.username,d.alias,b.pkp_akhir,b.tgl_respon,a.nama,a.nrp")->join('master_admin b', 'a.nrp = b.username', 'left')->join('master_pkp c', 'a.id_pkp = c.id_pkp')->join('master_pkp d', 'a.pkp_sebelumnya = d.id_pkp', 'left')->where('a.id_pkp', $kode)->where('a.tgl_update = c.tgl_ubah_absensi')->orderBy('a.kode', 'ASCD')->get()->getResult();
+
+        } else {
+            $absensi = $this->proyek->view_progress_absensi($tahun, $bulan, $id_pkp);
+
+            $data['detil_karyawan'] = $absensi;
+        }
+
 
         $data['judul'] = '<a href="' . base_url() . 'proyek" style="color:white">PROYEK | </a><a style="color:white">' . $data['proyek']->getRow()->alias . ' | </a> <a href="' . base_url() . $data['instansi3']->getRow()->ling . '" style="color:white">' . $data['instansi3']->getRow()->alias . '</a>';
         $data['kategoriQNS'] = $kategoriQNS;
@@ -853,8 +1154,485 @@ class Proyek extends BaseController
     }
 
 
+    public function progressInvoice($kode)
+    {
+        $data['kode'] = '02';
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        if (!level_user('proyek', 'data', $kategoriQNS, 'read') > 0) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+        $data['proyek'] = $this->db->table('master_pkp')->getWhere(['id_pkp' => $kode], 1);
+        $data['instansiQN'] = $this->db->table("master_pkp a")->select("b.nomor")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $kode)->get();
+        $data['nomorQN'] = $data['instansiQN']->getRow()->nomor;
+        $data['instansi2'] = $this->db->table("master_pkp a")->select("b.nomor")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $kode)->get()->getResult();
+        $data['instansi3'] = $this->db->table("master_pkp a")->select("b.nomor,b.alias,b.ling")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $kode)->get();
+        $data['kategoriQNS'] = $kategoriQNS;
+        $data['kategori'] = $kategoriQNS;
+        $data['inv'] = $this->db->table('progress_invoice')->where('id_pkp', $kode)->get()->getResult();
+        $data['judul'] = '<a href="' . base_url() . 'proyek" style="color:white">PROYEK | </a><a style="color:white">' . $data['proyek']->getRow()->alias . ' | </a> <a href="' . base_url() . $data['instansi3']->getRow()->ling . '" style="color:white">' . $data['instansi3']->getRow()->alias . '</a>';
+        return view('proyek/progress_invoice', $data);
+    }
+
+
+    public function tambahInvoice()
+    {
+        helper('text');
+        // Get the original file name and extension
+        $originalFileName = $this->request->getFile('excelfile')->getName();
+        $extension = pathinfo($originalFileName, PATHINFO_EXTENSION);
+
+        // Generate a unique file name for the uploaded Excel file
+        $randomBytes = random_bytes(16); // Adjust the length as needed
+        $randomString = bin2hex($randomBytes);
+
+        // Concatenate the random string with the file extension
+        $nama_file = $randomString . '.' . $extension;
+
+        // Configuration for file upload
+        $config = [
+            'upload_path' => './excel/',
+            'allowed_types' => 'xlsx',
+            'file_name' => $nama_file,
+            'max_size' => 2048,
+            'overwrite' => true,
+        ];
+
+        // Perform file upload
+        $upload = Services::upload($config);
+
+        // Get the uploaded file
+        $file = $this->request->getFile('excelfile');
+
+        // Check if the file upload is successful
+        if ($file->isValid() && !$file->hasMoved()) {
+            // Move the uploaded file to the specified location
+            $file->move($config['upload_path'], $config['file_name']);
+
+            // File uploaded successfully
+            $data = [
+                'file_name' => $file->getName(),
+                'file_path' => $config['upload_path'] . $file->getName(),
+                'file_size' => $file->getSize(),
+                'file_type' => $file->getClientMimeType(),
+            ];
+
+            $aksi['result'] = 'success';
+            $aksi['file'] = $data;
+        } else {
+            // Upload failed
+            $error = $file->getErrorString();
+            $aksi['result'] = 'failed';
+            $aksi['error'] = $error;
+        }
+
+        // Check if the file upload was successful
+        if ($aksi['result'] == 'success') {
+            // Clear existing data for the current session
+            $this->db->table('progress_invoice')->emptyTable();
+
+            $existingCodes = [];
+            $spreadsheet = IOFactory::load('excel/' . $nama_file);
+            $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+            $data = [];
+            $baris = 1;
+
+            // Set timezone and current date
+            date_default_timezone_set("Asia/Jakarta");
+            $now = date("Y-m-d");
+
+            // Get the maximum existing 'kode' from the database
+            $QN = $this->db->query("SELECT max(kode) as masKode FROM progress_invoice order by kode");
+            foreach ($QN->getResult() as $row2) {
+                $order = $row2->masKode;
+            }
+
+            // Extract information for generating unique 'kode'
+            $noUrut = (int) substr($order, 8, 5);
+            $bulanL = substr($order, 5, 2);
+            $bln = substr($now, 5, 2);
+            $tahun = substr($now, 2, 2);
+
+            foreach ($sheetData as $baris => $row) {
+
+                // Exclude the last row
+                if ($baris > 3) {
+                    // Generate initial 'kode' and check for duplicate entry
+                    do {
+                        $kode = 'INV' . $tahun . $bln . '-' . sprintf("%05s", $noUrut);
+                        $noUrut++;
+                    } while (in_array($kode, $existingCodes));
+
+                    // Add the current row to the $data array
+                    $data[] = [
+                        'id' => 'INV' . hash("sha1", md5($kode)) . 'QNS',
+                        'kode' => $kode,
+                        'id_pkp' => $this->request->getPost('id'),
+                        'periode' => $row['A'],
+                        'laporan_progress' => $row['B'],
+                        'nomor_bap' => $row['C'],
+                        'tanggal_bap' => $row['D'],
+                        'nominal_bap' => $row['E'],
+                        'tgl_ubah' => $now
+                    ];
+
+                    $existingCodes[] = $kode; // Add the new code to the list
+                }
+            }
+            // Insert all rows into the 'progress_invoice' table
+            $this->db->table('progress_invoice')->insertBatch($data);
+
+            $this->session->setFlashdata('success', 'unggah pembaharuan');
+            $redirectUrl = previous_url() ?? base_url();
+        } else {
+            $this->session->setFlashdata('error', 'gagal mengunggah');
+            $redirectUrl = previous_url() ?? base_url();
+        }
+
+        $data['token'] = csrf_hash();
+        return redirect()->to($redirectUrl);
+    }
+
+
+    public function tambahDataInvoice()
+    {
+        $simpan = new ProyekModel();
+        $postData = [
+            'periode' => $this->request->getPost('periode'),
+            'nomor_bap' => $this->request->getPost('nomor_bap'),
+            'nominal_bap' => $this->request->getPost('nominal_bap'),
+            'laporan_progress' => $this->request->getPost('laporan_progress'),
+            'tanggal_bap' => $this->request->getPost('tanggal_bap'),
+            'id_pkp' => $this->request->getPost('id_pkp'),
+            'agent' => $this->request->getUserAgent(),
+        ];
+        if ($simpan->simpandatainvoice($postData)) {
+            $this->session->setFlashdata('success', 'menyimpan data');
+            // $redirectUrl = base_url("dcr/detail-kasbon/{$id27}");
+            $redirectUrl = previous_url() ?? base_url();
+        } else {
+            $this->session->setFlashdata('error', 'menyimpan data');
+            // $redirectUrl = base_url("dcr/detail-kasbon/{$id27}");
+            $redirectUrl = previous_url() ?? base_url();
+        }
+        return redirect()->to($redirectUrl);
+    }
+
+    // public function tambahInvoice()
+    // {
+    //     $db = \Config\Database::connect();
+    //     $file_excel = $this->request->getFile('excelfile');
+    //     $ext = $file_excel->getClientExtension();
+    //     if ($ext == 'xls') {
+    //         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+    //     } else {
+    //         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+    //     }
+    //     $spreadsheet = $reader->load($file_excel);
+
+    //     // Step 1: Remove existing data
+    //     $db->table('progress_invoice')->truncate();
+
+    //     $QN = $this->db->query("SELECT max(kode) as masKode FROM file_migrasi order by kode");
+    //     foreach ($QN->getResult() as $row2) {
+    //         $order = $row2->masKode;
+    //     }
+    //     $noUrut = (int) substr($order, 8, 5);
+    //     $noUrut++;
+
+    //     //BL masKode//
+    //     $bulanL = substr($order, 5, 2);
+    //     $now = date("Y-m-d");
+    //     $bln = substr($now, 5, 2);
+    //     $tahun = substr($now, 2, 2);
+
+    //     if ($bln == $bulanL) {
+    //         $kode = 'INV' . $tahun . $bln . '-' . sprintf("%05s", $noUrut);
+    //     } else {
+    //         $kode = 'INV' . $tahun . $bln . '-' . '00001';
+    //     }
+
+    //     $id1 = 'INV' . md5($kode);
+    //     $id2 = 'INV' . hash("sha1", $id1) . 'QNS';
+
+    //     $id_pkp = $this->request->getPost('id');
+    //     $data = $spreadsheet->getActiveSheet()->toArray();
+
+    //     foreach ($data as $x => $row) {
+    //         if ($x < 2) {
+    //             continue;
+    //         }
+
+    //         // Step 2: Upload new data
+    //         $item = isset($row[1]) ? $row[1] : null;  // Kolom B
+    //         $rencana = isset($row[2]) ? $row[2] : null;  // Kolom C
+    //         $ba = isset($row[3]) ? $row[3] : null;  // Kolom D
+    //         $keterangan = isset($row[7]) ? $row[7] : null;  // Kolom H
+    //         $noUrut++;
+    //         $kode = 'INV' . $tahun . $bln . '-' . sprintf("%05s", $noUrut);
+    //         $id1 = 'INV' . md5($kode);
+    //         $id2 = 'INV' . hash("sha1", $id1) . 'QNS';
+
+    //         $cekItem = $db->table('progress_invoice')->getWhere(['item' => $item])->getResult();
+
+    //         if (count($cekItem) > 0) {
+    //             session()->setFlashdata('message', '<b style="color:red">Data Gagal di Import NIS ada yang sama</b>');
+    //         } else {
+    //             $simpandata = [
+    //                 'id' => $id2,
+    //                 'kode' => $kode,
+    //                 'id_pkp' => $id_pkp,
+    //                 'item' => $item,
+    //                 'rencana' => $rencana,
+    //                 'ba' => $ba,
+    //                 'keterangan' => $keterangan
+    //             ];
+
+    //             $db->table('progress_invoice')->insert($simpandata);
+    //             session()->setFlashdata('success', 'unggah pembaharuan');
+    //             $redirectUrl = previous_url() ?? base_url();
+    //         }
+    //     }
+
+    //     return redirect()->to($redirectUrl);
+    // }
+
+
+    public function invoiceEdit()
+    {
+        $post = $this->request->getPost();
+        $postData = [
+            'idd' => $post['idd'],
+            'memo_tagihan' => $post['memo_tagihan'],
+            'kwitansi' => $post['kwitansi'],
+            'keterangan' => $post['keterangan'],
+            'realisasi' => $post['realisasi'],
+
+        ];
+        $simpan = $this->invoice;
+        if ($simpan->updateInvoice($postData)) {
+            $this->session->setFlashdata('success', 'berhasil menyimpan data');
+            $redirectUrl = previous_url() ?? base_url();
+        } else {
+            $this->session->setFlashdata('error', 'gagal menyimpan data');
+            $redirectUrl = previous_url() ?? base_url();
+        }
+
+        $data['token'] = csrf_hash();
+        return redirect()->to($redirectUrl);
+    }
+
+
+    public function invoiceDetail()
+    {
+        $idd = $this->request->getGet('id');
+
+        $query = $this->db->table('progress_invoice')->select('*')->where(['id' => $idd], 1)->get();
+        $result = [
+            "periode" => $query->getRow()->periode,
+            "laporan_progress" => $query->getRow()->laporan_progress,
+            "nomor_bap" => $query->getRow()->nomor_bap,
+            "tanggal_bap" => $query->getRow()->tanggal_bap,
+            "nominal_bap" => $query->getRow()->nominal_bap,
+            "tanggal_memo" => $query->getRow()->tanggal_memo,
+            "nominal_memo" => $query->getRow()->nominal_memo,
+            "tgl_kwitansi" => $query->getRow()->tgl_kwitansi,
+            "realisasi_cair_tgl" => $query->getRow()->realisasi_cair_tgl,
+            "realisasi_cair_nominal" => $query->getRow()->realisasi_cair_nominal,
+            "piutang_kwitansi" => $query->getRow()->piutang_kwitansi,
+            "piutang_nonkwitansi" => $query->getRow()->piutang_nonkwitansi,
+            "keterangan" => $query->getRow()->keterangan,
+        ];
+        echo '[' . json_encode($result) . ']';
+    }
+
 
     public function proses_upload_solusi()
+    {
+        $originalFileName = $this->request->getFile('excelfile')->getName();
+        $extension = pathinfo($originalFileName, PATHINFO_EXTENSION);
+
+        // Generate a unique file name for the uploaded Excel file
+        $randomBytes = random_bytes(16); // Adjust the length as needed
+        $randomString = bin2hex($randomBytes);
+
+        // Concatenate the random string with the file extension
+        $nama_file = $randomString . '.' . $extension;
+
+        $config = [
+            'upload_path' => './excel/',
+            'allowed_types' => 'xlsx',
+            'file_name' => $nama_file,
+            'max_size' => 2048,
+            'overwrite' => true,
+        ];
+
+        $upload = Services::upload($config);
+
+        $file = $this->request->getFile('excelfile');
+
+        if ($file->isValid() && !$file->hasMoved()) {
+            $file->move($config['upload_path'], $config['file_name']);
+
+            // File uploaded successfully
+            $data = [
+                'file_name' => $file->getName(),
+                'file_path' => $config['upload_path'] . $file->getName(),
+                'file_size' => $file->getSize(),
+                'file_type' => $file->getClientMimeType(),
+            ];
+
+            $aksi['result'] = 'success';
+            $aksi['file'] = $data;
+        } else {
+            // Upload failed
+            $error = $file->getErrorString();
+            $aksi['result'] = 'failed';
+            $aksi['error'] = $error;
+        }
+
+        $arraysub = array();
+        if ($aksi['result'] == "success") {
+            $spreadsheet = IOFactory::load('excel/' . $nama_file);
+            $sheet = $spreadsheet->getActiveSheet()->toArray(true, true, true, true, true);
+            $data = [];
+            $baris = 1;
+            //THBL TGL BERJALAN//
+            date_default_timezone_set("Asia/Jakarta");
+            $now = date("Y-m-d");
+            $post = $this->request->getPost();
+            $id_pkp58 = $post['id_pkp58'];
+            //HAPUS DATA TANGGAL HARI INI
+            $QN01 = $this->db->query("SELECT * FROM solusi where tgl_ubah='$now' and id_pkp='$id_pkp58'");
+            if ($QN01->getNumRows() > 0) {
+                $this->db->table('solusi')->where('tgl_ubah', $now)->where('id_pkp', $id_pkp58)->delete();
+            }
+            //ambil no urut terakhir//
+            //INSTHBL-12345//
+            //KODE-SOLUSI BERSAMA//
+            $QN3 = $this->db->query("SELECT max(id_solusi) as masKode3 FROM master_pkp order by id_solusi");
+            foreach ($QN3->getResult() as $row3) {
+                $order3 = $row3->masKode3;
+            }
+            $noUrut3 = (int) substr($order3, 8, 5);
+            $noUrut3++;
+            //BL masKode//
+            $bulanL3 = substr($order3, 5, 2);
+            $bln3 = substr($now, 5, 2);
+            $tahun3 = substr($now, 2, 2);
+            if ($bln3 == $bulanL3) {
+                $kode3 = 'IDS' . $tahun3 . $bln3 . '-' . sprintf("%05s", $noUrut3);
+            } else {
+                $kode3 = 'IDS' . $tahun3 . $bln3 . '-' . '00001';
+            }
+
+
+            $data0 = array(
+                'tgl_ubah_masalah' => $now,
+                'id_solusi' => $kode3,
+            );
+            $this->db->table('master_pkp')->where('id_pkp', $id_pkp58)->update($data0);
+            //ambil no urut terakhir//
+            //INSTHBL-12345//
+            $QN = $this->db->query("SELECT max(kode) as masKode FROM solusi order by kode");
+            foreach ($QN->getResult() as $row2) {
+                $order = $row2->masKode;
+            }
+            $noUrut = (int) substr($order, 8, 5);
+            $noUrut++;
+            //BL masKode//
+            $bulanL = substr($order, 5, 2);
+            $bln = substr($now, 5, 2);
+            $tahun = substr($now, 2, 2);
+            if ($bln == $bulanL) {
+                $kode = 'SOL' . $tahun . $bln . '-' . sprintf("%05s", $noUrut);
+            } else {
+                $kode = 'SOL' . $tahun . $bln . '-' . '00001';
+            }
+            $id1 = 'SOL' . md5($kode);
+            $id2 = 'SOL' . hash("sha1", $id1) . 'QNS';
+            $idQNS = session('idadmin');
+            $no = -1;
+            foreach ($sheet as $row) {
+                if ($baris > 2) {
+
+                    $C = $row['C'];
+                    $D = $row['D'];
+                    $E = $row['E'];
+                    $F = $row['F'];
+                    $G = $row['G'];
+                    $H = $row['H'];
+                    $I = $row['I'];
+
+                    if ($C == '1') {
+                        $C = '';
+                    }
+                    if ($D == '1') {
+                        $D = '';
+                    }
+                    if ($E == '1') {
+                        $E = '';
+                    }
+                    if ($F == '1') {
+                        $F = '';
+                    }
+                    if ($G == '1') {
+                        $G = '';
+                    }
+                    if ($H == '1') {
+                        $H = '';
+                    }
+                    if ($I == '1') {
+                        $I = '';
+                    }
+
+                    array_push(
+                        $data,
+                        array(
+                            'id' => $id2,
+                            'kode' => $kode,
+                            'id_pkp' => $id_pkp58,
+                            'id_solusi' => $kode3,
+                            'tgl_ubah' => $now,
+                            'id_ubah' => $idQNS,
+
+                            'nomor' => $no,
+                            'type' => $C,
+                            'masalah' => $D,
+                            'penyebab' => $E,
+                            'dampak' => $F,
+                            'solusi' => $G,
+                            'pic' => $H,
+                            'target' => $I,
+                        )
+                    );
+                }
+                $baris++;
+                $noUrut++;
+                $no++;
+                $kode = 'SOL' . $tahun . $bln . '-' . sprintf("%05s", $noUrut);
+                $id1 = 'SOL' . md5($kode);
+                $id2 = 'SOL' . hash("sha1", $id1) . 'QNS';
+            }
+            if ($this->proyek->input_semua3b($data)) {
+                $data['success'] = true;
+                $data['message'] = "Upload Solusi sukses";
+            } else {
+                $errors['fail'] = 'gagal mengupload semua data, pastikan format upload';
+                $data['errors'] = $errors;
+            }
+        } else {
+            $errors['fail'] = $aksi['error'];
+            $data['errors'] = $errors;
+        }
+        $data['id_pkp'] = $id_pkp58;
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+
+    public function proses_upload_solusix()
     {
         $nama_file = csrf_hash();
         $originalFileName = $this->request->getFile('excelfile')->getName();
@@ -1006,7 +1784,7 @@ class Proyek extends BaseController
                         'id_ubah' => $idQNS,
 
                         'nomor' => $no,
-                        'type' => $C,
+                        'fillType' => $C,
                         'masalah' => $D,
                         'penyebab' => $E,
                         'dampak' => $F,
@@ -1059,63 +1837,62 @@ class Proyek extends BaseController
         // Settingan awal fil excel
         $excel->getProperties()->setCreator('My Notes Code')
             ->setLastModifiedBy('My Notes Code')
-            ->setTitle("Data Siswa")
-            ->setSubject("Siswa")
-            ->setDescription("Laporan Semua Data Siswa")
-            ->setKeywords("Data Siswa");
+            ->setTitle("Data Proyek")
+            ->setSubject("Proyek")
+            ->setDescription("Laporan Semua Data Proyek")
+            ->setKeywords("Data Proyek");
         // Buat sebuah variabel untuk menampung pengaturan style dari header tabel
-        $style_col = array(
-            'font' => array(
+        $style_col = [
+            'font' => [
                 'bold' => true,
-                'color' => array('rgb' => 'FFFFFF'),
-            ), // Set font nya jadi bold
-            'alignment' => array(
+                'color' => ['rgb' => 'FFFFFF'],
+            ], // Set font nya jadi bold
+            'alignment' => [
                 'horizontal' => Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
                 'vertical' => Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
-            ),
-            'borders' => array(
-                'allborders' => array(
-                    'style' => Border::BORDER_THIN,
-                    'color' => array('rgb' => 'FFFFFF'),
-                )
-            ),
-            'fill' => array(
-                'type' => Fill::FILL_SOLID,
-                'color' => array('rgb' => '535454'),
-            )
-        );
-        $style_subjudul = array(
+            ],
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    'color' => ['rgb' => 'FFFFFF'],
+                ]
+            ],
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['rgb' => '535454'],
+            ]
+        ];
+        $style_subjudul = [
             // Set font nya jadi bold
-            'alignment' => array(
+            'alignment' => [
                 'horizontal' => Alignment::HORIZONTAL_LEFT, // Set text jadi ditengah secara horizontal (center)
                 'vertical' => Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
-            ),
-            'borders' => array(
-                'allborders' => array(
-                    'style' => Border::BORDER_THIN,
-                    // 'color' => array('rgb' => 'FFFFFF'),
-                )
-            ),
-            'fill' => array(
-                'type' => Fill::FILL_SOLID,
-                'color' => array('rgb' => 'E8AC52'),
-            )
-        );
+            ],
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    // 'color' => ['rgb' => 'FFFFFF'],
+                ]
+            ],
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['rgb' => 'E8AC52'],
+            ]
+        ];
         // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
-        $style_row = array(
-            'alignment' => array(
-                'vertical' => Alignment::VERTICAL_TOP // Set text jadi di tengah secara vertical (middle)
-            ),
-            'borders' => array(
-                'allborders' => array('style' => Border::BORDER_THIN), // Set border top dengan garis tipis
+        $style_row = [
+            'alignment' => ['vertical' => Alignment::VERTICAL_CENTER],
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN, // Set border dengan garis tipis
+                ],
+            ],
+        ];
+        $style_left = [
+            'alignment' => ['horizontal' => Alignment::HORIZONTAL_LEFT],
+        ];
 
-            )
-        );
-        $style_left = array(
-            'alignment' => array(
-                'horizontal' => Alignment::HORIZONTAL_LEFT // Set text jadi di tengah secara vertical (middle)
-            )
-        );
+
 
         $excel->setActiveSheetIndex(0)->setCellValue('B2', "LAPORAN PROGRESS, Proyek: " . $data['proyek']->getRow()->alias);
         $excel->setActiveSheetIndex(0)->setCellValue('B3', "BULAN : ");
@@ -1325,16 +2102,16 @@ class Proyek extends BaseController
         header('Cache-Control: max-age=0');
         $write = new Xlsx($excel);
         $write->save('php://output');
+        exit();
     }
 
-    public function pdf1($kode)
+    public function pdf1()
     {
+        $kode = $this->request->uri->getSegment(4);
         $data['proyek'] = $this->db->table('master_pkp')->getWhere(['id_pkp' => $kode], 1);
         $tgl = $data['proyek']->getRow()->tgl_ubah_progress;
         $tahun = substr($tgl, 2, 2);
         $bulan = substr($tgl, 5, 2);
-
-
         $no = 1;
         $fpdf = new FPDF('L', 'mm', 'A3');
         global $title;
@@ -1375,16 +2152,8 @@ class Proyek extends BaseController
         $fpdf->Cell(20, 5, 'BULAN', 'LBR', 1, 'C', 0);
 
         $no = 1;
-        $builder = $this->db->table('progress_paket');
-        $builder->select('*');
-        $builder->where('id_pkp', $kode);
-        $builder->where('tahun', $tahun);
-        $builder->where('bulan', $bulan);
-        $builder->orderBy('kode');
-
-        $QN4 = $builder->get()->getResult();
-
-        foreach ($QN4 as $data) {
+        $QN4 = $this->db->query("SELECT * FROM progress_paket where id_pkp='$kode' and tahun='$tahun' and bulan='$bulan' order by kode");
+        foreach ($QN4->getResult() as $data) {
             $fpdf->SetFont('Arial', '', 9);
             $fpdf->Cell(10, 5, $no, 1, 0, 'C', 0);
             $fpdf->Cell(80, 5, $data->paket, 1, 0, 'L', 0);
@@ -1405,16 +2174,8 @@ class Proyek extends BaseController
             $fpdf->Cell(20, 5, number_format($data->target_minggu, 2, ',', '.'), 1, 1, 'C', 0);
             $no++;
         }
-        $builder2 = $this->db->table('progress_proyek');
-        $builder2->select('*');
-        $builder2->where('id_pkp', $kode);
-        $builder2->where('tahun', $tahun);
-        $builder2->where('bulan', $bulan);
-        $builder2->orderBy('kode');
-
-        $QN5 = $builder2->get()->getResult();
-
-        foreach ($QN5 as $data2) {
+        $QN5 = $this->db->query("SELECT * FROM progress_proyek where id_pkp='$kode' and tahun='$tahun' and bulan='$bulan' order by kode");
+        foreach ($QN5->getResult() as $data2) {
             $fpdf->SetFont('Arial', '', 9);
             $fpdf->Cell(90, 5, 'TOTAL', 1, 0, 'C', 0);
             $fpdf->Cell(20, 5, number_format($data2->bobot_pg, 2, ',', '.'), 1, 0, 'C', 0);
@@ -1433,10 +2194,12 @@ class Proyek extends BaseController
             $fpdf->Cell(20, 5, '', 1, 0, 'C', 0);
             $fpdf->Cell(20, 5, '', 1, 1, 'C', 0);
         }
-
         $this->response->setContentType('application/pdf');
-        $fpdf->Output('I', 'report.pdf');
+        $fpdf->Output();
     }
+
+
+
 
     public function pdf2($kode)
     {
@@ -1507,7 +2270,7 @@ class Proyek extends BaseController
         $fpdf->Cell(1, 2, 'PROYEK  : ' . $data['proyek']->getRow()->alias, 0, 0, 'L');
         $fpdf->Ln();
         $fpdf->Cell(1, 2, 'PERIODE : ' . $bulan . ' ' . $thn_lalu, 0, 0, 'L');
-        $fpdf->Ln(3);
+        $fpdf->Ln(4);
         $fpdf->SetFont('Arial', '', 5);
         $fpdf->SetFillColor(220, 220, 220);
         $fpdf->Cell(5, 10, 'NO', 'LRT', 0, 'C', true);
@@ -1548,7 +2311,12 @@ class Proyek extends BaseController
         if ($QN01->getNumRows() > 0) {
             $no01 = 1;
             foreach ($QN01->getResult() as $data01) {
-                $user = $this->db->table("master_admin")->where('id', $data01->id_user, 1)->get()->getRow();
+                $user = $this->db->table('master_admin')
+                    ->where('id', $data01->id_user)
+                    ->limit(1)
+                    ->get()
+                    ->getRow();
+
                 if ($data01->sakit > 0) {
                     $sakit = $data01->sakit;
                 } else {
@@ -1657,53 +2425,54 @@ class Proyek extends BaseController
             ->setDescription("Laporan Semua Data")
             ->setKeywords("Data");
         // Buat sebuah variabel untuk menampung pengaturan style dari header tabel
-        $style_col = array(
-            'font' => array(
+        $style_col = [
+            'font' => [
                 'bold' => true,
-                'color' => array('rgb' => 'FFFFFF'),
-            ), // Set font nya jadi bold
-            'alignment' => array(
+                'color' => ['rgb' => 'FFFFFF'],
+            ], // Set font nya jadi bold
+            'alignment' => [
                 'horizontal' => Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
                 'vertical' => Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
-            ),
-            'borders' => array(
-                'allborders' => array(
-                    'style' => Border::BORDER_THIN,
-                    'color' => array('rgb' => 'FFFFFF'),
-                )
-            ),
-            'fill' => array(
-                'type' => Fill::FILL_SOLID,
-                'color' => array('rgb' => '535454'),
-            )
-        );
-        $style_subjudul = array(
+            ],
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    'color' => ['rgb' => 'FFFFFF'],
+                ]
+            ],
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['rgb' => '535454'],
+            ]
+        ];
+
+        $style_subjudul = [
             // Set font nya jadi bold
-            'alignment' => array(
+            'alignment' => [
                 'horizontal' => Alignment::HORIZONTAL_LEFT, // Set text jadi ditengah secara horizontal (center)
                 'vertical' => Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
-            ),
-            'borders' => array(
-                'allborders' => array(
-                    'style' => Border::BORDER_THIN,
-                    // 'color' => array('rgb' => 'FFFFFF'),
-                )
-            ),
-            'fill' => array(
-                'type' => Fill::FILL_SOLID,
-                'color' => array('rgb' => 'E8AC52'),
-            )
-        );
-        // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
-        $style_row = array(
-            'alignment' => array(
-                'vertical' => Alignment::VERTICAL_TOP // Set text jadi di tengah secara vertical (middle)
-            ),
-            'borders' => array(
-                'allborders' => array('style' => Border::BORDER_THIN), // Set border top dengan garis tipis
+            ],
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    // 'color' => ['rgb' => 'FFFFFF'],
+                ]
+            ],
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['rgb' => 'E8AC52'],
+            ]
+        ];
 
-            )
-        );
+        // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
+        $style_row = [
+            'alignment' => [
+                'vertical' => Alignment::VERTICAL_TOP // Set text jadi di tengah secara vertical (middle)
+            ],
+            'borders' => [
+                'allBorders' => ['borderStyle' => Border::BORDER_THIN], // Set border top dengan garis tipis
+            ]
+        ];
         $excel->setActiveSheetIndex(0)->setCellValue('B2', "LAPORAN PERMASALAHAN POKOK"); // Set kolom A1 dengan tulisan "NO"
         $excel->setActiveSheetIndex(0)->setCellValue('B3', "PROYEK : " . $data['proyek']->getRow()->alias); // Set kolom B1 dengan tulisan "NIS"
         $excel->setActiveSheetIndex(0)->setCellValue('B5', "NO"); // Set kolom C1 dengan tulisan "NAMA"
@@ -1780,6 +2549,7 @@ class Proyek extends BaseController
         header('Cache-Control: max-age=0');
         $write = new Xlsx($excel);
         $write->save('php://output');
+        exit();
     }
 
     public function xls3($kode)
@@ -1796,41 +2566,40 @@ class Proyek extends BaseController
         $excel->getProperties()->setCreator('My Notes Code')
             ->setLastModifiedBy('My Notes Code')
             ->setTitle("Data")
-            ->setSubject("Siswa")
+            ->setSubject("Proyek")
             ->setDescription("Laporan Semua Data ")
             ->setKeywords("Data");
         // Buat sebuah variabel untuk menampung pengaturan style dari header tabel
-        $style_col = array(
-            'font' => array(
+        $style_col = [
+            'font' => [
                 'bold' => true,
-                'color' => array('rgb' => 'FFFFFF'),
-            ), // Set font nya jadi bold
-            'alignment' => array(
+                'color' => ['rgb' => 'FFFFFF'],
+            ], // Set font nya jadi bold
+            'alignment' => [
                 'horizontal' => Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
                 'vertical' => Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
-            ),
-            'borders' => array(
-                'allborders' => array(
-                    'style' => Border::BORDER_THIN,
-                    'color' => array('rgb' => 'FFFFFF'),
-                )
-            ),
-            'fill' => array(
-                'type' => Fill::FILL_SOLID,
-                'color' => array('rgb' => '535454'),
-            )
-        );
+            ],
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    'color' => ['rgb' => 'FFFFFF'],
+                ]
+            ],
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['rgb' => '535454'],
+            ]
+        ];
 
         // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
-        $style_row = array(
-            'alignment' => array(
+        $style_row = [
+            'alignment' => [
                 'vertical' => Alignment::VERTICAL_TOP // Set text jadi di tengah secara vertical (middle)
-            ),
-            'borders' => array(
-                'allborders' => array('style' => Border::BORDER_THIN), // Set border top dengan garis tipis
-
-            )
-        );
+            ],
+            'borders' => [
+                'allBorders' => ['borderStyle' => Border::BORDER_THIN], // Set border top dengan garis tipis
+            ]
+        ];
         //Cari periode
         $QN00 = $this->db->query("SELECT * FROM detil_karyawan where id_pkp='$kode' and tgl_update='$tgl' order by kode");
         foreach ($QN00->getResult() as $row00) {
@@ -2086,6 +2855,7 @@ class Proyek extends BaseController
         header('Cache-Control: max-age=0');
         $write = new Xlsx($excel);
         $write->save('php://output');
+        exit();
     }
 
     public function dtutambah()
@@ -2117,6 +2887,12 @@ class Proyek extends BaseController
         $teknis = 'dtu';
         $fileName = $teknis . $no_pkp . '.pdf'; // Define the file name
 
+        // Delete the old PDF file
+        $oldFilePath = $lokasi . '/' . $teknis . $no_pkp . '.pdf';
+        if (file_exists($oldFilePath)) {
+            unlink($oldFilePath);
+        }
+
         $file = $this->request->getFile('berkas'); // Get the uploaded file
 
         // Check file size and type
@@ -2132,6 +2908,7 @@ class Proyek extends BaseController
             ];
             $this->db->table('master_pkp')->where('id_pkp', $id_pkp)->update($datagbr1);
         }
+
         $dataend = array(
             "tgl_ubah_dtu" => $now,
         );
@@ -2196,9 +2973,9 @@ class Proyek extends BaseController
 
             foreach ($files as $file) {
                 if ($file->isValid() && !$file->hasMoved()) {
-                    $newName = $file->getName();
+                    $extension = $file->getExtension();
+                    $newName = $tahun . $bln . '-' . $kode . $u + 1 . '.' . $extension;
                     $file->move($lokasi, $newName);
-
                     // Update database for each image
                     $updateData = [
                         'gambar' . ($u + 1) => $lokasi . '/' . $newName
@@ -2225,13 +3002,19 @@ class Proyek extends BaseController
     }
 
 
-
     public function teknistambah()
     {
+        //THBL TGL BERJALAN//
+        date_default_timezone_set("Asia/Jakarta");
         $now = date("Y-m-d");
+        $now2 = date("Ymd");
         $post = $this->request->getPost();
-        $id_pkp = $post['id']; // Assuming you get this from POST or GET request
+        $id_pkp = $post["id"];
+
+        //ambil no urut terakhir//
+        //INSTHBL-12345//
         $QN0 = $this->db->query("SELECT * FROM pdf where id_pkp='$id_pkp'");
+
         if ($QN0->getNumRows() > 0) {
             $data0 = array(
                 'tgl_ubah' => $now,
@@ -2239,7 +3022,6 @@ class Proyek extends BaseController
             );
             $this->db->table('pdf')->where('id_pkp', $id_pkp)->update($data0);
         } else {
-
             $QN = $this->db->query("SELECT max(kode) as masKode FROM pdf order by kode");
             foreach ($QN->getResult() as $row) {
                 $order = $row->masKode;
@@ -2259,84 +3041,199 @@ class Proyek extends BaseController
             $id1 = 'PDF' . md5($kode);
             $id2 = 'PDF' . hash("sha1", $id1) . 'QNS';
 
-            $array = [
+            $array = array(
                 'id' => $id2,
                 'id_pkp' => $post["id"],
                 'kode' => $kode,
                 'tgl_ubah' => $now,
                 'id_ubah' => $post["id_ubah"],
-            ];
+            );
 
-            $this->db->table('pdf')->insert($array);
+            $this->db->table("pdf")->insert($array);
         }
-        // Retrieve no_pkp and id_instansi from the database
+
         $QN2 = $this->db->query("SELECT * FROM master_pkp where id_pkp='$id_pkp'");
         foreach ($QN2->getResult() as $row2) {
             $no_pkp = $row2->no_pkp;
             $id_instansi = $row2->id_instansi;
         }
-
-        // Retrieve no_instansi from the database
         $QN3 = $this->db->query("SELECT * FROM master_instansi where id='$id_instansi'");
         foreach ($QN3->getResult() as $row3) {
             $no_instansi = $row3->nomor;
         }
-
-        // Define the location for storing the uploaded PDF
         $lokasi = './assets/pdf/teknis/' . $no_instansi . '/' . $no_pkp;
-
-        // Check if directory exists, if not create it
-        if (!file_exists($lokasi)) {
-            mkdir($lokasi, 0777, true);
-        }
+        $config['upload_path'] = $lokasi;
+        $config['allowed_types'] = 'pdf';
+        $config['max_size'] = 102400;
+        $config['overwrite'] = true; // Set overwrite ke true
 
         $teknis = 'teknis';
-        $fileName = $teknis . $no_pkp . '.pdf'; // Define the file name
 
-        if ($this->request->getFileMultiple('berkas')) {
-            $files = $this->request->getFileMultiple('berkas');
-            $jumlah_berkas = count($this->request->getFileMultiple('berkas'));
+        $jumlah_berkas = count($_FILES['berkas']['name']);
+        $u = 1;
+        for ($i = 0; $i < $jumlah_berkas; $i++) {
+            if (!empty($_FILES['berkas']['name'][$i])) {
+                $upload = $this->request->getFileMultiple('berkas')[$i];
 
-            // Move the file to the defined location with the defined file name
-            foreach ($files as $file) {
+                // Lakukan upload file
+                if ($upload->isValid() && !$upload->hasMoved()) {
+                    $originalName = $upload->getClientName(); // Dapatkan nama file asli
+                    $fileExt = $upload->getClientExtension(); // Dapatkan ekstensi file
+                    $newFileName = $teknis . $i . '.' . $fileExt; // Buat nama file baru dengan nomor urut dan ekstensi yang sama
+                    $config['file_name'] = $newFileName; // Set nama file pada konfigurasi
 
-                if ($this->request->getFileMultiple('berkas')) {
-                    $files = $this->request->getFileMultiple('berkas');
-                    $jumlah_berkas = count($files);
+                    // Hapus file lama jika ada
+                    $oldFilePath = $lokasi . '/' . $newFileName;
+                    if (file_exists($oldFilePath)) {
+                        unlink($oldFilePath);
+                    }
 
-                    for ($i = 0; $i < $jumlah_berkas; $i++) {
-                        $fileName = $teknis . $i . '.pdf';
-                        $file = $files[$i];
+                    $upload->move($lokasi, $newFileName);
+                    $namagam = $upload->getName(); // Mendapatkan nama file
 
-                        if ($file->isValid() && !$file->hasMoved()) {
-                            $file->move($lokasi, $fileName);
-                            $namagam = $file->getName();
-
-                            // Dynamically update the database based on the current $i
-                            if ($i == 0) {
-                                $this->db->table('pdf')->where('id_pkp', $id_pkp)->update(["pdf1" => $lokasi . '/teknis0.pdf']);
-                            } elseif ($i == 1) {
-                                $this->db->table('pdf')->where('id_pkp', $id_pkp)->update(["pdf2" => $lokasi . '/teknis1.pdf']);
-                            } elseif ($i == 2) {
-                                $this->db->table('pdf')->where('id_pkp', $id_pkp)->update(["pdf3" => $lokasi . '/teknis2.pdf']);
-                            } elseif ($i >= 3 && $i < 10) {
-                                $this->db->table('pdf')->where('id_pkp', $id_pkp)->update(["pdf" . ($i + 1) => $lokasi . '/' . $namagam]);
-                            }
-
-                        }
+                    // Update database sesuai dengan nama file yang diunggah
+                    if ($i == 0) {
+                        $this->db->table('pdf')->where('id_pkp', $id_pkp)->update(["pdf1" => $lokasi . '/teknis0.pdf']);
+                    } elseif ($i == 1) {
+                        $this->db->table('pdf')->where('id_pkp', $id_pkp)->update(["pdf2" => $lokasi . '/teknis1.pdf']);
+                    } elseif ($i == 2) {
+                        $this->db->table('pdf')->where('id_pkp', $id_pkp)->update(["pdf3" => $lokasi . '/teknis2.pdf']);
+                    } elseif ($i >= 3 && $i < 10) {
+                        $this->db->table('pdf')->where('id_pkp', $id_pkp)->update(["pdf" . ($i + 1) => $lokasi . '/' . $namagam]);
                     }
                 }
             }
         }
-
-        $dataend = [
+        $dataend = array(
             "tgl_ubah_dtt" => $now,
-        ];
+        );
         $this->db->table('master_pkp')->where('id_pkp', $id_pkp)->update($dataend);
-        $this->session->setFlashdata('success', 'upload pdf teknis');
+        $this->session->setFlashdata('success', 'Berhasil upload');
         $redirectUrl = previous_url() ?? base_url();
         return redirect()->to($redirectUrl);
     }
+
+
+
+
+
+    // public function teknistambah()
+    // {
+    //     $now = date("Y-m-d");
+    //     $post = $this->request->getPost();
+    //     $id_pkp = $post['id']; // Assuming you get this from POST or GET request
+    //     $QN0 = $this->db->query("SELECT * FROM pdf where id_pkp='$id_pkp'");
+    //     if ($QN0->getNumRows() > 0) {
+    //         $data0 = array(
+    //             'tgl_ubah' => $now,
+    //             'id_ubah' => $post["id_ubah"],
+    //         );
+    //         $this->db->table('pdf')->where('id_pkp', $id_pkp)->update($data0);
+    //     } else {
+
+    //         $QN = $this->db->query("SELECT max(kode) as masKode FROM pdf order by kode");
+    //         foreach ($QN->getResult() as $row) {
+    //             $order = $row->masKode;
+    //         }
+    //         $noUrut = (int) substr($order, 8, 5);
+    //         $noUrut++;
+    //         //BL masKode//
+    //         $bulanL = substr($order, 5, 2);
+    //         $bln = substr($now, 5, 2);
+    //         $tahun = substr($now, 2, 2);
+    //         if ($bln == $bulanL) {
+    //             $kode = 'PDF' . $tahun . $bln . '-' . sprintf("%05s", $noUrut);
+    //         } else {
+    //             $kode = 'PDF' . $tahun . $bln . '-' . '00001';
+    //         }
+
+    //         $id1 = 'PDF' . md5($kode);
+    //         $id2 = 'PDF' . hash("sha1", $id1) . 'QNS';
+
+    //         $array = [
+    //             'id' => $id2,
+    //             'id_pkp' => $post["id"],
+    //             'kode' => $kode,
+    //             'tgl_ubah' => $now,
+    //             'id_ubah' => $post["id_ubah"],
+    //         ];
+
+    //         $this->db->table('pdf')->insert($array);
+    //     }
+    //     // Retrieve no_pkp and id_instansi from the database
+    //     $QN2 = $this->db->query("SELECT * FROM master_pkp where id_pkp='$id_pkp'");
+    //     foreach ($QN2->getResult() as $row2) {
+    //         $no_pkp = $row2->no_pkp;
+    //         $id_instansi = $row2->id_instansi;
+    //     }
+
+    //     // Retrieve no_instansi from the database
+    //     $QN3 = $this->db->query("SELECT * FROM master_instansi where id='$id_instansi'");
+    //     foreach ($QN3->getResult() as $row3) {
+    //         $no_instansi = $row3->nomor;
+    //     }
+
+    //     // Define the location for storing the uploaded PDF
+    //     $lokasi = './assets/pdf/teknis/' . $no_instansi . '/' . $no_pkp;
+
+    //     $teknis = 'teknis';
+    //     $fileName = $teknis . $no_pkp . '.pdf'; // Define the file name
+    //     // Check if directory exists, if not create it
+    //     if (!file_exists($lokasi)) {
+    //         mkdir($lokasi, 0777, true);
+    //     }
+
+    //     // Delete the old PDF file
+    //     $oldFilePath = $lokasi . '/' . $teknis . $no_pkp . '.pdf';
+    //     if (file_exists($oldFilePath)) {
+    //         unlink($oldFilePath);
+    //     }
+
+
+    //     if ($this->request->getFileMultiple('berkas')) {
+    //         $files = $this->request->getFileMultiple('berkas');
+    //         $jumlah_berkas = count($this->request->getFileMultiple('berkas'));
+
+    //         // Move the file to the defined location with the defined file name
+    //         foreach ($files as $file) {
+
+    //             if ($this->request->getFileMultiple('berkas')) {
+    //                 $files = $this->request->getFileMultiple('berkas');
+    //                 $jumlah_berkas = count($files);
+
+    //                 for ($i = 0; $i < $jumlah_berkas; $i++) {
+    //                     $fileName = $teknis . $i . '.pdf';
+    //                     $file = $files[$i];
+
+    //                     if ($file->isValid() && !$file->hasMoved()) {
+    //                         $file->move($lokasi, $fileName);
+    //                         $namagam = $file->getName();
+
+    //                         // Dynamically update the database based on the current $i
+    //                         if ($i == 0) {
+    //                             $this->db->table('pdf')->where('id_pkp', $id_pkp)->update(["pdf1" => $lokasi . '/teknis0.pdf']);
+    //                         } elseif ($i == 1) {
+    //                             $this->db->table('pdf')->where('id_pkp', $id_pkp)->update(["pdf2" => $lokasi . '/teknis1.pdf']);
+    //                         } elseif ($i == 2) {
+    //                             $this->db->table('pdf')->where('id_pkp', $id_pkp)->update(["pdf3" => $lokasi . '/teknis2.pdf']);
+    //                         } elseif ($i >= 3 && $i < 10) {
+    //                             $this->db->table('pdf')->where('id_pkp', $id_pkp)->update(["pdf" . ($i + 1) => $lokasi . '/' . $namagam]);
+    //                         }
+
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    //     $dataend = [
+    //         "tgl_ubah_dtt" => $now,
+    //     ];
+    //     $this->db->table('master_pkp')->where('id_pkp', $id_pkp)->update($dataend);
+    //     $this->session->setFlashdata('success', 'unggah pembaharuan');
+    //     $redirectUrl = previous_url() ?? base_url();
+    //     return redirect()->to($redirectUrl);
+    // }
 
 
     public function import_mon_kry($id_pkp)
@@ -2462,5 +3359,1614 @@ class Proyek extends BaseController
     }
 
 
+    public function datagd1()
+    {
 
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        $requestData = $this->request->getPost();
+        $pkp_user = $isi->pkp_user;
+
+        if ($pkp_user != '') {
+            $divisi = $this->db->table('master_pkp')->getWhere(['id_pkp' => $pkp_user])->getFirstRow();
+            $id_divisi = $divisi ? $divisi->id_instansi : '';
+        }
+
+        if (level_user('proyek', 'data', $kategoriQNS, 'all') > 0) {
+            $builder = $this->db->table("master_pkp a")
+                ->select("a.id_pkp, a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")
+                ->join('master_instansi b', 'a.id_instansi = b.id')
+                ->where('b.nomor', '511')
+                ->where('a.no_pkp !=', '000');
+
+        } else {
+            if ($isi->username == '10288') {
+                $builder = $this->db->table("master_pkp a")
+                    ->select("a.id_pkp, a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")
+                    ->join('master_instansi b', 'a.id_instansi = b.id')
+                    ->where('b.nomor', '511')
+                    ->where('a.no_pkp !=', '000');
+
+            } else {
+                if (level_user('proyek', 'data', $kategoriQNS, 'divisi') > 0) {
+                    $builder = $this->db->table("master_pkp a")
+                        ->select("a.id_pkp, a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")
+                        ->join('master_instansi b', 'a.id_instansi = b.id')
+                        ->where('b.id', $id_divisi)
+                        ->where('b.nomor', '511')
+                        ->where('a.no_pkp !=', '000');
+
+                } else {
+                    $builder = $this->db->table("master_pkp a")
+                        ->select("a.id_pkp, a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")
+                        ->join('master_instansi b', 'a.id_instansi = b.id')
+                        ->where('a.id_pkp', $pkp_user)
+                        ->where('b.nomor', '511')
+                        ->where('a.no_pkp !=', '000');
+
+                }
+            }
+        }
+
+        // Apply search filter if search value is provided
+        if (!empty($requestData['search']['value'])) {
+            $searchValue = $requestData['search']['value'];
+            $builder->groupStart()
+                ->like('a.id_pkp', $searchValue)
+                ->orLike('a.proyek', $searchValue)
+                ->orLike('a.alias', $searchValue)
+                ->groupEnd();
+        }
+        // Sorting
+        if (isset($requestData['order']) && is_array($requestData['order']) && count($requestData['order']) > 0) {
+            $columnIndex = $requestData['order'][0]['column'];
+            $columnName = $requestData['columns'][$columnIndex]['data'];
+            $columnSortOrder = $requestData['order'][0]['dir'];
+
+            // Mapping nama kolom dari DataTables ke nama kolom dalam tabel database jika diperlukan
+            $columnMap = [
+                0 => 'a.no_pkp', // Kolom pertama tidak diurutkan
+                1 => 'a.proyek', // Kolom tanggal
+                2 => 'a.alias', // Kolom kode dokumen
+            ];
+
+            // Periksa apakah indeks kolom ditemukan dalam map
+            if (array_key_exists($columnIndex, $columnMap) && $columnMap[$columnIndex] !== null) {
+                // Jika ditemukan, gunakan nama kolom yang sesuai
+                $columnName = $columnMap[$columnIndex];
+            }
+
+            // Jika nama kolom ditemukan, lakukan pengurutan
+            if ($columnName !== null) {
+                $builder->orderBy($columnName, $columnSortOrder);
+            }
+        }
+
+        $builder->orderBy('a.no_pkp', 'ASC');
+        $totalRecords = $builder->countAllResults(false); // Count all records without pagination
+
+        $builder->limit($requestData['length'], $requestData['start']);
+        $list = $builder->get()->getResult();
+        $data = array();
+        foreach ($list as $r) {
+            $proyek = '';
+            if ($r->tgl_ubah_progress == '0000-00-00' or $r->tgl_ubah_progress == '0001-11-30') {
+                $proyek = '<strong><center><a class="text-dark">' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            } else {
+                $proyek = '<strong><center><a href="' . base_url() . 'proyek/edit_1/' . $r->id_pkp . '" > ' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            }
+
+            $row = array();
+            $row[] = $proyek;
+            $row[] = $r->proyek;
+            $row[] = $r->alias;
+            $data[] = $row;
+        }
+        return $this->response->setJSON([
+            'draw' => intval($requestData['draw']),
+            'recordsTotal' => $totalRecords,
+            'recordsFiltered' => $totalRecords,
+            'data' => $data,
+        ]);
+    }
+
+    public function datagd2()
+    {
+
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        $requestData = $this->request->getPost();
+        $pkp_user = $isi->pkp_user;
+
+        if ($pkp_user != '') {
+            $divisi = $this->db->table('master_pkp')->getWhere(['id_pkp' => $pkp_user])->getFirstRow();
+            $id_divisi = $divisi ? $divisi->id_instansi : '';
+        }
+
+        //ALL
+        if (level_user('proyek', 'data', $kategoriQNS, 'all') > 0) {
+            $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('b.nomor', '512')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+        } else {
+            //WAKADIRAT (DENNIS)
+            if ($isi->username == '10288') {
+                $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('b.nomor', '512')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+            } else {
+                //DIVISI
+                if (level_user('proyek', 'data', $kategoriQNS, 'divisi') > 0) {
+                    $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('b.id', $id_divisi)->where('b.nomor', '512')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+                } else {
+                    //PROYEK
+                    $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $pkp_user)->where('b.nomor', '512')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+                }
+            }
+        }
+
+        // Apply search filter if search value is provided
+        if (!empty($requestData['search']['value'])) {
+            $searchValue = $requestData['search']['value'];
+            $builder->groupStart()
+                ->like('a.id_pkp', $searchValue)
+                ->orLike('a.proyek', $searchValue)
+                ->orLike('a.alias', $searchValue)
+                ->groupEnd();
+        }
+        // Sorting
+        if (isset($requestData['order']) && is_array($requestData['order']) && count($requestData['order']) > 0) {
+            $columnIndex = $requestData['order'][0]['column'];
+            $columnName = $requestData['columns'][$columnIndex]['data'];
+            $columnSortOrder = $requestData['order'][0]['dir'];
+
+            // Mapping nama kolom dari DataTables ke nama kolom dalam tabel database jika diperlukan
+            $columnMap = [
+                0 => 'a.no_pkp', // Kolom pertama tidak diurutkan
+                1 => 'a.proyek', // Kolom tanggal
+                2 => 'a.alias', // Kolom kode dokumen
+            ];
+
+            // Periksa apakah indeks kolom ditemukan dalam map
+            if (array_key_exists($columnIndex, $columnMap) && $columnMap[$columnIndex] !== null) {
+                // Jika ditemukan, gunakan nama kolom yang sesuai
+                $columnName = $columnMap[$columnIndex];
+            }
+
+            // Jika nama kolom ditemukan, lakukan pengurutan
+            if ($columnName !== null) {
+                $builder->orderBy($columnName, $columnSortOrder);
+            }
+        }
+
+        $builder->orderBy('a.no_pkp', 'ASC');
+
+        $totalRecords = $builder->countAllResults(false); // Count all records without pagination
+
+        $builder->limit($requestData['length'], $requestData['start']);
+        $list = $builder->get()->getResult();
+        $data = array();
+        foreach ($list as $r) {
+            $proyek = '';
+            if ($r->tgl_ubah_progress == '0000-00-00' or $r->tgl_ubah_progress == '0001-11-30') {
+                $proyek = '<strong><center><a class="text-dark">' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            } else {
+                $proyek = '<strong><center><a href="' . base_url() . 'proyek/edit_1/' . $r->id_pkp . '" > ' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            }
+
+            $row = array();
+            $row[] = $proyek;
+            $row[] = esc($r->proyek);
+            $row[] = esc($r->alias);
+            $data[] = $row;
+        }
+        return $this->response->setJSON([
+            'draw' => intval($requestData['draw']),
+            'recordsTotal' => $totalRecords,
+            'recordsFiltered' => $totalRecords,
+            'data' => $data,
+        ]);
+    }
+
+
+    public function datagd3()
+    {
+
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        $requestData = $this->request->getPost();
+        $pkp_user = $isi->pkp_user;
+
+        if ($pkp_user != '') {
+            $divisi = $this->db->table('master_pkp')->getWhere(['id_pkp' => $pkp_user])->getFirstRow();
+            $id_divisi = $divisi ? $divisi->id_instansi : '';
+        }
+
+        //ALL
+        if (level_user('proyek', 'data', $kategoriQNS, 'all') > 0) {
+            $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('b.nomor', '613')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+        } else {
+            //WAKADIRAT (DENNIS)
+            if ($isi->username == '10288') {
+                $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('b.nomor', '613')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+            } else {
+                //DIVISI
+                if (level_user('proyek', 'data', $kategoriQNS, 'divisi') > 0) {
+                    $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('b.id', $id_divisi)->where('b.nomor', '613')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+                } else {
+                    //PROYEK
+                    $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $pkp_user)->where('b.nomor', '613')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+                }
+            }
+        }
+
+        // Apply search filter if search value is provided
+        if (!empty($requestData['search']['value'])) {
+            $searchValue = $requestData['search']['value'];
+            $builder->groupStart()
+                ->like('a.id_pkp', $searchValue)
+                ->orLike('a.proyek', $searchValue)
+                ->orLike('a.alias', $searchValue)
+                ->groupEnd();
+        }
+        // Sorting
+        if (isset($requestData['order']) && is_array($requestData['order']) && count($requestData['order']) > 0) {
+            $columnIndex = $requestData['order'][0]['column'];
+            $columnName = $requestData['columns'][$columnIndex]['data'];
+            $columnSortOrder = $requestData['order'][0]['dir'];
+
+            // Mapping nama kolom dari DataTables ke nama kolom dalam tabel database jika diperlukan
+            $columnMap = [
+                0 => 'a.no_pkp', // Kolom pertama tidak diurutkan
+                1 => 'a.proyek', // Kolom tanggal
+                2 => 'a.alias', // Kolom kode dokumen
+            ];
+
+            // Periksa apakah indeks kolom ditemukan dalam map
+            if (array_key_exists($columnIndex, $columnMap) && $columnMap[$columnIndex] !== null) {
+                // Jika ditemukan, gunakan nama kolom yang sesuai
+                $columnName = $columnMap[$columnIndex];
+            }
+
+            // Jika nama kolom ditemukan, lakukan pengurutan
+            if ($columnName !== null) {
+                $builder->orderBy($columnName, $columnSortOrder);
+            }
+        }
+
+        $builder->orderBy('a.no_pkp', 'ASC');
+        $totalRecords = $builder->countAllResults(false); // Count all records without pagination
+
+        $builder->limit($requestData['length'], $requestData['start']);
+        $list = $builder->get()->getResult();
+        $data = array();
+        foreach ($list as $r) {
+            $proyek = '';
+            if ($r->tgl_ubah_progress == '0000-00-00' or $r->tgl_ubah_progress == '0001-11-30') {
+                $proyek = '<strong><center><a class="text-dark">' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            } else {
+                $proyek = '<strong><center><a href="' . base_url() . 'proyek/edit_1/' . $r->id_pkp . '" > ' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            }
+
+            $row = array();
+            $row[] = $proyek;
+            $row[] = esc($r->proyek);
+            $row[] = esc($r->alias);
+            $data[] = $row;
+        }
+        return $this->response->setJSON([
+            'draw' => intval($requestData['draw']),
+            'recordsTotal' => $totalRecords,
+            'recordsFiltered' => $totalRecords,
+            'data' => $data,
+        ]);
+    }
+
+    public function dataktl()
+    {
+
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        $requestData = $this->request->getPost();
+        $pkp_user = $isi->pkp_user;
+
+        if ($pkp_user != '') {
+            $divisi = $this->db->table('master_pkp')->getWhere(['id_pkp' => $pkp_user])->getFirstRow();
+            $id_divisi = $divisi ? $divisi->id_instansi : '';
+        }
+
+        //ALL
+        if (level_user('proyek', 'data', $kategoriQNS, 'all') > 0) {
+            $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('b.nomor', '611')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+        } else {
+            //DIVISI
+            if (level_user('proyek', 'data', $kategoriQNS, 'divisi') > 0) {
+                $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('b.id', $id_divisi)->where('b.nomor', '611')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+            } else {
+                //PROYEK
+                $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $pkp_user)->where('b.nomor', '611')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+            }
+        }
+
+        // Apply search filter if search value is provided
+        if (!empty($requestData['search']['value'])) {
+            $searchValue = $requestData['search']['value'];
+            $builder->groupStart()
+                ->like('a.id_pkp', $searchValue)
+                ->orLike('a.proyek', $searchValue)
+                ->orLike('a.alias', $searchValue)
+                ->groupEnd();
+        }
+        // Sorting
+        if (isset($requestData['order']) && is_array($requestData['order']) && count($requestData['order']) > 0) {
+            $columnIndex = $requestData['order'][0]['column'];
+            $columnName = $requestData['columns'][$columnIndex]['data'];
+            $columnSortOrder = $requestData['order'][0]['dir'];
+
+            // Mapping nama kolom dari DataTables ke nama kolom dalam tabel database jika diperlukan
+            $columnMap = [
+                0 => 'a.no_pkp', // Kolom pertama tidak diurutkan
+                1 => 'a.proyek', // Kolom tanggal
+                2 => 'a.alias', // Kolom kode dokumen
+            ];
+
+            // Periksa apakah indeks kolom ditemukan dalam map
+            if (array_key_exists($columnIndex, $columnMap) && $columnMap[$columnIndex] !== null) {
+                // Jika ditemukan, gunakan nama kolom yang sesuai
+                $columnName = $columnMap[$columnIndex];
+            }
+
+            // Jika nama kolom ditemukan, lakukan pengurutan
+            if ($columnName !== null) {
+                $builder->orderBy($columnName, $columnSortOrder);
+            }
+        }
+
+        $builder->orderBy('a.no_pkp', 'ASC');
+        $totalRecords = $builder->countAllResults(false); // Count all records without pagination
+
+        $builder->limit($requestData['length'], $requestData['start']);
+        $list = $builder->get()->getResult();
+        $data = array();
+        foreach ($list as $r) {
+            $proyek = '';
+            if ($r->tgl_ubah_progress == '0000-00-00' or $r->tgl_ubah_progress == '0001-11-30') {
+                $proyek = '<strong><center><a class="text-dark">' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            } else {
+                $proyek = '<strong><center><a href="' . base_url() . 'proyek/edit_1/' . $r->id_pkp . '" > ' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            }
+
+            $row = array();
+            $row[] = $proyek;
+            $row[] = esc($r->proyek);
+            $row[] = esc($r->alias);
+            $data[] = $row;
+        }
+        return $this->response->setJSON([
+            'draw' => intval($requestData['draw']),
+            'recordsTotal' => $totalRecords,
+            'recordsFiltered' => $totalRecords,
+            'data' => $data,
+        ]);
+    }
+
+    public function dataktl2()
+    {
+
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        $requestData = $this->request->getPost();
+        $pkp_user = $isi->pkp_user;
+
+        if ($pkp_user != '') {
+            $divisi = $this->db->table('master_pkp')->getWhere(['id_pkp' => $pkp_user])->getFirstRow();
+            $id_divisi = $divisi ? $divisi->id_instansi : '';
+        }
+
+        if (level_user('proyek', 'data', $kategoriQNS, 'all') > 0) {
+            $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('b.nomor', '612')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+        } else {
+            //DIVISI
+            if (level_user('proyek', 'data', $kategoriQNS, 'divisi') > 0) {
+                $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('b.id', $id_divisi)->where('b.nomor', '612')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+            } else {
+                //PROYEK
+                $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $pkp_user)->where('b.nomor', '612')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+            }
+        }
+
+        // Apply search filter if search value is provided
+        if (!empty($requestData['search']['value'])) {
+            $searchValue = $requestData['search']['value'];
+            $builder->groupStart()
+                ->like('a.id_pkp', $searchValue)
+                ->orLike('a.proyek', $searchValue)
+                ->orLike('a.alias', $searchValue)
+                ->groupEnd();
+        }
+        // Apply search filter if search value is provided
+        if (!empty($requestData['search']['value'])) {
+            $searchValue = $requestData['search']['value'];
+            $builder->groupStart()
+                ->like('a.id_pkp', $searchValue)
+                ->orLike('a.proyek', $searchValue)
+                ->orLike('a.alias', $searchValue)
+                ->groupEnd();
+        }
+        // Sorting
+        if (isset($requestData['order']) && is_array($requestData['order']) && count($requestData['order']) > 0) {
+            $columnIndex = $requestData['order'][0]['column'];
+            $columnName = $requestData['columns'][$columnIndex]['data'];
+            $columnSortOrder = $requestData['order'][0]['dir'];
+
+            // Mapping nama kolom dari DataTables ke nama kolom dalam tabel database jika diperlukan
+            $columnMap = [
+                0 => 'a.no_pkp', // Kolom pertama tidak diurutkan
+                1 => 'a.proyek', // Kolom tanggal
+                2 => 'a.alias', // Kolom kode dokumen
+            ];
+
+            // Periksa apakah indeks kolom ditemukan dalam map
+            if (array_key_exists($columnIndex, $columnMap) && $columnMap[$columnIndex] !== null) {
+                // Jika ditemukan, gunakan nama kolom yang sesuai
+                $columnName = $columnMap[$columnIndex];
+            }
+
+            // Jika nama kolom ditemukan, lakukan pengurutan
+            if ($columnName !== null) {
+                $builder->orderBy($columnName, $columnSortOrder);
+            }
+        }
+
+        $builder->orderBy('a.no_pkp', 'ASC');
+        $totalRecords = $builder->countAllResults(false); // Count all records without pagination
+
+        $builder->limit($requestData['length'], $requestData['start']);
+        $list = $builder->get()->getResult();
+        $data = array();
+        foreach ($list as $r) {
+            $proyek = '';
+            if ($r->tgl_ubah_progress == '0000-00-00' or $r->tgl_ubah_progress == '0001-11-30') {
+                $proyek = '<strong><center><a class="text-dark">' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            } else {
+                $proyek = '<strong><center><a href="' . base_url() . 'proyek/edit_1/' . $r->id_pkp . '" > ' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            }
+
+            $row = array();
+            $row[] = $proyek;
+            $row[] = esc($r->proyek);
+            $row[] = esc($r->alias);
+            $data[] = $row;
+        }
+        return $this->response->setJSON([
+            'draw' => intval($requestData['draw']),
+            'recordsTotal' => $totalRecords,
+            'recordsFiltered' => $totalRecords,
+            'data' => $data,
+        ]);
+    }
+    public function datatrans()
+    {
+
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        $requestData = $this->request->getPost();
+        $pkp_user = $isi->pkp_user;
+
+        if ($pkp_user != '') {
+            $divisi = $this->db->table('master_pkp')->getWhere(['id_pkp' => $pkp_user])->getFirstRow();
+            $id_divisi = $divisi ? $divisi->id_instansi : '';
+        }
+
+        //ALL
+        if (level_user('proyek', 'data', $kategoriQNS, 'all') > 0) {
+            $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('b.nomor', '711')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+        } else {
+            //DIVISI
+            if (level_user('proyek', 'data', $kategoriQNS, 'divisi') > 0) {
+                $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('b.id', $id_divisi)->where('b.nomor', '711')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+            } else {
+                //PROYEK
+                $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $pkp_user)->where('b.nomor', '711')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+            }
+        }
+
+        // Apply search filter if search value is provided
+        if (!empty($requestData['search']['value'])) {
+            $searchValue = $requestData['search']['value'];
+            $builder->groupStart()
+                ->like('a.id_pkp', $searchValue)
+                ->orLike('a.proyek', $searchValue)
+                ->orLike('a.alias', $searchValue)
+                ->groupEnd();
+        }
+        // Apply search filter if search value is provided
+        if (!empty($requestData['search']['value'])) {
+            $searchValue = $requestData['search']['value'];
+            $builder->groupStart()
+                ->like('a.id_pkp', $searchValue)
+                ->orLike('a.proyek', $searchValue)
+                ->orLike('a.alias', $searchValue)
+                ->groupEnd();
+        }
+        // Sorting
+        if (isset($requestData['order']) && is_array($requestData['order']) && count($requestData['order']) > 0) {
+            $columnIndex = $requestData['order'][0]['column'];
+            $columnName = $requestData['columns'][$columnIndex]['data'];
+            $columnSortOrder = $requestData['order'][0]['dir'];
+
+            // Mapping nama kolom dari DataTables ke nama kolom dalam tabel database jika diperlukan
+            $columnMap = [
+                0 => 'a.no_pkp', // Kolom pertama tidak diurutkan
+                1 => 'a.proyek', // Kolom tanggal
+                2 => 'a.alias', // Kolom kode dokumen
+            ];
+
+            // Periksa apakah indeks kolom ditemukan dalam map
+            if (array_key_exists($columnIndex, $columnMap) && $columnMap[$columnIndex] !== null) {
+                // Jika ditemukan, gunakan nama kolom yang sesuai
+                $columnName = $columnMap[$columnIndex];
+            }
+
+            // Jika nama kolom ditemukan, lakukan pengurutan
+            if ($columnName !== null) {
+                $builder->orderBy($columnName, $columnSortOrder);
+            }
+        }
+
+        $builder->orderBy('a.no_pkp', 'ASC');
+        $totalRecords = $builder->countAllResults(false); // Count all records without pagination
+
+        $builder->limit($requestData['length'], $requestData['start']);
+        $list = $builder->get()->getResult();
+        $data = array();
+        foreach ($list as $r) {
+            $proyek = '';
+            if ($r->tgl_ubah_progress == '0000-00-00' or $r->tgl_ubah_progress == '0001-11-30') {
+                $proyek = '<strong><center><a class="text-dark">' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            } else {
+                $proyek = '<strong><center><a href="' . base_url() . 'proyek/edit_1/' . $r->id_pkp . '" > ' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            }
+
+            $row = array();
+            $row[] = $proyek;
+            $row[] = esc($r->proyek);
+            $row[] = esc($r->alias);
+            $data[] = $row;
+        }
+        return $this->response->setJSON([
+            'draw' => intval($requestData['draw']),
+            'recordsTotal' => $totalRecords,
+            'recordsFiltered' => $totalRecords,
+            'data' => $data,
+        ]);
+    }
+
+    public function datatrans2()
+    {
+
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        $requestData = $this->request->getPost();
+        $pkp_user = $isi->pkp_user;
+
+        if ($pkp_user != '') {
+            $divisi = $this->db->table('master_pkp')->getWhere(['id_pkp' => $pkp_user])->getFirstRow();
+            $id_divisi = $divisi ? $divisi->id_instansi : '';
+        }
+
+        if (level_user('proyek', 'data', $kategoriQNS, 'all') > 0) {
+            $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('b.nomor', '712')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+        } else {
+            //DIVISI
+            if (level_user('proyek', 'data', $kategoriQNS, 'divisi') > 0) {
+                $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('b.id', $id_divisi)->where('b.nomor', '712')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+            } else {
+                //PROYEK
+                $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $pkp_user)->where('b.nomor', '712')->where('a.no_pkp !=', '000')->orderBy('a.no_pkp', 'ASC');
+            }
+        }
+        // Apply search filter if search value is provided
+        if (!empty($requestData['search']['value'])) {
+            $searchValue = $requestData['search']['value'];
+            $builder->groupStart()
+                ->like('a.id_pkp', $searchValue)
+                ->orLike('a.proyek', $searchValue)
+                ->orLike('a.alias', $searchValue)
+                ->groupEnd();
+        }
+        // Sorting
+        if (isset($requestData['order']) && is_array($requestData['order']) && count($requestData['order']) > 0) {
+            $columnIndex = $requestData['order'][0]['column'];
+            $columnName = $requestData['columns'][$columnIndex]['data'];
+            $columnSortOrder = $requestData['order'][0]['dir'];
+
+            // Mapping nama kolom dari DataTables ke nama kolom dalam tabel database jika diperlukan
+            $columnMap = [
+                0 => 'a.no_pkp', // Kolom pertama tidak diurutkan
+                1 => 'a.proyek', // Kolom tanggal
+                2 => 'a.alias', // Kolom kode dokumen
+            ];
+
+            // Periksa apakah indeks kolom ditemukan dalam map
+            if (array_key_exists($columnIndex, $columnMap) && $columnMap[$columnIndex] !== null) {
+                // Jika ditemukan, gunakan nama kolom yang sesuai
+                $columnName = $columnMap[$columnIndex];
+            }
+
+            // Jika nama kolom ditemukan, lakukan pengurutan
+            if ($columnName !== null) {
+                $builder->orderBy($columnName, $columnSortOrder);
+            }
+        }
+
+        $builder->orderBy('a.no_pkp', 'ASC');
+        $totalRecords = $builder->countAllResults(false); // Count all records without pagination
+
+        $builder->limit($requestData['length'], $requestData['start']);
+        $list = $builder->get()->getResult();
+        $data = array();
+        foreach ($list as $r) {
+            $proyek = '';
+            if ($r->tgl_ubah_progress == '0000-00-00' or $r->tgl_ubah_progress == '0001-11-30') {
+                $proyek = '<strong><center><a class="text-dark">' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            } else {
+                $proyek = '<strong><center><a href="' . base_url() . 'proyek/edit_1/' . $r->id_pkp . '" > ' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            }
+
+            $row = array();
+            $row[] = $proyek;
+            $row[] = esc($r->proyek);
+            $row[] = esc($r->alias);
+            $data[] = $row;
+        }
+        return $this->response->setJSON([
+            'draw' => intval($requestData['draw']),
+            'recordsTotal' => $totalRecords,
+            'recordsFiltered' => $totalRecords,
+            'data' => $data,
+        ]);
+    }
+
+
+    public function datakantor()
+    {
+
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        $requestData = $this->request->getPost();
+        $pkp_user = $isi->pkp_user;
+
+        if ($pkp_user != '') {
+            $divisi = $this->db->table('master_pkp')->getWhere(['id_pkp' => $pkp_user])->getFirstRow();
+            $id_divisi = $divisi ? $divisi->id_instansi : '';
+        }
+
+        //ALL
+        if (level_user('proyek', 'data', $kategoriQNS, 'all') > 0) {
+            $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.no_pkp', '000')->orderBy('a.no_pkp', 'ASC');
+        } else {
+
+            //PROYEK
+            $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.no_pkp', '000')->where('a.id_instansi', $id_divisi)->orderBy('a.no_pkp', 'ASC');
+        }
+
+        // Apply search filter if search value is provided
+        if (!empty($requestData['search']['value'])) {
+            $searchValue = $requestData['search']['value'];
+            $builder->groupStart()
+                ->like('a.id_pkp', $searchValue)
+                ->orLike('a.proyek', $searchValue)
+                ->orLike('a.alias', $searchValue)
+                ->groupEnd();
+        }
+        // Sorting
+        if (isset($requestData['order']) && is_array($requestData['order']) && count($requestData['order']) > 0) {
+            $columnIndex = $requestData['order'][0]['column'];
+            $columnName = $requestData['columns'][$columnIndex]['data'];
+            $columnSortOrder = $requestData['order'][0]['dir'];
+
+            // Mapping nama kolom dari DataTables ke nama kolom dalam tabel database jika diperlukan
+            $columnMap = [
+                0 => 'a.no_pkp', // Kolom pertama tidak diurutkan
+                1 => 'a.proyek', // Kolom tanggal
+                2 => 'a.alias', // Kolom kode dokumen
+            ];
+
+            // Periksa apakah indeks kolom ditemukan dalam map
+            if (array_key_exists($columnIndex, $columnMap) && $columnMap[$columnIndex] !== null) {
+                // Jika ditemukan, gunakan nama kolom yang sesuai
+                $columnName = $columnMap[$columnIndex];
+            }
+
+            // Jika nama kolom ditemukan, lakukan pengurutan
+            if ($columnName !== null) {
+                $builder->orderBy($columnName, $columnSortOrder);
+            }
+        }
+
+        $builder->orderBy('a.no_pkp', 'ASC');
+        $totalRecords = $builder->countAllResults(false); // Count all records without pagination
+
+        $builder->limit($requestData['length'], $requestData['start']);
+        $list = $builder->get()->getResult();
+        $data = array();
+        foreach ($list as $r) {
+            $proyek = '';
+            if ($r->tgl_ubah_progress == '0000-00-00' or $r->tgl_ubah_progress == '0001-11-30') {
+                $proyek = '<strong><center><a class="text-dark">' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            } else {
+                $proyek = '<strong><center><a href="' . base_url() . 'proyek/edit_1/' . $r->id_pkp . '" > ' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            }
+
+            $row = array();
+            $row[] = $proyek;
+            $row[] = esc($r->proyek);
+            $row[] = esc($r->alias);
+            $data[] = $row;
+        }
+        return $this->response->setJSON([
+            'draw' => intval($requestData['draw']),
+            'recordsTotal' => $totalRecords,
+            'recordsFiltered' => $totalRecords,
+            'data' => $data,
+        ]);
+    }
+
+    public function datasemua()
+    {
+
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        $requestData = $this->request->getPost();
+        $pkp_user = $isi->pkp_user;
+
+        if ($pkp_user != '') {
+            $divisi = $this->db->table('master_pkp')->getWhere(['id_pkp' => $pkp_user])->getFirstRow();
+            $id_divisi = $divisi ? $divisi->id_instansi : '';
+        }
+
+        //ALL
+        if (level_user('proyek', 'data', $kategoriQNS, 'all') > 0) {
+            $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->orderBy('a.no_pkp', 'ASC');
+        } else {
+            //PROYEK
+            $builder = $this->db->table("master_pkp a")->select("a.id_pkp,a.tgl_ubah_progress, a.alias, a.no_pkp, a.proyek, a.status, a.id_instansi, a.tgl_ubah, a.kunci, b.id, b.nomor, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_instansi', $id_divisi)->orderBy('a.no_pkp', 'ASC');
+        }
+
+        // Apply search filter if search value is provided
+        if (!empty($requestData['search']['value'])) {
+            $searchValue = $requestData['search']['value'];
+            $builder->groupStart()
+                ->like('a.id_pkp', $searchValue)
+                ->orLike('a.proyek', $searchValue)
+                ->orLike('a.alias', $searchValue)
+                ->groupEnd();
+        }
+        // Sorting
+        if (isset($requestData['order']) && is_array($requestData['order']) && count($requestData['order']) > 0) {
+            $columnIndex = $requestData['order'][0]['column'];
+            $columnName = $requestData['columns'][$columnIndex]['data'];
+            $columnSortOrder = $requestData['order'][0]['dir'];
+
+            // Mapping nama kolom dari DataTables ke nama kolom dalam tabel database jika diperlukan
+            $columnMap = [
+                0 => 'a.no_pkp', // Kolom pertama tidak diurutkan
+                1 => 'a.proyek', // Kolom tanggal
+                2 => 'a.alias', // Kolom kode dokumen
+            ];
+
+            // Periksa apakah indeks kolom ditemukan dalam map
+            if (array_key_exists($columnIndex, $columnMap) && $columnMap[$columnIndex] !== null) {
+                // Jika ditemukan, gunakan nama kolom yang sesuai
+                $columnName = $columnMap[$columnIndex];
+            }
+
+            // Jika nama kolom ditemukan, lakukan pengurutan
+            if ($columnName !== null) {
+                $builder->orderBy($columnName, $columnSortOrder);
+            }
+        }
+
+        $builder->orderBy('a.no_pkp', 'ASC');
+        $totalRecords = $builder->countAllResults(false); // Count all records without pagination
+
+        $builder->limit($requestData['length'], $requestData['start']);
+        $list = $builder->get()->getResult();
+        $data = array();
+        foreach ($list as $r) {
+            $proyek = '';
+            if ($r->tgl_ubah_progress == '0000-00-00' or $r->tgl_ubah_progress == '0001-11-30') {
+                $proyek = '<strong><center><a class="text-dark">' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            } else {
+                $proyek = '<strong><center><a href="' . base_url() . 'proyek/edit_1/' . $r->id_pkp . '" > ' . $r->nomor . '/' . $r->no_pkp . '</a></strong>';
+            }
+
+            $row = array();
+            $row[] = $proyek;
+            $row[] = esc($r->proyek);
+            $row[] = esc($r->alias);
+            $data[] = $row;
+        }
+        return $this->response->setJSON([
+            'draw' => intval($requestData['draw']),
+            'recordsTotal' => $totalRecords,
+            'recordsFiltered' => $totalRecords,
+            'data' => $data,
+        ]);
+    }
+
+    public function validasi_kapro1()
+    {
+        $post = $this->request->getPost();
+        $postData = [
+            'id_pkp' => $post['id_pkp'],
+            'validasi' => $post['validasi']
+        ];
+        $id_pkp = $post["id_pkp"];
+        $validasi = $post["validasi"];
+        if ($validasi == 'OK') {
+            $val = 'Berhasil Memvalidasi Progress Baru';
+        } else {
+            $val = 'Data Progress dikembalikan ke data sebelumnya';
+        }
+        $simpan = $this->proyek;
+        if ($simpan->simpanvalidasi_kapro1($postData)) {
+            $data['success'] = true;
+            $data['message'] = $val;
+        } else {
+            $errors['fail'] = "gagal melakukan validasi data";
+            $data['errors'] = $errors;
+        }
+        $data['id_pkp'] = $id_pkp;
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function upd_data_spk()
+    {
+        $post = $this->request->getPost();
+        $postData = [
+            'id_pkp' => $post['id_pkp'],
+            'tgl_mulai' => $post['tgl_mulai'],
+            'tgl_selesai' => $post['tgl_selesai'],
+            'warning' => $post['warning'],
+            'late' => $post['late']
+        ];
+        $id_pkp = $post["id_pkp"];
+        $simpan = new ProyekModel();
+        if ($simpan->simpantglspk($postData)) {
+            $data['success'] = true;
+            $data['message'] = "Berhasil menyimpan tgl close";
+        } else {
+            $errors['fail'] = "gagal melakukan update data";
+            $data['errors'] = $errors;
+        }
+        $data['id_pkp'] = $id_pkp;
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+
+
+    public function upl_progress()
+    {
+        $originalFileName = $this->request->getFile('excelfile')->getName();
+        $extension = pathinfo($originalFileName, PATHINFO_EXTENSION);
+
+        // Generate a unique file name for the uploaded Excel file
+        $randomBytes = random_bytes(16); // Adjust the length as needed
+        $randomString = bin2hex($randomBytes);
+
+        // Concatenate the random string with the file extension
+        $nama_file = $randomString . '.' . $extension;
+
+        $config = [
+            'upload_path' => './excel/',
+            'allowed_types' => 'xlsx',
+            'file_name' => $nama_file,
+            'max_size' => 2048,
+            'overwrite' => true,
+        ];
+
+        $upload = Services::upload($config);
+
+        $file = $this->request->getFile('excelfile');
+
+        if ($file->isValid() && !$file->hasMoved()) {
+            $file->move($config['upload_path'], $config['file_name']);
+
+            // File uploaded successfully
+            $data = [
+                'file_name' => $file->getName(),
+                'file_path' => $config['upload_path'] . $file->getName(),
+                'file_size' => $file->getSize(),
+                'file_type' => $file->getClientMimeType(),
+            ];
+
+            $aksi['result'] = 'success';
+            $aksi['file'] = $data;
+        } else {
+            // Upload failed
+            $error = $file->getErrorString();
+            $aksi['result'] = 'failed';
+            $aksi['error'] = $error;
+        }
+
+        $arraysub = array();
+        if ($aksi['result'] == "success") {
+            $spreadsheet = IOFactory::load('excel/' . $nama_file);
+            $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+            $data = [];
+            $baris = 1;
+
+            date_default_timezone_set("Asia/Jakarta");
+            $now = date("Y-m-d");
+
+            $post = $this->request->getPost();
+            $id_pkp = $post['id_pkp'];
+            $id_ubah = $post['id_ubah'];
+            $bln2 = substr($now, 5, 2);
+            $tahun2 = substr($now, 2, 2);
+
+            //UPDATE PKP
+            $data5 = array(
+                'tgl_ubah_progress' => $now,
+            );
+            $this->db->table('master_pkp')->where('id_pkp', $id_pkp)->update($data5);
+
+            $no = -1;
+            $QN = $this->db->query("SELECT max(kode) as masKode FROM progress_paket order by kode");
+            foreach ($QN->getResult() as $row2) {
+                $order = $row2->masKode;
+            }
+            $noUrut = (int) substr($order, 8, 5);
+            $noUrut++;
+            //BL masKode//
+            $bulanL = substr($order, 5, 2);
+            $bln = substr($now, 5, 2);
+            $tahun = substr($now, 2, 2);
+            if ($bln == $bulanL) {
+                $kode = 'PPK' . $tahun . $bln . '-' . sprintf("%05s", $noUrut);
+            } else {
+                $kode = 'PPK' . $tahun . $bln . '-' . '00001';
+            }
+            $id1 = 'PPK' . md5($kode);
+            $id2 = 'PPK' . hash("sha1", $id1) . 'QNS';
+
+            foreach ($sheetData as $row) {
+
+                if ($baris == 3) {
+                    //ambil bulan
+                    //cek data
+                    $bulan22 = $row['C'];
+                }
+                if ($baris == 4) {
+                    //ambil tahun
+
+                    $tahun22 = substr($row['C'], 2, 2);
+
+                    //UBAH akhiran A
+                    $dataend = array(
+                        "akhir" => '',
+                    );
+                    $this->db->table('progress_proyek')->where('akhir', 'A')->where('id_pkp', $id_pkp)->update($dataend);
+
+                    //UBAH validasi kapro1 PKP
+                    $dataend2 = array(
+                        "validasi_kapro" => 0,
+                    );
+
+                    $this->db->table('master_pkp')->where('id_pkp', $id_pkp)->update($dataend2);
+                    //TAMBAH PROGRESS PROYEK
+                    $QN1 = $this->db->query("SELECT max(kode) as masKode1 FROM progress_proyek order by kode");
+                    foreach ($QN1->getResult() as $row1) {
+                        $order1 = $row1->masKode1;
+                    }
+                    $noUrut1 = (int) substr($order1, 8, 5);
+                    $noUrut1++;
+                    //BL masKode//
+                    $bulanL1 = substr($order1, 5, 2);
+                    $bln1 = substr($now, 5, 2);
+                    $tahun1 = substr($now, 2, 2);
+                    if ($bln1 == $bulanL1) {
+                        $kode1 = 'PPY' . $tahun1 . $bln1 . '-' . sprintf("%05s", $noUrut1);
+                    } else {
+                        $kode1 = 'PPY' . $tahun1 . $bln1 . '-' . '00001';
+                    }
+                    $id11 = 'PPY' . md5($kode1);
+                    $id21 = 'PPY' . hash("sha1", $id11) . 'QNS';
+
+                    $data1 = array(
+                        'id' => $id21,
+                        'id_pkp' => $id_pkp,
+                        'kode' => $kode1,
+                        'tgl_ubah_progress' => $now,
+                        'tahun' => $tahun22,
+                        'bulan' => $bulan22,
+                        'id_ubah' => $id_ubah,
+                        'akhir' => 'A',
+                    );
+                    $this->db->table('progress_proyek')->insert($data1);
+                    //Hapus Progress paket di bulan yang sama
+
+                }
+
+                if ($baris > 6) {
+
+
+                    if ($row['R'] > 0 and $row['L'] < 100) {
+                        $selisih2 = ((abs(strtotime($row['R']) - (strtotime($now)))) / 86400);
+                        if (strtotime($row['R']) < strtotime($now)) {
+                            $selisih = -1 * $selisih2;
+                        } else {
+                            $selisih = $selisih2;
+                        }
+                    } else {
+                        if ($row['O'] > 0 and $row['L'] < 100) {
+                            $selisih2 = ((abs(strtotime($row['O']) - (strtotime($now)))) / 86400);
+                            if (strtotime($row['O']) < strtotime($now)) {
+                                $selisih = -1 * $selisih2;
+                            } else {
+                                $selisih = $selisih2;
+                            }
+                        } else {
+                            $selisih = 0;
+                        }
+                    }
+
+                    $sisa = 100 - $row['L'];
+
+
+                    if ($row['O'] > 0 and $row['P'] == '0') {
+                        if ($selisih < 30) {
+                            $target = (100 - $row['L']);
+                        } else {
+                            $target = (100 - ($row['L'])) / ($selisih / 30);
+                        }
+                    } else {
+                        $target = $row['P'];
+                    }
+
+                    array_push(
+                        $data,
+                        array(
+                            'id' => $id2,
+                            'id_pkp' => $id_pkp,
+                            'progress_proyek' => $id21,
+                            'nomor' => $no,
+                            'kode' => $kode,
+                            'kode_pt' => $row['C'],
+                            'paket' => $row['B'],
+                            'tahun' => $tahun22,
+                            'bulan' => $bulan22,
+                            'tgl_mulai' => $row['N'],
+                            'tgl_selesai' => $row['O'],
+                            'bobot_pg' => $row['D'], //Bobot isi manual
+
+                            //---- INPUTAN PROGRESS ----//
+                            'rensd_mgll' => $row['E'],
+                            'rilsd_mgll' => $row['F'],
+                            'devsd_mgll' => $row['G'],
+
+                            'ren_mgini' => $row['H'],
+                            'ril_mgini' => $row['I'],
+                            'dev_mgini' => $row['J'],
+
+                            'rensd_mgini' => $row['K'],
+                            'rilsd_mgini' => $row['L'],
+                            'devsd_mgini' => $row['M'],
+                            //--------------------------//
+                            'sisa_bobotpg' => $sisa,
+
+                            'sisa_waktu' => $selisih,
+                            'target_minggu' => $target,
+
+                            'tgl_sadd' => $row['Q'],
+                            'tgl_fadd' => $row['R'],
+                            'tgl_rf' => $row['S'],
+                            'keterangan' => $row['T'],
+
+
+                        )
+                    );
+                }
+                $baris++;
+                $noUrut++;
+                $no++;
+                $kode = 'PPK' . $tahun2 . $bln2 . '-' . sprintf("%05s", $noUrut);
+                $id1 = 'PPK' . md5($kode);
+                $id2 = 'PPK' . hash("sha1", $id1) . 'QNS';
+            }
+
+            if ($this->proyek->input_semua3m($data)) {
+                $data['success'] = true;
+                $data['message'] = "Upload Progress sukses";
+            } else {
+                $errors['fail'] = 'gagal mengupload semua data, pastikan format upload';
+                $data['errors'] = $errors;
+            }
+        } else {
+            $errors['fail'] = $aksi['error'];
+            $data['errors'] = $errors;
+        }
+        //RAHAZIA BULAN NGAWUR
+        $SY01 = $this->db->query("SELECT * FROM progress_paket where id_pkp='$id_pkp' and bulan!='01' and bulan!='02' and bulan!='03' and bulan!='04' and bulan!='05' and bulan!='06' and bulan!='06' and bulan!='07' and bulan!='08' and bulan!='09' and bulan!='10' and bulan!='11' and bulan!='12' ");
+        if ($SY01->getNumRows() > 0) {
+            $this->db->table('progress_paket')->where('id_pkp', $id_pkp)->where('tahun', $tahun22)->where('bulan !=', '01')->where('bulan !=', '02')->where('bulan !=', '03')->where('bulan !=', '04')->where('bulan !=', '05')->where('bulan !=', '06')->where('bulan !=', '07')->where('bulan !=', '08')->where('bulan !=', '09')->where('bulan !=', '10')->where('bulan !=', '11')->where('bulan !=', '12')->delete();
+        }
+        $SY01a = $this->db->query("SELECT * FROM progress_proyek where id_pkp='$id_pkp' and bulan!='01' and bulan!='02' and bulan!='03' and bulan!='04' and bulan!='05' and bulan!='06' and bulan!='06' and bulan!='07' and bulan!='08' and bulan!='09' and bulan!='10' and bulan!='11' and bulan!='12' ");
+        if ($SY01a->getNumRows() > 0) {
+            $this->db->table('progress_proyek')->where('id_pkp', $id_pkp)->where('tahun', $tahun22)->where('bulan !=', '01')->where('bulan !=', '02')->where('bulan !=', '03')->where('bulan !=', '04')->where('bulan !=', '05')->where('bulan !=', '06')->where('bulan !=', '07')->where('bulan !=', '08')->where('bulan !=', '09')->where('bulan !=', '10')->where('bulan !=', '11')->where('bulan !=', '12')->delete();
+        }
+        //RAHAZIA TAHUN NGAWUR
+        date_default_timezone_set("Asia/Jakarta");
+        $now = date("Y-m-d");
+        $tahun_terawang = date('Y-m-d', strtotime('-365 days', strtotime($now)));
+        $batas_tahun1 = substr($now, 2, 2);
+        $batas_tahun2 = substr($tahun_terawang, 2, 2);
+        $SY02 = $this->db->query("SELECT * FROM progress_paket where id_pkp='$id_pkp' and tahun!='$batas_tahun1' and tahun!='$batas_tahun2' ");
+        if ($SY02->getNumRows() > 0) {
+            $this->db->table('progress_paket')->where('id_pkp', $id_pkp)->where('tahun', $tahun22)->where('tahun !=', $batas_tahun1)->where('tahun !=', $batas_tahun2)->delete();
+        }
+        $SY02a = $this->db->query("SELECT * FROM progress_proyek where id_pkp='$id_pkp' and tahun!='$batas_tahun1' and tahun!='$batas_tahun2' ");
+        if ($SY02a->getNumRows() > 0) {
+            $this->db->table('progress_proyek')->where('id_pkp', $id_pkp)->where('tahun', $tahun22)->where('tahun !=', $batas_tahun1)->where('tahun !=', $batas_tahun2)->delete();
+        }
+
+        //RAHAZIA JIKA PAKET SUDAH DI VALIDASI
+        //HAPUS PROGRESS PROYEK
+        /*
+        $QN0 = $this->db->query("SELECT * FROM progress_proyek where id_pkp='$id_pkp' and tahun='$tahun22' and bulan='$bulan22' and validasi_kapro > 0");
+        if ($QN0->getNumRows() > 0) {
+            $this->db->where('id_pkp', $id_pkp)->where('tahun', $tahun22)->where('bulan', $bulan22)->where('validasi_kapro', null)
+                ->or_where('id_pkp', $id_pkp)->where('tahun', $tahun22)->where('bulan', $bulan22)->where('validasi_kapro <', 1);
+            $this->db->delete('progress_proyek');
+        }
+        //HAPUS PROGRESS PAKET
+        $QN0 = $this->db->query("SELECT * FROM progress_paket where id_pkp='$id_pkp' and tahun='$tahun22' and bulan='$bulan22' and validasi_kapro > 0");
+        if ($QN0->getNumRows() > 0) {
+            $this->db->where('id_pkp', $id_pkp)->where('tahun', $tahun22)->where('bulan', $bulan22)->where('validasi_kapro', null)
+                ->or_where('id_pkp', $id_pkp)->where('tahun', $tahun22)->where('bulan', $bulan22)->where('validasi_kapro <', 1);
+            $this->db->delete('progress_paket');
+        }
+
+*/
+        //UPDATE TERAKHIR UNTUK Progres proyek
+        //AMBIL DATA DARI PAKET TOTAL
+        $QN5 = $this->db->query("SELECT * FROM progress_paket where id_pkp='$id_pkp' and tahun='$tahun22' and bulan='$bulan22' and devsd_mgini < 0 and paket !='TOTAL' ");
+        $alert = 0;
+        if ($QN5->getNumRows() > 0) {
+            foreach ($QN5->getResult() as $row5) {
+                $alert++;
+                $bulan33 = $row5->bulan;
+            }
+        }
+        $QN4 = $this->db->query("SELECT * FROM progress_paket where id_pkp='$id_pkp' and tahun='$tahun22' and bulan='$bulan22' and paket='TOTAL'");
+        if ($QN4->getNumRows() > 0) {
+            foreach ($QN4->getResult() as $row4) {
+                $p_bobot_pg = $row4->bobot_pg;
+                $p_rensd_mgll = $row4->rensd_mgll;
+                $p_rilsd_mgll = $row4->rilsd_mgll;
+                $p_devsd_mgll = $row4->devsd_mgll;
+                $p_ren_mgini = $row4->ren_mgini;
+                $p_ril_mgini = $row4->ril_mgini;
+                $p_dev_mgini = $row4->dev_mgini;
+                $p_rensd_mgini = $row4->rensd_mgini;
+                $p_rilsd_mgini = $row4->rilsd_mgini;
+                $p_devsd_mgini = $row4->devsd_mgini;
+                $p_sisa_bobotpg = $row4->sisa_bobotpg;
+            }
+            $data4 = array(
+                'bobot_pg' => $p_bobot_pg,
+                'rensd_mgll' => $p_rensd_mgll,
+                'rilsd_mgll' => $p_rilsd_mgll,
+                'devsd_mgll' => $p_devsd_mgll,
+                'ren_mgini' => $p_ren_mgini,
+                'ril_mgini' => $p_ril_mgini,
+                'dev_mgini' => $p_dev_mgini,
+                'rensd_mgini' => $p_rensd_mgini,
+                'rilsd_mgini' => $p_rilsd_mgini,
+                'devsd_mgini' => $p_devsd_mgini,
+                'sisa_bobotpg' => $p_sisa_bobotpg,
+                'alert' => $alert,
+            );
+            $this->db->table('progress_proyek')->where('id_pkp', $id_pkp)->where('tahun', $tahun22)->where('bulan', $bulan22)->update($data4);
+        }
+        //hapus data paket total
+        $QN2 = $this->db->query("SELECT * FROM progress_paket where id_pkp='$id_pkp' and bulan='$bulan22' and tahun='$tahun22' and paket='TOTAL'");
+        if ($QN2->getNumRows() > 0) {
+            $this->db->table('progress_paket')->where('id_pkp', $id_pkp)->where('tahun', $tahun22)->where('bulan', $bulan22)->where('paket', 'TOTAL')->delete();
+        }
+
+        $data['id_pkp'] = $id_pkp;
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+
+    public function upload_mon_1()
+    {
+        $originalFileName = $this->request->getFile('excelfile')->getName();
+        $extension = pathinfo($originalFileName, PATHINFO_EXTENSION);
+
+        // Generate a unique file name for the uploaded Excel file
+        $randomBytes = random_bytes(16); // Adjust the length as needed
+        $randomString = bin2hex($randomBytes);
+
+        // Concatenate the random string with the file extension
+        $nama_file = $randomString . '.' . $extension;
+
+        $config = [
+            'upload_path' => './excel/',
+            'allowed_types' => 'xlsx',
+            'file_name' => $nama_file,
+            'max_size' => 2048,
+            'overwrite' => true,
+        ];
+
+        $upload = Services::upload($config);
+
+        $file = $this->request->getFile('excelfile');
+
+        if ($file->isValid() && !$file->hasMoved()) {
+            $file->move($config['upload_path'], $config['file_name']);
+
+            // File uploaded successfully
+            $data = [
+                'file_name' => $file->getName(),
+                'file_path' => $config['upload_path'] . $file->getName(),
+                'file_size' => $file->getSize(),
+                'file_type' => $file->getClientMimeType(),
+            ];
+
+            $aksi['result'] = 'success';
+            $aksi['file'] = $data;
+        } else {
+            // Upload failed
+            $error = $file->getErrorString();
+            $aksi['result'] = 'failed';
+            $aksi['error'] = $error;
+        }
+        $arraysub = array();
+        if ($aksi['result'] == "success") {
+            $spreadsheet = IOFactory::load('excel/' . $nama_file);
+            $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+            $data = [];
+            $baris = 1;
+            //THBL TGL BERJALAN//
+            date_default_timezone_set("Asia/Jakarta");
+            $now = date("Y-m-d");
+            //ambil no urut terakhir//
+            //INSTHBL-12345//
+            $QN = $this->db->query("SELECT max(kode) as masKode FROM file_migrasi order by kode");
+            foreach ($QN->getResult() as $row2) {
+                $order = $row2->masKode;
+            }
+            $noUrut = (int) substr($order, 8, 5);
+            $noUrut++;
+            //BL masKode//
+            $bulanL = substr($order, 5, 2);
+            $bln = substr($now, 5, 2);
+            $tahun = substr($now, 2, 2);
+            if ($bln == $bulanL) {
+                $kode = 'MIG' . $tahun . $bln . '-' . sprintf("%05s", $noUrut);
+            } else {
+                $kode = 'MIG' . $tahun . $bln . '-' . '00001';
+            }
+            $id1 = 'MIG' . md5($kode);
+            $id2 = 'MIG' . hash("sha1", $id1) . 'QNS';
+
+            $post = $this->request->getPost();
+            $id_pkp = $post['id_pkp58'];
+
+            foreach ($sheetData as $row) {
+                if ($baris > 6) {
+                    array_push(
+                        $data,
+                        array(
+                            'id' => $id2,
+                            'kode' => $kode,
+                            'tipe' => 'DT_KR',
+                            'id_pkp' => $id_pkp,
+                            'ket_1' => $row['C'],
+                            'ket_2' => $row['D'],
+                            'ket_3' => $row['E'], //absensi
+                            'ket_4' => $row['F'],
+                            'ket_5' => $row['G'],
+                            'ket_6' => $row['H'], //end absensi
+                            'ket_7' => $row['I'], //KET absensi
+                            'ket_8' => $row['K'], //posisi
+                            'tgl_1' => $row['N'], //tgl mob
+                            'tgl_2' => $row['O'],
+                            'tgl_3' => $row['P'], //tgl demob
+                            'tgl_4' => $row['Q'],
+                            'ket_9' => $row['S'], //ket demob
+                            'ket_10' => $row['T'], //mutasi/resign/tf
+
+                        )
+                    );
+                }
+                $baris++;
+                $noUrut++;
+                $kode = 'MIG' . $tahun . $bln . '-' . sprintf("%05s", $noUrut);
+                $id1 = 'MIG' . md5($kode);
+                $id2 = 'MIG' . hash("sha1", $id1) . 'QNS';
+            }
+            if ($this->proyek->input_semua3mm($data)) {
+                $data['success'] = true;
+                $data['message'] = "Data berhasil di import, cek kembali data anda sebelum di proses";
+            } else {
+                $errors['fail'] = 'gagal mengupload semua data, pastikan format upload';
+                $data['errors'] = $errors;
+            }
+        } else {
+            $errors['fail'] = $aksi['error'];
+            $data['errors'] = $errors;
+        }
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function dataimportmon1()
+    {
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $pkp_user = $isi->pkp_user;
+        $list = $this->proyek->getAbsensi($pkp_user);
+        $data = [];
+        $no = 1;
+        foreach ($list as $r) {
+            //GAYA 
+            $karyawan = $this->db->table("master_admin")->where('username', $r->ket_1)->get();
+            if ($karyawan->getNumRows() > 0) {
+
+                $karyawan = $this->db->table("master_admin")->where('username', $r->ket_1)->get()->getRow();
+                $sisa_cuti = $karyawan->sisa_cuti;
+            } else {
+                $sisa_cuti = 0;
+            }
+            $normal = '<div style="text-align:center;">';
+            $gaya_merah = '<div style="text-align:center;color:red;"><i class="fa fa-exclamation-triangle fa-2x"></i>';
+            $gaya_kuning = '<div style="text-align:center;background-color:yellow;color:black;">';
+            $gaya_ungu = '<div style="text-align:center;background-color:purple;color:white;">';
+            $tutup = '</div>';
+            if (esc($r->tgl_1) > 0) {
+                $tgl_1 = esc($r->tgl_1);
+            } else {
+                $tgl_1 = '';
+            }
+            if (esc($r->tgl_2) > 0) {
+                $tgl_2 = esc($r->tgl_2);
+            } else {
+                $tgl_2 = '';
+            }
+            if (esc($r->tgl_3) > 0) {
+                $tgl_3 = esc($r->tgl_3);
+            } else {
+                $tgl_3 = '';
+            }
+            if (esc($r->tgl_4) > 0) {
+                $tgl_4 = esc($r->tgl_4);
+            } else {
+                $tgl_4 = '';
+            }
+
+
+            $row = array();
+            $row[] = $no;
+            $row[] = $r->ket_1;
+            $row[] = $r->ket_2;
+            if (is_numeric(esc($r->ket_3)) != true) {
+                $row[] = $gaya_kuning . '_' . $tutup;
+            } else {
+                if (esc($r->ket_3) == '') {
+                    $row[] = $gaya_merah . $tutup;
+                } else {
+                    $row[] = $normal . esc($r->ket_3) . $tutup;
+                }
+            }
+            if (is_numeric(esc($r->ket_4)) != true) {
+                $row[] = $gaya_kuning . '_' . $tutup;
+            } else {
+                if (esc($r->ket_4) == '') {
+                    $row[] = $gaya_merah . $tutup;
+                } else {
+                    $row[] = $normal . esc($r->ket_4) . $tutup;
+                }
+            }
+            if (is_numeric(esc($r->ket_5)) != true) {
+                $row[] = $gaya_kuning . '_' . $tutup;
+            } else {
+                if (esc($r->ket_5) == '') {
+                    $row[] = $gaya_merah . $tutup;
+                } else {
+                    $row[] = $normal . esc($r->ket_5) . $tutup;
+                }
+            }
+            if (is_numeric(esc($r->ket_6)) != true) {
+                $row[] = $gaya_kuning . '_' . $tutup;
+            } else {
+                if (esc($r->ket_6) == '') {
+                    $row[] = $gaya_merah . $tutup;
+                } else {
+                    $row[] = $normal . esc($r->ket_6) . $tutup;
+                }
+            }
+            $row[] = $sisa_cuti;
+            $n1_k7 = substr($r->ket_7, 0, 1);
+            if (($r->ket_7 == '') and (is_numeric($r->ket_3) == TRUE or is_numeric($r->ket_4) == TRUE or is_numeric($r->ket_5) == TRUE or is_numeric($r->ket_6) == TRUE) and ($r->ket_3 != 0 or $r->ket_4 != 0 or $r->ket_5 != 0 or $r->ket_6 != 0)) {
+                $row[] = $gaya_merah . $tutup;
+            } else {
+                if ($n1_k7 == ' ') {
+                    $row[] = $gaya_kuning . '_' . $tutup;
+                } else {
+                    if ($n1_k7 != ' ' and $r->ket_7 != '' and ($r->ket_3 == 0 and $r->ket_4 == 0 and $r->ket_5 == 0 and $r->ket_6 == 0)) {
+                        $row[] = $gaya_kuning . esc($r->ket_7) . $tutup;
+                    } else {
+                        $row[] = $normal . esc($r->ket_7) . $tutup;
+                    }
+                }
+            }
+            $n1_k8 = substr($r->ket_8, 0, 1);
+            if ($n1_k8 == ' ') {
+                $row[] = $gaya_kuning . '_' . $tutup;
+            } else {
+                if (esc($r->ket_8) != '') {
+                    $row[] = $normal . esc($r->ket_8) . $tutup;
+                } else {
+                    $row[] = $gaya_merah . $tutup;
+                }
+            }
+            if (esc($r->tgl_1) > 0) {
+                $row[] = $normal . $tgl_1 . $tutup;
+            } else {
+                $row[] = $gaya_merah . $tutup;
+            }
+            if (esc($r->tgl_2) > 0) {
+                $row[] = $normal . $tgl_2 . $tutup;
+            } else {
+                $row[] = $gaya_merah . $tutup;
+            }
+            if (esc($r->tgl_3) > 0) {
+                $row[] = $normal . $tgl_3 . $tutup;
+            } else {
+                $row[] = $gaya_merah . $tutup;
+            }
+            if ((esc($r->ket_10) == 'MUTASI' or esc($r->ket_10) == 'RESIGN') and esc($r->tgl_4) == 0) {
+                $row[] = $gaya_merah . $tutup;
+            } else {
+                $row[] = $normal . $tgl_4 . $tutup;
+            }
+            $row[] = $r->ket_9;
+            if (esc($r->ket_10) != '' and (esc($r->ket_10) != 'MUTASI' and esc($r->ket_10) != 'RESIGN' and esc($r->ket_10) != 'TASK FORCE')) {
+                $row[] = $gaya_kuning . esc($r->ket_10) . $tutup;
+            } else {
+                if (esc($r->tgl_4) > 0 and esc($r->ket_10) == '') {
+                    $row[] = $gaya_merah . $tutup;
+                } else {
+                    if (esc($r->tgl_4) > 0 and esc($r->ket_10) == 'TASK FORCE') {
+                        $row[] = $gaya_ungu . esc($r->ket_10) . $tutup;
+                    } else {
+                        $row[] = $normal . esc($r->ket_10) . $tutup;
+                    }
+                }
+            }
+            $data[] = $row;
+            $no++;
+        }
+        $result = array(
+            "draw" => $this->request->getVar('draw'),
+            "recordsTotal" => $this->proyek->count_all_datatable_import(),
+            "recordsFiltered" => $this->proyek->count_filtered_datatable_import($pkp_user),
+            "data" => $data,
+        );
+        return $this->response->setJSON($result);
+    }
+
+    public function hapus_mon_1()
+    {
+        $post = $this->request->getPost();
+        $postData = [
+            'id_pkp58' => $post['id_pkp58']
+        ];
+        $hapus = new ProyekModel;
+        if ($hapus->hapusdatamon_1($postData)) {
+            $data['success'] = true;
+            $data['message'] = "Berhasil menghapus data";
+        } else {
+            $errors['fail'] = "gagal menghapus data";
+            $data['errors'] = $errors;
+        }
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+    public function proses_mon_1()
+    {
+        $post = $this->request->getPost();
+        $postData = [
+            'id_pkp58' => $post['id_pkp58']
+        ];
+        $hapus = new ProyekModel;
+        if ($hapus->simpandatamon_1($postData)) {
+            $data['success'] = true;
+            $data['message'] = "Berhasil menambah data";
+        } else {
+            $errors['fail'] = "gagal menyimpan data";
+            $data['errors'] = $errors;
+        }
+
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function editmarketing()
+    {
+        $post = $this->request->getPost();
+        $postData = [
+            'id_pkp0' => $post['id_pkp0'],
+            'alias' => $post['alias'],
+            'alias0' => $post['alias0'],
+            'proyek' => $post['proyek'],
+            'proyek0' => $post['proyek0'],
+            'tgl_mulai' => $post['tgl_mulai'],
+            'tgl_selesai' => $post['tgl_selesai'],
+            'tgl_jaminan' => $post['tgl_jaminan'],
+            'nilai_jaminan' => $post['nilai_jaminan'],
+            'bast_1' => $post['bast_1'],
+            'bast_2' => $post['bast_2'],
+            'referensi' => $post['referensi'],
+        ];
+        $simpan = new ProyekModel();
+        if ($simpan->cekaliaspkp($postData) > 0) {
+            $errors['fail'] = "Data ini (nama alias) sudah ada...";
+            $data['errors'] = $errors;
+        } else {
+            if ($simpan->ceknamakontrakpkp($postData) > 0) {
+                $errors['fail'] = "Data ini (nama kontrak) sudah ada...";
+                $data['errors'] = $errors;
+            } else {
+                if ($simpan->simpandataeditmarketing($postData)) {
+                    $data['success'] = true;
+                    $data['message'] = "Berhasil menyimpan data";
+                } else {
+                    $errors['fail'] = "gagal melakukan update data";
+                    $data['errors'] = $errors;
+                }
+            }
+        }
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function tambahaddendum()
+    {
+        $post = $this->request->getPost();
+        $postData = [
+            'tgl_mulai' => $post['tgl_mulai'],
+            'tgl_selesai' => $post['tgl_selesai'],
+            'tgl_jaminan' => $post['tgl_jaminan'],
+            'id_pkp0' => $post['id_pkp0'],
+            'keterangan' => $post['keterangan'],
+            'nilai_jaminan' => $post['nilai_jaminan'],
+            'bast_1' => $post['bast_1'],
+            'bast_2' => $post['bast_2'],
+            'referensi' => $post['referensi'],
+        ];
+        $simpan = new ProyekModel();
+        if ($simpan->simpandataaddendum($postData)) {
+            $data['success'] = true;
+            $data['message'] = "Berhasil menyimpan data";
+        } else {
+            $errors['fail'] = "gagal melakukan update data";
+            $data['errors'] = $errors;
+        }
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
 }

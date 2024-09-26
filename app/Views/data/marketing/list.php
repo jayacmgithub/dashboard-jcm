@@ -1,5 +1,9 @@
 <?= $this->extend('layout/page_layout') ?>
 <?= $this->section('content') ?>
+<?php date_default_timezone_set("Asia/Jakarta");
+$now = date("Y-m-d");
+$tgl_terawang = date('Y-m-d', strtotime('-365 days', strtotime($now)));
+?>
 <div class="tab-content" id="myTabContent">
     <!--GEDUNG1-->
 
@@ -8,8 +12,7 @@
         <?php if (level_user('data', 'marketing', $kategoriQNS, 'edit') > 0) { ?>
             <div class="d-flex flex-row pull-right">
                 <div id="userbox3" class="userbox">
-                    <a style="font-size:12px;color:white" class="btn btn-success" data-toggle="modal"
-                        data-target="#tambahData"> TAMBAH DATA</a>
+                    <a style="font-size:12px;color:white" class="btn btn-success" data-toggle="modal" data-target="#tambahData"> TAMBAH DATA</a>
 
                 </div>
             </div>
@@ -26,10 +29,7 @@
                         </tr>
                     </thead>
                     <tr>
-                        <td style="border-bottom:0px;" colspan="7"><button type="button" class="btn btn-success"
-                                data-toggle="collapse" data-target="#demo1"
-                                style="font-size:12px;background-color:transparent;border-color:transparent;color:grey;text-align:left">PROGRESS
-                                TENDER & KONTRAK <i class="fa fa-sort"></i></button></td>
+                        <td style="border-bottom:0px;" colspan="7"><button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo1" style="font-size:12px;background-color:transparent;border-color:transparent;color:grey;text-align:left">PROGRESS TENDER & KONTRAK <i class="fa fa-sort"></i></button></td>
                     </tr>
                     <tbody class="collapse" id="demo1" style="border:none">
                         <?php
@@ -72,22 +72,14 @@
                             } else {
                                 $tgl_ubah = '';
                             }
-                            ?>
+                        ?>
 
                             <tr>
-                                <td rowspan="2" style="width:3%;text-align:center;vertical-align:middle;">
-                                    <?php echo $no ?>
-                                </td>
+                                <td rowspan="2" style="width:3%;text-align:center;vertical-align:middle;"><?php echo $no ?></td>
                                 <td rowspan="2" style="border-right:0px">
-                                    <a style="font-size: 12px;font-weight: 400;" class="link"
-                                        href="<?php echo base_url() ?>laporan/data_umum_mkt/<?php echo $dt_mkt->id_marketing ?>">
-                                        <?php echo $dt_mkt->nama_proyek ?>
-                                    </a><br>
+                                    <a style="font-size: 12px;font-weight: 400;" class="link" href="<?php echo base_url() ?>laporan/data_umum_mkt/<?php echo $dt_mkt->id_marketing ?>"><?php echo $dt_mkt->nama_proyek ?></a><br>
 
-                                    <a style="font-size: 12px;font-weight: 400" class="link"
-                                        href="<?php echo base_url() ?>laporan/data_umum_mkt/<?php echo $dt_mkt->id_marketing ?>"><i>Last
-                                            Upd: <b>
-                                                <?php echo $tgl_ubah ?></a>
+                                    <a style="font-size: 12px;font-weight: 400" class="link" href="<?php echo base_url() ?>laporan/data_umum_mkt/<?php echo $dt_mkt->id_marketing ?>"><i>Last Upd: <b><?php echo $tgl_ubah ?></a>
 
                                 </td>
                                 <td rowspan="2" style="border-left: 0px; width: 3%;vertical-align: middle;">
@@ -96,69 +88,41 @@
                                 <td style="width:7%;border-bottom:0px;border-right:0px;text-align:right">TENDER</td>
                                 <td style="border-bottom:0px;border-left:0px" colspan="4">
                                     <?php if ($dt_mkt->tgl_undangan > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#76ADE6;color:white;text-shadow: 1px 1px 3px  black;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>PENG</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#76ADE6;color:white;text-shadow: 1px 1px 3px  black;width: 14%;height:18px;" role="progressbar"><span><small>PENG</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>PENG</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;" role="progressbar"><span><small>PENG</small></span></a>
                                     <?php } ?>
                                     <?php if ($dt_mkt->tgl_pq_r > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#7E99EE;color:white;text-shadow: 1px 1px 3px black;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>PQ</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#7E99EE;color:white;text-shadow: 1px 1px 3px black;width: 14%;height:18px;" role="progressbar"><span><small>PQ</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;"
-                                            role="progressbar">
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;" role="progressbar">
                                             <span><small>PQ</small></span></a>
                                     <?php } ?>
                                     <?php if ($dt_mkt->tgl_awz_r > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#7E85FE;color:white;text-shadow: 1px 1px 3px black;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>AWZ</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#7E85FE;color:white;text-shadow: 1px 1px 3px black;width: 14%;height:18px;" role="progressbar"><span><small>AWZ</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>AWZ</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;" role="progressbar"><span><small>AWZ</small></span></a>
                                     <?php } ?>
                                     <?php if ($dt_mkt->tgl_admin_r > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#7E6BFA;color:white;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>PRPS</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#7E6BFA;color:white;width: 14%;height:18px;" role="progressbar"><span><small>PRPS</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;"
-                                            role="progressbar">
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;" role="progressbar">
                                             <span><small>PRPS</small></span></a>
                                     <?php } ?>
                                     <?php if ($dt_mkt->tgl_pemasukan_r > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#7355F3;color:white;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>PMSK</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#7355F3;color:white;width: 14%;height:18px;" role="progressbar"><span><small>PMSK</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>PMSK</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;" role="progressbar"><span><small>PMSK</small></span></a>
                                     <?php } ?>
                                     <?php if ($dt_mkt->tgl_presentasi_r > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#5038BB;color:white;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>PRST</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#5038BB;color:white;width: 14%;height:18px;" role="progressbar"><span><small>PRST</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>PRST</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;" role="progressbar"><span><small>PRST</small></span></a>
                                     <?php } ?>
                                     <?php if ($dt_mkt->admin_teknis > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#3E2DA5;color:white;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>EVAL</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#3E2DA5;color:white;width: 14%;height:18px;" role="progressbar"><span><small>EVAL</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>EVAL</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;" role="progressbar"><span><small>EVAL</small></span></a>
                                     <?php } ?>
                                 </td>
                             </tr>
@@ -166,46 +130,31 @@
                                 <td style="width:7%;border-top:0px;border-right:0px;text-align:right">KONTRAK</td>
                                 <td style="border-top:0px;border-left:0px;" colspan="4">
                                     <?php if ($dt_mkt->no_spk != '') { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#BFEAF5;width: 32.657%;height:18px;"
-                                            role="progressbar"><span><small>SPK</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#BFEAF5;width: 32.657%;height:18px;" role="progressbar"><span><small>SPK</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 32.657%;height:18px;"
-                                            role="progressbar"><span><small>SPK</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 32.657%;height:18px;" role="progressbar"><span><small>SPK</small></span></a>
                                     <?php } ?>
                                     <?php if ($dt_mkt->tgl_draft > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#7E99EE;width: 32.657%;height:18px;color:white"
-                                            role="progressbar"><span><small>DRAFT</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#7E99EE;width: 32.657%;height:18px;color:white" role="progressbar"><span><small>DRAFT</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 32.657%;height:18px;"
-                                            role="progressbar"><span><small>DRAFT</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 32.657%;height:18px;" role="progressbar"><span><small>DRAFT</small></span></a>
                                     <?php } ?>
                                     <?php if ($dt_mkt->tgl_ttd > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#7355F3;width: 32.657%;height:18px;color:white"
-                                            role="progressbar"><span><small>SPER</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#7355F3;width: 32.657%;height:18px;color:white" role="progressbar"><span><small>SPER</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 32.657%;height:18px;"
-                                            role="progressbar"><span><small>SPER</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 32.657%;height:18px;" role="progressbar"><span><small>SPER</small></span></a>
                                     <?php } ?>
                                 </td>
                             </tr>
-                            <?php
+                        <?php
                             $total = 0;
                             $total2 = 0;
                             $no++;
-                        } ?>
+                        }  ?>
                     </tbody>
 
                     <tr>
-                        <td style="border-bottom:0px;" colspan="7"><button type="button" class="btn btn-success"
-                                data-toggle="collapse" data-target="#demo3"
-                                style="font-size:12px;background-color:transparent;border-color:transparent;color:grey;text-align:left">PROGRESS
-                                ADDENDUM <i class="fa fa-sort"></i></button></td>
+                        <td style="border-bottom:0px;" colspan="7"><button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo3" style="font-size:12px;background-color:transparent;border-color:transparent;color:grey;text-align:left">PROGRESS ADDENDUM <i class="fa fa-sort"></i></button></td>
                     </tr>
                     <tbody class="collapse" id="demo3" style="border:none">
                         <?php
@@ -233,95 +182,59 @@
                             } else {
                                 $tgl_ubah = '';
                             }
-                            ?>
+                        ?>
 
                             <tr>
-                                <td style="width:3%;text-align:center;vertical-align:middle;">
-                                    <?php echo $no3 ?>
-                                </td>
+                                <td style="width:3%;text-align:center;vertical-align:middle;"><?php echo $no3 ?></td>
                                 <td style="border-right:0px">
-                                    <a style="font-size: 12px;font-weight: 400;" class="link"
-                                        href="<?php echo base_url() ?>laporan/addendum/<?php echo $dt_mkt->id_marketing ?>">
-                                        <?php echo $dt_mkt->no_pkp . ' : ' . $dt_mkt->nama_proyek ?>
-                                    </a>
+                                    <a style="font-size: 12px;font-weight: 400;" class="link" href="<?php echo base_url() ?>laporan/addendum/<?php echo $dt_mkt->id_marketing ?>"><?php echo $dt_mkt->no_pkp . ' : ' . $dt_mkt->nama_proyek ?></a>
 
-                                    <a style="font-size: 12px;font-weight: 400" class="link"
-                                        href="<?php echo base_url() ?>laporan/addendum/<?php echo $dt_mkt->id_marketing ?>"><i>(Last
-                                            Upd: <b>
-                                                <?php echo $tgl_ubah ?>
-                                            </b>)</a>
+                                    <a style="font-size: 12px;font-weight: 400" class="link" href="<?php echo base_url() ?>laporan/addendum/<?php echo $dt_mkt->id_marketing ?>"><i>(Last Upd: <b><?php echo $tgl_ubah ?></b>)</a>
                                 <td style="border-left: 0px; width: 3%;vertical-align: middle;">
                                     <div class="notify"> <a href="#"></a></div>
                                 </td>
                                 </td>
-                                <td
-                                    style="width:7%;border-bottom:0px;border-right:0px;text-align:right;vertical-align:middle">
-                                    ADDENDUM
-                                    <?php echo $dt_mkt->addendum_ke ?>
-                                </td>
+                                <td style="width:7%;border-bottom:0px;border-right:0px;text-align:right;vertical-align:middle">ADDENDUM <?php echo $dt_mkt->addendum_ke ?></td>
                                 <td style="border-bottom:0px;border-left:0px;vertical-align:middle" colspan="4">
                                     <?php if ($total > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#76ADE6;color:white;text-shadow: 1px 1px 3px  black;width: 19.5%;height:18px;"
-                                            role="progressbar"><span><small>BA/S</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#76ADE6;color:white;text-shadow: 1px 1px 3px  black;width: 19.5%;height:18px;" role="progressbar"><span><small>BA/S</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 19.5%;height:18px;"
-                                            role="progressbar"><span><small>BA/S</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 19.5%;height:18px;" role="progressbar"><span><small>BA/S</small></span></a>
                                     <?php } ?>
                                     <?php if ($total > 1) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#7E99EE;color:white;text-shadow: 1px 1px 3px  black;width: 19.5%;height:18px;"
-                                            role="progressbar"><span><small>SPH</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#7E99EE;color:white;text-shadow: 1px 1px 3px  black;width: 19.5%;height:18px;" role="progressbar"><span><small>SPH</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 19.5%;height:18px;"
-                                            role="progressbar">
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 19.5%;height:18px;" role="progressbar">
                                             <span><small>SPH</small></span></a>
                                     <?php } ?>
                                     <?php if ($total > 2) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#7E85FE;color:white;text-shadow: 1px 1px 3px  black;width: 19.5%;height:18px;"
-                                            role="progressbar"><span><small>NEGO</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#7E85FE;color:white;text-shadow: 1px 1px 3px  black;width: 19.5%;height:18px;" role="progressbar"><span><small>NEGO</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 19.5%;height:18px;"
-                                            role="progressbar"><span><small>NEGO</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 19.5%;height:18px;" role="progressbar"><span><small>NEGO</small></span></a>
                                     <?php } ?>
                                     <?php if ($total > 3) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#7E6BFA;color:white;width: 19.5%;height:18px;"
-                                            role="progressbar"><span><small>DRAFT</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#7E6BFA;color:white;width: 19.5%;height:18px;" role="progressbar"><span><small>DRAFT</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 19.5%;height:18px;"
-                                            role="progressbar">
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 19.5%;height:18px;" role="progressbar">
                                             <span><small>DRAFT</small></span></a>
                                     <?php } ?>
                                     <?php if ($total > 4) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#7355F3;color:white;width: 19.5%;height:18px;"
-                                            role="progressbar"><span><small>SPER</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#7355F3;color:white;width: 19.5%;height:18px;" role="progressbar"><span><small>SPER</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 19.5%;height:18px;"
-                                            role="progressbar"><span><small>SPER</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 19.5%;height:18px;" role="progressbar"><span><small>SPER</small></span></a>
                                     <?php } ?>
 
                                 </td>
                             </tr>
 
-                            <?php
+                        <?php
                             $total = 0;
                             $total2 = 0;
                             $no3++;
-                        } ?>
+                        }  ?>
                     </tbody>
                     <tr>
-                        <td style="border-bottom:0px;" colspan="7"><button type="button" class="btn btn-success"
-                                data-toggle="collapse" data-target="#demo2"
-                                style="font-size:12px;background-color:transparent;border-color:transparent;color:grey;text-align:left">MASA
-                                KONSTRUKSI <i class="fa fa-sort"></i></button></td>
+                        <td style="border-bottom:0px;" colspan="7"><button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo2" style="font-size:12px;background-color:transparent;border-color:transparent;color:grey;text-align:left">MASA KONSTRUKSI <i class="fa fa-sort"></i></button></td>
                     </tr>
                     <tbody class="collapse" id="demo2" style="border:none">
                         <?php
@@ -402,31 +315,18 @@
                             if ($selisih < 0) {
                                 $ttl = 'Segera ajukan Addendum, proyek sudah terlambat : ' . $selisih * -1 . ' hari dari tanggal finish.';
                             }
-                            ?>
+                        ?>
 
                             <tr>
-                                <td style="width:3%;text-align:center;vertical-align:middle;">
-                                    <?php echo $no2 ?>
-                                </td>
+                                <td style="width:3%;text-align:center;vertical-align:middle;"><?php echo $no2 ?></td>
                                 <td style="border-right:0px">
-                                    <a style="font-size: 12px;font-weight: 400;" class="link"
-                                        href="<?php echo base_url() ?>laporan/data_mkt/<?php echo $dt_mkt->id_marketing ?>">
-                                        <?php echo $dt_mkt->no_pkp . ' : ' . $dt_mkt->nama_proyek . '  ' ?>
-                                    </a>
+                                    <a style="font-size: 12px;font-weight: 400;" class="link" href="<?php echo base_url() ?>laporan/data_mkt/<?php echo $dt_mkt->id_marketing ?>"><?php echo $dt_mkt->no_pkp . ' : ' . $dt_mkt->nama_proyek . '  ' ?></a>
 
-                                    <a style="font-size: 12px;font-weight: 400" class="link"
-                                        href="<?php echo base_url() ?>laporan/data_mkt/<?php echo $dt_mkt->id_marketing ?>"><i>(Last
-                                            Upd: <b>
-                                                <?php echo $tgl_ubah ?>
-                                            </b>)</a>
+                                    <a style="font-size: 12px;font-weight: 400" class="link" href="<?php echo base_url() ?>laporan/data_mkt/<?php echo $dt_mkt->id_marketing ?>"><i>(Last Upd: <b><?php echo $tgl_ubah  ?></b>)</a>
 
                                 </td>
                                 <td style="border-left: 0px; width: 3%;vertical-align: middle;">
-                                    <div class="notify"> <a
-                                            href="<?php echo base_url() ?>laporan/addendum/<?php echo $dt_mkt->id_marketing ?>"><span
-                                                class="<?php echo $hb ?>" data-toggle="tooltip" data-placement="right"
-                                                title="<?php echo $ttl ?>"></span> <span class="<?php echo $pt ?>"></span>
-                                        </a></div>
+                                    <div class="notify"> <a href="<?php echo base_url() ?>laporan/addendum/<?php echo $dt_mkt->id_marketing ?>"><span class="<?php echo $hb ?>" data-toggle="tooltip" data-placement="right" title="<?php echo $ttl ?>"></span> <span class="<?php echo $pt ?>"></span> </a></div>
                                 </td>
                                 <td style="width:7%;border-bottom:0px;border-right:0px;text-align:right">TGL START</td>
                                 <td style="border-bottom:0px;border-left:0px">
@@ -438,18 +338,15 @@
                                 </td>
                             </tr>
 
-                            <?php
+                        <?php
                             $total = 0;
                             $total2 = 0;
                             $no2++;
-                        } ?>
+                        }  ?>
                     </tbody>
 
                     <tr>
-                        <td style="border-bottom:0px;" colspan="7"><button type="button" class="btn btn-success"
-                                data-toggle="collapse" data-target="#demo5"
-                                style="font-size:12px;background-color:transparent;border-color:transparent;color:grey;text-align:left">SELESAI
-                                <i class="fa fa-sort"></i></button></td>
+                        <td style="border-bottom:0px;" colspan="7"><button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo5" style="font-size:12px;background-color:transparent;border-color:transparent;color:grey;text-align:left">SELESAI <i class="fa fa-sort"></i></button></td>
                     </tr>
                     <tbody class="collapse" id="demo5" style="border:none">
                         <?php
@@ -502,6 +399,7 @@
                             } else {
                                 $tgl_finish = '';
                             }
+                           
 
                             //MAEN TANGGAL
                             date_default_timezone_set("Asia/Jakarta");
@@ -530,29 +428,49 @@
                             if ($selisih < 0) {
                                 $ttl = 'Segera ajukan Addendum, proyek sudah terlambat : ' . $selisih * -1 . ' hari dari tanggal finish.';
                             }
-                            ?>
+                        ?>
 
                             <tr>
-                                <td style="width:3%;text-align:center;vertical-align:middle;">
-                                    <?php echo $no2 ?>
-                                </td>
+                                <td style="width:3%;text-align:center;vertical-align:middle;"><?php echo $no2 ?></td>
                                 <td style="border-right:0px">
-                                    <a style="font-size: 12px;font-weight: 400;" class="link"
-                                        href="<?php echo base_url() ?>laporan/data_mkt/<?php echo $dt_mkt->id_marketing ?>">
-                                        <?php echo $dt_mkt->no_pkp . ' : ' . $dt_mkt->nama_proyek . '  ' ?>
-                                    </a>
+                                    <a style="font-size: 12px;font-weight: 400;" class="link" href="<?php echo base_url() ?>laporan/data_mkt/<?php echo $dt_mkt->id_marketing ?>"><?php echo $dt_mkt->no_pkp . ' : ' . $dt_mkt->nama_proyek . '  ' ?></a>
 
-                                    <a style="font-size: 12px;font-weight: 400" class="link"
-                                        href="<?php echo base_url() ?>laporan/data_mkt/<?php echo $dt_mkt->id_marketing ?>"><i>(Last
-                                            Upd: <b>
-                                                <?php echo $tgl_ubah ?>
-                                            </b>)</a>
+                                    <a style="font-size: 12px;font-weight: 400" class="link" href="<?php echo base_url() ?>laporan/data_mkt/<?php echo $dt_mkt->id_marketing ?>"><i>(Last Upd: <b><?php echo $tgl_ubah  ?></b>)</a>
 
                                 </td>
                                 <td style="border-left: 0px; width: 3%;vertical-align: middle;">
-                                    <!--
-                                    <div class="notify"> <a href="<?php echo base_url() ?>laporan/addendum/<?php echo $dt_mkt->id_marketing ?>"><span class="<?php echo $hb ?>" data-toggle="tooltip" data-placement="right" title="<?php echo $ttl ?>"></span> <span class="<?php echo $pt ?>"></span> </a></div>
-                                    -->
+                                <?php
+                                    // Initialize message and URL
+                                    $message = '';
+                                    $url = base_url() . 'laporan/editdata_mkt/' . $dt_mkt->id_marketing;
+
+                                    // Check if bast_1, bast_2, and surat_ref are set and not empty
+                                    $bast_1 = !empty($dt_mkt->bast_1) ? $dt_mkt->bast_1 : '';
+                                    $bast_2 = !empty($dt_mkt->bast_2) ? $dt_mkt->bast_2 : '';
+                                    $surat_ref = !empty($dt_mkt->surat_ref) ? $dt_mkt->surat_ref : '';
+
+                                    // Determine the appropriate message based on conditions
+                                    if ($bast_1 == 'TIDAK' && $bast_2 == 'TIDAK') {
+                                        if ($surat_ref == 'ADA') {
+                                            $message = 'Belum ada BAST, namun ada surat ref';
+                                        } elseif ($surat_ref == '' || $surat_ref != 'ADA') {
+                                            $message = 'BAST dan surat ref belum ada';
+                                        }
+                                    } elseif ($bast_1 == 'ADA' && $bast_2 == 'ADA' && ($surat_ref == 'TIDAK' || $surat_ref == '')) {
+                                        $message = 'BAST ada dan surat ref belum ada';
+                                    }
+
+                                    // Display the notification if a message is set
+                                    if ($message) :
+                                    ?>
+                                        <div class="notify">
+                                            <a href="<?php echo $url; ?>">
+                                                <span class="heartbitSLS" data-toggle="tooltip" data-placement="right" title="<?php echo $message; ?>"></span>
+                                                <span class="pointSLS"></span>
+                                            </a>
+                                        </div>
+                                    <?php endif; ?>
+
                                 </td>
                                 <td style="width:7%;border-bottom:0px;border-right:0px;text-align:right">TGL START</td>
                                 <td style="border-bottom:0px;border-left:0px">
@@ -564,17 +482,14 @@
                                 </td>
                             </tr>
 
-                            <?php
+                        <?php
                             $total = 0;
                             $total2 = 0;
                             $no2++;
-                        } ?>
+                        }  ?>
                     </tbody>
                     <tr>
-                        <td style="border-bottom:0px;" colspan="7"><button type="button" class="btn btn-success"
-                                data-toggle="collapse" data-target="#demo6"
-                                style="font-size:12px;background-color:transparent;border-color:transparent;color:grey;text-align:left">KALAH/MUNDUR
-                                <i class="fa fa-sort"></i></button></td>
+                        <td style="border-bottom:0px;" colspan="7"><button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo6" style="font-size:12px;background-color:transparent;border-color:transparent;color:grey;text-align:left">KALAH/MUNDUR <i class="fa fa-sort"></i></button></td>
                     </tr>
                     <tbody class="collapse" id="demo6" style="border:none">
                         <?php
@@ -617,24 +532,14 @@
                             } else {
                                 $tgl_ubah = '';
                             }
-                            ?>
+                        ?>
 
                             <tr>
-                                <td rowspan="2" style="width:3%;text-align:center;vertical-align:middle;">
-                                    <?php echo $no ?>
-                                </td>
+                                <td rowspan="2" style="width:3%;text-align:center;vertical-align:middle;"><?php echo $no ?></td>
                                 <td rowspan="2" style="border-right:0px">
-                                    <a style="font-size: 12px;font-weight: 400;" class="link"
-                                        href="<?php echo base_url() ?>laporan/data_umum_mkt/<?php echo $dt_mkt->id_marketing ?>">
-                                        <?php echo $dt_mkt->nama_proyek ?>
-                                    </a><br>
+                                    <a style="font-size: 12px;font-weight: 400;" class="link" href="<?php echo base_url() ?>laporan/data_umum_mkt/<?php echo $dt_mkt->id_marketing ?>"><?php echo $dt_mkt->nama_proyek ?></a><br>
 
-                                    <a style="font-size: 12px;font-weight: 400" class="link"
-                                        href="<?php echo base_url() ?>laporan/data_umum_mkt/<?php echo $dt_mkt->id_marketing ?>"><i>Last
-                                            Upd: <b>
-                                                <?php echo $tgl_ubah . ' ' ?></a><a style="color:red">
-                                        <?php echo ' ' . $dt_mkt->menang ?></b>
-                                    </a>
+                                    <a style="font-size: 12px;font-weight: 400" class="link" href="<?php echo base_url() ?>laporan/data_umum_mkt/<?php echo $dt_mkt->id_marketing ?>"><i>Last Upd: <b><?php echo $tgl_ubah . ' ' ?></a><a style="color:red"><?php echo  ' ' . $dt_mkt->menang ?></b></a>
 
                                 </td>
                                 <td rowspan="2" style="border-left: 0px; width: 3%;vertical-align: middle;">
@@ -643,69 +548,41 @@
                                 <td style="width:7%;border-bottom:0px;border-right:0px;text-align:right">TENDER</td>
                                 <td style="border-bottom:0px;border-left:0px" colspan="4">
                                     <?php if ($dt_mkt->tgl_undangan > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#76ADE6;color:white;text-shadow: 1px 1px 3px  black;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>PENG</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#76ADE6;color:white;text-shadow: 1px 1px 3px  black;width: 14%;height:18px;" role="progressbar"><span><small>PENG</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>PENG</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;" role="progressbar"><span><small>PENG</small></span></a>
                                     <?php } ?>
                                     <?php if ($dt_mkt->tgl_pq_r > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#7E99EE;color:white;text-shadow: 1px 1px 3px black;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>PQ</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#7E99EE;color:white;text-shadow: 1px 1px 3px black;width: 14%;height:18px;" role="progressbar"><span><small>PQ</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;"
-                                            role="progressbar">
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;" role="progressbar">
                                             <span><small>PQ</small></span></a>
                                     <?php } ?>
                                     <?php if ($dt_mkt->tgl_awz_r > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#7E85FE;color:white;text-shadow: 1px 1px 3px black;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>AWZ</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#7E85FE;color:white;text-shadow: 1px 1px 3px black;width: 14%;height:18px;" role="progressbar"><span><small>AWZ</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>AWZ</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;" role="progressbar"><span><small>AWZ</small></span></a>
                                     <?php } ?>
                                     <?php if ($dt_mkt->tgl_admin_r > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#7E6BFA;color:white;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>PRPS</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#7E6BFA;color:white;width: 14%;height:18px;" role="progressbar"><span><small>PRPS</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;"
-                                            role="progressbar">
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;" role="progressbar">
                                             <span><small>PRPS</small></span></a>
                                     <?php } ?>
                                     <?php if ($dt_mkt->tgl_pemasukan_r > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#7355F3;color:white;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>PMSK</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#7355F3;color:white;width: 14%;height:18px;" role="progressbar"><span><small>PMSK</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>PMSK</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;" role="progressbar"><span><small>PMSK</small></span></a>
                                     <?php } ?>
                                     <?php if ($dt_mkt->tgl_presentasi_r > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#5038BB;color:white;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>PRST</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#5038BB;color:white;width: 14%;height:18px;" role="progressbar"><span><small>PRST</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>PRST</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;" role="progressbar"><span><small>PRST</small></span></a>
                                     <?php } ?>
                                     <?php if ($dt_mkt->admin_teknis > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#3E2DA5;color:white;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>EVAL</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#3E2DA5;color:white;width: 14%;height:18px;" role="progressbar"><span><small>EVAL</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;"
-                                            role="progressbar"><span><small>EVAL</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 14%;height:18px;" role="progressbar"><span><small>EVAL</small></span></a>
                                     <?php } ?>
                                 </td>
                             </tr>
@@ -713,56 +590,38 @@
                                 <td style="width:7%;border-top:0px;border-right:0px;text-align:right">KONTRAK</td>
                                 <td style="border-top:0px;border-left:0px;" colspan="4">
                                     <?php if ($dt_mkt->no_spk != '') { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#BFEAF5;width: 32.657%;height:18px;"
-                                            role="progressbar"><span><small>SPK</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#BFEAF5;width: 32.657%;height:18px;" role="progressbar"><span><small>SPK</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 32.657%;height:18px;"
-                                            role="progressbar"><span><small>SPK</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 32.657%;height:18px;" role="progressbar"><span><small>SPK</small></span></a>
                                     <?php } ?>
                                     <?php if ($dt_mkt->tgl_draft > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#7E99EE;width: 32.657%;height:18px;color:white"
-                                            role="progressbar"><span><small>DRAFT</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#7E99EE;width: 32.657%;height:18px;color:white" role="progressbar"><span><small>DRAFT</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 32.657%;height:18px;"
-                                            role="progressbar"><span><small>DRAFT</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 32.657%;height:18px;" role="progressbar"><span><small>DRAFT</small></span></a>
                                     <?php } ?>
                                     <?php if ($dt_mkt->tgl_ttd > 0) { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:#7355F3;width: 32.657%;height:18px;color:white"
-                                            role="progressbar"><span><small>SPER</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:#7355F3;width: 32.657%;height:18px;color:white" role="progressbar"><span><small>SPER</small></span></a>
                                     <?php } else { ?>
-                                        <a class="progress-bar wow animated progress-animated"
-                                            style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 32.657%;height:18px;"
-                                            role="progressbar"><span><small>SPER</small></span></a>
+                                        <a class="progress-bar wow animated progress-animated" style="background-color:white;border-style:solid;border-width:1px;border-color:#DCDCDC;width: 32.657%;height:18px;" role="progressbar"><span><small>SPER</small></span></a>
                                     <?php } ?>
                                 </td>
                             </tr>
-                            <?php
+                        <?php
                             $total = 0;
                             $total2 = 0;
                             $no++;
-                        } ?>
+                        }  ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-
-</section>
-</body>
-
-</html>
-
 <div class="modal fade" id="tambahData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" style="width:60%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?php echo form_open('laporan/tambahtender', ' id="FormulirTambah" enctype="multipart/form-data"'); ?>
+                <?php echo form_open(base_url('laporan/tambahtender'), ' id="FormulirTambah" enctype="multipart/form-data"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Tambah Data</h2>
                 </header>
@@ -799,14 +658,10 @@
                                 </div>
                             </div>
                             <div class="form-group tgl_mutasi">
-                                <label class="col-sm-3 control-label">Tanggal Undangan<span
-                                        class="required">*</span></label>
+                                <label class="col-sm-3 control-label">Tanggal Undangan<span class="required">*</span></label>
                                 <div class="col-sm-9">
                                     <!-- INPUT MASK WITH DATEPICKER -->
-                                    <input type="text" name="tgl_undangan" id="tanggal" autocomplete="off"
-                                        class="form-control tanggal" data-plugin-datepicker
-                                        data-inputmask-alias="datetime" data-inputmask-inputformat="dd-mm-yyyy"
-                                        data-mask required />
+                                    <input type="text" name="tgl_undangan" id="tanggal" autocomplete="off" class="form-control tanggal" data-plugin-datepicker data-inputmask-alias="datetime" data-inputmask-inputformat="dd-mm-yyyy" data-mask required />
                                 </div>
                             </div>
 
@@ -816,8 +671,7 @@
                 <footer class="panel-footer">
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <button style="font-size:12px" class="btn btn-primary modal-confirm" type="submit"
-                                id="submitform">Submit</button>
+                            <button style="font-size:12px" class="btn btn-primary modal-confirm" type="submit" id="submitform">Submit</button>
                             <button style="font-size:12px" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -885,10 +739,12 @@
                         $('input[name="' + key + '"]').after(msg);
                     }
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
                             title: 'Notifikasi',
                             text: data.errors[key],
-                            type: 'danger'
+                            position: "top-end",
+                            showConfirmButton: false,
+                            icon: 'error'
                         });
                     }
                 }
@@ -899,20 +755,25 @@
                 $('#tambahData').modal('hide');
                 document.getElementById("FormulirTambah").reset();
                 $('#submitform').html('Submit');
-                new PNotify({
+                Swal.fire({
                     title: 'Notifikasi',
                     text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
                 });
                 window.setTimeout(function () {
                     location.reload();
                 }, 2000);
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
                 text: "Request gagal, browser akan direload",
-                type: 'danger'
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
             });
             window.setTimeout(function () {
                 location.reload();

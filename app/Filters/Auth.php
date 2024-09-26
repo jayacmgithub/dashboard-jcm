@@ -14,7 +14,7 @@ class Auth implements FilterInterface
         if (!session()->get('login')) {
             // maka redirct ke halaman login
             $session->setFlashdata('warning', 'Login diperlukan untuk mengakses dashboard');
-            return redirect()->to('/');
+            return redirect()->to(base_url());
         }
     }
 

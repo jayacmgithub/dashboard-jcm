@@ -36,6 +36,7 @@ $kategoriQNS = $isi->kategori_user;
                 role="tab" aria-controls="info6" aria-selected="true" style="color:black"><strong>MONTORING
                     KARYAWAN</strong></a>
         </li>
+
         <?php
         if ($nomorQN != '412') {
             ?>

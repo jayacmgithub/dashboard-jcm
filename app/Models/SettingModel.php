@@ -648,5 +648,362 @@ class SettingModel extends Model
         return $this->db->table('migrasi_pkp')->countAllResults();
     }
 
+    public function getGolongan()
+    {
+        $builder = $this->db->table('master_golongan');
+        $builder->select('*');
+        $builder->orderBy('kode2');
+        $builder = $builder->get();
+        return $builder->getResult();
+    }
+
+    public function getProyekPKP()
+    {
+        $builder = $this->db->table('master_pkp a');
+        $builder->select("a.no_pkp, a.id_pkp, a.alias , b.nomor");
+        $builder->join('master_instansi b', 'a.id_instansi = b.id');
+        $builder->orderBy('no_pkp');
+        $builder = $builder->get();
+        return $builder->getResult();
+    }
+
+    public function updatedatapkp($postData)
+    {
+
+        if ($postData['tgl_dcr'] > 0) {
+            $tgl_dcr = date('Y-m-d', strtotime($postData['tgl_dcr']));
+        } else {
+            $tgl_dcr = null;
+        }
+        if ($postData['tgl_ubah_progress'] > 0) {
+            $tgl_ubah_progress = date('Y-m-d', strtotime($postData['tgl_ubah_progress']));
+        } else {
+            $tgl_ubah_progress = null;
+        }
+        if ($postData['spk_mulai'] > 0) {
+            $spk_mulai = date('Y-m-d', strtotime($postData['spk_mulai']));
+        } else {
+            $spk_mulai = null;
+        }
+        if ($postData['spk_akhir'] > 0) {
+            $spk_akhir = date('Y-m-d', strtotime($postData['spk_akhir']));
+        } else {
+            $spk_akhir = null;
+        }
+
+        $data3 = [
+            "id_instansi" => $postData['id_instansi'],
+            "alias" => strtoupper($postData["alias"]),
+            "proyek" => $postData["proyek"],
+            "warning" => $postData["warning"],
+            "late" => $postData["late"],
+            "status_proyek" => $postData["status_akhir"],
+            "tgl_awal_dcr" => $tgl_dcr,
+            "tgl_ubah_progress" => $tgl_ubah_progress,
+            "tgl_mulai" => $spk_mulai,
+            "tgl_selesai" => $spk_akhir,
+
+        ];
+        return $this->db->table('master_pkp')->where('id_pkp', $postData['idd'])->update($data3);
+    }
+
+    public function cekuserpkp($postData)
+    {
+        return $this->db->table('pkp_user')
+            ->where(['id_user' => $postData['idd'], 'id_pkp' => $postData['id_pkp']])
+            ->countAllResults();
+
+    }
+
+    function simpandatauser($postData)
+    {
+        $password = password_hash($postData['password'], PASSWORD_BCRYPT);
+        //THBL TGL BERJALAN//
+        date_default_timezone_set("Asia/Jakarta");
+        $now = date("Y-m-d");
+        //ambil no urut terakhir//
+        //THBL123//
+
+
+        $id1 = 'USR' . md5($postData['no_nrp']);
+        $id2 = 'USR' . hash("sha1", $id1) . 'QNS';
+        $nama = strtoupper($postData["nama_admin"]);
+
+        $id_pkp = $postData['pkp'];
+        $id_jabatan = $postData['kategori'];
+        $id_user = $id2;
+        $tgl_mutasi2 = $postData['tgl_mutasi'];
+        $tgl_mutasi = date('Y-m-d', strtotime($tgl_mutasi2));
+        $status = 'AKTIF';
+
+        $QN2 = $this->db->query("SELECT max(kode) as masKode2 FROM pkp_user order by kode");
+        foreach ($QN2->getResult() as $row2) {
+            $order2 = $row2->masKode2;
+        }
+        $noUrut2 = (int) substr($order2, 8, 5);
+        $noUrut2++;
+        //BL masKode//
+        $bulanL2 = substr($order2, 5, 2);
+        $bln2 = substr($now, 5, 2);
+        $tahun2 = substr($now, 2, 2);
+        if ($bln2 == $bulanL2) {
+            $kode2 = 'PUS' . $tahun2 . $bln2 . '-' . sprintf("%05s", $noUrut2);
+        } else {
+            $kode2 = 'PUS' . $tahun2 . $bln2 . '-' . '00001';
+        }
+        $id12 = 'PUS' . md5($kode2);
+        $id22 = 'PUS' . hash("sha1", $id12) . 'QNS';
+
+        $listPKP = array(
+            'id' => $id22,
+            'kode' => $kode2,
+            'id_user' => $id_user,
+            'id_pkp' => $id_pkp,
+            'status' => $status,
+            'tgl_mutasi' => $tgl_mutasi,
+            'id_jabatan' => $id_jabatan,
+
+        );
+        $this->db->table("pkp_user")->insert($listPKP);
+
+        $array = array(
+            'id' => $id2,
+            'kode' => $postData['no_nrp'],
+            'kategori' => $postData['kategori'],
+            'kategori_user' => $postData['kategori'],
+            'username' => $postData['no_nrp'],
+            'password' => $password,
+            'nama_admin' => $nama,
+            'jenis_kelamin' => $postData["jenis_kelamin"],
+            'alamat' => $postData["alamat"],
+            'handphone' => $postData["handphone"],
+            'email' => $postData["email"],
+            'aktif' => $postData["aktif"],
+            'golongan' => $postData["golongan"],
+            'pkp_user' => $postData['pkp'],
+            'pkp_akhir' => $postData['pkp'],
+            'jml_pkp' => 1,
+        );
+        $id_kategori = $postData["kategori"];
+        // Ambil kunci dari tabel kategori_user
+        $kunci = $this->db->table('kategori_user')
+            ->select('kunci')
+            ->where('id', $id_kategori)
+            ->get()
+            ->getRow()->kunci;
+
+        // Tambahkan nilai kunci
+        $kunci++;
+
+        // Update kunci di dalam tabel kategori_user
+        $this->db->table('kategori_user')
+            ->where('id', $postData['kategori'])
+            ->update(['kunci' => $kunci]);
+
+        // Masukkan data baru ke dalam tabel master_admin
+        $this->db->table('master_admin')->insert($array);
+
+        //ADD LOG BP//
+        //THBL TGL BERJALAN DAN JAM BERJALAN//
+        date_default_timezone_set("Asia/Jakarta");
+        $now = date("Y-m-d");
+        $jam = date("H:i:s");
+        $idQNS = session('idadmin');
+        $agent = $postData['agent'];
+
+        if ($agent->isBrowser()) {
+            $currentAgent = $agent->getBrowser() . ' ' . $agent->getVersion();
+        } elseif ($agent->isRobot()) {
+            $currentAgent = $agent->getRobot();
+        } elseif ($agent->isMobile()) {
+            $currentAgent = $agent->getMobile();
+        } else {
+            $currentAgent = 'Unidentified User Agent';
+        }
+
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) { //check ip from share internet
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) { //to check ip is pass from proxy
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        //$ipnya = $this->agent->ip_address();
+        //THBL TGL BERJALAN//
+        //$time = date("h:i:sa");
+
+        $pkp = $this->db->table('master_pkp')->getWhere(array('id_pkp' => $postData['pkp']), 1);
+        $jabatan = $this->db->table('kategori_user')->getWhere(array('id' => $postData['kategori']), 1);
+
+        $layar = 'SETTING,USER:Tambah User';
+        $aksi = 'ID USER:' . $postData['no_nrp'] . ' (Nama:' . $nama . 'PKP AKHIR:' . $pkp->getRow()->no_pkp . ':' . $pkp->getRow()->alias . 'JABATAN :' . $jabatan->getRow()->kategori_user . ')';
+        //ambil no urut terakhir//
+        //LOGTHBL-12345//
+        //THBLTG1234567//
+        $QN = $this->db->query("SELECT max(kode) as masKode FROM log order by kode");
+        foreach ($QN->getResult() as $row) {
+            $order = $row->masKode;
+        }
+        $noUrut = (int) substr($order, 6, 7);
+        $noUrut++;
+        //BL masKode//
+        $bulanL = substr($order, 0, 6);
+        //2020-10-30
+        $bln = substr($now, 5, 2);
+        $tahun = substr($now, 2, 2);
+        $tgln = substr($now, 8, 2);
+        $thbltg = $tahun . $bln . $tgln;
+        if ($thbltg == $bulanL) {
+            $kode = $thbltg . sprintf("%07s", $noUrut);
+        } else {
+            $kode = $thbltg . '0000001';
+        }
+
+        $id1 = 'LOG' . md5($kode);
+        $id2 = 'LOG' . hash("sha1", $id1) . 'QNS';
+        $array22 = array(
+            'id_log' => $id2,
+            'kode' => $kode,
+            'id_user' => $idQNS,
+            'ip' => $ip,
+            //mac' => $mac,
+            'host' => $currentAgent,
+            'tgl_log' => $now,
+            'jam_log' => $jam,
+            'layar' => $layar,
+            'aksi' => $aksi,
+
+        );
+        return $this->db->table("log")->insert($array22);
+    }
+
+
+    function simpandatauserpkp($postData)
+    {
+        date_default_timezone_set("Asia/Jakarta");
+        $now = date("Y-m-d");
+        $id_pkp = $postData["id_pkp"];
+        $id_user = $postData["idd"];
+        $tgl_mutasi2 = $postData["tgl_mutasi"];
+        $tgl_mutasi = date('Y-m-d', strtotime($tgl_mutasi2));
+        $status = 'AKTIF';
+
+        $QN = $this->db->query("SELECT * FROM master_admin where id='$id_user' ");
+        foreach ($QN->getResult() as $row) {
+            $jml_pkp = $row->jml_pkp;
+            $kode_user = $row->kode;
+            $nama_user = $row->nama_admin;
+        }
+        $jml_pkp++;
+
+        $QN2 = $this->db->query("SELECT max(kode) as masKode2 FROM pkp_user order by kode");
+        foreach ($QN2->getResult() as $row2) {
+            $order2 = $row2->masKode2;
+        }
+        $noUrut2 = (int) substr($order2, 8, 5);
+        $noUrut2++;
+        //BL masKode//
+        $bulanL2 = substr($order2, 5, 2);
+        $bln2 = substr($now, 5, 2);
+        $tahun2 = substr($now, 2, 2);
+        if ($bln2 == $bulanL2) {
+            $kode2 = 'PUS' . $tahun2 . $bln2 . '-' . sprintf("%05s", $noUrut2);
+        } else {
+            $kode2 = 'PUS' . $tahun2 . $bln2 . '-' . '00001';
+        }
+        $id12 = 'PUS' . md5($kode2);
+        $id22 = 'PUS' . hash("sha1", $id12) . 'QNS';
+
+
+        $listPKP = [
+            'id' => $id22,
+            'kode' => $kode2,
+            'id_user' => $id_user,
+            'id_pkp' => $id_pkp,
+            'status' => $status,
+            'tgl_mutasi' => $tgl_mutasi,
+            'id_jabatan' => $postData["idjabatan_pkp"],
+
+        ];
+        $this->db->table('pkp_user')->insert($listPKP);
+
+
+        $data1 = [
+            "pkp_akhir" => $id_pkp,
+            "jml_pkp" => $jml_pkp,
+        ];
+
+        $this->db->table('master_admin')->where('id', $id_user)->update($data1);
+
+        //ADD LOG BP//
+        //THBL TGL BERJALAN DAN JAM BERJALAN//
+        date_default_timezone_set("Asia/Jakarta");
+        $now = date("Y-m-d");
+        $jam = date("H:i:s");
+        $idQNS = session('idadmin');
+        $agent = $postData['agent'];
+
+        if ($agent->isBrowser()) {
+            $currentAgent = $agent->getBrowser() . ' ' . $agent->getVersion();
+        } elseif ($agent->isRobot()) {
+            $currentAgent = $agent->getRobot();
+        } elseif ($agent->isMobile()) {
+            $currentAgent = $agent->getMobile();
+        } else {
+            $currentAgent = 'Unidentified User Agent';
+        }
+
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) { //check ip from share internet
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) { //to check ip is pass from proxy
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        //$ipnya = $this->agent->ip_address();
+        //THBL TGL BERJALAN//
+        //$time = date("h:i:sa");
+        $layar = 'SETTING,User:edit:tambah pkp user';
+        $aksi = 'ID USER:' . $kode_user . ' (Nama:' . $nama_user . ':PKPUSER:' . $kode2 . ')';
+        //ambil no urut terakhir//
+        //LOGTHBL-12345//
+        //THBLTG1234567//
+        $QN = $this->db->query("SELECT max(kode) as masKode FROM log order by kode");
+        foreach ($QN->getResult() as $row) {
+            $order = $row->masKode;
+        }
+        $noUrut = (int) substr($order, 6, 7);
+        $noUrut++;
+        //BL masKode//
+        $bulanL = substr($order, 0, 6);
+        //2020-10-30
+        $bln = substr($now, 5, 2);
+        $tahun = substr($now, 2, 2);
+        $tgln = substr($now, 8, 2);
+        $thbltg = $tahun . $bln . $tgln;
+        if ($thbltg == $bulanL) {
+            $kode = $thbltg . sprintf("%07s", $noUrut);
+        } else {
+            $kode = $thbltg . '0000001';
+        }
+
+        $id1 = 'LOG' . md5($kode);
+        $id2 = 'LOG' . hash("sha1", $id1) . 'QNS';
+        $array22 = [
+            'id_log' => $id2,
+            'kode' => $kode,
+            'id_user' => $idQNS,
+            'ip' => $ip,
+            //mac' => $mac,
+            'host' => $currentAgent,
+            'tgl_log' => $now,
+            'jam_log' => $jam,
+            'layar' => $layar,
+            'aksi' => $aksi,
+
+        ];
+        return $this->db->table('log')->insert($array22);
+    }
+
 }
 

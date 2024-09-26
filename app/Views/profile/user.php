@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-md-6">
 
-        <?= form_open('password/gantiuserpkp', ' id="Formulir" enctype="multipart/form-data"'); ?>
+        <?= form_open(base_url('password/gantiuserpkp'), 'enctype="multipart/form-data"'); ?>
         <section class="panel">
             <header class="panel-heading">
 
@@ -67,7 +67,7 @@
 </div>
 </section>
 <!-- JS -->
-
+<?= $this->include('layout/js') ?>
 <script>
     $(document).ready(function () {
         document.getElementById("Formulir").addEventListener("submit", function (e) {

@@ -16,14 +16,14 @@
             <?php
 
             if (level_user('data', 'hcm', $kategoriQNS, 'edit') > 0 and $total1 < 1) {
-                echo form_open('laporan/upload_pembaharuan_1', 'enctype="multipart/form-data"');
+                echo form_open(base_url('laporan/upload_pembaharuan_1'), 'enctype="multipart/form-data"');
             } else {
                 if (level_user('data', 'hcm', $kategoriQNS, 'edit') > 0 and $total1 > 0 and $total2 < 1) {
-                    echo form_open('laporan/proses_pembaharuan_1', ' enctype="multipart/form-data"');
+                    echo form_open(base_url('laporan/proses_pembaharuan_1'), ' enctype="multipart/form-data"');
                 } else {
 
                     if (level_user('data', 'hcm', $kategoriQNS, 'edit') > 0 and $total1 > 0 and $total2 > 0) {
-                        echo form_open('laporan/hapus_pembaharuan_1');
+                        echo form_open(base_url('laporan/hapus_pembaharuan_1'));
                     }
                 }
             } ?>
@@ -135,7 +135,7 @@
             "order": [],
             "ajax": {
                 "url": "<?= base_url() ?>laporan/dataimport2",
-                "type": "GET"
+                "type": "POST"
             },
             "columnDefs": [{
                 "targets": [0, 1, 2, 3, 4],

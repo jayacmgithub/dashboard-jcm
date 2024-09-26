@@ -605,7 +605,7 @@
     <div class="modal-dialog modal-lg" style="width:60%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('laporan/tambahtender', ' id="FormulirTambah" enctype="multipart/form-data"'); ?>
+                <?= form_open(base_url('laporan/tambahtender'), ' id="FormulirTambah" enctype="multipart/form-data"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Tambah Data Tender</h2>
                 </header>
@@ -675,7 +675,7 @@
     <div class="modal-dialog modal-lg" style="width:90%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('laporan/mutasi_karyawan', ' id="FormulirTambah2" enctype="multipart/form-data"'); ?>
+                <?= form_open(base_url('laporan/mutasi_karyawan'), ' id="FormulirTambah2" enctype="multipart/form-data"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Mutasi Karyawan</h2>
                 </header>
@@ -793,7 +793,7 @@
                 <footer class="panel-footer">
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <?= form_open('laporan/hapusdatamkt', 'id="FormulirHapus" enctype="multipart/form-data"'); ?>
+                            <?= form_open(base_url('laporan/hapusdatamkt'), 'id="FormulirHapus" enctype="multipart/form-data"'); ?>
                             <input type="text" name="idd" id="idddelete">
                             <button style="font-size:12px" type="submit" class="btn btn-danger"
                                 id="submitformHapus">HAPUS</button>
@@ -1041,10 +1041,13 @@
                 });
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
-                text: "Request gagal, browser akan direload 22",
-                type: 'danger'
+                text: "Request gagal, browser akan direload",
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
             });
             window.setTimeout(function () {
                 location.reload();

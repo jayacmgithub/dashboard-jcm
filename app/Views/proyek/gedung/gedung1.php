@@ -3,7 +3,6 @@
 
 <?= $this->section('content') ?>
 
-
 <!-- start: page -->
 <section class="panel">
     <header class="panel-heading">
@@ -13,7 +12,7 @@
             </div>
     </header>
     <div class="panel-body">
-        <table class="table table-bordered table-hover table-striped" id="example">
+        <table class="table table-bordered table-hover table-striped" id="gd1data">
             <thead>
                 <tr>
                     <th>INS/PKP</th>
@@ -22,33 +21,19 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach ($gedung1 as $gdg1) {
-                    ?>
-                    <tr>
-                        <td>
-                            <?php
-                            if (esc($gdg1->tgl_ubah_progress) > 0) {
-                                echo '<strong><center><a href="' . base_url() . 'proyek/edit_1/' . esc($gdg1->id_pkp) . '" > ' . esc($gdg1->nomor) . '/' . esc($gdg1->no_pkp) . '</a></strong>';
-                            } else {
-                                echo '<strong><center><a>' . esc($gdg1->nomor) . '/' . esc($gdg1->no_pkp) . '</a></strong>';
-                            }
-                            ?>
-                        </td>
-
-                        <td>
-                            <?= $gdg1->proyek; ?>
-                        </td>
-                        <td>
-                            <?= $gdg1->alias; ?>
-                        </td>
-                    </tr>
-                <?php } ?>
-
-
             </tbody>
         </table>
     </div>
 </section>
 <?= $this->include('layout/js') ?>
+<script type="text/javascript">
+    var tableitems = $('#gd1data').DataTable({
+        "serverSide": true,
+        "order": [],
+        "ajax": {
+            "url": "<?php echo base_url() ?>proyek/datagd1",
+            "type": "POST"
+        },
+    });
+</script>
 <?= $this->endSection() ?>

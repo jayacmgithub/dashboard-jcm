@@ -19,7 +19,7 @@
 </section>
 <div class="panel-body">
 
-    <?= form_open('setting/useredit', ' id="FormulirEdit"  enctype="multipart/form-data"'); ?>
+    <?= form_open(base_url('setting/useredit'), 'enctype="multipart/form-data"'); ?>
 
     <div class="col-md-6">
 
@@ -259,7 +259,7 @@
     <div class="modal-dialog ">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('setting/tambahuserjabatan', ' id="FormulirTambahJabatan" enctype="multipart/form-data"'); ?>
+                <?= form_open(base_url('setting/tambahuserjabatan'), ' id="FormulirTambahJabatan" enctype="multipart/form-data"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Tambah User Jabatan</h2>
                 </header>
@@ -327,7 +327,7 @@
     <div class="modal-dialog ">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('setting/tambahuserpkp', ' id="FormulirTambah" enctype="multipart/form-data"'); ?>
+                <?= form_open(base_url('setting/tambahuserpkp'), 'enctype="multipart/form-data"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Tambah User PKP</h2>
                 </header>
@@ -403,7 +403,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('setting/edituserpkp', 'enctype="multipart/form-data"'); ?>
+                <?= form_open(base_url('setting/edituserpkp'), 'enctype="multipart/form-data"'); ?>
                 <input type="hidden" name="idd" id="idd">
 
                 <input type="hidden" name="id_pkp" id="id_pkp2">
@@ -492,7 +492,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('setting/edituserjabatan', ' id="FormulirEditJabatan"  enctype="multipart/form-data"'); ?>
+                <?= form_open(base_url('setting/edituserjabatan'), ' id="FormulirEditJabatan"  enctype="multipart/form-data"'); ?>
 
                 <input type="hidden" name="idd" id="idd2">
                 <input type="hidden" name="id_user" id="id_user2a">

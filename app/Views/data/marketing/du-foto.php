@@ -174,7 +174,7 @@
     <div class="modal-dialog modal-lg" style="width:60%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('laporan/tambah_dtu_mkt', ' id="FormulirTambah" enctype="multipart/form-data"'); ?>
+                <?= form_open(base_url('laporan/tambah_dtu_mkt'), 'enctype="multipart/form-data"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Tambah Data UMUM Marketing</h2>
                 </header>
@@ -191,7 +191,7 @@
                                     <input type="hidden" name="id_ubah" value="<?= session('idadmin'); ?>"
                                         class="form-control" required />
 
-                                    <input type="file" name="berkas[]" class="form-control" required />
+                                    <input type="file" name="berkas" class="form-control" required />
 
                                 </div>
                             </div>
@@ -217,7 +217,7 @@
     <div class="modal-dialog modal-lg" style="width:90%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('laporan/fototambah', ' id="FormulirTambah2"'); ?>
+                <?= form_open(base_url('laporan/fototambah'), ['enctype' => 'multipart/form-data']); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Perbaharui Data Foto</h2>
                 </header>
@@ -315,7 +315,7 @@
                 <footer class="panel-footer">
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <?= form_open('setting/userhapus', ' id="FormulirHapus"'); ?>
+                            <?= form_open(base_url('setting/userhapus'), ' id="FormulirHapus"'); ?>
                             <input type="hidden" name="idd" id="idddelete">
                             <button style="font-size:12px" type="submit" class="btn btn-danger"
                                 id="submitformHapus">Delete</button>
@@ -407,13 +407,13 @@
                         $('.' + key).addClass('has-error');
                         $('input[name="' + key + '"]').after(msg);
                     }
-                    if (key == 'fail') {
-                        new PNotify({
-                            title: 'Notifikasi',
-                            text: data.errors[key],
-                            type: 'danger'
-                        });
-                    }
+                    Swal.fire({
+                        title: 'Notifikasi',
+                        text: data.errors[key],
+                        position: "top-end",
+                        showConfirmButton: false,
+                        icon: 'error'
+                    });
                 }
             } else {
                 $('input[name=<?= csrf_token(); ?>]').val(data.token);
@@ -423,20 +423,25 @@
                 $('#tambahData').modal('hide');
                 document.getElementById("FormulirTambah").reset();
                 $('#submitform').html('Submit');
-                new PNotify({
+                Swal.fire({
                     title: 'Notifikasi',
                     text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
                 });
                 window.setTimeout(function () {
                     location.reload();
                 }, 2000);
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
                 text: "Request gagal, browser akan direload",
-                type: 'danger'
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
             });
             window.setTimeout(function () {
                 location.reload();
@@ -474,13 +479,13 @@
                 $('#submitformHapus').html('Delete');
                 var objek = Object.keys(data.errors);
                 for (var key in data.errors) {
-                    if (key == 'fail') {
-                        new PNotify({
-                            title: 'Notifikasi',
-                            text: data.errors[key],
-                            type: 'danger'
-                        });
-                    }
+                    Swal.fire({
+                        title: 'Notifikasi',
+                        text: data.errors[key],
+                        position: "top-end",
+                        showConfirmButton: false,
+                        icon: 'error'
+                    });
                 }
             } else {
                 $('input[name=<?= csrf_token(); ?>]').val(data.token);
@@ -490,17 +495,22 @@
                 $('#modalHapus').modal('hide');
                 document.getElementById("FormulirHapus").reset();
                 $('#submitformHapus').html('Delete');
-                new PNotify({
+                Swal.fire({
                     title: 'Notifikasi',
                     text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
                 });
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
                 text: "Request gagal, browser akan direload",
-                type: 'danger'
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
             });
             window.setTimeout(function () {
                 location.reload();
@@ -537,13 +547,13 @@
                         $('.' + key).addClass('has-error');
                         $('input[name="' + key + '"]').after(msg);
                     }
-                    if (key == 'fail') {
-                        new PNotify({
-                            title: 'Notifikasi',
-                            text: data.errors[key],
-                            type: 'danger'
-                        });
-                    }
+                    Swal.fire({
+                        title: 'Notifikasi',
+                        text: data.errors[key],
+                        position: "top-end",
+                        showConfirmButton: false,
+                        icon: 'error'
+                    });
                 }
             } else {
                 $('input[name=<?= csrf_token(); ?>]').val(data.token);
@@ -553,17 +563,22 @@
                 $('#tambahData2').modal('hide');
                 document.getElementById("FormulirTambah2").reset();
                 $('#submitform2').html('Submit');
-                new PNotify({
+                Swal.fire({
                     title: 'Notifikasi',
                     text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
                 });
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
-                text: "Request gagal, browser akan direload 22",
-                type: 'danger'
+                text: "Request gagal, browser akan direload",
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
             });
             window.setTimeout(function () {
                 location.reload();

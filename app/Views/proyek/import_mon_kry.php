@@ -16,18 +16,18 @@
             <?php
 
             if (level_user('proyek', 'data', $kategoriQNS, 'edit') > 0 and $total1 < 1) {
-                echo form_open('proyek/upload_mon_1', ' id="FormulirUpload" enctype="multipart/form-data"');
+                echo form_open(base_url('proyek/upload_mon_1'), ' id="FormulirUpload" enctype="multipart/form-data"');
             } else {
                 if (level_user('proyek', 'data', $kategoriQNS, 'edit') > 0 and $total1 > 0 and $total2 < 1) {
-                    echo form_open('proyek/proses_mon_1', ' id="FormulirUpload" enctype="multipart/form-data"');
+                    echo form_open(base_url('proyek/proses_mon_1'), ' id="FormulirUpload" enctype="multipart/form-data"');
                 } else {
 
                     if (level_user('proyek', 'data', $kategoriQNS, 'edit') > 0 and $total1 > 0 and $total2 > 0) {
-                        echo form_open('proyek/hapus_mon_1', ' id="FormulirUpload"');
+                        echo form_open(base_url('proyek/hapus_mon_1'), ' id="FormulirUpload"');
                     }
                 }
             } ?>
-            <input type="hidden" name="id_pkp58" class="form-control" value="<?php echo $id_pkp ?>" required />
+            <input type="hidden" name="id_pkp58" class="form-control" value="<?= $id_pkp ?>" required />
             <div>
                 <?php
                 if (level_user('proyek', 'data', $kategoriQNS, 'edit') > 0 and $total1 < 1) {
@@ -35,8 +35,7 @@
                     <div class="form-group excelfile">
                         <label class="col-sm-3 control-label">Upload File Excel</label>
                         <div class="col-sm-9">
-                            <input type="hidden" name="id_pkp58" class="form-control" value="<?php echo $id_pkp ?>"
-                                required />
+                            <input type="hidden" name="id_pkp58" class="form-control" value="<?= $id_pkp ?>" required />
                             <input type="file" name="excelfile" class="form-control" required />
                         </div>
                     </div>
@@ -58,9 +57,8 @@
                         id="submitformupload"><i class="fa fa-upload"></i>Upload</button>
 
 
-                    <a class="btn btn-warning" style="font-size: 12px;"
-                        href="<?php echo base_url() ?>proyek/xls3/<?php echo $id_pkp ?>" target="_blank"><i
-                            class="fa fa-download"></i> Download Format</a>
+                    <a class="btn btn-warning" style="font-size: 12px;" href="<?= base_url() ?>proyek/xls3/<?= $id_pkp ?>"
+                        target="_blank"><i class="fa fa-download"></i> Download Format</a>
                     </form>
                 <?php } ?>
 
@@ -89,13 +87,13 @@
         if (level_user('proyek', 'data', $kategoriQNS, 'edit') > 0 and $total1 > 0) {
             ?>
             <h4> Total Data :
-                <?php echo $total1 ?> record
+                <?= $total1 ?> record
             </h4>
             <h4> Total Error :
-                <?php echo $total2 ?> field
+                <?= $total2 ?> field
             </h4>
             <h4> Data Dobel :
-                <?php echo $total3 ?> field
+                <?= $total3 ?> field
             </h4>
             <table class="table table-bordered table-hover table-striped" id="importdata1">
                 <thead>
@@ -148,9 +146,10 @@
     var tableimport = $('#importdata1').DataTable({
         "serverSide": true,
         "order": [],
+        "paging": false,
         "ajax": {
-            "url": "<?php echo base_url() ?>proyek/dataimportmon1",
-            "type": "GET"
+            "url": "<?= base_url() ?>proyek/dataimportmon1",
+            "type": "POST"
         },
         "columnDefs": [{
             "targets": [0, 1, 2, 3, 4],
@@ -189,34 +188,41 @@
                         $('input[name="' + key + '"]').after(msg);
                     }
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
                             title: 'Notifikasi',
                             text: data.errors[key],
-                            type: 'danger'
+                            position: "top-end",
+                            showConfirmButton: false,
+                            icon: 'error'
                         });
                     }
                 }
             } else {
                 $('input[name=<?= csrf_token(); ?>]').val(data.token);
 
-                new PNotify({
+                Swal.fire({
                     title: 'Notifikasi',
                     text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
                 });
                 window.setTimeout(function () {
                     location.reload();
                 }, 2000);
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
                 text: "Request gagal, browser akan direload",
-                type: 'danger'
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
             });
             window.setTimeout(function () {
                 location.reload();
-            }, 500);
+            }, 2000);
         });
         e.preventDefault();
     });

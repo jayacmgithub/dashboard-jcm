@@ -121,8 +121,8 @@ class Setting extends BaseController
         }
 
         $data['kategoris'] = $this->db->table('kategori_user')->get()->getResult();
-        $data['golongan'] = $this->db->table('master_golongan')->orderBy('kode2')->get()->getResult();
-        $data['proyek'] = $this->db->table('master_pkp a')->select("a.no_pkp, a.id_pkp, a.alias , b.nomor")->join('master_instansi b', 'a.id_instansi = b.id')->orderBy('no_pkp')->get()->getResult();
+        $data['golongan'] = $this->setting->getGolongan();
+        $data['proyek'] = $this->setting->getProyekPKP();
         $data['judul'] = 'USER';
 
         //ALL
@@ -137,7 +137,7 @@ class Setting extends BaseController
                 $data['user'] = $this->user->allProyek($pkp_user);
             }
         }
-
+        $data['pkp_user'] = $pkp_user;
         $data['kategoriQNS'] = $kategoriQNS;
         $data['kategori'] = $kategoriQNS;
         return view('setting/user', $data);
@@ -204,14 +204,14 @@ class Setting extends BaseController
             'passlama' => $post['passlama']
         ];
         if ($simpan->updatedatauser($postData)) {
-            $data['success'] = true;
-            $data['message'] = "Berhasil menyimpan data";
+            $this->session->setFlashdata('success', 'berhasil menyimpan data');
+            $redirectUrl = previous_url() ?? base_url();
         } else {
-            $errors['fail'] = "gagal melakukan update data";
-            $data['errors'] = $errors;
+            $this->session->setFlashdata('error', 'gagal menyimpan data');
+            $redirectUrl = previous_url() ?? base_url();
         }
         $data['token'] = csrf_token();
-        echo json_encode($data);
+        return redirect()->to($redirectUrl);
     }
 
     public function pkpdetail2($idd)
@@ -279,34 +279,31 @@ class Setting extends BaseController
     public function pkptambah()
     {
         $simpan = new SettingModel();
+        $post = $this->request->getPost();
         $postData = [
-            'alias' => $this->request->getPost('alias'),
-            'id_instansi' => $this->request->getPost('id_instansi'),
-            'proyek' => $this->request->getPost('proyek'),
-            'nomor' => $this->request->getPost('nomor'),
-            'id' => $this->request->getPost('id'),
+            'alias' => $post['alias'],
+            'id_instansi' => $post['id_instansi'],
+            'proyek' => $post['proyek'],
+            'nomor' => $post['nomor'],
+            'id' => $post['id'],
             'agent' => $this->request->getUserAgent(),
         ];
         if ($simpan->cekpkp($postData) > 0) {
-            $this->session->setFlashdata('error', 'Data ini sudah ada, Cek kembali INS/PKP anda');
-            // $redirectUrl = base_url("dcr/detail-kasbon/{$id27}");
-            $redirectUrl = previous_url() ?? base_url();
+            $errors['fail'] = "Data ini sudah ada, Cek kembali INS/PKP anda";
+            $data['errors'] = $errors;
         } else {
             if ($simpan->simpandatapkp($postData)) {
-                $this->session->setFlashdata('success', 'menyimpan data');
-                // $redirectUrl = base_url("dcr/detail-kasbon/{$id27}");
-                $redirectUrl = previous_url() ?? base_url();
+                $data['success'] = true;
+                $data['message'] = "Berhasil manambah data";
             } else {
-                $this->session->setFlashdata('error', 'mengupdate data');
-                // $redirectUrl = base_url("dcr/detail-kasbon/{$id27}");
-                $redirectUrl = previous_url() ?? base_url();
+                $errors['fail'] = "gagal menyimpan data";
+                $data['errors'] = $errors;
             }
         }
 
         $data['token'] = csrf_hash();
-        return redirect()->to($redirectUrl);
+        echo json_encode($data);
     }
-
     public function pkphapus()
     {
         $postData = [
@@ -580,5 +577,318 @@ class Setting extends BaseController
         echo json_encode($data);
     }
 
+    public function pkpdetail()
+    {
+        $idd = $this->request->getGet("id");
 
+        $query = $this->db->table("master_pkp a")->select("a.tgl_ubah_progress, a.warning, a.late, a.no_pkp, a.proyek, a.alias, a.kode, a.dtu_nama, a.dtu_pemilik, a.dtu_jenis, a.dtu_lokasi, a.dtu_periode, a.foto, a.tgl_awal_dcr, a.tgl_mulai, a.tgl_selesai, a.status_proyek, b.nomor, b.id, b.nama")->join('master_instansi b', 'a.id_instansi = b.id')->where(['a.id_pkp' => $idd], 1)->get();
+
+        $tgl_awal_dcr2 = $query->getRow()->tgl_awal_dcr;
+        $tgl_awal_dcr = date('d/m/Y', strtotime($tgl_awal_dcr2));
+        $spk_mulai2 = $query->getRow()->tgl_mulai;
+        $spk_mulai = date('d/m/Y', strtotime($spk_mulai2));
+        $spk_akhir2 = $query->getRow()->tgl_selesai;
+        $spk_akhir = date('d/m/Y', strtotime($spk_akhir2));
+
+        $tgl_ubah_progress2 = $query->getRow()->tgl_ubah_progress;
+        $tgl_ubah_progress = date('d/m/Y', strtotime($tgl_ubah_progress2));
+
+        $result = [
+            "kode" => $query->getRow()->kode,
+            "nomor" => $query->getRow()->nomor,
+            "instansi" => $query->getRow()->nama,
+            "id_instansi" => $query->getRow()->id,
+            "id_instansi2" => $query->getRow()->id,
+            "no_pkp" => $query->getRow()->no_pkp,
+            "no_pkp2" => $query->getRow()->no_pkp,
+            "proyek" => $query->getRow()->proyek,
+            "alias" => $query->getRow()->alias,
+            "warning" => $query->getRow()->warning,
+            "late" => $query->getRow()->late,
+            "tgl_dcr" => $tgl_awal_dcr,
+            "tgl_progress" => $tgl_ubah_progress,
+            "spk_mulai" => $spk_mulai,
+            "spk_akhir" => $spk_akhir,
+            "status_akhir" => $query->getRow()->status_proyek,
+        ];
+        echo '[' . json_encode($result) . ']';
+    }
+
+    public function pkpedit()
+    {
+        $post = $this->request->getPost();
+        $postData = [
+            'idd' => $post['idd'],
+            'tgl_dcr' => $post['tgl_dcr'],
+            'tgl_ubah_progress' => $post['tgl_ubah_progress'],
+            'spk_mulai' => $post['spk_mulai'],
+            'spk_akhir' => $post['spk_akhir'],
+            'id_instansi' => $post['id_instansi'],
+            'alias' => $post['alias'],
+            'proyek' => $post['proyek'],
+            'warning' => $post['warning'],
+            'late' => $post['late'],
+            'status_akhir' => $post['status_akhir'],
+
+        ];
+        $simpan = $this->setting;
+        $validation = [
+            'id_instansi' => 'required',
+            'nomor2' => 'required',
+            'alias' => 'required',
+            'proyek' => 'required',
+
+        ];
+        if (!$this->validate($validation)) {
+            $errorMessages = implode('<br>', $this->validator->getErrors());
+            $this->session->setFlashdata('error', $errorMessages);
+            $redirectUrl = previous_url() ?? base_url();
+
+        } else {
+            if ($simpan->updatedatapkp($postData)) {
+                $this->session->setFlashdata('success', 'berhasil menyimpan data');
+                $redirectUrl = previous_url() ?? base_url();
+            } else {
+                $this->session->setFlashdata('error', 'gagal menyimpan data');
+                $redirectUrl = previous_url() ?? base_url();
+            }
+        }
+
+        $data['token'] = csrf_hash();
+        return redirect()->to($redirectUrl);
+    }
+
+    public function tambahuser()
+    {
+        $post = $this->request->getPost();
+        $simpan = new SettingModel();
+        $validation = [
+            'no_nrp' => 'required',
+            'password' => 'required',
+            'password2' => 'required',
+            'nama_admin' => 'required',
+            'alamat' => 'required',
+            'handphone' => 'required',
+            'email' => 'required',
+
+
+        ];
+        $postData = [
+            'password' => $post['password'],
+            'no_nrp' => $post['no_nrp'],
+            'nama_admin' => $post['nama_admin'],
+            'pkp' => $post['pkp'],
+            'kategori' => $post['kategori'],
+            'tgl_mutasi' => $post['tgl_mutasi'],
+            'handphone' => $post['handphone'],
+            'jenis_kelamin' => $post['jenis_kelamin'],
+            'telepon' => $post['telepon'],
+            'alamat' => $post['alamat'],
+            'email' => $post['email'],
+            'aktif' => $post['aktif'],
+            'golongan' => $post['golongan'],
+
+            'agent' => $this->request->getUserAgent(),
+
+        ];
+        if (!$this->validate($validation)) {
+            $errorMessages = implode('<br>', $this->validator->getErrors());
+            $errors['fail'] = $errorMessages;
+            $data['errors'] = $errors;
+
+        } else {
+            if ($simpan->cekuser($postData) > 0) {
+                $errors['fail'] = "NRP sudah digunakan";
+                $data['errors'] = $errors;
+            } else {
+                if ($simpan->simpandatauser($postData)) {
+                    $data['success'] = true;
+                    $data['message'] = "Berhasil menyimpan data";
+                } else {
+                    $errors['fail'] = "gagal menyimpan data";
+                    $data['errors'] = $errors;
+                }
+            }
+        }
+        $data['token'] = csrf_hash();
+        echo json_encode($data);
+    }
+
+    public function tambahuserpkp()
+    {
+        $post = $this->request->getPost();
+        $simpan = $this->setting;
+        $validation = [
+            'id_pkp' => 'required',
+            'tgl_mutasi' => 'required',
+
+        ];
+        $postData = [
+            'idd' => $post['idd'],
+            'id_pkp' => $post['id_pkp'],
+            'tgl_mutasi' => $post['tgl_mutasi'],
+            'idjabatan_pkp' => $post['idjabatan_pkp'],
+            'agent' => $this->request->getUserAgent(),
+
+        ];
+        if (!$this->validate($validation)) {
+            $errorMessages = implode('<br>', $this->validator->getErrors());
+            $this->session->setFlashdata('error', $errorMessages);
+            $redirectUrl = previous_url() ?? base_url();
+
+        } else {
+            if ($simpan->cekuserpkp($postData) > 0) {
+                $this->session->setFlashdata('error', 'data pkp sudah tersedia');
+                $redirectUrl = previous_url() ?? base_url();
+            } else {
+                if ($simpan->simpandatauserpkp($postData)) {
+                    $this->session->setFlashdata('success', 'berhasil menyimpan data');
+                    $redirectUrl = previous_url() ?? base_url();
+                } else {
+                    $this->session->setFlashdata('error', 'gagal menyimpan data');
+                    $redirectUrl = previous_url() ?? base_url();
+                }
+            }
+        }
+        $data['token'] = csrf_hash();
+        return redirect()->to($redirectUrl);
+    }
+
+
+    public function datausers()
+    {
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        $requestData = $this->request->getPost();
+        $pkp_user = session('pkp_user');
+
+        if ($pkp_user != '') {
+            $divisi = $this->db->table('master_pkp')->getWhere(['id_pkp' => $pkp_user])->getFirstRow();
+            $id_divisi = $divisi ? $divisi->id_instansi : '';
+        }
+
+        //ALL
+        if (level_user('setting', 'user', $kategoriQNS, 'all') > 0) {
+            $builder = $this->db->table("master_admin a")->select("a.id, a.username, a.nama_admin, a.email, a.jenis_kelamin, a.aktif, a.jml_pkp, b.kategori_user,c.no_pkp,d.nomor")->join('kategori_user b', 'a.kategori = b.id')->join('master_pkp c', 'a.pkp_akhir = c.id_pkp')->join('master_instansi d', 'c.id_instansi = d.id')->where('b.kategori_user !=', 'IT');
+        } else {
+            //divisi
+            if (level_user('setting', 'user', $kategoriQNS, 'divisi') > 0) {
+                $builder = $this->db->table("master_admin a")->select("a.id, a.username, a.nama_admin, a.email, a.jenis_kelamin, a.aktif, a.jml_pkp, b.kategori_user,c.no_pkp,d.nomor")->join('kategori_user b', 'a.kategori = b.id')->join('master_pkp c', 'a.pkp_akhir = c.id_pkp')->join('master_instansi d', 'c.id_instansi = d.id')->where('d.id', $id_divisi);
+            } else {
+                //proyek
+                $builder = $this->db->table("master_admin a")->select("a.id, a.username, a.nama_admin, a.email, a.jenis_kelamin, a.aktif, a.jml_pkp, b.kategori_user,c.no_pkp,d.nomor")->join('kategori_user b', 'a.kategori = b.id')->join('master_pkp c', 'a.pkp_akhir = c.id_pkp')->join('master_instansi d', 'c.id_instansi = d.id')->where('c.id_pkp', $pkp_user);
+            }
+        }
+
+        // Apply search filter if search value is provided
+        if (!empty($requestData['search']['value'])) {
+            $searchValue = $requestData['search']['value'];
+            $builder->groupStart()
+                ->like('a.username', $searchValue)
+                ->orLike('a.nama_admin', $searchValue)
+                ->orLike('a.email', $searchValue)
+                ->groupEnd();
+        }
+        // Sorting
+        if (isset($requestData['order']) && is_array($requestData['order']) && count($requestData['order']) > 0) {
+            $columnIndex = $requestData['order'][0]['column'];
+            $columnName = $requestData['columns'][$columnIndex]['data'];
+            $columnSortOrder = $requestData['order'][0]['dir'];
+
+            // Mapping nama kolom dari DataTables ke nama kolom dalam tabel database jika diperlukan
+            $columnMap = [
+                0 => null, // Kolom pertama tidak diurutkan
+                1 => 'c.no_pkp', // Kolom tanggal
+                2 => 'a.nama_admin', // Kolom kode dokumen
+                3 => 'a.username', // Kolom kode disiplin
+                4 => 'a.email', // Kolom nomor DCR
+                5 => 'b.kategori_user', // Kolom nomor dokumen
+                6 => 'a.jenis_kelamin', // Kolom perihal
+            ];
+
+            // Periksa apakah indeks kolom ditemukan dalam map
+            if (array_key_exists($columnIndex, $columnMap) && $columnMap[$columnIndex] !== null) {
+                // Jika ditemukan, gunakan nama kolom yang sesuai
+                $columnName = $columnMap[$columnIndex];
+            }
+
+            // Jika nama kolom ditemukan, lakukan pengurutan
+            if ($columnName !== null) {
+                $builder->orderBy($columnName, $columnSortOrder);
+            }
+        }
+
+        $builder->orderBy('d.nomor', 'DESC');
+        $totalRecords = $builder->countAllResults(false); // Count all records without pagination
+
+        $builder->limit($requestData['length'], $requestData['start']);
+        $list = $builder->get()->getResult();
+        $data = array();
+        foreach ($list as $r) {
+            $status = $r->aktif == '1' ? "<span class='btn btn-xs btn-success'>Aktif</span>" : "<span class='btn  btn-xs btn-danger'>Blokir</span>";
+
+            //$kunci = esc($r->jml_pkp);
+            $aktif = $r->aktif;
+            if ($aktif > 0) {
+                $tombolhapus = '';
+            } else {
+                $tombolhapus = level_user('setting', 'user', $kategoriQNS, 'delete') > 0 ? '<li><a style="font-size:12px" href="#" onclick="hapus(this)" data-id="' . $r->id . '">Hapus</a></li>' : '';
+            }
+            $tomboledit = level_user('setting', 'user', $kategoriQNS, 'edit') > 0 ? '<li><a style="font-size:12px" href="edituser/' . $r->id . '" onclick="edit(this)" data-id="' . $r->id . '">Edit</a></li>' : '';
+
+            $row = array();
+            $row[] =
+                ' 
+                    <div class="btn-group">
+                        <button  style="font-size:12px" type="button" class="btn btn-primary" data-toggle="dropdown" aria-expanded="true">Action <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a style="font-size:12px" href="#" onclick="detail(this)" data-id="' . $r->id . '">Detail</a></li>  
+                            ' . $tomboledit . '
+                            ' . $tombolhapus . ' 
+                        </ul>
+                    </div>
+            ';
+            $row[] = esc($r->nomor) . '/' . esc($r->no_pkp);
+            $row[] = esc($r->nama_admin);
+            $row[] = esc($r->username);
+            $row[] = esc($r->email);
+            $row[] = esc($r->kategori_user);
+            $row[] = esc($r->jenis_kelamin);
+            $row[] = $status;
+            $data[] = $row;
+        }
+        return $this->response->setJSON([
+            'draw' => intval($requestData['draw']),
+            'recordsTotal' => $totalRecords,
+            'recordsFiltered' => $totalRecords,
+            'data' => $data,
+        ]);
+    }
+
+    public function userdetail()
+    {
+
+        $idd = $this->request->getGet("id");
+        $query = $this->db->table("master_admin a")->select("a.id, a.kategori, a.username, a.nama_admin, a.email, a.jenis_kelamin, a.aktif, a.alamat, a.handphone, a.email, a.password,a.jabatan,a.jurusan,a.status,b.kategori_user")->join('kategori_user b', 'a.kategori = b.id')->where('a.id', $idd, 1)->get();
+        $status = $query->getRow()->aktif == '1' ? "<span class='btn   btn-xs  btn-success'>Aktif</span>" : "<span class='btn  btn-xs btn-danger'>Blokir</span>";
+        $result = array(
+            "kategori" => esc($query->getRow()->kategori_user),
+            "kategori_value" => esc($query->getRow()->kategori),
+            "kategori2" => esc($query->getRow()->kategori),
+            "passlama" => esc($query->getRow()->password),
+            "username" => esc($query->getRow()->username),
+            "nama_admin" => esc($query->getRow()->nama_admin),
+            "jenis_kelamin" => esc($query->getRow()->jenis_kelamin),
+            "alamat" => esc($query->getRow()->alamat),
+            "handphone" => esc($query->getRow()->handphone),
+            "email" => esc($query->getRow()->email),
+            "aktif_value" => esc($query->getRow()->aktif),
+            "jabatan" => esc($query->getRow()->jabatan),
+            "jurusan" => esc($query->getRow()->jurusan),
+            "status" => esc($query->getRow()->status),
+            "aktif" => $status,
+        );
+        echo '[' . json_encode($result) . ']';
+    }
 }

@@ -18,6 +18,11 @@
     <!-- DataTables CSS CDN -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.css">
 
+    <link href="<?= base_url() ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="<?= base_url() ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="<?= base_url() ?>assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="<?= base_url() ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="<?= base_url() ?>assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- DataTables JS CDN -->
     <script type="text/javascript" charset="utf8"
@@ -34,6 +39,8 @@
     <script src="<?= base_url() ?>/assets/vendor/modernizr/modernizr.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.css" rel="stylesheet">
 
 
 
@@ -52,7 +59,8 @@
     <link href="<?= base_url() ?>/assets/vendor/dist/css/pages/stylish-tooltip.css" rel="stylesheet">
     <link href="<?= base_url() ?>/assets/vendor/dist/css/pages/login-register-lock.css" rel="stylesheet">
 -->
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 </head>
 
 
@@ -61,7 +69,7 @@
         <!-- start: header -->
         <header class="header">
             <div class="logo-container">
-                <a href="<?= base_url() ?>" class="logo">
+                <a href="<?= base_url() ?>dashboard/index" class="logo">
                     <img src="<?= base_url() ?>assets/component-images/logo.png" style="display: block; margin: auto;"
                         height="32" alt="Logo">
                 </a>
@@ -72,17 +80,50 @@
                 </div>
             </div>
 
-            <div class="header-right">
-                <h4 style="margin-top:15px;margin-right:30px;text-shadow: 1px 1px 1px grey;color:white">
-                    <?= $judul ?>
-                </h4>
+  <div class="header-right">
+                <div class="row">
+                    <h4 style="margin-top:15px;margin-right:30px;text-shadow: 1px 1px 1px grey;color:white">
+                        <?= $judul ?> |
+                    </h4>
+                    <div class="dropdown mt-3 mr-5">
+                        <button class="btn btn-lg dropdown-toggle text-white" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            style="background-color: transparent; border: none;">
+                            <i class="fa fa-user mr-2"></i> <?= session('nama_admin'); ?>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="<?= base_url() ?>profil">Profile</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <br>
-            <!-- end: search & user box -->
-        </header>
-
-
-        <!-- start: sidebar -->
+</header>
+             <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <section class="panel panel-danger">
+                            <header class="panel-heading">
+                                <h2 class="panel-title">Konfirmasi Logout</h2>
+                            </header>
+                            <div class="panel-body">
+                                Apakah Anda yakin ingin keluar?
+                            </div>
+                            <footer class="panel-footer">
+                                <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Batal</button>
+                                        <a class="btn btn-danger" id="logoutBtn"
+                                            href="<?= base_url() ?>logout">Keluar</a>
+                                    </div>
+                                </div>
+                            </footer>
+                        </section>
+                    </div>
+                </div>
+            </div>        <!-- start: sidebar -->
         <aside id="sidebar-left" class="sidebar-left">
             <div class="nano">
                 <div class="nano-content">
@@ -217,18 +258,21 @@
 
         </aside>
         <div class="container"></div>
+
         <section role="main" class="content-body mt-5">
             <?= $this->renderSection('content') ?>
         </section>
 
 
-        <script type="text/javascript">
+  <script type="text/javascript">
             $(document).ready(function () {
-                $('#example').DataTable();
-                responsive: true
+                $('#example').DataTable({
+                    language: { search: '', searchPlaceholder: "Search..." },
+                    responsive: true,
+                    paging: false // Disable pagination
+                });
             });
         </script>
-
         <script type="text/javascript">
             $(".table-scrollable").freezeTable({
                 'scrollable': true,
@@ -252,7 +296,9 @@
                     Swal.fire({
                         icon: 'success',
                         title: 'Berhasil!',
-                        text: '<?= session("success") ?>'
+                        text: '<?= session("success") ?>',
+                        showConfirmButton: false,
+                        timer: 1500
                     })
                 <?php } ?>
 
@@ -261,6 +307,8 @@
                         icon: 'error',
                         title: 'Gagal!',
                         text: '<?= session("error") ?>'
+                            showConfirmButton: false,
+                        timer: 1500
                     })
                 <?php } ?>
             });
@@ -306,6 +354,15 @@
                 format: 'dd-mm-yyyy',
                 autoclose: true,
                 todayHighlight: true,
+            });
+        </script>
+        <script>
+            // Menangani klik tombol logout
+            document.getElementById('logoutBtn').addEventListener('click', function (event) {
+                // Hentikan peristiwa default agar link tidak langsung mengarahkan ke logout
+                event.preventDefault();
+                // Redirect ke logout setelah konfirmasi
+                window.location.href = this.getAttribute('href');
             });
         </script>
 </body>

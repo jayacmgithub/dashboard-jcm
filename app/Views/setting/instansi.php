@@ -73,7 +73,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <section class="panel  panel-primary">
-                <?= form_open('setting/instansitambah', ' id="FormulirTambah"'); ?>
+                <?= form_open(base_url('setting/instansitambah'), ' id="FormulirTambah"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Tambah Instansi</h2>
                 </header>
@@ -126,7 +126,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <section class="panel  panel-primary">
-                <?= form_open('setting/instansiedit', ' id="FormulirEdit"'); ?>
+                <?= form_open(base_url('setting/instansiedit'), ' id="FormulirEdit"'); ?>
                 <input type="hidden" name="idd" id="idd">
                 <header class="panel-heading">
                     <h2 class="panel-title">Edit Data Instansi</h2>
@@ -198,7 +198,7 @@
                 <footer class="panel-footer">
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <?= form_open('setting/instansihapus', ' id="FormulirHapus"'); ?>
+                            <?= form_open(base_url('setting/instansihapus'), ' id="FormulirHapus"'); ?>
                             <input type="hidden" name="idd" id="idddelete">
                             <button style="font-size:12px" type="submit" class="btn btn-danger"
                                 id="submitformHapus">Delete</button>

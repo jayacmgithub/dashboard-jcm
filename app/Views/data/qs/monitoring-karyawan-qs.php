@@ -9,7 +9,7 @@
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url() ?>laporan/masalah-qs">PERMASALAHAN</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link active" id="info1-tab" data-toggle="tab" href="#info1" role="tab" aria-controls="info1"
                 aria-selected="true">MONITORING KARYAWAN</a>
         </li>
@@ -363,8 +363,14 @@
                                     <td>
                                         <?= $tgl_kontrak; ?>
                                     </td>
-                                    <td <?= $gaya ?>>
-                                        <?= $tgl_akhir_kontrak; ?>
+                                    <td <?= ($tgl_akhir_kontrak == '30/11/-0001' || is_null($tgl_akhir_kontrak)) ? '' : $gaya ?>>
+                                        <?php
+                                        if ($tgl_akhir_kontrak == '30/11/-0001' || is_null($tgl_akhir_kontrak)) {
+                                            echo ''; // Display nothing if the value is '30/11/-0001' or NULL
+                                        } else {
+                                            echo $tgl_akhir_kontrak;
+                                        }
+                                        ?>
                                     </td>
                                     <td <?= $gaya3 ?>>
                                         <?= $tgl_ren_mob; ?>

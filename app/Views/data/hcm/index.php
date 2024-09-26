@@ -1,6 +1,6 @@
 <?= $this->extend('layout/page_layout') ?>
 <?= $this->section('content') ?>
-
+ 
 <section class="panel">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
@@ -11,7 +11,7 @@
             <a class="nav-link" href="<?= base_url() ?>laporan/absensi">ABSENSI</a>
         </li>
     </ul>
-
+ 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane active" id="info6" role="tabpanel" aria-labelledby="info6-tab">
             <!-- start: page -->
@@ -63,7 +63,7 @@
             <?php } ?>
         </div>
         <div class="panel-body" style="margin-top:0.5%">
-            <table class="table table-borderless table-hover table-striped" id="example">
+            <table class="table table-borderless table-hover table-striped" id="datausers">
                 <thead>
                     <tr>
                         <th></th>
@@ -77,65 +77,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    foreach ($hcm as $c) {
-                        $status = $c->aktif == '1' ? "<span class='btn btn-xs btn-success'>Aktif</span>" : "<span class='btn  btn-xs btn-danger'>Blokir</span>";
-
-                        $aktif = esc($c->aktif);
-                        if ($aktif > 0) {
-                            $tombolhapus = '';
-                        } else {
-                            $tombolhapus = level_user('setting', 'user', $kategoriQNS, 'delete') > 0 ? '<li><a style="font-size:12px" href="#" onclick="hapus(this)" data-id="' . $c->id . '">Hapus</a></li>' : '';
-                        }
-
-                        $tomboledit = level_user('setting', 'user', $kategoriQNS, 'edit') > 0 ? '<li><a style="font-size:12px" href="edituser/' . $c->id . '" onclick="edit(this)" data-id="' . $c->id . '">Edit</a></li>' : '';
-                        ?>
-                        <tr>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Aksi
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <?= $tomboledit ?>
-                                        <?= $tombolhapus ?>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <?= $c->nomor . '/' . $c->no_pkp . '<br>' . $c->alias ?>
-                            </td>
-                            <td>
-                                <?= $c->nama_admin ?>
-                            </td>
-                            <td>
-                                <?= $c->username ?>
-                            </td>
-                            <td>
-                                <?= $c->email ?>
-                            </td>
-                            <td>
-                                <?= $c->kategori_user ?>
-                            </td>
-                            <td>
-                                <?= $c->jenis_kelamin ?>
-                            </td>
-                            <td>
-                                <?= $status ?>
-                            </td>
-                        </tr>
-                    <?php } ?>
+ 
                 </tbody>
             </table>
         </div>
 </section>
-
+ 
 <div class="modal fade" id="tambahData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" style="width:90%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('laporan/tambahkaryawan', ' id="FormulirTambah" enctype="multipart/form-data"'); ?>
+                <?= form_open(base_url('laporan/tambahkaryawan'), ' id="FormulirTambah" enctype="multipart/form-data"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Tambah Karyawan Baru</h2>
                 </header>
@@ -205,10 +157,10 @@
                                     <input type="text" name="handphone" class="form-control" />
                                 </div>
                             </div>
-
+ 
                         </div>
                         <div class="col-md-6">
-
+ 
                             <div class="form-group email">
                                 <label class="col-sm-3 control-label">Email</label>
                                 <div class="col-sm-9">
@@ -282,12 +234,12 @@
         </div>
     </div>
 </div>
-
+ 
 <div class="modal fade" id="tambahData2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" style="width:90%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('laporan/mutasi_karyawan', ' id="FormulirTambah2" enctype="multipart/form-data"'); ?>
+                <?= form_open(base_url('laporan/mutasi_karyawan'), ' id="FormulirTambah2" enctype="multipart/form-data"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Mutasi Karyawan</h2>
                 </header>
@@ -382,9 +334,9 @@
         </div>
     </div>
 </div>
-
-
-
+ 
+ 
+ 
 <div class="modal fade" id="modalHapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -405,7 +357,7 @@
                 <footer class="panel-footer">
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <?= form_open('setting/userhapus', ' id="FormulirHapus"'); ?>
+                            <?= form_open(base_url('setting/userhapus'), ' id="FormulirHapus"'); ?>
                             <input type="hidden" name="idd" id="idddelete">
                             <button style="font-size:12px" type="submit" class="btn btn-danger"
                                 id="submitformHapus">Delete</button>
@@ -420,17 +372,28 @@
     </div>
 </div>
 <?= $this->include('layout/js') ?>
-
+<script type="text/javascript">
+    var tableitems = $('#datausers').DataTable({
+        "serverSide": true,
+        "order": [],
+        "ajax": {
+            "url": "<?php echo base_url() ?>laporan/datausers",
+            "type": "POST"
+        },
+ 
+ 
+    });
+</script>
 <script>
     function hanyaAngka(evt) {
         var charCode = (evt.which) ? evt.which : event.keyCode
         if (charCode > 31 && (charCode < 48 || charCode > 57))
-
+ 
             return false;
         return true;
     }
 </script>
-
+ 
 <script type="text/javascript">
     /*no error*/
     var tableimport = $('#importdata2').DataTable({
@@ -444,9 +407,27 @@
             "targets": [0, 1, 2, 3, 4],
             "orderable": false,
         },],
-
+ 
     });
-
+ 
+    $('#nama_user').change(function () {
+        var dataId = $(this).val();
+        $.ajax({
+            type: 'GET',
+            url: '<?php echo base_url() ?>laporan/karyawandetail',
+            data: 'id=' + dataId,
+            dataType: 'json',
+            success: function (response) {
+                $.each(response.datarows, function (i, item) {
+                    $('#pkp_lama').val(item.no_pkp);
+                });
+ 
+                // $('.listitem').append(datarow);
+            }
+        });
+        return false;
+    });
+ 
     document.getElementById("FormulirUpload").addEventListener("submit", function (e) {
         blurForm();
         PNotify.removeAll();
@@ -477,39 +458,178 @@
                         $('input[name="' + key + '"]').after(msg);
                     }
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
+                            icon: 'error',
                             title: 'Notifikasi',
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 1500,
                             text: data.errors[key],
-                            type: 'danger'
                         });
                     }
                 }
             } else {
                 $('input[name=<?= csrf_token(); ?>]').val(data.token);
-
-                new PNotify({
+ 
+                Swal.fire({
+                    icon: 'success',
                     title: 'Notifikasi',
-                    text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    text: data.message
                 });
                 window.setTimeout(function () {
                     location.reload();
                 }, 2000);
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
+                icon: 'error',
                 title: 'Notifikasi',
-                text: "Request gagal, browser akan direload",
-                type: 'danger'
+                text: "Request gagal, browser akan di reload"
+            });
+        });
+        e.preventDefault();
+    });
+</script>
+<script>
+    document.getElementById("FormulirTambah").addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent the default form submission
+ 
+        blurForm();
+        PNotify.removeAll();
+        $('.help-block').hide();
+        $('.form-group').removeClass('has-error');
+        document.getElementById("submitform").setAttribute('disabled', 'disabled');
+        $('#submitform').html('Loading ...');
+ 
+        var form = $('#FormulirTambah')[0];
+        var formData = new FormData(form);
+ 
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            dataType: 'json'
+        }).done(function (data) {
+            $('input[name=<?= csrf_token(); ?>]').val(data.token);
+            document.getElementById("submitform").removeAttribute('disabled');
+            $('#submitform').html('Submit');
+ 
+            if (data.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Notifikasi',
+                    position: "top-end",
+                    showConfirmButton: false,
+                    text: data.message
+                });
+                window.setTimeout(function () {
+                    location.reload();
+                }, 2000);
+            } else {
+                var errorMessages = '';
+ 
+                if (data.errors) {
+                    $.each(data.errors, function (key, message) {
+                        var msg = '<div class="help-block" for="' + key + '">' + message + '</div>';
+                        $('.' + key).addClass('has-error');
+                        $('input[name="' + key + '"]').after(msg);
+                    });
+                }
+ 
+                if (data.errors && data.errors.fail) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Notifikasi',
+                        position: "top-end",
+                        showConfirmButton: false,
+                        text: data.errors.fail
+                    });
+                }
+            }
+        }).fail(function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Notifikasi',
+                text: "Request gagal, browser akan di reload"
+            });
+        });
+    });
+    </script>
+<script>
+    document.getElementById("FormulirTambah2").addEventListener("submit", function (e) {
+        blurForm();
+        PNotify.removeAll();
+        $('.help-block').hide();
+        $('.form-group').removeClass('has-error');
+        document.getElementById("submitform2").setAttribute('disabled', 'disabled');
+        $('#submitform2').html('Loading ...');
+        var form = $('#FormulirTambah2')[0];
+        var formData = new FormData(form);
+        var xhrAjax = $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            dataType: 'json'
+        }).done(function (data) {
+            if (!data.success) {
+                $('input[name=<?= csrf_token(); ?>]').val(data.token);
+                document.getElementById("submitform2").removeAttribute('disabled');
+                $('#submitform2').html('Submit');
+                var objek = Object.keys(data.errors);
+                for (var key in data.errors) {
+                    if (data.errors.hasOwnProperty(key)) {
+                        var msg = '<div class="help-block" for="' + key + '">' + data.errors[key] + '</span>';
+                        $('.' + key).addClass('has-error');
+                        $('input[name="' + key + '"]').after(msg);
+                    }
+                    if (key == 'fail') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Notifikasi',
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 1500,
+                            text: data.errors[key],
+                        });
+                    }
+                }
+            } else {
+                $('input[name=<?= csrf_token(); ?>]').val(data.token);
+ 
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Notifikasi',
+                    position: "top-end",
+                    showConfirmButton: false,
+                    text: data.message
+                });
+                window.setTimeout(function () {
+                    location.reload();
+                }, 2000);
+            }
+        }).fail(function (data) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Notifikasi',
+                text: "Request gagal, browser akan di reload"
             });
             window.setTimeout(function () {
                 location.reload();
-            }, 500);
+            }, 2000);
         });
         e.preventDefault();
     });
 </script>
 </body>
-
+ 
 </html>
 <?= $this->endSection() ?>

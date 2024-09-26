@@ -39,7 +39,9 @@
                 <a class="nav-link" href="<?= base_url() ?>dashboard/beranda_07" role="tab" aria-controls="gedung7" aria-selected="true">MARKETING</a>
             </li>
         <?php } ?>
-    </ul>
+        <!-- <li class="nav-item">
+                <a class="nav-link" href="<?= base_url() ?>dashboard/invoice" role="tab" aria-controls="gedung8" aria-selected="true">INVOICE</a>
+            </li> -->    </ul>
     <?php date_default_timezone_set("Asia/Jakarta");
     $now = date("Y-m-d");
     $tgl_terawang = date('Y-m-d', strtotime('-365 days', strtotime($now)));
@@ -54,7 +56,7 @@
                     <h4 class="card-title">DASHBOARD OPERASIONAL PROYEK</h4>
                     <h6 class="card-subtitle">TABEL DATA GEDUNG 1</h6>
                     <div class="table-scrollable" style="height: 480px;width:100%">
-                        <table cellspacing="0" id="table-basic" class="table table-sm table-bordered table-striped" style="width:100%">
+                        <table cellspacing="0" class="table table-sm table-bordered table-striped" style="width:100%" id="example">
                             <thead style="background-color:#1b3a59;color:white;">
                                 <tr>
                                     <th style="text-align:center" colspan="2">PROYEK</th>
@@ -176,7 +178,7 @@
     </div>
 </section>
 
-
+<?= $this->include('layout/js') ?>
 
 <script type="text/javascript">
     $(document).ready(function() {

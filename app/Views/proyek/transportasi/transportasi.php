@@ -11,7 +11,7 @@
             </div>
     </header>
     <div class="panel-body">
-        <table class="table table-bordered table-hover table-striped" id="example">
+        <table class="table table-bordered table-hover table-striped" id="gd6data">
             <thead>
                 <tr>
                     <th>INS/PKP</th>
@@ -20,36 +20,22 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach ($trans1 as $trs1) {
-                    ?>
-                    <tr>
-                        <td>
-                            <?php
-                            if (esc($trs1->tgl_ubah_progress) > 0) {
-                                echo '<strong><center><a href="' . base_url() . 'proyek/edit_1/' . esc($trs1->id_pkp) . '" > ' . esc($trs1->nomor) . '/' . esc($trs1->no_pkp) . '</a></strong>';
-                            } else {
-                                echo '<strong><center><a>' . esc($trs1->nomor) . '/' . esc($trs1->no_pkp) . '</a></strong>';
-                            }
-                            ?>
-                        </td>
 
-                        <td>
-                            <?= $trs1->proyek; ?>
-                        </td>
-                        <td>
-                            <?= $trs1->alias; ?>
-                        </td>
-                    <?php } ?>
-
-                </tr>
             </tbody>
         </table>
     </div>
 </section>
 <?= $this->include('layout/js') ?>
-</script>
-</body>
+<script type="text/javascript">
+    var tableitems = $('#gd6data').DataTable({
+        "serverSide": true,
+        "order": [],
+        "ajax": {
+            "url": "<?php echo base_url() ?>proyek/datatrans",
+            "type": "POST"
+        },
 
-</html>
+
+    });
+</script>
 <?= $this->endSection() ?>

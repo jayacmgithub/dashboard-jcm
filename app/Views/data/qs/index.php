@@ -56,67 +56,41 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     <?php
                     $no = 1;
-                    foreach ($proyek_qs as $qs) {
-                        $no2 = 1;
-                        if ($qs->periode_akhir > 0) {
-                            $periode_akhir = date('d-M-Y', strtotime($qs->periode_akhir));
-                        } else {
-                            $periode_akhir = '';
-                        }
-                        $id_pkp = $qs->id_pkp;
-                        $demo = '#demo' . $no;
-
-                        $demo2 = 'demo' . $no;
-                        ?>
+                    foreach ($proyek_qs as $qs): ?>
                         <tr>
-                            <td style="text-align:right;vertical-align:middle">
-                                <?= $no ?>
+                            <td style="text-align:right;vertical-align:middle"><?= $no++ ?></td>
+                            <td style="border-bottom:0px;">
+                                <button type="button" class="btn btn-success" data-toggle="collapse"
+                                    data-target="#demo<?= $qs->id_pkp ?>"
+                                    style="font-size:12px;background-color:transparent;border-color:transparent;color:grey;text-align:left"><?= $qs->proyek ?></button>
                             </td>
-                            <td style="border-bottom:0px;"><button type="button" class="btn btn-success"
-                                    data-toggle="collapse" data-target="<?= $demo ?>"
-                                    style="font-size:12px;background-color:transparent;border-color:transparent;color:grey;text-align:left">
-                                    <?= $qs->proyek ?>
-                                </button></td>
                             <td colspan="3" style="vertical-align:middle">
-                                <?= $periode_akhir ?>
+                                <?= $qs->periode_akhir ? date('d-M-Y', strtotime($qs->periode_akhir)) : '' ?>
                             </td>
-                            <td style="vertical-align:middle">
-                                <?= date('d-M-Y', strtotime($qs->update_qs)) ?>
-                            </td>
+                            <td style="vertical-align:middle"><?= date('d-M-Y', strtotime($qs->update_qs)) ?></td>
                         </tr>
-
-                    <tbody class="collapse" id="<?= $demo2 ?>" style="border:none">
-                        <?php
-                        foreach ($QN as $row) { ?>
-
+                    <tbody class="collapse" id="demo<?= $qs->id_pkp ?>" style="border:none">
+                        <?php $pdfQs = $pdfQsModel->getPdfQsByIdPkp($qs->id_pkp); ?>
+                        <?php $no2 = 1; // Initialize $no2 here ?>
+                        <?php foreach ($pdfQs as $row): ?>
                             <tr>
                                 <td style="text-align:right"></td>
                                 <td></td>
-                                <td style="width:3%;text-align:right;">
-                                    <?= $no2 ?>
-                                </td>
-                                <td><a href="<?= base_url() . 'assets' . esc($row->file) ?>" target="_blank"
-                                        style="color:darkorange;">
-                                        <?= substr($row->file, -14); ?>
-                                    </a></td>
+                                <td style="width:3%;text-align:right;"><?= $no2 ?></td>
                                 <td>
-                                    <?= date('d-M-Y', strtotime($row->tgl_periode)) ?>
+                                    <a href="<?= base_url('assets') . $row->file ?>" target="_blank"
+                                        style="color:darkorange;"><?= substr($row->file, -14) ?></a>
                                 </td>
-                                <td>
-                                    <?= date('d-M-Y', strtotime($row->tgl_upload)) ?>
-                                </td>
+                                <td><?= date('d-M-Y', strtotime($row->tgl_periode)) ?></td>
+                                <td><?= date('d-M-Y', strtotime($row->tgl_upload)) ?></td>
                             </tr>
-
-                            <?php $no2++;
-                        } ?>
+                            <?php $no2++; ?>
+                        <?php endforeach; ?>
                     </tbody>
-                    </tbody>
-                    <?php
-                    $no++;
-                    $no2 = 1;
-                    } ?>
+                <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
@@ -174,7 +148,7 @@
     <div class="modal-dialog modal-lg" style="width:90%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('laporan/tambah_lapbul', ' id="FormulirTambah2" enctype="multipart/form-data"'); ?>
+                <?= form_open(base_url('laporan/tambah_lapbul'), 'enctype="multipart/form-data"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Tambah PDF Lap. Bulanan</h2>
                 </header>
@@ -207,7 +181,7 @@
                             <div class="form-group excelfile">
                                 <label class="col-sm-3 control-label">FILE</label>
                                 <div class="col-sm-9">
-                                    <input type="file" name="berkas[]" class="form-control" />
+                                    <input type="file" name="berkas" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -230,7 +204,6 @@
 </div>
 
 
-
 <div class="modal fade" id="modalHapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -251,7 +224,7 @@
                 <footer class="panel-footer">
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <?= form_open('setting/userhapus', ' id="FormulirHapus"'); ?>
+                            <?= form_open(base_url('setting/userhapus'), ' id="FormulirHapus"'); ?>
                             <input type="hidden" name="idd" id="idddelete">
                             <button style="font-size:12px" type="submit" class="btn btn-danger"
                                 id="submitformHapus">Delete</button>
@@ -267,21 +240,33 @@
 </div>
 
 <!-- Vendor -->
-<script src="<?= base_url() ?>assets/vendor/jquery/jquery.min.js"></script>
-<script src="<?= base_url() ?>assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
-<script src="<?= base_url() ?>assets/vendor/bootstrap/js/bootstrap.js"></script>
-<script src="<?= base_url() ?>assets/vendor/nanoscroller/nanoscroller.js"></script>
-<script src="<?= base_url() ?>assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-<script src="<?= base_url() ?>assets/vendor/magnific-popup/magnific-popup.js"></script>
-<script src="<?= base_url() ?>assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
-<script src="<?= base_url() ?>assets/vendor/select2/select2.js"></script>
-<script src="<?= base_url() ?>assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
-<script src="<?= base_url() ?>assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
-<script src="<?= base_url() ?>assets/javascripts/theme.js"></script>
-<script src="<?= base_url() ?>assets/vendor/pnotify/pnotify.custom.js"></script>
-<script src="<?= base_url() ?>assets/javascripts/theme.init.js"></script>
-<script src="<?= base_url() ?>assets/vendor/input-mask/jquery.inputmask.bundle.min.js"></script>
+<?= $this->include('layout/js') ?>
 
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        <?php if (session()->has("success")) { ?>
+            Swal.fire({
+                position: "top-end",
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '<?= session("success") ?>',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        <?php } ?>
+
+        <?php if (session()->has("error")) { ?>
+            Swal.fire({
+                position: "top-end",
+                icon: 'error',
+                title: 'Gagal!',
+                text: '<?= session("error") ?>',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        <?php } ?>
+    });
+</script>
 
 
 <script type="text/javascript">
@@ -427,10 +412,13 @@
                 var objek = Object.keys(data.errors);
                 for (var key in data.errors) {
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
+                            icon: 'error',
                             title: 'Notifikasi',
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 1500,
                             text: data.errors[key],
-                            type: 'danger'
                         });
                     }
                 }
@@ -442,20 +430,23 @@
                 $('#modalHapus').modal('hide');
                 document.getElementById("FormulirHapus").reset();
                 $('#submitformHapus').html('Delete');
-                new PNotify({
+                Swal.fire({
+                    icon: 'success',
                     title: 'Notifikasi',
-                    text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    text: data.message
                 });
                 window.setTimeout(function () {
                     location.reload();
                 }, 1000);
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
+                icon: 'error',
                 title: 'Notifikasi',
-                text: "Request gagal, browser akan direload",
-                type: 'danger'
+                text: "Request gagal, browser akan di reload"
             });
             window.setTimeout(function () {
                 location.reload();
@@ -463,6 +454,8 @@
         });
         e.preventDefault();
     });
+</script>
+<script>
 
     document.getElementById("FormulirTambah2").addEventListener("submit", function (e) {
         blurForm();
@@ -493,10 +486,13 @@
                         $('input[name="' + key + '"]').after(msg);
                     }
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
+                            icon: 'error',
                             title: 'Notifikasi',
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 1500,
                             text: data.errors[key],
-                            type: 'danger'
                         });
                     }
                 }
@@ -508,20 +504,23 @@
                 $('#tambahData2').modal('hide');
                 document.getElementById("FormulirTambah2").reset();
                 $('#submitform2').html('Submit');
-                new PNotify({
+                Swal.fire({
+                    icon: 'success',
                     title: 'Notifikasi',
-                    text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    text: data.message
                 });
                 window.setTimeout(function () {
                     location.reload();
                 }, 1000);
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
+                icon: 'error',
                 title: 'Notifikasi',
-                text: "Request gagal, browser akan direload 22",
-                type: 'danger'
+                text: "Request gagal, browser akan di reload"
             });
             window.setTimeout(function () {
                 location.reload();

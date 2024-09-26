@@ -18,9 +18,13 @@
         <?php } ?>
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url() ?>proyek/edit_6/<?= $proyek->getRow()->id_pkp ?>" role="tab"
-                aria-controls="info6" aria-selected="true" style="color:black"><strong>MONTORING KARYAWAN</strong></a>
+                aria-controls="info6" aria-selected="true" style="color:black"><strong>MONITORING KARYAWAN</strong></a>
         </li>
+ <?php
+    if ($nomorQN == '511') {
+        ?>
         <?php
+}
         if ($nomorQN != '412') {
             ?>
             <li class="nav-item">
@@ -54,32 +58,72 @@
                                 <?php } ?>
                             </b>
                         </h6>
+                        <form action="" method="GET" class="ml-auto">
+                            <div class="row align-items-center">
+                                <div class="col-md-4">
+                                    <select name="tahun" id="tahun" class="form-control">
+                                        <option value="00">Tahun</option>
+                                        <?php
+                                        // Array sementara untuk menyimpan tahun yang sudah ditemukan
+                                        $found_years = [];
+
+                                        foreach ($option_tahun as $data):
+                                            // Ambil tahun dari $data->tgl_ubah
+                                            $tahun = date('Y', strtotime($data->tgl_ubah));
+                                            $tahun2 = date('Y', strtotime($data->tgl_ubah));
+                                            // Periksa apakah tahun sudah ada di dalam array sementara
+                                            if (!in_array($tahun, $found_years)) {
+                                                // Jika belum, tambahkan tahun ke dalam array dan tambahkan opsi ke select box
+                                                $found_years[] = $tahun;
+                                                ?>
+                                        <option value="<?php echo $tahun2; ?>">
+                                            <?php echo $tahun; ?>
+                                        </option>
+                                        <?php
+                                            }
+                                        endforeach;
+                                        ?>
+                                    </select>
+
+                                </div>
+                                <div class="col-md-4">
+                                    <select name="bulan" id="bulan" class="form-control">
+                                        <option value="00">Bulan</option>
+                                        <!-- Opsi Bulan akan diisi setelah pengguna memilih Tahun -->
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-lg btn-success" style="font-size:12px;"
+                                        type="submit">Filter</button>
+                                </div>
+                            </div>
+                        </form>
                         <?php
                         if (level_user('proyek', 'data', $kategoriQNS, 'add') > 0) {
                             ?>
-                        <div id="userbox" class="userbox">
-                            <a class="btn btn-success" data-toggle="modal" data-target="#tambahData"
-                                style="font-size: 12px;color:white"> UPD. MASALAH</a>
+                            <div id="userbox" class="userbox">
+                                <a class="btn btn-success" data-toggle="modal" data-target="#tambahData"
+                                    style="font-size: 12px;color:white"> UPD. MASALAH</a>
 
-                            <a class="btn btn-info" data-toggle="dropdown" style="font-size: 12px;color:black">EXPORT
+                                <a class="btn btn-info" data-toggle="dropdown" style="font-size: 12px;color:black">EXPORT
 
-                            </a>
-                            <div class="dropdown-menu">
-                                <ul class="list-unstyled">
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a class="btn btn-info"
-                                            href="<?= base_url() ?>proyek/xls2/<?= $proyek->getRow()->id_pkp ?>"
-                                            target="_blank" style="font-size: 12px;color:black"> XLS</a>
-                                    </li>
-                                    <li>
-                                        <a class="btn btn-info"
-                                            href="<?= base_url() ?>proyek/pdf1/<?= $proyek->getRow()->id_pkp ?>"
-                                            style="font-size: 12px;color:black" target="_blank"> PDF</a>
-                                    </li>
-                                </ul>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <ul class="list-unstyled">
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a class="btn btn-info"
+                                                href="<?= base_url() ?>proyek/xls2/<?= $proyek->getRow()->id_pkp ?>"
+                                                target="_blank" style="font-size: 12px;color:black"> XLS</a>
+                                        </li>
+                                        <li>
+                                            <a class="btn btn-info"
+                                                href="<?= base_url() ?>proyek/pdf1/<?= $proyek->getRow()->id_pkp ?>"
+                                                style="font-size: 12px;color:black" target="_blank"> PDF</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
                         <?php } ?>
 
                     </div>
@@ -109,31 +153,31 @@
                             $noA = 1;
                             $noB = 1;
                             foreach ($solusi as $sol) { ?>
-                            <tr>
-                                <td style="text-align:left;width: 3%">
-                                    <?= $noA++ ?>
-                                </td>
-                                <td style="text-align:left;width: 20%">
-                                    <?= $sol->masalah ?>
-                                </td>
-                                <td style="text-align:left;width: 20%">
-                                    <?= $sol->penyebab ?>
-                                </td>
-                                <td style="text-align:left;width: 20%">
-                                    <?= $sol->dampak ?>
-                                </td>
-                                <td style="text-align:left;width: 20%">
-                                    <?= $sol->solusi ?>
-                                </td>
-                                <td style="text-align:left;width: 10%">
-                                    <?= $sol->pic ?>
-                                </td>
+                                <tr>
+                                    <td style="text-align:left;width: 3%">
+                                        <?= $noA++ ?>
+                                    </td>
+                                    <td style="text-align:left;width: 20%">
+                                        <?= $sol->masalah ?>
+                                    </td>
+                                    <td style="text-align:left;width: 20%">
+                                        <?= $sol->penyebab ?>
+                                    </td>
+                                    <td style="text-align:left;width: 20%">
+                                        <?= $sol->dampak ?>
+                                    </td>
+                                    <td style="text-align:left;width: 20%">
+                                        <?= $sol->solusi ?>
+                                    </td>
+                                    <td style="text-align:left;width: 10%">
+                                        <?= $sol->pic ?>
+                                    </td>
 
-                                <td style="text-align:left;width: 5%">
-                                    <?= $sol->target ?>
-                                </td>
-                            </tr>
-                            <?php
+                                    <td style="text-align:left;width: 5%">
+                                        <?= $sol->target ?>
+                                    </td>
+                                </tr>
+                                <?php
                             } ?>
                             <tr style="background-color: #FFEFD5;">
                                 <td colspan="7"><b><strong>INTERNAL</strong></b></td>
@@ -142,31 +186,31 @@
                             $nomor = 0;
                             foreach ($solusi2 as $sol2) {
                                 ?>
-                            <tr>
-                                <td style="text-align:left;width: 5%">
-                                    <?= $noB++ ?>
-                                </td>
-                                <td style="text-align:left;width: 25%">
-                                    <?= $sol2->masalah ?>
-                                </td>
-                                <td style="text-align:left;width: 25%">
-                                    <?= $sol2->penyebab ?>
-                                </td>
-                                <td style="text-align:left;width: 25%">
-                                    <?= $sol2->dampak ?>
-                                </td>
-                                <td style="text-align:left;width: 25%">
-                                    <?= $sol2->solusi ?>
-                                </td>
-                                <td style="text-align:left;width: 25%">
-                                    <?= $sol2->pic ?>
-                                </td>
+                                <tr>
+                                    <td style="text-align:left;width: 5%">
+                                        <?= $noB++ ?>
+                                    </td>
+                                    <td style="text-align:left;width: 25%">
+                                        <?= $sol2->masalah ?>
+                                    </td>
+                                    <td style="text-align:left;width: 25%">
+                                        <?= $sol2->penyebab ?>
+                                    </td>
+                                    <td style="text-align:left;width: 25%">
+                                        <?= $sol2->dampak ?>
+                                    </td>
+                                    <td style="text-align:left;width: 25%">
+                                        <?= $sol2->solusi ?>
+                                    </td>
+                                    <td style="text-align:left;width: 25%">
+                                        <?= $sol2->pic ?>
+                                    </td>
 
-                                <td style="text-align:left;width: 25%">
-                                    <?= $sol2->target ?>
-                                </td>
-                            </tr>
-                            <?php
+                                    <td style="text-align:left;width: 25%">
+                                        <?= $sol2->target ?>
+                                    </td>
+                                </tr>
+                                <?php
                             } ?>
                         </tbody>
                     </table>
@@ -184,7 +228,7 @@
     <div class="modal-dialog" style="width:90%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('proyek/proses_upload_solusi', ' id="FormulirTambah" enctype="multipart/form-data"'); ?>
+                <?= form_open(base_url('proyek/proses_upload_solusi'), ' id="FormulirTambah" enctype="multipart/form-data"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Migrasi Permasalahan & Solusi</h2>
                 </header>
@@ -228,6 +272,30 @@
 </div>
 
 <?= $this->include('layout/js') ?>
+<script>
+    // Tambahkan event listener untuk perubahan tahun
+    document.getElementById('tahun').addEventListener('change', function () {
+        const tahun = this.value;
+        const bulanSelect = document.getElementById('bulan');
+        bulanSelect.innerHTML = ''; // Mengosongkan opsi bulan
+
+        // Kirim permintaan AJAX untuk mengambil data bulan berdasarkan tahun yang dipilih
+        fetch(`<?= base_url('proyek/get_bulan_msl'); ?>?id_pkp=<?= $id_pkp; ?>&tahun=${tahun}`)
+            .then(response => response.json())
+            .then(data => {
+                // Tambahkan opsi bulan ke dalam elemen select
+                data.forEach(bulan => {
+                    const option = document.createElement('option');
+                    option.value = bulan.bulan;
+                    option.textContent = bulan.nama_bulan;
+                    bulanSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+</script>
 <script type="text/javascript">
     $(".table-scrollable").freezeTable({
         'scrollable': true,
@@ -329,8 +397,5 @@
         e.preventDefault();
     });
 </script>
-</body>
-
-</html>
 
 <?= $this->endSection() ?>

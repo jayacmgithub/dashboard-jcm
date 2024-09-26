@@ -12605,7 +12605,6 @@ section {
 }
 html {
   font-family: sans-serif;
-  line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
@@ -12613,9 +12612,10 @@ html {
 @-ms-viewport {
   width: device-width;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 body {
-  font-family: Poppins, sans-serif;
-  line-height: 1.5;
+  font-family: 'Poppins', sans-serif;
   color: #212529;
   background-color: #edf1f5;
 }
@@ -23785,6 +23785,24 @@ ul.list-style-none li a:hover {
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
 }
+
+.notify .heartbitSLS {
+  position: absolute;
+  right: -35px;
+  top: -7px;
+  height: 33px;
+  width: 33px;
+  z-index: 10;
+  border: 5px solid yellow;
+  border-radius: 70px;
+  -moz-animation: heartbit 1s ease-out;
+  -moz-animation-iteration-count: infinite;
+  -o-animation: heartbit 1s ease-out;
+  -o-animation-iteration-count: infinite;
+  -webkit-animation: heartbit 1s ease-out;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
 .notify .heartbitK {
   position: absolute;
   right: -35px;
@@ -23866,6 +23884,17 @@ ul.list-style-none li a:hover {
   -moz-border-radius: 30px;
   border-radius: 30px;
   background-color: black;
+  position: absolute;
+  right: -22.5px;
+  top: 5px;
+}
+.notify .pointSLS {
+  width: 9px;
+  height: 9px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  background-color: orange;
   position: absolute;
   right: -22.5px;
   top: 5px;
@@ -26900,4 +26929,15 @@ html body .navbar-dark .mailbox .message-center a .mail-contnet .time {
   .hidden-md-down {
     display: none;
   }
+  .legend-box {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle; /* Untuk menyelaraskan dengan teks */
+}
+
+.card-shadow {
+  box-shadow: 5px 10px black;
+}
+
 }

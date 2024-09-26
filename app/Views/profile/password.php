@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-6">
 
-        <?= form_open('profil/ubah-password'); ?>
+        <?= form_open(base_url('profil/ubah-password')); ?>
         <?= csrf_field() ?>
         <section class="panel">
             <header class="panel-heading">

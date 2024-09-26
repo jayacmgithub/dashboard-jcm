@@ -49,7 +49,7 @@
                                         class="fa fa-chevron-down"></i></button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a style="font-size: 14px" href="#" onclick="detail(this)"
-                                            data-id="' . esc($pkp->id_pkp) . '">Detail</a></li>
+                                            data-id="<?= $pkp->id_pkp; ?>">Detail</a></li>
                                     <?= $tomboledit ?>
                                     <?= $tombolhapus ?>
                                 </ul>
@@ -90,7 +90,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <section class="panel  panel-primary">
-                <?= form_open('setting/pkptambah'); ?>
+                <?= form_open(base_url('setting/pkptambah'), ' id="FormulirTambah"  enctype="multipart/form-data"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Tambah Instansi</h2>
                 </header>
@@ -171,7 +171,7 @@
     <div class="modal-dialog modal-lg" style="width:90%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('setting/pkpedit', ' id="FormulirEdit"  enctype="multipart/form-data"'); ?>
+                <?= form_open(base_url('setting/pkpedit'), ' id="FormulirEdit"  enctype="multipart/form-data"'); ?>
                 <input type="hidden" name="idd" id="idd">
                 <header class="panel-heading">
                     <h2 class="panel-title">Edit Data PKP</h2>
@@ -325,7 +325,7 @@
                 <footer class="panel-footer">
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <?= form_open('setting/pkphapus', ' id="FormulirHapus"'); ?>
+                            <?= form_open(base_url('setting/pkphapus'), ' id="FormulirHapus"'); ?>
                             <input type="hidden" name="idd" id="idddelete">
                             <button style="font-size:12px" type="submit" class="btn btn-danger"
                                 id="submitformHapus">Delete</button>
@@ -407,10 +407,12 @@
                         $('input[name="' + key + '"]').after(msg);
                     }
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
                             title: 'Notifikasi',
                             text: data.errors[key],
-                            type: 'danger'
+                            position: "top-end",
+                            showConfirmButton: false,
+                            icon: 'error'
                         });
                     }
                 }
@@ -422,17 +424,22 @@
                 $('#tambahData').modal('hide');
                 document.getElementById("FormulirTambah").reset();
                 $('#submitform').html('Submit');
-                new PNotify({
+                Swal.fire({
                     title: 'Notifikasi',
                     text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
                 });
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
                 title: 'Notifikasi',
                 text: "Request gagal, browser akan direload",
-                type: 'danger'
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
             });
             window.setTimeout(function () {
                 location.reload();
@@ -628,7 +635,5 @@
         e.preventDefault();
     });
 </script>
-</body>
 
-</html>
 <?= $this->endSection() ?>

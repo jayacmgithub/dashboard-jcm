@@ -12,7 +12,7 @@
             </div>
     </header>
     <div class="panel-body">
-        <table class="table table-bordered table-hover table-striped" id="example">
+        <table class="table table-bordered table-hover table-striped" id="gd2data">
             <thead>
                 <tr>
                     <th>INS/PKP</th>
@@ -21,35 +21,22 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach ($gedung2 as $gdg2) {
-                    ?>
-                    <tr>
-                        <td>
-                            <?php
-                            if (esc($gdg2->tgl_ubah_progress) > 0) {
-                                echo '<strong><center><a href="' . base_url() . 'proyek/edit_1/' . esc($gdg2->id_pkp) . '" > ' . esc($gdg2->nomor) . '/' . esc($gdg2->no_pkp) . '</a></strong>';
-                            } else {
-                                echo '<strong><center><a>' . esc($gdg2->nomor) . '/' . esc($gdg2->no_pkp) . '</a></strong>';
-                            }
-                            ?>
-                        </td>
 
-                        <td>
-                            <?= $gdg2->proyek; ?>
-                        </td>
-                        <td>
-                            <?= $gdg2->alias; ?>
-                        </td>
-                    <?php } ?>
-
-                </tr>
             </tbody>
         </table>
     </div>
 </section>
 <?= $this->include('layout/js') ?>
-</body>
+<script type="text/javascript">
+    var tableitems = $('#gd2data').DataTable({
+        "serverSide": true,
+        "order": [],
+        "ajax": {
+            "url": "<?php echo base_url() ?>proyek/datagd2",
+            "type": "POST"
+        },
 
-</html>
+
+    });
+</script>
 <?= $this->endSection() ?>

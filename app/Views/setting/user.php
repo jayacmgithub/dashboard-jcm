@@ -14,7 +14,7 @@
     <div class="card">
         <div class="card-body">
             <div class="panel-body">
-                <table class="table table-bordered table-hover table-striped" id="example">
+                <table class="table table-bordered table-hover table-striped" id="datausers">
                     <thead>
                         <tr>
                             <th></th>
@@ -28,54 +28,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        foreach ($user as $user) {
-                            $status = $user->aktif == '1' ? "<span class='btn   btn-xs  btn-success'>Aktif</span>" : "<span class='btn  btn-xs btn-danger'>Blokir</span>";
-                            $tombolhapus = level_user('setting', 'user', $kategoriQNS, 'delete') > 0 ? '<li><a style="font-size:12px" href="#" onclick="hapus(this)" data-id="' . $user->id . '">Hapus</a></li>' : '';
-                            $status = $user->aktif == '1' ? "<span class='btn btn-xs btn-success'>Aktif</span>" : "<span class='btn  btn-xs btn-danger'>Blokir</span>";
-                            //$kunci = esc($user->jml_pkp);
-                            $aktif = esc($user->aktif);
-                            $tomboledit = level_user('setting', 'user', $kategoriQNS, 'edit') > 0 ? '<li><a style="font-size:12px" href="edituser/' . $user->id . '" onclick="edit(this)" data-id="' . $user->id . '">Edit</a></li>' : '';
-                            ?>
-                            <tr>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-primary dropdown-toggle" type="button"
-                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            Aksi
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <?= $tomboledit ?>
-                                            <?= $tombolhapus ?>
-                                        </div>
-                                    </div>
 
-                                </td>
-                                <td>
-                                    <?= $user->nomor ?> /
-                                    <?= $user->no_pkp ?>
-                                </td>
-                                <td>
-                                    <?= $user->nama_admin ?>
-                                </td>
-                                <td>
-                                    <?= $user->username ?>
-                                </td>
-                                <td>
-                                    <?= $user->email ?>
-                                </td>
-                                <td>
-                                    <?= $user->kategori_user ?>
-                                </td>
-                                <td>
-                                    <?= $user->jenis_kelamin ?>
-                                </td>
-                                <td>
-                                    <?= $status ?>
-                                </td>
-                            </tr>
-                        <?php } ?>
                     </tbody>
                 </table>
             </div>
@@ -88,7 +41,7 @@
     <div class="modal-dialog modal-lg" style="width:90%">
         <div class="modal-content">
             <section class="panel panel-primary">
-                <?= form_open('setting/tambahuser', ' id="FormulirTambah" enctype="multipart/form-data"'); ?>
+                <?= form_open(base_url('setting/tambahuser'), ' id="FormulirTambah" enctype="multipart/form-data"'); ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Tambah User</h2>
                 </header>
@@ -286,7 +239,7 @@
                 <footer class="panel-footer">
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <?= form_open('setting/userhapus', ' id="FormulirHapus"'); ?>
+                            <?= form_open(base_url('setting/userhapus'), ' id="FormulirHapus"'); ?>
                             <input type="hidden" name="idd" id="idddelete">
                             <button style="font-size:12px" type="submit" class="btn btn-danger"
                                 id="submitformHapus">Delete</button>
@@ -302,6 +255,128 @@
 </div>
 
 <?= $this->include('layout/js') ?>
+<script type="text/javascript">
+    var tableitems = $('#datausers').DataTable({
+        "serverSide": true,
+        "order": [],
+        "ajax": {
+            "url": "<?php echo base_url() ?>laporan/datausers",
+            "type": "POST"
+        },
+
+
+    });
+
+    function detail(elem) {
+        var dataId = $(elem).data("id");
+        $('#detailData').modal();
+        $('#showdetail').html('Loading...');
+        $.ajax({
+            type: 'GET',
+            url: '<?php echo base_url() ?>setting/userdetail',
+            data: 'id=' + dataId,
+            dataType: 'json',
+            success: function (response) {
+                var datarow = '';
+                $.each(response, function (i, item) {
+                    datarow += '<table class="table table-bordered table-hover table-striped dataTable no-footer">';
+                    datarow += "<tr><td>Kategori</td><td>: " + item.kategori + "</td></tr>";
+                    datarow += "<tr><td>Username</td><td>: " + item.username + "</td></tr>";
+                    datarow += "<tr><td>Nama admin</td><td>: " + item.nama_admin + "</td></tr>";
+                    datarow += "<tr><td>Jabatan</td><td>: " + item.jabatan + "</td></tr>";
+                    datarow += "<tr><td>Jurusan</td><td>: " + item.jurusan + "</td></tr>";
+                    datarow += "<tr><td>Jenis Kelamin</td><td>: " + item.jenis_kelamin + "</td></tr>";
+                    datarow += "<tr><td>Alamat</td><td>: " + item.alamat + "</td></tr>";
+                    datarow += "<tr><td>Telepon</td><td>: " + item.telepon + "</td></tr>";
+                    datarow += "<tr><td>Handphone</td><td>: " + item.handphone + "</td></tr>";
+                    datarow += "<tr><td>email</td><td>: " + item.email + "</td></tr>";
+                    datarow += "<tr><td>Status</td><td>: " + item.aktif + "</td></tr>";
+                    datarow += "<tr><td>STS Karyawan</td><td>: " + item.status + "</td></tr>";
+                    datarow += "</table>";
+                });
+                $('#showdetail').html(datarow);
+            }
+        });
+        return false;
+    }
+</script>
+<script>
+    document.getElementById("FormulirTambah").addEventListener("submit", function (e) {
+        blurForm();
+        $('.help-block').hide();
+        $('.form-group').removeClass('has-error');
+        document.getElementById("submitform").setAttribute('disabled', 'disabled');
+        $('#submitform').html('Loading ...');
+        var form = $('#FormulirTambah')[0];
+        var formData = new FormData(form);
+        var xhrAjax = $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            dataType: 'json'
+        }).done(function (data) {
+            if (!data.success) {
+                $('input[name=<?= csrf_token() ?>]').val(data.token);
+                document.getElementById("submitform").removeAttribute('disabled');
+                $('#submitform').html('Submit');
+                var objek = Object.keys(data.errors);
+                for (var key in data.errors) {
+                    if (data.errors.hasOwnProperty(key)) {
+                        var msg = '<div class="help-block" for="' + key + '">' + data.errors[key] + '</span>';
+                        $('.' + key).addClass('has-error');
+                        $('input[name="' + key + '"]').after(msg);
+                    }
+                    if (key == 'fail') {
+                        Swal.fire({
+                            title: 'Notifikasi',
+                            text: data.errors[key],
+                            position: "top-end",
+                            showConfirmButton: false,
+                            icon: 'error'
+                        });
+                        window.setTimeout(function () {
+                            location.reload();
+                        }, 2000);
+                    }
+                }
+            } else {
+                $('input[name=<?= csrf_token() ?>]').val(data.token);
+                PNotify.removeAll();
+                tableitems.ajax.reload();
+                document.getElementById("submitform").removeAttribute('disabled');
+                $('#tambahData').modal('hide');
+                document.getElementById("FormulirTambah").reset();
+                $('#submitform').html('Submit');
+                Swal.fire({
+                    title: 'Notifikasi',
+                    text: data.message,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
+                });
+                window.setTimeout(function () {
+                    location.reload();
+                }, 2000);
+            }
+        }).fail(function (data) {
+            Swal.fire({
+                title: 'Notifikasi',
+                text: "Request gagal, browser akan direload",
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+            });
+            window.setTimeout(function () {
+                location.reload();
+            }, 2000);
+
+        });
+        e.preventDefault();
+    });
+</script>
 </body>
 
 </html>

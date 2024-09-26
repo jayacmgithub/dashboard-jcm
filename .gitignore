@@ -1,0 +1,13 @@
+# Ignore all PDF files
+*.pdf
+*.xlsx
+*.png
+# Ignore the vendor directory
+/vendor/
+/public/assets/
+# Additional common ignores for CodeIgniter 4
+/writable/*
+!writable/index.html
+
+# Ignore environment files
+.env

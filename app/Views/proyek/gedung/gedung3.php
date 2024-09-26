@@ -12,7 +12,7 @@
             </div>
     </header>
     <div class="panel-body">
-        <table class="table table-bordered table-hover table-striped" id="example">
+        <table class="table table-bordered table-hover table-striped" id="gd3data">
             <thead>
                 <tr>
                     <th>INS/PKP</th>
@@ -21,35 +21,22 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach ($gedung3 as $gdg3) {
-                    ?>
-                    <tr>
-                        <td>
-                            <?php
-                            if (esc($gdg3->tgl_ubah_progress) > 0) {
-                                echo '<strong><center><a href="' . base_url() . 'proyek/edit_1/' . esc($gdg3->id_pkp) . '" > ' . esc($gdg3->nomor) . '/' . esc($gdg3->no_pkp) . '</a></strong>';
-                            } else {
-                                echo '<strong><center><a>' . esc($gdg3->nomor) . '/' . esc($gdg3->no_pkp) . '</a></strong>';
-                            }
-                            ?>
-                        </td>
 
-                        <td>
-                            <?= $gdg3->proyek; ?>
-                        </td>
-                        <td>
-                            <?= $gdg3->alias; ?>
-                        </td>
-                    <?php } ?>
-
-                </tr>
             </tbody>
         </table>
     </div>
 </section>
 <?= $this->include('layout/js') ?>
-</body>
+<script type="text/javascript">
+    var tableitems = $('#gd3data').DataTable({
+        "serverSide": true,
+        "order": [],
+        "ajax": {
+            "url": "<?php echo base_url() ?>proyek/datagd3",
+            "type": "POST"
+        },
 
-</html>
+
+    });
+</script>
 <?= $this->endSection() ?>

@@ -49,7 +49,4 @@
     </div>
 </section>
 <?= $this->include('layout/js') ?>
-</body>
-
-</html>
 <?= $this->endSection() ?>

@@ -22,52 +22,49 @@ class Login extends BaseController
     public function index()
     {
         if (session('login') == TRUE) {
-            return redirect()->to(base_url());
+            return redirect()->to(base_url('dashboard/index'));
         } else {
             return view('/login');
         }
     }
 
-    public function authLogin()
+    function authLogin()
     {
-        $session = session();
-        $validation = \Config\Services::validation();
-        $post = $this->request->getPost();
-        $username = $post["username"];
-        // Set validation rules
-        $validation->setRules($this->login->rules());
-
-        // Run validation
-        if ($validation->withRequest($this->request)->run() === false) {
-            // Validation failed
-            $errors = $validation->getErrors();
+        $login = $this->login;
+        $validation = [
+            'username' => 'required',
+            'password' => 'required'
+        ];
+        if (!$this->validate($validation)) {
+            $errorMessages = implode('<br>', $this->validator->getErrors());
+            $errors['fail'] = $errorMessages;
             $data['errors'] = $errors;
         } else {
-            // Validation passed
-            // Check if the user account is blocked
-            $cek_username = $this->login->where('username', $username)->countAllResults();
-            $r = $this->login->where('username', $post["username"])->first();
+            $post = $this->request->getPost();
+            $cek_username = $login->auth_user($post["username"]);
+            $r = $cek_username->getRowArray();
             if ($r['aktif'] == '0') {
                 $errors['username'] = "Akun Anda Terblokir Hubungi Aprhay";
                 $data['errors'] = $errors;
             } else {
+                if (($cek_username->getNumRows() > 0) and password_verify($post["password"], $r['password']) == TRUE) {
+                    $this->session->set('login', TRUE);
+                    $this->session->set('nama_admin', $r['nama_admin']);
+                    $this->session->set('idadmin', $r['id']);
+                    $this->session->set('kategori', $r['kategori']);
 
-                if (($cek_username > 0) and password_verify($post["password"], $r['password']) == TRUE) {
-                    $session->set('login', true);
-                    $session->set('nama_admin', $r['nama_admin']);
-                    $session->set('idadmin', $r['id']);
-                    $session->set('kategori', $r['kategori']);
-                    $kategoriUser = $r['kategori'];
-                    $kategori = $this->login->getKategoriUser($kategoriUser);
-                    $controller = isset($kategori['controller']) ? $kategori['controller'] : '';
-                    $namaFunction = isset($kategori['nama_function']) ? $kategori['nama_function'] : '';
-                    $beranda = ($controller == 'index') ? $controller : $controller . '/' . $namaFunction;
-                    $session->set('nama_kategori', $kategori['kategori_user']);
+                    $kategori = $this->db->table("kategori_user a")
+                        ->select("a.kategori_user, b.controller, b.nama_function")
+                        ->join('modul b', 'b.id = a.beranda ')
+                        ->where('a.id', $r['kategori'])->get()->getRow();
+                    $beranda = $kategori->controller == 'index' ? $kategori->controller : $kategori->controller . "/" . $kategori->nama_function;
+                    $this->session->set('nama_kategori', $kategori->kategori_user);
                     $data['success'] = true;
                     $data['message'] = "berhasil login";
                     $data['beranda'] = $beranda;
 
                     $agent = $this->request->getUserAgent();
+
                     if ($agent->isBrowser()) {
                         $currentAgent = $agent->getBrowser() . ' ' . $agent->getVersion();
                     } elseif ($agent->isRobot()) {
@@ -97,8 +94,8 @@ class Login extends BaseController
                     //ambil no urut terakhir//
                     //LOGTHBL-12345//
                     //THBLTG1234567//
-                    $QN = $this->dashboard->getMaxKode();
-                    foreach ($QN as $row) {
+                    $QN = $this->db->query("SELECT max(kode) as masKode FROM log order by kode");
+                    foreach ($QN->getResult() as $row) {
                         $order = $row->masKode;
                     }
                     $noUrut = (int) substr($order, 6, 7);
@@ -118,7 +115,7 @@ class Login extends BaseController
 
                     $id1 = 'LOG' . md5($kode);
                     $id2 = 'LOG' . hash("sha1", $id1) . 'QNS';
-                    $array = [
+                    $array = array(
                         'id_log' => $id2,
                         'kode' => $kode,
                         'id_user' => $r['id'],
@@ -130,16 +127,17 @@ class Login extends BaseController
                         'layar' => $layar,
                         'aksi' => $aksi,
 
-                    ];
-                    $this->log->insert($array);
+                    );
+                    $this->db->table('log')->insert($array);
                 } else {
                     $errors['username'] = "No. NRP atau Password salah";
                     $data['errors'] = $errors;
                 }
             }
-            $data['token'] = csrf_token();
+            $data['token'] = csrf_hash();
             echo json_encode($data);
         }
+
     }
 
     public function logout()

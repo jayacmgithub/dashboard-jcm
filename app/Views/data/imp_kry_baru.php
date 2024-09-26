@@ -16,14 +16,14 @@
             <?php
 
             if (level_user('data', 'hcm', $kategoriQNS, 'edit') > 0 and $total1 < 1) {
-                echo form_open('laporan/upload_karyawan_1', 'enctype="multipart/form-data"');
+                echo form_open(base_url('laporan/upload_karyawan_1'), 'enctype="multipart/form-data"');
             } else {
                 if (level_user('data', 'hcm', $kategoriQNS, 'edit') > 0 and $total1 > 0 and $total2 < 1) {
-                    echo form_open('laporan/proses_migrasi_1', 'enctype="multipart/form-data"');
+                    echo form_open(base_url('laporan/proses_migrasi_1'), 'enctype="multipart/form-data"');
                 } else {
 
                     if (level_user('data', 'hcm', $kategoriQNS, 'edit') > 0 and $total1 > 0 and $total2 > 0) {
-                        echo form_open('laporan/hapus_migrasi_1', ' id="FormulirUpload"');
+                        echo form_open(base_url('laporan/hapus_migrasi_1'), ' id="FormulirUpload"');
                     }
                 }
             } ?>

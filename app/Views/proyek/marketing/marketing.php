@@ -1,68 +1,59 @@
-<?php $this->load->view("komponen/atas.php") ?>
-<?php
-$idQNS = $this->session->userdata('idadmin');
-$isi = $this->db->from("master_admin")->where('id', $idQNS, 1)->get()->row();
-$kategoriQNS = $isi->kategori_user;
-?>
+<?= $this->extend('layout/page_layout') ?>
+<?= $this->section('content') ?>
 <link href="<?php echo base_url() ?>/assets/vendor/dist/css/style.min2.css" rel="stylesheet">
 <!-- start: page -->
 <section class="panel">
 	<div class="panel-body">
-		<?php echo form_open('proyek/editmarketing', ' id="Formulir" enctype="multipart/form-data"'); ?>
+		<?php echo form_open(base_url('proyek/editmarketing'), ' id="Formulir" enctype="multipart/form-data"'); ?>
 		<div class="col-md-6">
 			<div class="form-group alamat">
 				<label class="col-sm-3 control-label">PKP</label>
 				<div class="col-sm-9">
-					<input type="hidden" name="id_pkp0"
-						value="<?php echo $this->security->xss_clean($pkp->row()->id_pkp); ?>" class="form-control" />
-					<input type="text" value="<?php echo $this->security->xss_clean($pkp->row()->no_pkp); ?>"
-						class="form-control" disabled readonly />
+					<input type="hidden" name="id_pkp0" value="<?= esc($pkp->getRow()->id_pkp); ?>"
+						class="form-control" />
+					<input type="text" value="<?= esc($pkp->getRow()->no_pkp); ?>" class="form-control" disabled
+						readonly />
 				</div>
 			</div>
 
 			<div class="form-group kategori">
 				<label class="col-sm-3 control-label">Alias<span class="required">*</span></label>
 				<div class="col-sm-9">
-					<input type="hidden" name="alias0"
-						value="<?php echo $this->security->xss_clean($pkp->row()->alias); ?>" class="form-control"
+					<input type="hidden" name="alias0" value="<?= esc($pkp->getRow()->alias); ?>" class="form-control"
 						required />
-					<input type="text" name="alias"
-						value="<?php echo $this->security->xss_clean($pkp->row()->alias); ?>" class="form-control"
+					<input type="text" name="alias" value="<?= esc($pkp->getRow()->alias); ?>" class="form-control"
 						required />
 				</div>
 			</div>
 			<div class="form-group kategori">
 				<label class="col-sm-3 control-label">Nama sesuai Kontrak<span class="required">*</span></label>
 				<div class="col-sm-9">
-					<input type="hidden" name="proyek0"
-						value="<?php echo $this->security->xss_clean($pkp->row()->proyek); ?>" class="form-control"
+					<input type="hidden" name="proyek0" value="<?= esc($pkp->getRow()->proyek); ?>" class="form-control"
 						required />
 					<textarea name="proyek" class="form-control" rows="3"
-						required><?php echo $this->security->xss_clean($pkp->row()->proyek); ?></textarea>
+						required><?= esc($pkp->getRow()->proyek); ?></textarea>
 				</div>
 			</div>
 			<div class="form-group tgl_mutasi">
 				<label class="col-sm-3 control-label">Kontrak Induk</label>
-				<?php if ($pkp->row()->tgl_mulai > '2000-01-01') {
-					$tgl_mulai = $this->security->xss_clean(date('d-m-Y', strtotime($pkp->row()->tgl_mulai)));
+				<?php if ($pkp->getRow()->tgl_mulai > '2000-01-01') {
+					$tgl_mulai = esc(date('d-m-Y', strtotime($pkp->getRow()->tgl_mulai)));
 				} else {
 					$tgl_mulai = '';
 				}
-				if ($pkp->row()->tgl_selesai > '2000-01-01') {
-					$tgl_selesai = $this->security->xss_clean(date('d-m-Y', strtotime($pkp->row()->tgl_selesai)));
+				if ($pkp->getRow()->tgl_selesai > '2000-01-01') {
+					$tgl_selesai = esc(date('d-m-Y', strtotime($pkp->getRow()->tgl_selesai)));
 				} else {
 					$tgl_selesai = '';
 				} ?>
 				<div class="col-sm-3">
-					<input type="text" name="tgl_mulai" value="<?php echo $this->security->xss_clean($tgl_mulai); ?>"
-						class="form-control" />
+					<input type="text" name="tgl_mulai" value="<?= esc($tgl_mulai); ?>" class="form-control" />
 				</div>
 				<div class="col-sm-1">
 					<a>s/d</a>
 				</div>
 				<div class="col-sm-3">
-					<input type="text" name="tgl_selesai"
-						value="<?php echo $this->security->xss_clean($tgl_selesai); ?>" class="form-control" />
+					<input type="text" name="tgl_selesai" value="<?= esc($tgl_selesai); ?>" class="form-control" />
 				</div>
 			</div>
 		</div>
@@ -71,7 +62,7 @@ $kategoriQNS = $isi->kategori_user;
 				<label class="col-sm-3 control-label">Jaminan Nilai</label>
 				<div class="col-sm-9">
 					<input type="text" name="nilai_jaminan"
-						value="<?php echo $this->security->xss_clean(number_format($pkp->row()->nilai_jaminan, 0, ",", ".")); ?>"
+						value="<?= esc(number_format($pkp->getRow()->nilai_jaminan, 0, ",", ".")); ?>"
 						onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"
 						class="form-control currency" autocomplete="off">
 				</div>
@@ -79,35 +70,31 @@ $kategoriQNS = $isi->kategori_user;
 			<div class="form-group kategori">
 				<label class="col-sm-3 control-label">Jaminan Selesai Tanggal</label>
 				<div class="col-sm-9">
-					<?php if ($pkp->row()->tgl_jaminan > 0) {
-						$tgl_jaminan = $this->security->xss_clean(date('d-m-Y', strtotime($pkp->row()->tgl_jaminan)));
+					<?php if ($pkp->getRow()->tgl_jaminan > 0) {
+						$tgl_jaminan = esc(date('d-m-Y', strtotime($pkp->getRow()->tgl_jaminan)));
 					} else {
 						$tgl_jaminan = '';
 					} ?>
-					<input type="text" name="tgl_jaminan"
-						value="<?php echo $this->security->xss_clean($tgl_jaminan); ?>" class="form-control"
+					<input type="text" name="tgl_jaminan" value="<?= esc($tgl_jaminan); ?>" class="form-control"
 						placeholder="dd-mm-yyyy" />
 				</div>
 			</div>
 			<div class="form-group kategori">
 				<label class="col-sm-3 control-label">File BAST I</label>
 				<div class="col-sm-9">
-					<input type="text" name="bast_1"
-						value="<?php echo $this->security->xss_clean($pkp->row()->bast_1); ?>" class="form-control" />
+					<input type="text" name="bast_1" value="<?= esc($pkp->getRow()->bast_1); ?>" class="form-control" />
 				</div>
 			</div>
 			<div class="form-group kategori">
 				<label class="col-sm-3 control-label">File BAST II</label>
 				<div class="col-sm-9">
-					<input type="text" name="bast_2"
-						value="<?php echo $this->security->xss_clean($pkp->row()->bast_2); ?>" class="form-control" />
+					<input type="text" name="bast_2" value="<?= esc($pkp->getRow()->bast_2); ?>" class="form-control" />
 				</div>
 			</div>
 			<div class="form-group kategori">
 				<label class="col-sm-3 control-label">File SRT Referensi</label>
 				<div class="col-sm-9">
-					<input type="text" name="referensi"
-						value="<?php echo $this->security->xss_clean($pkp->row()->referensi); ?>"
+					<input type="text" name="referensi" value="<?= esc($pkp->getRow()->referensi); ?>"
 						class="form-control" />
 				</div>
 			</div>
@@ -186,17 +173,17 @@ $kategoriQNS = $isi->kategori_user;
 	<!-- end: page -->
 </section>
 <!-- JS -->
-<?php $this->load->view("komponen/js.php") ?>
+
 <div class="modal fade bd-example-modal-lg" id="tambahData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 	aria-hidden="true">
 	<div class="modal-dialog" style="width:90% ;">
 		<div class="modal-content">
 			<section class="panel-body">
-				<?php echo form_open('proyek/tambahaddendum', ' id="FormulirTambah" enctype="multipart/form-data"'); ?>
+				<?php echo form_open(base_url('proyek/tambahaddendum'), ' id="FormulirTambah" enctype="multipart/form-data"'); ?>
 				<header class="panel-heading">
 					<h2 class="panel-title">Addendum</h2>
-					<input type="hidden" name="id_pkp0"
-						value="<?php echo $this->security->xss_clean($pkp->row()->id_pkp); ?>" class="form-control" />
+					<input type="hidden" name="id_pkp0" value="<?= esc($pkp->getRow()->id_pkp); ?>"
+						class="form-control" />
 				</header>
 				<br>
 				<div class="col-md-6">
@@ -288,7 +275,7 @@ $kategoriQNS = $isi->kategori_user;
 				dataType: 'json'
 			}).done(function (data) {
 				if (!data.success) {
-					$('input[name=<?php echo $this->security->get_csrf_token_name(); ?>]').val(data.token);
+					$('input[name=<?= csrf_token(); ?>]').val(data.token);
 					document.getElementById("submitform").removeAttribute('disabled');
 					$('#submitform').html('Submit');
 					var objek = Object.keys(data.errors);
@@ -303,7 +290,7 @@ $kategoriQNS = $isi->kategori_user;
 						}
 					}
 				} else {
-					$('input[name=<?php echo $this->security->get_csrf_token_name(); ?>]').val(data.token);
+					$('input[name=<?= csrf_token(); ?>]').val(data.token);
 					document.getElementById("submitform").removeAttribute('disabled');
 					document.getElementById("Formulir").reset();
 					$('#submitform').html('Submit');
@@ -324,10 +311,7 @@ $kategoriQNS = $isi->kategori_user;
 					text: "Request gagal, browser akan direload",
 					type: 'danger'
 				});
-				window.setTimeout(function () {
-					location.reload();
-				}, 1000);
-			});
+					});
 			e.preventDefault();
 		});
 	});
@@ -349,7 +333,7 @@ $kategoriQNS = $isi->kategori_user;
 			dataType: 'json'
 		}).done(function (data) {
 			if (!data.success) {
-				$('input[name=<?php echo $this->security->get_csrf_token_name(); ?>]').val(data.token);
+				$('input[name=<?= csrf_token(); ?>]').val(data.token);
 				document.getElementById("submitform").removeAttribute('disabled');
 				$('#submitform').html('Submit');
 				var objek = Object.keys(data.errors);
@@ -368,7 +352,7 @@ $kategoriQNS = $isi->kategori_user;
 					}
 				}
 			} else {
-				$('input[name=<?php echo $this->security->get_csrf_token_name(); ?>]').val(data.token);
+				$('input[name=<?= csrf_token(); ?>]').val(data.token);
 				PNotify.removeAll();
 				document.getElementById("submitform").removeAttribute('disabled');
 				$('#tambahData').modal('hide');
@@ -391,10 +375,7 @@ $kategoriQNS = $isi->kategori_user;
 				text: "Request gagal, browser akan direload",
 				type: 'danger'
 			});
-			window.setTimeout(function () {
-				location.reload();
-			}, 2000);
-		});
+				});
 		e.preventDefault();
 	});
 </script>
@@ -402,3 +383,4 @@ $kategoriQNS = $isi->kategori_user;
 </body>
 
 </html>
+<?= $this->endSection(); ?>

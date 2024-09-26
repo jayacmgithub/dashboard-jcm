@@ -137,7 +137,7 @@
                             <button class="btn btn-default" style="background-color:dimgrey;color:white;font-size:12px"
                                 href="<?= base_url() ?>lampiran/lampiran/">Reset</button>
                             <?php if ($instansi->getRow()->nomor == '270') { ?>
-                                <a href="<?= base_url() ?>Laporan/cetak_mon" class="btn btn-warning btn-xs"
+                                <a href="<?= base_url() ?>laporan/cetak_mon" class="btn btn-warning btn-xs"
                                     style="font-size: 12px;">CETAK Monitoring</a>
                             <?php } ?>
                         </div>
@@ -191,27 +191,27 @@
                             $no = 1;
                             foreach ($laporan as $data) {
                                 if ($data->tgl_akhir_kontrak > 0) {
-                                    $tgl_akhir_kontrak = (date('d-M-Y', strtotime($this->security->xss_clean($data->tgl_akhir_kontrak))));
+                                    $tgl_akhir_kontrak = (date('d-M-Y', strtotime(($data->tgl_akhir_kontrak))));
                                 } else {
                                     $tgl_akhir_kontrak = '';
                                 }
                                 if ($data->tgl_ren_mob > 0) {
-                                    $tgl_ren_mob = (date('d-M-Y', strtotime($this->security->xss_clean($data->tgl_ren_mob))));
+                                    $tgl_ren_mob = (date('d-M-Y', strtotime(($data->tgl_ren_mob))));
                                 } else {
                                     $tgl_ren_mob = '';
                                 }
                                 if ($data->tgl_real_mob > 0) {
-                                    $tgl_real_mob = (date('d-M-Y', strtotime($this->security->xss_clean($data->tgl_real_mob))));
+                                    $tgl_real_mob = (date('d-M-Y', strtotime(($data->tgl_real_mob))));
                                 } else {
                                     $tgl_real_mob = '';
                                 }
                                 if ($data->tgl_ren_demob > 0) {
-                                    $tgl_ren_demob = (date('d-M-Y', strtotime($this->security->xss_clean($data->tgl_ren_demob))));
+                                    $tgl_ren_demob = (date('d-M-Y', strtotime(($data->tgl_ren_demob))));
                                 } else {
                                     $tgl_ren_demob = '';
                                 }
                                 if ($data->tgl_real_demob > 0) {
-                                    $tgl_real_demob = (date('d-M-Y', strtotime($this->security->xss_clean($data->tgl_real_demob))));
+                                    $tgl_real_demob = (date('d-M-Y', strtotime(($data->tgl_real_demob))));
                                 } else {
                                     $tgl_real_demob = '';
                                 }

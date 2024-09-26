@@ -29,8 +29,6 @@
                         <div class="sidebar-widget m-none">
                             <div class="widget-content">
                                 <ul class="mg-folders">
-
-                                    <!-- MY PROJECT APRI -->
                                     <?php
                                     if (level_user('proyek', 'data', $kategoriQNS, 'read') > 0) {
                                         if (level_user('proyek', 'data', $kategoriQNS, 'all') > 0) {

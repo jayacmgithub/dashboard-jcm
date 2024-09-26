@@ -14,12 +14,12 @@
 
         <?php
         if ($nrp == "10555" or $nrp == "23295") {
-            echo form_open('laporan/useredit_3  ', ' id="FormulirEdit"  enctype="multipart/form-data"');
+            echo form_open(base_url('laporan/useredit_3'), ' id="FormulirEdit"  enctype="multipart/form-data"');
         } else {
             if (esc($user2->getRow()->jml_pkp) > 1) {
-                echo form_open('laporan/useredit_2  ', ' id="FormulirEdit"  enctype="multipart/form-data"');
+                echo form_open(base_url('laporan/useredit_2 '), ' id="FormulirEdit"  enctype="multipart/form-data"');
             } else {
-                echo form_open('laporan/useredit_1', ' id="FormulirEdit"  enctype="multipart/form-data"');
+                echo form_open(base_url('laporan/useredit_1'), ' id="FormulirEdit"  enctype="multipart/form-data"');
             }
         }
         ?>
@@ -267,7 +267,7 @@
                     <label class="col-sm-3 control-label">Status Karyawan<span class="required">*</span></label>
                     <div class="col-sm-9">
                         <input type="text" name="status_karyawan" value="<?= esc($user2->getRow()->status); ?>"
-                            class="form-control" />
+                            class="form-control" required />
                     </div>
                 </div>
                 <div class="form-group mb-xs mb-xs alamat">
@@ -453,10 +453,13 @@
                         $('input[name="' + key + '"]').after(msg);
                     }
                     if (key == 'fail') {
-                        new PNotify({
+                        Swal.fire({
+                            icon: 'error',
                             title: 'Notifikasi',
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 1500,
                             text: data.errors[key],
-                            type: 'danger'
                         });
                     }
                 }
@@ -472,22 +475,22 @@
                 window.setTimeout(function () {
                     location.reload();
                 }, 1000);
-
-                new PNotify({
+                Swal.fire({
+                    icon: 'success',
                     title: 'Notifikasi',
-                    text: data.message,
-                    type: 'success'
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    text: data.message
                 });
             }
         }).fail(function (data) {
-            new PNotify({
+            Swal.fire({
+                icon: 'error',
                 title: 'Notifikasi',
-                text: "Request gagal, browser akan direload",
-                type: 'danger'
+                text: "Request gagal, browser akan di reload"
             });
-            window.setTimeout(function () {
-                location.reload();
-            }, 2000);
+
         });
         e.preventDefault();
     });
