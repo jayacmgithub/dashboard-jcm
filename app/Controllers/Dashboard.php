@@ -158,6 +158,10 @@ class Dashboard extends BaseController
         }
     }
 
+
+    public function tambahfile(){
+        return view("dashboard/tambah");
+    }
     public function beranda_01()
     {
         $data['kode'] = '01';
