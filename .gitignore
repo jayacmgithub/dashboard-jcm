@@ -3,7 +3,7 @@
 *.xlsx
 *.png
 # Ignore the vendor directory
-/vendor/
-/public/assets/
+vendor/
+public/assets/
 # Ignore environment files
 .env
