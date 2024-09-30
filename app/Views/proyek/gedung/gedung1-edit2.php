@@ -137,17 +137,19 @@
                         <thead style="background-color:#1b3a59;color:white;">
                             <tr>
                                 <th style="text-align:center;width: 3%">NO.</th>
+                                <th style="text-align:center;width: 20%">NAMA KONTRAKTOR & PAKET</th>
                                 <th style="text-align:center;width: 20%">URAIAN</th>
                                 <th style="text-align:center;width: 20%">PENYEBAB</th>
                                 <th style="text-align:center;width: 20%">DAMPAK</th>
                                 <th style="text-align:center;width: 20%">TINDAK LANJUT/SOLUSI</th>
                                 <th style="text-align:center;width: 10%">PIC</th>
                                 <th style="text-align:center;width: 7%">TARGET</th>
+                                <th style="text-align:center;width: 7%">STATUS</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr style="background-color: #FFEFD5;">
-                                <td colspan="7"><b><strong>EKSTERNAL</strong></b></td>
+                                <td colspan="9"><b><strong>EKSTERNAL</strong></b></td>
                             </tr>
                             <?php
                             $noA = 1;
@@ -156,6 +158,9 @@
                                 <tr>
                                     <td style="text-align:left;width: 3%">
                                         <?= $noA++ ?>
+                                    </td>
+                                    <td style="text-align:left;width: 20%">
+        
                                     </td>
                                     <td style="text-align:left;width: 20%">
                                         <?= $sol->masalah ?>
@@ -176,11 +181,17 @@
                                     <td style="text-align:left;width: 5%">
                                         <?= $sol->target ?>
                                     </td>
+                                    <td style="text-align:left;width: 5%">
+                                        TEST <br>
+                                    <button class="btn btn-warning btn-lg" type="button">
+                                        <i class="fas fa-paperclip"></i> <!-- FontAwesome Icon for attachment -->
+                                    </button>
+                                    </td>
                                 </tr>
                                 <?php
                             } ?>
                             <tr style="background-color: #FFEFD5;">
-                                <td colspan="7"><b><strong>INTERNAL</strong></b></td>
+                                <td colspan="9"><b><strong>INTERNAL</strong></b></td>
                             </tr>
                             <?php
                             $nomor = 0;
@@ -189,6 +200,9 @@
                                 <tr>
                                     <td style="text-align:left;width: 5%">
                                         <?= $noB++ ?>
+                                    </td>
+                                    <td style="text-align:left;width: 25%">
+                                     
                                     </td>
                                     <td style="text-align:left;width: 25%">
                                         <?= $sol2->masalah ?>
@@ -208,6 +222,12 @@
 
                                     <td style="text-align:left;width: 25%">
                                         <?= $sol2->target ?>
+                                    </td>
+                                    <td style="text-align:left;width: 5%">
+                                        TEST <br>
+                                    <button class="btn btn-warning btn-lg" type="button">
+                                        <i class="fas fa-paperclip"></i> <!-- FontAwesome Icon for attachment -->
+                                    </button>
                                     </td>
                                 </tr>
                                 <?php

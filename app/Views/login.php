@@ -257,7 +257,7 @@
                         content: 'custom-swal-content-class',  // Tambahkan kelas khusus untuk kontennya
                     },
                 });
-                window.location = '<?= base_url() ?>' + data.beranda;
+                window.location = '<?= base_url() ?>/dashboard/' + data.beranda;
             }
         }).fail(function (data) {
             document.getElementById("submitform").removeAttribute('disabled');
