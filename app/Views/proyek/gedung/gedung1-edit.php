@@ -36,7 +36,10 @@
             <a class="nav-link" href="<?= base_url() ?>proyek/edit_5/<?= $proyek->getRow()->id_pkp ?>" role="tab"
                 aria-controls="info5" aria-selected="true" style="color:black"><strong>MONITORING DCR</strong></a>
         </li>
-
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url() ?>proyek/s-curve/<?= $proyek->getRow()->id_pkp ?>" role="tab"
+                aria-controls="info5" aria-selected="true" style="color:black"><strong>S-CURVE</strong></a>
+        </li>
     </ul>
     <?php
     if ($nomorQN != '412') {
@@ -121,7 +124,7 @@
                 <?php if ($bulan22 != '') { ?>
                     <b><span style="font-size: 13px;">Periode: <?= ' ' . $bulan22 . '-' . $tahun22 ?> </span></b>
                 <?php } ?>
-
+                <a href="<?= base_url() ?>proyek/s-curve/<?= $proyek->getRow()->id_pkp ?>" class="btn btn-warning font-lg float-right mb-2" target="_blank">Lihat S-Curve</a>
                 <div class="table-scrollable" style="height: 490px;width:100%">
                     <table cellspacing="0" id="table-basic" class="table table-sm table-bordered table-striped"
                         style="min-width: 1200px;width:120%">

@@ -972,6 +972,94 @@ if ($no_pkp) {
     }
 
 
+    public function s_curve($kode)
+    {
+        $data['kode'] = '02';
+        date_default_timezone_set("Asia/Jakarta");
+        $now = date("Y-m-d");
+        $data['now1'] = date("d-m-Y");
+        $data['proyek'] = $this->db->table('master_pkp')->getWhere(['id_pkp' => $kode], 1);
+        $id_pkp = $this->request->uri->getSegment(4);
+        $data['id_pkp'] = $this->request->uri->getSegment(4);
+        //end-dzaki
+        $idQNS = session('idadmin');
+        $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
+        $kategoriQNS = $isi->kategori_user;
+        if (!level_user('proyek', 'data', $kategoriQNS, 'read') > 0) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+        $data['instansiQN'] = $this->db->table("master_pkp a")->select("b.nomor")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $kode)->get();
+        $data['nomorQN'] = $data['instansiQN']->getRow()->nomor;
+        $data['kategoriQNS'] = $kategoriQNS;
+        $data['kategori'] = $kategoriQNS;
+        $data['option_tahun'] = $this->proyek->option_tahun_gbr($kode);
+        $data['instansi2'] = $this->db->table("master_pkp a")->select("b.nomor")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $kode)->get()->getResult();
+        $data['instansi3'] = $this->db->table("master_pkp a")->select("b.nomor,b.alias,b.ling")->join('master_instansi b', 'a.id_instansi = b.id')->where('a.id_pkp', $kode)->get();
+        $data['judul'] = '<a href="' . base_url() . 'proyek" style="color:white">PROYEK | </a><a style="color:white">' . $data['proyek']->getRow()->alias . ' | </a> <a href="' . base_url() . $data['instansi3']->getRow()->ling . '" style="color:white">' . $data['instansi3']->getRow()->alias . '</a>';
+        return view('proyek/s-curve', $data);
+
+    }
+
+    public function scurvetambah()
+    {
+        $now = date("Y-m-d");
+        $id_pkp = $this->request->getPost('id'); // Assuming you get this from POST or GET request
+
+        // Retrieve no_pkp and id_instansi from the database
+        $QN2 = $this->db->query("SELECT * FROM master_pkp where id_pkp='$id_pkp'");
+        foreach ($QN2->getResult() as $row2) {
+            $no_pkp = $row2->no_pkp;
+            $id_instansi = $row2->id_instansi;
+        }
+
+        // Retrieve no_instansi from the database
+        $QN3 = $this->db->query("SELECT * FROM master_instansi where id='$id_instansi'");
+        foreach ($QN3->getResult() as $row3) {
+            $no_instansi = $row3->nomor;
+        }
+
+        // Define the location for storing the uploaded PDF
+        $lokasi = './assets/pdf/scurve/' . $no_instansi . '/' . $no_pkp;
+
+        // Check if directory exists, if not create it
+        if (!file_exists($lokasi)) {
+            mkdir($lokasi, 0777, true);
+        }
+
+        $teknis = 'scurve';
+        $fileName = $teknis . $no_pkp . '.pdf'; // Define the file name
+
+        // Delete the old PDF file
+        $oldFilePath = $lokasi . '/' . $teknis . $no_pkp . '.pdf';
+        if (file_exists($oldFilePath)) {
+            unlink($oldFilePath);
+        }
+
+        $file = $this->request->getFile('berkas'); // Get the uploaded file
+
+        // Check file size and type
+        if ($file->getSize() > 100000000 || $file->getExtension() != 'pdf') {
+            $this->session->setFlashdata('error', 'Ukuran file harus kurang dari 100MB');
+        }
+
+        // Move the file to the defined location with the defined file name
+        if ($file->isValid() && !$file->hasMoved()) {
+            $file->move($lokasi, $fileName);
+            $datagbr1 = [
+                "file_scurve" => $lokasi . '/' . $fileName,
+            ];
+            $this->db->table('master_pkp')->where('id_pkp', $id_pkp)->update($datagbr1);
+        }
+
+        $dataend = array(
+            "tgl_ubah_scurve" => $now,
+        );
+        $this->db->table('master_pkp')->where('id_pkp', $id_pkp)->update($dataend);
+        $this->session->setFlashdata('success', 'upload pdf');
+        $redirectUrl = previous_url() ?? base_url();
+        return redirect()->to($redirectUrl);
+    }
+
     public function get_bulan_absensi()
     {
         $request = \Config\Services::request();
