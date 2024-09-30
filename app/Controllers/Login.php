@@ -22,7 +22,7 @@ class Login extends BaseController
     public function index()
     {
         if (session('login') == TRUE) {
-            return redirect()->to(base_url('dashboard/index'));
+            return redirect()->to(base_url('index'));
         } else {
             return view('/login');
         }

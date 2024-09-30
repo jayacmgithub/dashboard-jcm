@@ -160,7 +160,10 @@
                                         <?= $noA++ ?>
                                     </td>
                                     <td style="text-align:left;width: 20%">
-        
+                                        <?= $sol->nama_kontraktor ?>
+                                     <br>
+                                     <b style="font-weight: 600;font-size:12px;"><?= $sol->nama_paket ?></b>
+                                        
                                     </td>
                                     <td style="text-align:left;width: 20%">
                                         <?= $sol->masalah ?>
@@ -182,7 +185,8 @@
                                         <?= $sol->target ?>
                                     </td>
                                     <td style="text-align:left;width: 5%">
-                                        TEST <br>
+                                    <?= $sol->status ?>
+                                    <br>
                                     <button class="btn btn-warning btn-lg" type="button">
                                         <i class="fas fa-paperclip"></i> <!-- FontAwesome Icon for attachment -->
                                     </button>
@@ -202,7 +206,10 @@
                                         <?= $noB++ ?>
                                     </td>
                                     <td style="text-align:left;width: 25%">
-                                     
+                                     <?= $sol2->nama_kontraktor ?>
+                                     <br>
+                                     <b style="font-weight: 600;font-size:12px;"><?= $sol2->nama_paket ?></b>
+
                                     </td>
                                     <td style="text-align:left;width: 25%">
                                         <?= $sol2->masalah ?>
@@ -224,7 +231,8 @@
                                         <?= $sol2->target ?>
                                     </td>
                                     <td style="text-align:left;width: 5%">
-                                        TEST <br>
+                                    <?= $sol2->status ?>
+                                    <br>
                                     <button class="btn btn-warning btn-lg" type="button">
                                         <i class="fas fa-paperclip"></i> <!-- FontAwesome Icon for attachment -->
                                     </button>
