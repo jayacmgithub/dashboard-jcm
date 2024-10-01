@@ -171,18 +171,29 @@
                             <?php
                             $noA = 1;
                             $noB = 1;
-                            foreach ($solusi as $sol) {?>
+                            foreach ($solusi as $sol) { ?>
                                 <tr>
                                     <td style="text-align:left;width: 3%">
                                         <a class="btn btn-warning btn-lg" data-toggle="modal" data-target="#tambahLampiran" 
-                                        data-lampiran="<?= $sol->lampiran; ?>" data-kode="<?= $sol->kode; ?>">
+                                        data-lampiran="<?= $sol->lampiran ?>" data-kode="<?= $sol->kode ?>">
                                             <i class="fas fa-paperclip"></i>
                                         </a>
-                                        <a class="btn btn-success btn-lg" data-toggle="modal" data-target="#editSolusi"><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-success btn-lg" data-toggle="modal" data-target="#editSolusi"
+                                        data-nama_kontraktor="<?= $sol->nama_kontraktor; ?>"
+                                        data-nama_paket="<?= $sol->nama_paket; ?>"
+                                        data-uraian="<?= $sol->masalah; ?>"
+                                        data-penyebab="<?= $sol->penyebab; ?>"
+                                        data-dampak="<?= $sol->dampak; ?>"
+                                        data-solusi="<?= $sol->solusi; ?>"
+                                        data-pic="<?= $sol->pic; ?>"
+                                        data-target="<?= $sol->target; ?>"
+                                        data-status="<?= $sol->status; ?>"
+                                        data-kode="<?= $sol->kode; ?>"><i class="fas fa-edit"></i></a>
+
                                     </td>
                                     <td style="text-align:left;width: 20%">
                                         
-                                        <?= $sol->kode;?>
+                                        <?= $sol->kode ?>
                                         <?= $sol->nama_kontraktor ?>
                                      <br>
                                      <b style="font-weight: 600;font-size:12px;"><?= $sol->nama_paket ?></b>
@@ -220,8 +231,23 @@
                             $nomor = 0;
                             foreach ($solusi2 as $sol2) { ?>
                                 <tr>
-                                    <td style="text-align:left;width: 5%">
-                                        <?= $noB++ ?>
+                                    <td style="text-align:left;width: 3%">
+                                        <a class="btn btn-warning btn-lg" data-toggle="modal" data-target="#tambahLampiran" 
+                                        data-lampiran="<?= $sol2->lampiran ?>" data-kode="<?= $sol2->kode ?>">
+                                            <i class="fas fa-paperclip"></i>
+                                        </a>
+                                        <a class="btn btn-success btn-lg" data-toggle="modal" data-target="#editSolusi"
+                                        data-nama_kontraktor="<?= $sol2->nama_kontraktor; ?>"
+                                        data-nama_paket="<?= $sol2->nama_paket; ?>"
+                                        data-uraian="<?= $sol2->masalah; ?>"
+                                        data-penyebab="<?= $sol2->penyebab; ?>"
+                                        data-dampak="<?= $sol2->dampak; ?>"
+                                        data-solusi="<?= $sol2->solusi; ?>"
+                                        data-pic="<?= $sol2->pic; ?>"
+                                        data-target="<?= $sol2->target; ?>"
+                                        data-status="<?= $sol2->status; ?>"
+                                        data-kode="<?= $sol2->kode; ?>"><i class="fas fa-edit"></i></a>
+
                                     </td>
                                     <td style="text-align:left;width: 25%">
                                      <?= $sol2->nama_kontraktor ?>
@@ -250,8 +276,6 @@
                                     </td>
                                     <td style="text-align:left;width: 5%">
                                     <?= $sol2->status ?>
-                                    <br>
-                                    <div class="btn btn-warning btn-lg" data-toggle="modal" data-target="#tambahLampiran"><i class="fas fa-paperclip"></i></div>
                                     </td>
                                 </tr>
                                 <?php }
@@ -270,7 +294,9 @@
     <div class="modal-dialog" style="width:90%">
         <div class="modal-content">
         <section class="panel panel-primary">
-                <?= form_open(base_url('proyek/lampiransolusitambah'), ['enctype' => 'multipart/form-data']); ?>
+                <?= form_open(base_url('proyek/lampiransolusitambah'), [
+                    'enctype' => 'multipart/form-data',
+                ]) ?>
                 <header class="panel-heading">
                     <h2 class="panel-title">Tambah/Perbaharui Lampiran</h2>
                 </header>
@@ -280,11 +306,15 @@
                             <div class="form-group mt-lg file1">
                                 <label class="col-sm-3 control-label">FILE 1<span class="required">*</span></label>
                                 <div class="col-sm-9">
-                                    <input type="hidden" name="id_pkp" value="<?= esc($proyek->getRow()->id_pkp); ?>"
+                                    <input type="hidden" name="id_pkp" value="<?= esc(
+                                        $proyek->getRow()->id_pkp
+                                    ) ?>"
                                         class="form-control" required />
                                     <input type="hidden" name="id_kode" value="" class="form-control" required />
 
-                                    <input type="hidden" name="id_ubah" value="<?= session('idadmin'); ?>"
+                                    <input type="hidden" name="id_ubah" value="<?= session(
+                                        'idadmin'
+                                    ) ?>"
                                         class="form-control" required />
                                     <input type="file" name="berkas" class="form-control" required />
                                 </div>
@@ -303,19 +333,94 @@
                         </div>
                     </div>
                 </footer>
-                <?= form_close(); ?>
+                <?= form_close() ?>
                 <div class="table-responsive">
-                                <table class="table table-bordered dataTable">
-                                    <tbody>
-                                        <tr>
-                                            <td colspan="2">
-                                            <iframe src="" width="100%" height="600"></iframe>
-                                            </td>
-                                        </tr>
+                    <table class="table table-bordered dataTable">
+                        <tbody>
+                            <tr>
+                                <td colspan="2">
+                                <iframe src="" width="100%" height="600"></iframe>
+                                </td>
+                            </tr>
 
-                                    </tbody>
-                                </table>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!--EDIT SOLUSI-->
+<div class="modal fade" id="editSolusi" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:90%">
+        <div class="modal-content">
+            <section class="panel panel-primary">
+                <?= form_open(base_url('proyek/editsolusi'), [
+                    'method' => 'post',
+                    'enctype' => 'multipart/form-data',
+                    'id' => 'FormulirEditSolusi',
+                ]) ?>
+                <header class="panel-heading">
+                    <h2 class="panel-title">Edit Permasalahan</h2>
+                </header>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mt-lg file1">
+                                <label class="col-sm-3 control-label">Nama Kontraktor<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="nama_kontraktor" class="form-control" required />
+                                </div>
+                                <label class="col-sm-3 control-label">Nama Paket<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="nama_paket" class="form-control" required /> 
+                                </div>
+                                <label class="col-sm-3 control-label">Uraian<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="uraian" class="form-control" required />
+                                </div>
+                                <label class="col-sm-3 control-label">Penyebab<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="penyebab" class="form-control" required />
+                                </div>
+                                <label class="col-sm-3 control-label">Dampak<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="dampak" class="form-control" required />
+                                </div>
                             </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mt-lg file1">
+                                <label class="col-sm-3 control-label">Solusi<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="solusi" class="form-control" required />
+                                </div>
+                                <label class="col-sm-3 control-label">PIC<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="pic" class="form-control" required />
+                                </div>
+                                <label class="col-sm-3 control-label">Target<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="target" class="form-control" required />
+                                </div>
+                                <label class="col-sm-3 control-label">Status<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="status" class="form-control" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-primary modal-confirm" type="submit">Submit</button>
+                            <button class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </footer>
+                <?= form_close() ?>
             </section>
         </div>
     </div>
@@ -513,8 +618,81 @@
         // Set nilai ke input hidden
         var modal = $(this);
         modal.find('input[name="id_kode"]').val(kode); // Set input id_kode
-        modal.find('iframe').attr('src', lampiranUrl ? '<?= base_url(); ?>' + lampiranUrl : ''); // Set src iframe jika ada lampiran
+        modal.find('iframe').attr('src', lampiranUrl ? '<?= base_url() ?>' + lampiranUrl : ''); // Set src iframe jika ada lampiran
     });
+    // Script untuk menampilkan modal dengan data yang diambil dari tombol
+   $('#editSolusi').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Tombol yang diklik untuk membuka modal
+    var modal = $(this);
+
+    // Ambil data dari tombol
+    var nama_kontraktor = button.data('nama_kontraktor');
+    var nama_paket = button.data('nama_paket');
+    var uraian = button.data('uraian');
+    var penyebab = button.data('penyebab');
+    var dampak = button.data('dampak');
+    var solusi = button.data('solusi');
+    var pic = button.data('pic');
+    var target = button.data('target');
+    var status = button.data('status');
+    var kode = button.data('kode');
+
+    // Isi data ke input modal
+    modal.find('input[name="nama_kontraktor"]').val(nama_kontraktor);
+    modal.find('input[name="nama_paket"]').val(nama_paket);
+    modal.find('input[name="uraian"]').val(uraian);
+    modal.find('input[name="penyebab"]').val(penyebab);
+    modal.find('input[name="dampak"]').val(dampak);
+    modal.find('input[name="solusi"]').val(solusi);
+    modal.find('input[name="pic"]').val(pic);
+    modal.find('input[name="target"]').val(target);
+    modal.find('input[name="status"]').val(status);
+
+    // Set action form dengan kode dinamis
+    $('#FormulirEditSolusi').attr('action', '<?= base_url("proyek/editsolusi") ?>/' + kode);
+    });
+
+    // Script untuk submit form dengan AJAX
+    $("#FormulirEditSolusi").on('submit', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var formData = new FormData(this);
+
+        $.ajax({
+            type: 'POST',
+            url: form.attr('action'),
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if(response.success) {
+                    Swal.fire({
+                        title: 'Sukses!',
+                        text: response.message,
+                        icon: 'success'
+                    });
+                    $('#editSolusi').modal('hide');
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error'
+                    });
+                }
+            },
+            error: function() {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Terjadi kesalahan, silakan coba lagi.',
+                    icon: 'error'
+                });
+            }
+        });
+    });
+
 
     /* TAMBAH LAMPIRAN */
     document.getElementById("FormulirTambahLampiran").addEventListener("submit", function (e) {
@@ -589,6 +767,9 @@
         });
         e.preventDefault();
     });
+
+   
+
 </script>
 
 

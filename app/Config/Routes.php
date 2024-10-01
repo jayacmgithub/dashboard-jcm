@@ -165,6 +165,7 @@ $routes->get('proyek/xls3/(:any)', 'Proyek::xls3/$1');
 $routes->post('proyek/dtutambah', 'Proyek::dtutambah');
 $routes->post('proyek/proses_upload_solusi', 'Proyek::proses_upload_solusi');
 $routes->post('proyek/lampiransolusitambah', 'Proyek::lampiransolusitambah');
+$routes->post('proyek/editsolusi/(:any)', 'Proyek::editsolusi/$1');
 $routes->post('proyek/scurvetambah', 'Proyek::scurvetambah');
 $routes->post('proyek/fototambah', 'Proyek::fototambah');
 $routes->post('proyek/teknistambah', 'Proyek::teknistambah');

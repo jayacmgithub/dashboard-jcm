@@ -4810,6 +4810,70 @@ class Proyek extends BaseController
         return redirect()->to($redirectUrl);
     }
 
+    public function editsolusi($kode)
+    {
+        // Cek apakah $kode ada
+        if (empty($kode)) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Kode tidak ditemukan atau kosong.']);
+        }
+
+        $validation = \Config\Services::validation();
+        
+        // Validasi input
+        $validation->setRules([
+            'nama_kontraktor' => 'required',
+            'nama_paket' => 'required',
+            'uraian' => 'required',
+            'penyebab' => 'required',
+            'dampak' => 'required',
+            'solusi' => 'required',
+            'pic' => 'required',
+            'target' => 'required',
+            'status' => 'required'
+        ]);
+
+        if (!$validation->withRequest($this->request)->run()) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Data tidak valid']);
+        }
+
+        // Data yang akan diupdate
+        $data = [
+            'nama_kontraktor' => $this->request->getPost('nama_kontraktor'),
+            'nama_paket' => $this->request->getPost('nama_paket'),
+            'masalah' => $this->request->getPost('uraian'),
+            'penyebab' => $this->request->getPost('penyebab'),
+            'dampak' => $this->request->getPost('dampak'),
+            'solusi' => $this->request->getPost('solusi'),
+            'pic' => $this->request->getPost('pic'),
+            'target' => $this->request->getPost('target'),
+            'status' => $this->request->getPost('status')
+        ];
+
+        // Log data yang akan diupdate
+        log_message('debug', 'Data yang diterima: ' . json_encode($data));
+
+        // Koneksi database
+        $db = \Config\Database::connect();
+        
+        // Cek apakah data dengan $kode ada di tabel solusi
+        $builder = $db->table('solusi');
+        $dataLama = $builder->where('kode', $kode)->get()->getRow();
+
+        if (!$dataLama) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Data tidak ditemukan untuk kode: ' . $kode]);
+        }
+
+        // Update data di tabel solusi
+        $update = $builder->where('kode', $kode)->update($data);
+        
+        if (!$update) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Gagal mengupdate data.']);
+        }
+
+        return $this->response->setJSON(['success' => true, 'message' => 'Data berhasil diupdate']);
+    }
+
+
     public function dtutambah()
     {
         $now = date('Y-m-d');
