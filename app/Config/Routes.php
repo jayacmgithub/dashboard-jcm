@@ -150,7 +150,6 @@ $routes->get('proyek/get_bulan_absensi', 'Proyek::get_bulan_absensi');
 $routes->get('proyek/get_bulan_gbr', 'Proyek::get_bulan_gbr');
 
 
-$routes->post('proyek/proses_upload_solusi', 'Proyek::proses_upload_solusi');
 $routes->get('proyek/xls1/(:any)', 'Proyek::xls1/$1');
 $routes->get('proyek/pdf1/(:any)', 'Proyek::pdf1/$1');
 $routes->get('proyek/pdf2/(:any)', 'Proyek::pdf2/$1');
@@ -164,7 +163,8 @@ $routes->get('proyek/xls2/(:any)', 'Proyek::xls2/$1');
 $routes->get('proyek/xls3/(:any)', 'Proyek::xls3/$1');
 
 $routes->post('proyek/dtutambah', 'Proyek::dtutambah');
-$routes->post('proyek/pdfsolusitambah', 'Proyek::pdfsolusitambah');
+$routes->post('proyek/proses_upload_solusi', 'Proyek::proses_upload_solusi');
+$routes->post('proyek/lampiransolusitambah', 'Proyek::lampiransolusitambah');
 $routes->post('proyek/scurvetambah', 'Proyek::scurvetambah');
 $routes->post('proyek/fototambah', 'Proyek::fototambah');
 $routes->post('proyek/teknistambah', 'Proyek::teknistambah');

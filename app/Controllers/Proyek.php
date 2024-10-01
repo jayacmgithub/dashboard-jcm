@@ -996,7 +996,7 @@ class Proyek extends BaseController
             $data['solusi'] = $this->db
                 ->table('solusi a')
                 ->select(
-                    'a.nomor,a.type,a.masalah,a.penyebab,a.dampak,a.solusi,a.pic,a.target,a.nama_kontraktor,a.nama_paket,a.status'
+                    'a.nomor,a.type,a.masalah,a.penyebab,a.dampak,a.solusi,a.pic,a.target,a.nama_kontraktor,a.nama_paket,a.status,a.lampiran,a.kode'
                 )
                 ->join('master_pkp b', 'a.id_pkp = b.id_pkp')
                 ->where('a.id_pkp', $kode)
@@ -1009,7 +1009,7 @@ class Proyek extends BaseController
             $data['solusi2'] = $this->db
                 ->table('solusi a')
                 ->select(
-                    'a.nomor,a.type,a.masalah,a.penyebab,a.dampak,a.solusi,a.pic,a.target,a.nama_kontraktor,a.nama_paket,a.status'
+                    'a.nomor,a.type,a.masalah,a.penyebab,a.dampak,a.solusi,a.pic,a.target,a.nama_kontraktor,a.nama_paket,a.status,a.lampiran,a.kode'
                 )
                 ->join('master_pkp b', 'a.id_pkp = b.id_pkp')
                 ->where('a.id_pkp', $kode)
@@ -1032,6 +1032,9 @@ class Proyek extends BaseController
             $data['solusi'] = $solusi;
             $data['solusi2'] = $solusi2;
         }
+
+        
+
         $data['gambar'] = $this->db
             ->table('gambar a')
             ->select('a.gambar1,a.gambar2,a.gambar3,a.gambar4,a.gambar5')
@@ -1062,7 +1065,9 @@ class Proyek extends BaseController
             ->where('a.tgl_ubah = b.tgl_ubah_dtt')
             ->orderBy('a.kode', 'desc')
             ->get();
-
+        
+        
+        
         $data['judul'] =
             '<a href="' .
             base_url() .
@@ -4731,6 +4736,78 @@ class Proyek extends BaseController
         $write = new Xlsx($excel);
         $write->save('php://output');
         exit();
+    }
+
+    public function lampiransolusitambah()
+    {
+        $now = date('Y-m-d');
+        $id_pkp = $this->request->getPost('id_pkp'); // Assuming you get this from POST or GET request
+        $kode = $this->request->getPost('id_kode'); 
+        // Retrieve no_pkp and id_instansi from the database
+        $QN2 = $this->db->query(
+            "SELECT * FROM master_pkp where id_pkp='$id_pkp'"
+        );
+        foreach ($QN2->getResult() as $row2) {
+            $no_pkp = $row2->no_pkp;
+            $id_instansi = $row2->id_instansi;
+        }
+
+        // Retrieve no_instansi from the database
+        $QN3 = $this->db->query(
+            "SELECT * FROM master_instansi where id='$id_instansi'"
+        );
+        foreach ($QN3->getResult() as $row3) {
+            $no_instansi = $row3->nomor;
+        }
+
+        // Define the location for storing the uploaded PDF
+        $lokasi = 'assets/pdf/solusi/' . $no_instansi . '/' . $no_pkp;
+
+        // Check if directory exists, if not create it
+        if (!file_exists($lokasi)) {
+            mkdir($lokasi, 0777, true);
+        }
+
+        $fileName =  $kode . '.pdf'; // Define the file name
+
+        // Delete the old PDF file
+        $oldFilePath = $lokasi . '/' . $no_pkp . '.pdf';
+        if (file_exists($oldFilePath)) {
+            unlink($oldFilePath);
+        }
+
+        $file = $this->request->getFile('berkas'); // Get the uploaded file
+
+        // Check file size and type
+        if ($file->getSize() > 100000000 || $file->getExtension() != 'pdf') {
+            $this->session->setFlashdata(
+                'error',
+                'Ukuran file harus kurang dari 100MB'
+            );
+        }
+
+        // Move the file to the defined location with the defined file name
+        if ($file->isValid() && !$file->hasMoved()) {
+            $file->move($lokasi, $fileName);
+            $datagbr1 = [
+                'lampiran' => $lokasi . '/' . $fileName,
+            ];
+            $this->db
+                ->table('solusi')
+                ->where('kode', $kode)
+                ->update($datagbr1);
+        }
+
+        $dataend = [
+            'tgl_ubah' => $now,
+        ];
+        $this->db
+            ->table('master_pkp')
+            ->where('id_pkp', $id_pkp)
+            ->update($dataend);
+        $this->session->setFlashdata('success', 'upload pdf');
+        $redirectUrl = previous_url() ?? base_url();
+        return redirect()->to($redirectUrl);
     }
 
     public function dtutambah()
