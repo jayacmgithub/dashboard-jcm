@@ -4738,6 +4738,123 @@ class Proyek extends BaseController
         exit();
     }
 
+    public function tambahsolusiform()
+    {
+        //THBL TGL BERJALAN//
+        date_default_timezone_set('Asia/Jakarta');
+        $now = date('Y-m-d');
+        //ambil no urut terakhir//
+        //INSTHBL-12345//
+        //KODE-SOLUSI BERSAMA//
+        $QN3 = $this->db->query(
+            'SELECT max(id_solusi) as masKode3 FROM master_pkp order by id_solusi'
+        );
+        foreach ($QN3->getResult() as $row3) {
+            $order3 = $row3->masKode3;
+        }
+        $post = $this->request->getPost();
+        $id_pkp58 = $post['id_pkp58'];
+        $noUrut3 = (int) substr($order3, 8, 5);
+        //BL masKode//
+        $bulanL3 = substr($order3, 5, 2);
+        $bln3 = substr($now, 5, 2);
+        $tahun3 = substr($now, 2, 2);
+        if ($bln3 == $bulanL3) {
+            $kode3 =
+                'IDS' . $tahun3 . $bln3 . '-' . sprintf('%05s', $noUrut3);
+        } else {
+            $kode3 = 'IDS' . $tahun3 . $bln3 . '-' . '00001';
+        }
+        
+        $data0 = [
+            'tgl_ubah_masalah' => $now,
+            'id_solusi' =>$kode3
+        ];
+        $this->db
+            ->table('master_pkp')
+            ->where('id_pkp', $id_pkp58)
+            ->update($data0);
+        //ambil no urut terakhir//
+        //INSTHBL-12345//
+        $QN = $this->db->query(
+            'SELECT max(kode) as masKode FROM solusi order by kode'
+        );
+        foreach ($QN->getResult() as $row2) {
+            $order = $row2->masKode;
+        }
+        $noUrut = (int) substr($order, 8, 5);
+        $noUrut++;
+        //BL masKode//
+        $bulanL = substr($order, 5, 2);
+        $bln = substr($now, 5, 2);
+        $tahun = substr($now, 2, 2);
+        if ($bln == $bulanL) {
+            $kode = 'SOL' . $tahun . $bln . '-' . sprintf('%05s', $noUrut);
+        } else {
+            $kode = 'SOL' . $tahun . $bln . '-' . '00001';
+        }
+        $id1 = 'SOL' . md5($kode);
+        $id2 = 'SOL' . hash('sha1', $id1) . 'QNS';
+        $idQNS = session('idadmin');
+        // $baris++;
+        $noUrut++;
+        $no = $this->db->table('solusi')->where('id_solusi', $order3)->selectMax('nomor')->get()->getRow();
+        $no = $no->nomor;
+        $no++;
+        $kode = 'SOL' . $tahun . $bln . '-' . sprintf('%05s', $noUrut);
+        $id1 = 'SOL' . md5($kode);
+        $id2 = 'SOL' . hash('sha1', $id1) . 'QNS';
+
+        // Validasi input
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'nama_kontraktor' => 'required',
+            'nama_paket'      => 'required',    
+            'type'            => 'required',    
+            'uraian'          => 'required',
+            'penyebab'        => 'required',
+            'dampak'          => 'required',
+            'solusi'          => 'required',
+            'pic'             => 'required',
+            'target'          => 'required',
+            'status'          => 'required',
+        ]);
+
+        if (!$this->validate($validation->getRules())) {
+            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+        }
+
+        // Menggunakan Query Builder untuk menyimpan data
+        $builder = $this->db->table('solusi');
+        $data = [
+            'id'              => $id2,
+            'kode'            => $kode,
+            'id_pkp'          => $id_pkp58,
+            'id_solusi'       => $kode3,
+            'tgl_ubah'        => $now,
+            'id_ubah'         => $idQNS,
+            'nomor'           => $no,
+            'nama_kontraktor' => $this->request->getPost('nama_kontraktor'),
+            'nama_paket'      => $this->request->getPost('nama_paket'),
+            'type'            => $this->request->getPost('type'),
+            'masalah'         => $this->request->getPost('uraian'),
+            'penyebab'        => $this->request->getPost('penyebab'),
+            'dampak'          => $this->request->getPost('dampak'),
+            'solusi'          => $this->request->getPost('solusi'),
+            'pic'             => $this->request->getPost('pic'),
+            'target'          => $this->request->getPost('target'),
+            'status'          => $this->request->getPost('status'),
+        ];
+
+        if ($builder->insert($data)) {
+            return redirect()->back()->with('success', 'Data berhasil ditambahkan');
+        } else {
+            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan data');
+        }
+    }
+
+
+
     public function lampiransolusitambah()
     {
         $now = date('Y-m-d');
@@ -4812,10 +4929,13 @@ class Proyek extends BaseController
 
     public function editsolusi($kode)
     {
-        // Cek apakah $kode ada
-        if (empty($kode)) {
-            return $this->response->setJSON(['success' => false, 'message' => 'Kode tidak ditemukan atau kosong.']);
-        }
+        date_default_timezone_set('Asia/Jakarta');
+        $now = date('Y-m-d');
+
+        // // Cek apakah $kode ada
+        // if (empty($kode)) {
+        //     return $this->response->setJSON(['success' => false, 'message' => 'Kode tidak ditemukan atau kosong.']);
+        // }
 
         $validation = \Config\Services::validation();
         
@@ -4846,22 +4966,24 @@ class Proyek extends BaseController
             'solusi' => $this->request->getPost('solusi'),
             'pic' => $this->request->getPost('pic'),
             'target' => $this->request->getPost('target'),
-            'status' => $this->request->getPost('status')
+            'status' => $this->request->getPost('status'),
+            'tgl_ubah' => $now
+
         ];
 
-        // Log data yang akan diupdate
-        log_message('debug', 'Data yang diterima: ' . json_encode($data));
+        // // Log data yang akan diupdate
+        // log_message('debug', 'Data yang diterima: ' . json_encode($data));
 
         // Koneksi database
         $db = \Config\Database::connect();
         
         // Cek apakah data dengan $kode ada di tabel solusi
         $builder = $db->table('solusi');
-        $dataLama = $builder->where('kode', $kode)->get()->getRow();
+        // $dataLama = $builder->where('kode', $kode)->get()->getRow();
 
-        if (!$dataLama) {
-            return $this->response->setJSON(['success' => false, 'message' => 'Data tidak ditemukan untuk kode: ' . $kode]);
-        }
+        // if (!$dataLama) {
+        //     return $this->response->setJSON(['success' => false, 'message' => 'Data tidak ditemukan untuk kode: ' . $kode]);
+        // }
 
         // Update data di tabel solusi
         $update = $builder->where('kode', $kode)->update($data);

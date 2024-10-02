@@ -119,6 +119,9 @@
                                 <?php if (!$solusi || !$solusi2) { ?>
                                 <a class="btn btn-success" data-toggle="modal" data-target="#tambahData"
                                     style="font-size: 12px;color:white"> UPD. MASALAH</a>
+                                <?php } else {?>
+                                <a class="btn btn-success" data-toggle="modal" data-target="#tambahDataForm"
+                                style="font-size: 12px;color:white"> UPD. MASALAH</a>
                                 <?php } ?>
                                 <a class="btn btn-info" data-toggle="dropdown" style="font-size: 12px;color:black">EXPORT
 
@@ -426,6 +429,91 @@
     </div>
 </div>
 
+<!--TAMBAH DATA FORM-->
+<div class="modal fade" id="tambahDataForm" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:90%">
+        <div class="modal-content">
+            <section class="panel panel-primary">
+                <?= form_open(base_url('proyek/tambahsolusiform'), [
+                    'method' => 'post',
+                    'enctype' => 'multipart/form-data',
+                ]) ?>
+                <header class="panel-heading">
+                    <h2 class="panel-title">Tambah Data</h2>
+                </header>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                                <input type="hidden" name="id_pkp58" value="<?= esc(
+                                        $proyek->getRow()->id_pkp
+                                    ) ?>"
+                                        class="form-control" required />
+                            <div class="form-group mt-lg file1">
+                                <label class="col-sm-3 control-label">Internal/Ekternal<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <select name="type" class="form-control" required>
+                                        <option value="">Pilih</option>
+                                        <option value="EKS">Eksternal</option>
+                                        <option value="INT">Internal</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-3 control-label">Nama Kontraktor<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="nama_kontraktor" class="form-control" required />
+                                </div>
+                                <label class="col-sm-3 control-label">Nama Paket<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="nama_paket" class="form-control" required /> 
+                                </div>
+                                <label class="col-sm-3 control-label">Uraian<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="uraian" class="form-control" required />
+                                </div>
+                                <label class="col-sm-3 control-label">Penyebab<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="penyebab" class="form-control" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mt-lg file1">
+                                <label class="col-sm-3 control-label">Dampak<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="dampak" class="form-control" required />
+                                </div>
+                                <label class="col-sm-3 control-label">Solusi<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="solusi" class="form-control" required />
+                                </div>
+                                <label class="col-sm-3 control-label">PIC<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="pic" class="form-control" required />
+                                </div>
+                                <label class="col-sm-3 control-label">Target<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="target" class="form-control" required />
+                                </div>
+                                <label class="col-sm-3 control-label">Status<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="status" class="form-control" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-primary modal-confirm" type="submit">Submit</button>
+                            <button class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </footer>
+                <?= form_close() ?>
+            </section>
+        </div>
+    </div>
+</div>
 
 <!--IMPORT SOLUSI-->
 <div class="modal fade" id="tambahData" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
