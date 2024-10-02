@@ -156,7 +156,7 @@
                         style="min-width: 1200px;">
                         <thead style="background-color:#1b3a59;color:white;">
                             <tr>
-                                <th style="text-align:center;width: 3%">NO.</th>
+                                <th style="text-align:center;width: 3%">AKSI</th>
                                 <th style="text-align:center;width: 20%">NAMA KONTRAKTOR & PAKET</th>
                                 <th style="text-align:center;width: 20%">URAIAN</th>
                                 <th style="text-align:center;width: 20%">PENYEBAB</th>
@@ -196,7 +196,6 @@
                                     </td>
                                     <td style="text-align:left;width: 20%">
                                         
-                                        <?= $sol->kode ?>
                                         <?= $sol->nama_kontraktor ?>
                                      <br>
                                      <b style="font-weight: 600;font-size:12px;"><?= $sol->nama_paket ?></b>
