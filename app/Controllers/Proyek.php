@@ -603,13 +603,84 @@ class Proyek extends BaseController
     }
 
 
+    public function get_tahun_scurve() {
+        $paket = $this->request->getGet('paket');
+        
+        // Query untuk mendapatkan data tahun dan bulan berdasarkan paket
+        $result = $this->db->query("
+            SELECT DISTINCT 
+                YEAR(tgl_upd_scurve) AS tahun, 
+                MONTH(tgl_upd_scurve) AS bulan,
+                CASE MONTH(tgl_upd_scurve)
+                    WHEN 1 THEN 'Januari'
+                    WHEN 2 THEN 'Februari'
+                    WHEN 3 THEN 'Maret'
+                    WHEN 4 THEN 'April'
+                    WHEN 5 THEN 'Mei'
+                    WHEN 6 THEN 'Juni'
+                    WHEN 7 THEN 'Juli'
+                    WHEN 8 THEN 'Agustus'
+                    WHEN 9 THEN 'September'
+                    WHEN 10 THEN 'Oktober'
+                    WHEN 11 THEN 'November'
+                    WHEN 12 THEN 'Desember'
+                END AS nama_bulan
+            FROM scurve 
+            WHERE nama_paket = ?
+        ", [$paket])->getResult();
+    
+        // Mengelompokkan hasil berdasarkan tahun
+        $data = [];
+        foreach ($result as $row) {
+            $data[] = [
+                'tahun' => $row->tahun,
+                'bulan' => $row->bulan,
+                'nama_bulan' => $row->nama_bulan
+            ];
+        }
+    
+        // Kirim respons dalam format JSON
+        return $this->response->setJSON($data);
+    }
+    
+    
+    public function get_bulan_scurve() {
+        $paket = $this->request->getGet('paket');
+        $tahun = $this->request->getGet('tahun');
+        $tahun = $this->request->getGet('bulan');
+        // Query untuk mendapatkan data bulan dari tgl_upd_scurve berdasarkan paket dan tahun
+        $result = $this->db->query("
+            SELECT DISTINCT MONTH(tgl_upd_scurve) AS bulan, 
+                            CASE MONTH(tgl_upd_scurve)
+                                WHEN 1 THEN 'Januari'
+                                WHEN 2 THEN 'Februari'
+                                WHEN 3 THEN 'Maret'
+                                WHEN 4 THEN 'April'
+                                WHEN 5 THEN 'Mei'
+                                WHEN 6 THEN 'Juni'
+                                WHEN 7 THEN 'Juli'
+                                WHEN 8 THEN 'Agustus'
+                                WHEN 9 THEN 'September'
+                                WHEN 10 THEN 'Oktober'
+                                WHEN 11 THEN 'November'
+                                WHEN 12 THEN 'Desember'
+                            END AS nama_bulan 
+            FROM scurve 
+            WHERE nama_paket = ? AND YEAR(tgl_upd_scurve) = ?
+        ", [$paket, $tahun, $bulan])->getResult();
+        
+        // Kirim response dalam format JSON
+        return $this->response->setJSON($result);
+    }
+    
+    
 
     public function get_bulan_msl()
     {
         $request = \Config\Services::request();
         $id_pkp = $request->getGet('id_pkp');
         $tahun = $request->getGet('tahun');
-        $data['id_pkp'] = $this->request->uri->getSegment(4);
+        $data['id_pkp'] = $request->getGet('id_pkp');
         // Mengambil daftar bulan berdasarkan id_pkp dan tahun yang dipilih
         $bulan_list = $this->proyek->option_bulan_msl($id_pkp, $tahun);
 
@@ -974,13 +1045,31 @@ if ($no_pkp) {
 
     public function s_curve($kode)
     {
+        $data['id_pkp'] = $this->request->uri->getSegment(3);
+        $id_pkp = $this->request->uri->getSegment(3);
         $data['kode'] = '02';
         date_default_timezone_set("Asia/Jakarta");
         $now = date("Y-m-d");
         $data['now1'] = date("d-m-Y");
         $data['proyek'] = $this->db->table('master_pkp')->getWhere(['id_pkp' => $kode], 1);
-        $id_pkp = $this->request->uri->getSegment(4);
-        $data['id_pkp'] = $this->request->uri->getSegment(4);
+        $bulan = $this->request->getGet('bulan') ?? '00';
+        $tahun = $this->request->getGet('tahun') ?? '00';
+        $nama_paket = $this->request->getGet('paket') ?? '';
+
+        if ($bulan === '00' && $tahun === '00') {
+            $data['scurvepaket'] = $this->db->table('scurve')->getWhere(['id_pkp' => $kode], 1);
+
+        } else {
+            $scurvepaket = $this->proyek->view_scurve_paket($tahun, $bulan, $id_pkp, $nama_paket);
+
+            $data['scurvepaket'] = $scurvepaket;
+        }
+        $data['scurvepaketfilter'] = $this->db->table('scurve')
+    ->where('id_pkp', $kode)
+    ->select('DISTINCT(nama_paket)')
+    ->get()
+    ->getResult();
+
         //end-dzaki
         $idQNS = session('idadmin');
         $isi = $this->db->table("master_admin")->where('id', $idQNS, 1)->get()->getRow();
@@ -1055,6 +1144,67 @@ if ($no_pkp) {
             "tgl_ubah_scurve" => $now,
         );
         $this->db->table('master_pkp')->where('id_pkp', $id_pkp)->update($dataend);
+        $this->session->setFlashdata('success', 'upload pdf');
+        $redirectUrl = previous_url() ?? base_url();
+        return redirect()->to($redirectUrl);
+    }
+
+
+
+    public function scurvetambahpaket()
+    {
+        $now = date("Y-m-d");
+        $id_pkp = $this->request->getPost('id'); // Assuming you get this from POST or GET request
+
+        // Retrieve no_pkp and id_instansi from the database
+        $QN2 = $this->db->query("SELECT * FROM master_pkp where id_pkp='$id_pkp'");
+        foreach ($QN2->getResult() as $row2) {
+            $no_pkp = $row2->no_pkp;
+            $id_instansi = $row2->id_instansi;
+        }
+
+        // Retrieve no_instansi from the database
+        $QN3 = $this->db->query("SELECT * FROM master_instansi where id='$id_instansi'");
+        foreach ($QN3->getResult() as $row3) {
+            $no_instansi = $row3->nomor;
+        }
+
+        // Define the location for storing the uploaded PDF
+        $lokasi = './assets/pdf/scurvepaket/' . $no_instansi . '/' . $no_pkp;
+
+        // Check if directory exists, if not create it
+        if (!file_exists($lokasi)) {
+            mkdir($lokasi, 0777, true);
+        }
+
+        $teknis = 'SCRVPKT';
+        $uniqueCode = bin2hex(random_bytes(5)); // Menghasilkan string acak sepanjang 10 karakter   
+        $fileName = $teknis . $no_pkp . '_' . $uniqueCode . '.pdf'; 
+        // Delete the old PDF file
+        $oldFilePath = $lokasi . '/' . $teknis . $no_pkp . '.pdf';
+        if (file_exists($oldFilePath)) {
+            unlink($oldFilePath);
+        }
+
+        $file = $this->request->getFile('berkas'); // Get the uploaded file
+
+        // Check file size and type
+        if ($file->getSize() > 100000000 || $file->getExtension() != 'pdf') {
+            $this->session->setFlashdata('error', 'Ukuran file harus kurang dari 100MB');
+        }
+
+        // Move the file to the defined location with the defined file name
+        if ($file->isValid() && !$file->hasMoved()) {
+            $file->move($lokasi, $fileName);
+            $datagbr1 = [
+                "file_scurve" => $lokasi . '/' . $fileName,
+                "id_pkp" => $id_pkp,
+                "tgl_ubah_scurve" => $now,
+                "nama_paket" => $this->request->getPost('nama_paket'),
+                "tgl_upd_scurve" => $this->request->getPost('tgl_upd_scurve')
+            ];
+        }
+        $this->db->table('scurve')->where('id_pkp', $id_pkp)->insert($datagbr1);
         $this->session->setFlashdata('success', 'upload pdf');
         $redirectUrl = previous_url() ?? base_url();
         return redirect()->to($redirectUrl);
