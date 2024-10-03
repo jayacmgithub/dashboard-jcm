@@ -53,7 +53,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="col-sm-12">
-                            <div class="d-flex flex-row pull-right">
+                            <div class="d-flex flex-row pull-right mt-2">
                                 <?php
                                 if (level_user('proyek', 'data', $kategoriQNS, 'posting') > 0) {
                                     ?>
@@ -110,24 +110,40 @@
                     <div class="col-md-6">
                         <div class="col-sm-12">
 
-                            <?= level_user('proyek', 'data', $kategoriQNS, 'add') > 0 ? '<h6 class="btn btn-success float-right" style="font-size: 12px;"><a data-toggle="modal" data-target="#tambahDataFoto"> UPDATE S-CURVE PAKET</a></h6>' : '';
-                            ?>
                             <form action="" method="GET" class="ml-auto">
                                 <div class="row align-items-center">
-                                    <div class="col-md-4">
-                                        <select name="tahun" id="tahun" class="form-control">
-                                            <option value="00">Pilih Paket</option>
-                                            <?php foreach ($option_tahun as $data): ?>
-                                                <option value="<?php echo $data->tahun; ?>"><?php echo $data->tahun; ?>
+                                    <div class="col-md-3 mb-2">
+                                        <select name="paket" id="paket" class="form-control">
+                                            <option value="">Pilih Paket</option>
+                                            <?php foreach ($scurvepaketfilter as $scr): ?>
+                                                <option value="<?php echo $scr->nama_paket; ?>"><?php echo $scr->nama_paket; ?>
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
-
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-2 mb-2">
+                                    <select name="tahun" id="tahun" class="form-control">
+                                        <option value="00">Tahun</option>
+                                        <?php foreach ($option_tahun as $data): ?>
+                                            <option value="<?php echo $data->tahun; ?>"><?php echo $data->tahun; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 mb-2">
+                                    <select name="bulan" id="bulan" class="form-control">
+                                        <option value="00">Bulan</option>
+                                        <!-- Opsi Bulan akan diisi setelah pengguna memilih Tahun -->
+                                    </select>
+                                </div>
+                                    
+                                    <div class="col-md-2 mb-2">
                                         <button class="btn btn-lg btn-success" style="font-size:12px;"
                                             type="submit">Filter</button>
                                     </div>
+                                        <div class="col-md-3 mb-2">
+                                        <?= level_user('proyek', 'data', $kategoriQNS, 'add') > 0 ? '<h6 class="btn btn-success float-right" style="font-size: 12px;"><a data-toggle="modal" data-target="#tambahDataDTU2"> UPDATE S-CURVE PAKET</a></h6>' : '';
+                            ?>
+                                        </div>
                                 </div>
                             </form>
 
@@ -143,13 +159,16 @@
                                                 $tgl_scurve = '';
                                             }
                                             ?>
-    <th style="text-align:center;width: 60%;font-size: 18px">S-Curver per Paket</th>                                        </tr>
+                                        <th style="text-align:center;width: 60%;font-size: 18px">S-Curver per Paket</th>                                        </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>
-                                             
-
+                                        <td colspan="2">
+                                        <?php if (!empty($scurvepaket->getRow()->file_scurve)) { ?>
+                                            <iframe src="<?= base_url() . esc($scurvepaket->getRow()->file_scurve) ?>" width="100%" height="600"></iframe>
+                                        <?php } else { ?>
+                                            <p>S-Curve belum diunggah</p>
+                                        <?php } ?>
                                             </td>
                                     </tbody>
                                 </table>
@@ -193,6 +212,56 @@
                         <div class="col-md-12 text-right">
                             <button class="btn btn-primary modal-confirm" style="font-size: 12px;vertical-align: middle"
                                 type="submit" id="submitformdtu">Submit</button>
+                            <button class="btn btn-default" style="font-size: 12px;vertical-align: middle"
+                                data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </footer>
+                <?= form_close(); ?>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="tambahDataDTU2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" style="width:90%">
+        <div class="modal-content">
+            <section class="panel panel-primary">
+                <?= form_open(base_url('proyek/scurvetambahpaket'), ['enctype' => 'multipart/form-data']); ?>
+                <header class="panel-heading">
+                    <h2 class="panel-title">Perbaharui S-Curve Paket</h2>
+                </header>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mt-lg file1">
+                                <label class="col-sm-3 control-label">Nama Paket<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="text" name="nama_paket" class="form-control" required />
+                                </div>
+                                <label class="col-sm-3 control-label">Tanggal Update S-Curve<span class="required">*</span></label>
+                                <div class="col-sm-9 mb-2">
+                                    <input type="date" name="tgl_upd_scurve" class="form-control" required />
+                                </div>
+                                <label class="col-sm-3 control-label">File S-Curve<span class="required">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="hidden" name="id" value="<?= esc($proyek->getRow()->id_pkp); ?>"
+                                        class="form-control" required />
+                                    <input type="hidden" name="id_ubah" value="<?= session('idadmin'); ?>"
+                                        class="form-control" required />
+                                    <input type="file" name="berkas" class="form-control" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-primary modal-confirm" style="font-size: 12px;vertical-align: middle"
+                                type="submit" id="submitformdtu2">Submit</button>
                             <button class="btn btn-default" style="font-size: 12px;vertical-align: middle"
                                 data-dismiss="modal">Close</button>
                         </div>
@@ -289,29 +358,49 @@
 </div>
 <?= $this->include('layout/js') ?>
 <script>
-    // Tambahkan event listener untuk perubahan tahun
-    document.getElementById('tahun').addEventListener('change', function () {
-        const tahun = this.value;
-        const bulanSelect = document.getElementById('bulan');
-        bulanSelect.innerHTML = ''; // Mengosongkan opsi bulan
+// Event listener ketika pengguna memilih paket
+document.getElementById('paket').addEventListener('change', function () {
+    const paket = this.value;
+    const tahunSelect = document.getElementById('tahun');
+    const bulanSelect = document.getElementById('bulan');
+    tahunSelect.innerHTML = ''; // Kosongkan opsi tahun saat paket berubah
+    bulanSelect.innerHTML = ''; // Kosongkan opsi bulan
 
-        // Kirim permintaan AJAX untuk mengambil data bulan berdasarkan tahun yang dipilih
-        fetch(`<?= base_url('proyek/get_bulan_scurve'); ?>?id_pkp=<?= $id_pkp; ?>&tahun=${tahun}`)
+    if (paket) {
+        // Kirim permintaan AJAX untuk mendapatkan data tahun dan bulan berdasarkan paket yang dipilih
+        fetch(`<?= base_url('proyek/get_tahun_scurve'); ?>?paket=${paket}`)
             .then(response => response.json())
             .then(data => {
-                // Tambahkan opsi bulan ke dalam elemen select
-                data.forEach(bulan => {
+                const tahunSet = new Set(); // Set untuk menyimpan tahun yang unik
+                data.forEach(item => {
+                    // Tambahkan tahun ke dalam elemen select
+                    tahunSet.add(item.tahun); // Hanya menambahkan tahun yang unik
+                });
+                
+                // Tambahkan opsi tahun ke dalam elemen select
+                tahunSet.forEach(tahun => {
                     const option = document.createElement('option');
-                    option.value = bulan.bulan;
-                    option.textContent = bulan.nama_bulan;
+                    option.value = tahun;
+                    option.textContent = tahun;
+                    tahunSelect.appendChild(option);
+                });
+                
+                // Tambahkan opsi bulan ke dalam elemen select
+                data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.bulan;
+                    option.textContent = item.nama_bulan;
                     bulanSelect.appendChild(option);
                 });
             })
             .catch(error => {
                 console.error('Error:', error);
             });
-    });
+    }
+});
+
 </script>
+
 <script type="text/javascript">
     $(".table-scrollable").freezeTable({
         'scrollable': true,
@@ -389,6 +478,81 @@
                 $('#tambahDataDTU').modal('hide');
                 document.getElementById("FormulirTambahDTU").reset();
                 $('#submitformdtu').html('Submit');
+                Swal.fire({
+                    title: 'Notifikasi',
+                    text: data.message,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    icon: 'success'
+                });
+                window.setTimeout(function () {
+                    //location.reload();
+                    window.location.href = "<?= base_url() ?>proyek/edit_3/" + data.id_pkp
+                }, 2000);
+            }
+        }).fail(function (data) {
+            Swal.fire({
+                title: 'Notifikasi',
+                text: "Request gagal, browser akan direload",
+                position: "top-end",
+                showConfirmButton: false,
+                icon: 'error'
+
+            });
+            window.setTimeout(function () {
+                location.reload();
+            }, 2000);
+        });
+        e.preventDefault();
+    });
+
+
+        /* TAMBAH DTU */
+        document.getElementById("FormulirTambahDTU2").addEventListener("submit", function (e) {
+        blurForm();
+        $('.help-block').hide();
+        $('.form-group').removeClass('has-error');
+        document.getElementById("submitformdtu").setAttribute('disabled', 'disabled');
+        $('#submitformdtu2').html('Loading ...');
+        var form = $('#FormulirTambahDTU2')[0];
+        var formData = new FormData(form);
+        var xhrAjax = $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            dataType: 'json'
+        }).done(function (data) {
+            if (!data.success) {
+                $('input[name=<?= csrf_token() ?>]').val(data.token);
+                document.getElementById("submitformdtu2").removeAttribute('disabled');
+                $('#submitformdtu2').html('Submit');
+                var objek = Object.keys(data.errors);
+                for (var key in data.errors) {
+                    if (data.errors.hasOwnProperty(key)) {
+                        var msg = '<div class="help-block" for="' + key + '">' + data.errors[key] + '</span>';
+                        $('.' + key).addClass('has-error');
+                        $('input[name="' + key + '"]').after(msg);
+                    }
+                    if (key == 'fail') {
+                        Swal.fire({
+                            title: 'Notifikasi',
+                            text: data.errors[key],
+                            position: "top-end",
+                            showConfirmButton: false,
+                            icon: 'error'
+                        });
+                    }
+                }
+            } else {
+                $('input[name=<?= csrf_token() ?>]').val(data.token);
+                PNotify.removeAll();
+                document.getElementById("submitformdtu2").removeAttribute('disabled');
+                $('#tambahDataDTU2').modal('hide');
+                document.getElementById("FormulirTambahDTU2").reset();
+                $('#submitformdtu2').html('Submit');
                 Swal.fire({
                     title: 'Notifikasi',
                     text: data.message,

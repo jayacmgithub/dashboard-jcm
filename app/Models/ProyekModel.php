@@ -234,6 +234,18 @@ class ProyekModel extends Model
     }
 
 
+    public function option_bulan_scurve($id_pkp, $tahun)
+    {
+        $builder = $this->db->table('scurve');
+        $builder->select('MONTH(tgl_upd_scurve) as bulan');
+        $builder->where('id_pkp', $id_pkp);
+        $builder->where('YEAR(tgl_upd_scurve)', $tahun);
+        $builder->distinct();
+        $builder->orderBy('MONTH(tgl_upd_scurve)', 'ASC');
+
+        return $builder->get()->getResult();
+    }
+
     public function option_bulan_msl($id_pkp, $tahun)
     {
         $builder = $this->db->table('solusi');
@@ -318,6 +330,23 @@ class ProyekModel extends Model
         }
         return $query->get(); // Return the query result object
     }
+
+
+    public function view_scurve_paket($tahun, $bulan, $id_pkp, $nama_paket)
+    {
+        $query = $this->db->table('scurve')
+            ->select('*')
+            ->where('id_pkp', $id_pkp)
+            ->where('nama_paket', $nama_paket)
+            ->orderBy('id', 'DESC');
+
+        if (!empty($tahun) && !empty($bulan)) {
+            $query->where("MONTH(tgl_upd_scurve)", $bulan)
+                ->where("YEAR(tgl_upd_scurve)", $tahun);
+        }
+        return $query->get(); // Return the query result object
+    }
+
 
     public function getAllPKP()
     {

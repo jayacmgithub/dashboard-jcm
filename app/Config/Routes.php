@@ -33,7 +33,7 @@ $routes->get('/', 'Login::index');
 $routes->post('login/auth', 'Login::authLogin');
 $routes->get('logout', 'Login::logout');
 $routes->group('', ['filter' => 'auth'], function ($routes) {
-$routes->get('dashboard/index', 'Dashboard::index');
+$routes->get('dashboard/dashboard/index', 'Dashboard::index');
 $routes->get('beranda_01', 'Dashboard::beranda_01');
 $routes->get('beranda_02', 'Dashboard::beranda_02');
 $routes->get('beranda_03', 'Dashboard::beranda_03');
@@ -148,8 +148,10 @@ $routes->get('proyek/get_bulan', 'Proyek::get_bulan');
 $routes->get('proyek/get_bulan_msl', 'Proyek::get_bulan_msl');
 $routes->get('proyek/get_bulan_absensi', 'Proyek::get_bulan_absensi');
 $routes->get('proyek/get_bulan_gbr', 'Proyek::get_bulan_gbr');
+$routes->get('proyek/get_tahun_scurve', 'Proyek::get_tahun_scurve');
+$routes->get('proyek/get_bulan_scurve', 'Proyek::get_bulan_scurve');
 
-
+$routes->post('proyek/proses_upload_solusi', 'Proyek::proses_upload_solusi');
 $routes->get('proyek/xls1/(:any)', 'Proyek::xls1/$1');
 $routes->get('proyek/pdf1/(:any)', 'Proyek::pdf1/$1');
 $routes->get('proyek/pdf2/(:any)', 'Proyek::pdf2/$1');
@@ -163,11 +165,8 @@ $routes->get('proyek/xls2/(:any)', 'Proyek::xls2/$1');
 $routes->get('proyek/xls3/(:any)', 'Proyek::xls3/$1');
 
 $routes->post('proyek/dtutambah', 'Proyek::dtutambah');
-$routes->post('proyek/tambahsolusiform', 'Proyek::tambahsolusiform');
-$routes->post('proyek/proses_upload_solusi', 'Proyek::proses_upload_solusi');
-$routes->post('proyek/lampiransolusitambah', 'Proyek::lampiransolusitambah');
-$routes->post('proyek/editsolusi/(:any)', 'Proyek::editsolusi/$1');
 $routes->post('proyek/scurvetambah', 'Proyek::scurvetambah');
+$routes->post('proyek/scurvetambahpaket', 'Proyek::scurvetambahpaket');
 $routes->post('proyek/fototambah', 'Proyek::fototambah');
 $routes->post('proyek/teknistambah', 'Proyek::teknistambah');
 $routes->post('proyek/tambah-invoice', 'Proyek::tambahInvoice');
