@@ -12,7 +12,8 @@
         "fpdf/fpdf": "*",
         "laminas/laminas-escaper": "^2.9",
         "phpoffice/phpspreadsheet": "*",
-        "psr/log": "^1.1"
+        "psr/log": "^1.1",
+        "setasign/fpdf": "*"
     },
     "require-dev": {
         "kint-php/kint": "^5.0.4",

@@ -184,7 +184,7 @@ class ProyekModel extends Model
     public function view_progress_solusi($tahun, $bulan, $id_pkp)
     {
         $query = $this->db->table("solusi a")
-            ->select("a.nomor,a.type,a.masalah,a.penyebab,a.dampak,a.solusi,a.pic,a.target")
+            ->select("a.nomor,a.type,a.masalah,a.penyebab,a.dampak,a.solusi,a.pic,a.target,a.nama_kontraktor,a.nama_paket,a.status,a.lampiran,a.kode")
             ->where('a.id_pkp', $id_pkp)
             ->where('a.type', 'EKS')
             ->orderBy('a.nomor', 'ASC');
@@ -201,7 +201,7 @@ class ProyekModel extends Model
     public function view_progress_solusi2($tahun, $bulan, $id_pkp)
     {
         $query = $this->db->table("solusi a")
-            ->select("a.nomor,a.type,a.masalah,a.penyebab,a.dampak,a.solusi,a.pic,a.target")
+            ->select("a.nomor,a.type,a.masalah,a.penyebab,a.dampak,a.solusi,a.pic,a.target,a.nama_kontraktor,a.nama_paket,a.status,a.lampiran,a.kode")
             ->where('a.id_pkp', $id_pkp)
             ->where('a.type', 'INT')
             ->orderBy('a.nomor', 'ASC');
